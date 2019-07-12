@@ -22,14 +22,15 @@ class IndexController extends Controller {
         $go = $_GET['go'];
         $arrive = $_GET['arrive'];
         $date = $_GET['date'];
-
+        
         $Model = M();
         $sql = 'select * from ticket a left join company b on a.cid=b.id where a.go='."'".$go."'".'and a.arrive='."'".$arrive."'".'and a.date='."'".$date."'";
         $list = $Model->query($sql);
 
         // 把数据传入模板
         $this->assign('list', $list);
-        $this->display();		// 模板渲染
+        // 模板渲染
+        $this->display();		
 
     }
 }
