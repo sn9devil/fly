@@ -3,6 +3,7 @@ return array(
 	//'配置项'=>'配置值'
 	'TMPL_PARSE_STRING'  =>array(
 		'__HOME__' => '/fly/public/home', // 更改默认的/Public 替换规则
+		'__ADMIN__' => '/fly/public/admin',//更改admin
 	),
 	//数据库配置信息
 	'DB_TYPE'   => 'mysql', // 数据库类型
