@@ -7,3 +7,615 @@ INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000423s ]
 ERR: SQLSTATE[HY000] [1049] Unknown database 'fly'
 
+[ 2019-07-13T23:08:54+08:00 ] ::1 /fly/home/user/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000875s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002766s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002832s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000060s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000116s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037786s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037845s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.009151s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.009200s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004070s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004161s ]
+
+[ 2019-07-13T23:16:29+08:00 ] ::1 /fly/home/order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000924s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000979s ]
+NOTIC: [8] Undefined index: uid E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 33 行.
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0030s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 38 行.
+
+[ 2019-07-13T23:16:47+08:00 ] ::1 /fly/Home/order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000332s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000768s ]
+NOTIC: [8] Undefined index: uid E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 33 行.
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0053s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 38 行.
+
+[ 2019-07-13T23:17:00+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000340s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000750s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000793s ]
+NOTIC: [8] Undefined index: uid E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 33 行.
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0036s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 38 行.
+
+[ 2019-07-13T23:17:09+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000544s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000936s ]
+NOTIC: [8] Undefined index: uid E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 33 行.
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0033s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 38 行.
+
+[ 2019-07-13T23:17:39+08:00 ] ::1 /fly/Home/Order/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000851s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000893s ]
+SQL: select * from (orders_item a left join ticket b on a.t_id=b.tid) left join orders c on a.o_id=c.oid [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.066795s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.066837s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000440s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000471s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001396s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001470s ]
+
+[ 2019-07-13T23:17:47+08:00 ] ::1 /fly/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+SQL: select * from ticket a left join company b on a.cid=b.id [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000071s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007508s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007565s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000545s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000583s ]
+
+[ 2019-07-13T23:18:02+08:00 ] ::1 /fly/Home/Order/search?uid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0033s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 38 行.
+
+[ 2019-07-13T23:18:34+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000948s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001038s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 40 行.
+
+[ 2019-07-13T23:18:37+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000545s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000972s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0054s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 40 行.
+
+[ 2019-07-13T23:18:50+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000415s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000454s ]
+
+[ 2019-07-13T23:19:19+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000771s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000819s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0038s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000953s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001003s ]
+
+[ 2019-07-13T23:19:21+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000655s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000742s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000790s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000823s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000866s ]
+
+[ 2019-07-13T23:19:27+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000339s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000747s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0039s ]
+NOTIC: [8] Undefined variable: orders E:\phpStudy\PHPTutorial\WWW\fly\Application\Home\Controller\OrderController.class.php 第 40 行.
+
+[ 2019-07-13T23:20:20+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000375s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000584s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000649s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003007s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003066s ]
+
+[ 2019-07-13T23:20:26+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000291s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000415s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000457s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000668s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000712s ]
+
+[ 2019-07-13T23:20:43+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000288s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000414s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000455s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006336s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006380s ]
+
+[ 2019-07-13T23:25:51+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001094s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001232s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.1524s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000727s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000769s ]
+
+[ 2019-07-13T23:41:01+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000337s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000677s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0038s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:41:13+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000452s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0040s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:41:14+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000322s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000464s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000507s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0032s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:41:15+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001207s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0034s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:41:16+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000358s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001297s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001384s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0040s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:42:01+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000740s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:42:03+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000623s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001314s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0044s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:42:07+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000742s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0040s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:42:08+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001389s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001486s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0036s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:42:09+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000605s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0038s ]
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+ERR: 1146:Table 'fly.table' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `table`
+
+[ 2019-07-13T23:43:08+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001164s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+ERR: 1146:Table 'fly.order_item' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `order_item`
+ERR: 1146:Table 'fly.order_item' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `order_item`
+
+[ 2019-07-13T23:43:44+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000765s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000818s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0034s ]
+ERR: 1054:Unknown column 'a.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.tid = b.tid and a.tid = 1 ) 
+ERR: 1054:Unknown column 'a.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.tid = b.tid and a.tid = 1 ) 
+
+[ 2019-07-13T23:44:00+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000593s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000902s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0030s ]
+ERR: 1054:Unknown column 'a.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.tid = b.tid ) 
+ERR: 1054:Unknown column 'a.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.tid = b.tid ) 
+
+[ 2019-07-13T23:44:45+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000854s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000934s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0033s ]
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+
+[ 2019-07-13T23:44:47+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000927s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000984s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0030s ]
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+
+[ 2019-07-13T23:44:48+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000819s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0035s ]
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+
+[ 2019-07-13T23:44:49+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000536s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001292s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0033s ]
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+ERR: 1054:Unknown column 'b.tid' in 'where clause'
+ [ SQL语句 ] : SELECT * FROM orders_item a WHERE ( a.t_id = b.tid ) 
+
+[ 2019-07-13T23:45:06+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001469s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002069s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0034s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid )  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001319s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001401s ]
+
+[ 2019-07-13T23:45:23+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000335s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000743s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0038s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid )  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006981s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007065s ]
+
+[ 2019-07-13T23:45:25+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000801s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0036s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid )  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001012s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001065s ]
+
+[ 2019-07-13T23:45:28+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000480s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000818s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0029s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid )  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000946s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000991s ]
+
+[ 2019-07-13T23:47:33+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000353s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0036s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.t_id=1 )  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000605s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000647s ]
+
+[ 2019-07-13T23:47:51+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000752s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000809s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0030s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.t_id=9 )  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001011s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001055s ]
+
+[ 2019-07-13T23:50:45+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000613s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0036s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="1" )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0038s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="3" )  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0029s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.t_id=9 )  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000885s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000943s ]
+
+[ 2019-07-13T23:51:12+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000478s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0034s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="1" )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0031s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="3" )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0031s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.t_id=9 )  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001792s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001873s ]
+
+[ 2019-07-13T23:51:30+08:00 ] ::1 /fly/Home/Order/search
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000468s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000469s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+SQL: SHOW COLUMNS FROM `orders` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `orders` WHERE `uid` = 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0035s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="1" )  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `orders_item` [ RunTime:0.0028s ]
+SQL: SELECT * FROM orders_item a,ticket b WHERE ( a.t_id = b.tid and a.o_id ="3" )  [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000884s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000955s ]
+

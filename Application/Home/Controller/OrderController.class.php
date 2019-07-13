@@ -29,19 +29,37 @@ class OrderController extends Controller {
 
     public function search(){
 
-       
-        $go = $_GET['go'];
-        $arrive = $_GET['arrive'];
-        $date = $_GET['date'];
-        
-        $Model = M();
-        $sql = 'select * from ticket a left join company b on a.cid=b.id where a.go='."'".$go."'".'and a.arrive='."'".$arrive."'".'and a.date='."'".$date."'";
-        $list = $Model->query($sql);
+        $uid = 1;            
+        $Orders = M('orders');
+        $demo = M();
+        $all = [];
+        $order_id = [];
 
-        // 把数据传入模板
-        $this->assign('list', $list);
-        // 模板渲染
-        $this->display();		
+        $order_list =  $Orders->where(['uid'=>$uid])->select();
+        foreach($order_list as $key => $value){
+            $order_id[] = array('oid'=>$value['oid'],'status'=>$value['status'],'num'=>$value['num']);
+        }
+
+        foreach($order_id as $key => $value){
+            $ticket['travel'] = '';
+            $ticket['date'] = '';
+            $result = $demo->table('orders_item a,ticket b')
+                ->where('a.t_id = b.tid and a.o_id ="'.$value['oid'].'"')
+                ->field('go,arrive,date')
+                ->group('b.tid')
+                ->select();
+            foreach($result as $k => $v){
+                $ticket['travel'] .= '<p>'.$v['go'].'--'.$v['arrive'].'</p>';
+                $ticket['date'] .= '<p>'.$v['date'].'</p>';
+ 
+            }
+            $all []=array($value['oid'],$ticket['travel'],$ticket['date'],$value['status'],$value['num']);
+        }
+
+        // echo '<pre>';
+        // var_dump($all);
+        $this->assign('list', $all);
+        $this->display();           
 
     }
 }

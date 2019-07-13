@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html class="x-admin-sm">
     
     <head>
@@ -7,10 +7,10 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="__HOME__/css/font.css">
-        <link rel="stylesheet" href="__HOME__/css/xadmin.css">
-        <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="__HOME__/js/xadmin.js"></script>
+        <link rel="stylesheet" href="/fly/public/home/css/font.css">
+        <link rel="stylesheet" href="/fly/public/home/css/xadmin.css">
+        <script src="/fly/public/home/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/fly/public/home/js/xadmin.js"></script>
     </head>
     
     <body>
@@ -30,7 +30,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form action="{:U('Index/search')}" class="layui-form layui-col-space5">
+                            <form action="<?php echo U('Index/search');?>" class="layui-form layui-col-space5">
 								<div class="layui-input-inline layui-show-xs-block">
                                     <input type="text" name="go" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
 								<div class="layui-input-inline layui-show-xs-block">
@@ -48,7 +48,7 @@
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加公司','{:U('Company/add')}',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加公司','<?php echo U('Company/add');?>',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -65,18 +65,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <volist name="list" id="list">
-                                    <tr>
+                                    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </td>
-                                        <td>{$list.0}</td>                                        
-                                        <td>{$list.1}</td>                                        
-                                        <td>{$list.2}</td>                                        
-                                        <td>{$list.4}</td>
-                                        <td>{$list.3}</td>
-                                    </tr>
-                                    </volist>
+                                        <td><?php echo ($list["0"]); ?></td>                                        
+                                        <td><?php echo ($list["1"]); ?></td>                                        
+                                        <td><?php echo ($list["2"]); ?></td>                                        
+                                        <td><?php echo ($list["4"]); ?></td>
+                                        <td><?php echo ($list["3"]); ?></td>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                                     </volist>
                                 </tbody>
                             </table>
