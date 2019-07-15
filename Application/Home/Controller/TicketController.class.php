@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Home\Controller\PublicController;
-class CompanyController extends PublicController {
+class TicketController extends PublicController {
     public function index(){
         $Company = M('company');
          
@@ -49,4 +49,13 @@ class CompanyController extends PublicController {
          
         $this->display();
     }
+
+    //查询机票信息
+    public function find($tid){
+        $m = M('ticket');
+        $result = $m->where(['tid'=>$tid])->find();
+        return $result;
+
+    }
+
 }

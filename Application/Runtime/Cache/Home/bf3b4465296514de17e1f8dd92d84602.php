@@ -37,12 +37,8 @@
                                     <input type="text" name="arrive" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="出发日期" name="date" id="start"></div>
-<<<<<<< HEAD
-                                
-=======
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="返程日期" name="back_date" id="start"></div>
->>>>>>> dd80e837726e000078223dce90c6e9437fdfd97b
                                 
 								<div class="layui-input-inline layui-show-xs-block">
 									<button class="layui-btn" lay-submit="" lay-filter="sreach">
@@ -79,7 +75,7 @@
                                 <tbody>
                                     <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ticket): $mod = ($i % 2 );++$i;?><tr>
                                         <td>
-                                            <input type="checkbox" name="" lay-skin="primary">
+                                            <input type="radio" name="tid" value=<?php echo ($ticket["tid"]); ?> lay-skin="primary">
                                         </td>
                                         <td><?php echo ($ticket["tid"]); ?></td>
                                         <td><?php echo ($ticket["go"]); ?></td>
@@ -103,8 +99,6 @@
                                 </tbody>
                             </table>
                         </div>
-<<<<<<< HEAD
-=======
                         <!-- 返程 -->
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -154,7 +148,6 @@
                                 </tbody>
                             </table>
                         </div>
->>>>>>> dd80e837726e000078223dce90c6e9437fdfd97b
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
