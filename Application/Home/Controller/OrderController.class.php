@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class OrderController extends Controller {
+use Home\Controller\PublicController;
+class OrderController extends PublicController {
 
     public function index(){
         /*
@@ -77,22 +77,56 @@ class OrderController extends Controller {
         $C = new ContactController();
         $T = new TicketController();
         $contact = $C->select();
-        echo '<pre>';
-        var_dump($contact);
+        // echo '<pre>';
+        // var_dump($contact);
         $tid = $_GET['tid'];
         $ticket = $T->find(10);
-        echo '<pre>';
-        var_dump($ticket);
+        // echo '<pre>';
+        // var_dump($ticket);
         $this->assign('ticket',$ticket);
         $this->assign('contact',$contact);
-        // $this->display();
+        $this->display();
 
 
     }
 
     public function orderPay(){
         //生成订单
-        
+        $Orders = M('orders');
+        $orders_item = M('orders_item');
+        $ticket = M('ticket');
+
+        //需要传入的参数
+        $uid = session('user.uid');
+        $num = 3;
+        $amount = 998;
+        $status = 0;
+        $tid = 10;
+
+        $ooid = $this->get_sn();
+        $ctime = Date("Y/m/d G:i:s");
+        $data = [];
+
+        $data['uid'] = $uid;
+        $data['num'] = $num;
+        $data['ooid'] = $ooid;
+        $data['amount'] = $amount;
+        $data['stauts'] = $status;
+        $data['ctime'] = $ctime;
+         
+        $Orders->add($data);
+        $oid = $Orders->where(['ooid'=>$ooid])->find();
+        var_dump($oid);
+        $orderOid = (int)$oid['oid'];
+        for($i = 1; $i <= $num; $i++){
+            $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid]);
+            $ticket->where(['tid'=>$tid])->save(['sprplus'=>array('exp','sprplus -1')]);
+        }
+
+        // echo '<pre>';
+        // var_dump($data);
+        // $ctime = ;
+        // $orders->
 
 
         //展示支付页面
@@ -106,6 +140,10 @@ class OrderController extends Controller {
         $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
         $this->success('嘤嘤嘤',U('Order/search'),1);exit;
+    }
+
+    function get_sn() {
+        return date('YmdHis').rand(100000, 999999);
     }
 
     public function pay(){

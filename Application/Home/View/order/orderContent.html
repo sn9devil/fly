@@ -12,8 +12,13 @@
         <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="__HOME__/js/xadmin.js"></script>
     </head>
-    
     <body>
         
+            <select>
+                <volist name="contact" id="contact">
+                  <option value={$contact.cid} >{$contact.name}</option>
+                </volist>
+            </select>
+          
     </body>
 </html>

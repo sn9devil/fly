@@ -25,6 +25,7 @@ class IndexController extends Controller {
         $arrive = $_GET['arrive'];
         $date = $_GET['date'];
         $back_date = $_GET['back_date'];
+        $num = $_GET['num'];
 
         $list = $this->findTicket($go,$arrive,$date);
         $this->assign('list', $list);
@@ -34,6 +35,7 @@ class IndexController extends Controller {
             // var_dump($back_list);
             $this->assign('back_list', $back_list);
         }
+        
         $this->display();		
 
     }
