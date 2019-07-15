@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html class="x-admin-sm">
     
     <head>
@@ -7,10 +7,10 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="__HOME__/css/font.css">
-        <link rel="stylesheet" href="__HOME__/css/xadmin.css">
-        <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="__HOME__/js/xadmin.js"></script>
+        <link rel="stylesheet" href="/fly/public/home/css/font.css">
+        <link rel="stylesheet" href="/fly/public/home/css/xadmin.css">
+        <script src="/fly/public/home/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/fly/public/home/js/xadmin.js"></script>
     </head>
     
     <body>
@@ -30,7 +30,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form action="{:U('Index/search')}" class="layui-form layui-col-space5">
+                            <form action="<?php echo U('Index/search');?>" class="layui-form layui-col-space5">
 								<div class="layui-input-inline layui-show-xs-block">
                                     <input type="text" name="go" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
 								<div class="layui-input-inline layui-show-xs-block">
@@ -49,7 +49,7 @@
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加公司','{:U('Company/add')}',800,600)">
+                            <button class="layui-btn" onclick="xadmin.open('添加公司','<?php echo U('Company/add');?>',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -73,22 +73,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <volist name="list" id="ticket">
-                                    <tr>
+                                    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ticket): $mod = ($i % 2 );++$i;?><tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </td>
-                                        <td>{$ticket.tid}</td>
-                                        <td>{$ticket.go}</td>
-										<td>{$ticket.arrive}</td>
-										<td>{$ticket.date}</td>
-                                        <td>{$ticket.cheap_price}</td>
-										<td>{$ticket.expensive_price}</td>
-                                        <td>{$ticket.company}</td>
-										<td>{$ticket.flight_number}</td>
-                                        <td>{$ticket.go_time}</td>
-										<td>{$ticket.arrive_time}</td>
-                                        <td>{$ticket.sprplus}</td>
+                                        <td><?php echo ($ticket["tid"]); ?></td>
+                                        <td><?php echo ($ticket["go"]); ?></td>
+										<td><?php echo ($ticket["arrive"]); ?></td>
+										<td><?php echo ($ticket["date"]); ?></td>
+                                        <td><?php echo ($ticket["cheap_price"]); ?></td>
+										<td><?php echo ($ticket["expensive_price"]); ?></td>
+                                        <td><?php echo ($ticket["company"]); ?></td>
+										<td><?php echo ($ticket["flight_number"]); ?></td>
+                                        <td><?php echo ($ticket["go_time"]); ?></td>
+										<td><?php echo ($ticket["arrive_time"]); ?></td>
+                                        <td><?php echo ($ticket["sprplus"]); ?></td>
                                        
                                         <td class="td-manage">
                                             <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
@@ -96,8 +95,7 @@
                                             <a title="下单" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
-                                    </tr>
-                                    </volist>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -124,22 +122,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <volist name="back_list" id="ticket">
-                                    <tr>
+                                    <?php if(is_array($back_list)): $i = 0; $__LIST__ = $back_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ticket): $mod = ($i % 2 );++$i;?><tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </td>
-                                        <td>{$ticket.tid}</td>
-                                        <td>{$ticket.go}</td>
-                                        <td>{$ticket.arrive}</td>
-                                        <td>{$ticket.date}</td>
-                                        <td>{$ticket.cheap_price}</td>
-                                        <td>{$ticket.expensive_price}</td>
-                                        <td>{$ticket.company}</td>
-                                        <td>{$ticket.flight_number}</td>
-                                        <td>{$ticket.go_time}</td>
-                                        <td>{$ticket.arrive_time}</td>
-                                        <td>{$ticket.sprplus}</td>
+                                        <td><?php echo ($ticket["tid"]); ?></td>
+                                        <td><?php echo ($ticket["go"]); ?></td>
+                                        <td><?php echo ($ticket["arrive"]); ?></td>
+                                        <td><?php echo ($ticket["date"]); ?></td>
+                                        <td><?php echo ($ticket["cheap_price"]); ?></td>
+                                        <td><?php echo ($ticket["expensive_price"]); ?></td>
+                                        <td><?php echo ($ticket["company"]); ?></td>
+                                        <td><?php echo ($ticket["flight_number"]); ?></td>
+                                        <td><?php echo ($ticket["go_time"]); ?></td>
+                                        <td><?php echo ($ticket["arrive_time"]); ?></td>
+                                        <td><?php echo ($ticket["sprplus"]); ?></td>
                                        
                                         <td class="td-manage">
                                             <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
@@ -147,8 +144,7 @@
                                             <a title="下单" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
-                                    </tr>
-                                    </volist>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                                 </tbody>
                             </table>
                         </div>
