@@ -27,7 +27,9 @@ class ContactController extends PublicController {
         $this->success('嘤嘤嘤',U('Contact/index'),1);exit;       
     }
 
-
+    public function update(){
+        
+    }
 
     public function eidt(){
         $this->display();       

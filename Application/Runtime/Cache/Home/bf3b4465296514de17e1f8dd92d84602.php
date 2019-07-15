@@ -37,7 +37,12 @@
                                     <input type="text" name="arrive" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="出发日期" name="date" id="start"></div>
+<<<<<<< HEAD
                                 
+=======
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <input class="layui-input" placeholder="返程日期" name="back_date" id="start"></div>
+>>>>>>> dd80e837726e000078223dce90c6e9437fdfd97b
                                 
 								<div class="layui-input-inline layui-show-xs-block">
 									<button class="layui-btn" lay-submit="" lay-filter="sreach">
@@ -98,6 +103,58 @@
                                 </tbody>
                             </table>
                         </div>
+<<<<<<< HEAD
+=======
+                        <!-- 返程 -->
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="" lay-skin="primary">
+                                        </th>
+                                        <th>支票编号</th>
+                                        <th>出发地</th>
+                                        <th>目的地</th>
+                                        <th>去程日期</th>
+                                        <th>经济座价格</th>
+                                        <th>商务座价格</th>
+                                        <th>航空公司</th>
+                                        <th>航班号</th>
+                                        <th>航班出发时间</th>
+                                        <th>航班到达时间</th>
+                                        <th>剩余机票数量</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if(is_array($back_list)): $i = 0; $__LIST__ = $back_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ticket): $mod = ($i % 2 );++$i;?><tr>
+                                        <td>
+                                            <input type="checkbox" name="" lay-skin="primary">
+                                        </td>
+                                        <td><?php echo ($ticket["tid"]); ?></td>
+                                        <td><?php echo ($ticket["go"]); ?></td>
+                                        <td><?php echo ($ticket["arrive"]); ?></td>
+                                        <td><?php echo ($ticket["date"]); ?></td>
+                                        <td><?php echo ($ticket["cheap_price"]); ?></td>
+                                        <td><?php echo ($ticket["expensive_price"]); ?></td>
+                                        <td><?php echo ($ticket["company"]); ?></td>
+                                        <td><?php echo ($ticket["flight_number"]); ?></td>
+                                        <td><?php echo ($ticket["go_time"]); ?></td>
+                                        <td><?php echo ($ticket["arrive_time"]); ?></td>
+                                        <td><?php echo ($ticket["sprplus"]); ?></td>
+                                       
+                                        <td class="td-manage">
+                                            <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                                <i class="layui-icon">&#xe63c;</i></a>
+                                            <a title="下单" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                                <i class="layui-icon">&#xe640;</i></a>
+                                        </td>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+>>>>>>> dd80e837726e000078223dce90c6e9437fdfd97b
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
