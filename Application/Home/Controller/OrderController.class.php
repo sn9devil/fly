@@ -70,6 +70,37 @@ class OrderController extends Controller {
 
     }
 
+    public function  orderContent(){
+
+        import('@.Controller.Contact');
+        import('@.Controller.Ticket');
+        $C = new ContactController();
+        $T = new TicketController();
+        $contact = $C->select();
+        echo '<pre>';
+        var_dump($contact);
+        $tid = $_GET['tid'];
+        $ticket = $T->find(10);
+        echo '<pre>';
+        var_dump($ticket);
+        $this->assign('ticket',$ticket);
+        $this->assign('contact',$contact);
+        // $this->display();
+
+
+    }
+
+    public function orderPay(){
+        //生成订单
+        
+
+
+        //展示支付页面
+
+
+    }
+
+
     public function cancel(){
         $Model = M();
         $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
