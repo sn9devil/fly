@@ -71,6 +71,16 @@ class OrderController extends Controller {
     }
 
     public function cancel(){
-        
+        $Model = M();
+        $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
+        $orderUpdate = $Model->execute($sql);
+        $this->success(U('Order/search'),1);exit;
+    }
+
+    public function pay(){
+        $Model = M();
+        $sql = 'update Orders set status = 1 where ooid='.$_GET['ooid'];
+        $orderUpdate = $Model->execute($sql);
+        $this->success('嘤嘤嘤',U('Order/search'),1);exit;
     }
 }

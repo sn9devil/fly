@@ -76,9 +76,9 @@
                                         <td><?php echo ($list["4"]); ?></td>
                                         <td><?php echo ($list["3"]); ?></td>
                                         <td class="td-manage">
-                                            <a title="支付" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                            <a title="支付"  href="<?php echo U('pay', ['ooid'=>$list[0]]);?>">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="取消订单" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                            <a title="取消订单" href="<?php echo U('cancel', ['ooid'=>$list[0]]);?>">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
