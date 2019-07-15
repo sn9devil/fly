@@ -4,25 +4,30 @@ use Think\Controller;
 class LoginController extends Controller {
 
     public function login(){
-        
-        // $Model = M();
-        // $sql = 'select * from ticket a left join company b on a.cid=b.id';
-        // $list = $Model->query($sql);
-       
-        
-        // 把数据传入模板
-        // $this->assign('list', $list);
-        // 模板渲染
+
         $this->display();		
     }
 
 
     public function postLogin(){
         $post = json_decode($_POST['post'], 1);
-        $data = [];
-        $data['msg'] = '欢迎光临';
-   
-        echo json_encode($data);
+        $Admin = M('manager');
+        $admin = $Admin
+                 ->field('aid, username')
+                 ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
+                 ->find();
+
+        if($admin){
+            session('admin',$admin);
+            $data = [];
+            $data['msg'] = '欢迎光临';
+            $data['status']=1;
+            $data['url']=U('admin/Index/index');
+            echo json_encode($data);
+        }else{
+            echo json_encode(['msg'=>'用户名或密码错误','status'=>0]);
+        }         
+        
     }
 
 }

@@ -103,7 +103,7 @@
                     class="layui-input">
             </div>
             <div class="login_buttom layui-form-item">
-                <button lay-submit="" lay-filter="login_user" class="login_btn">Login</button>
+                <input lay-submit="" lay-filter="login_user" class="login_btn" value="Login" type="submit"></input>
             </div>
         </div>
     </form>
@@ -115,8 +115,6 @@
 
             //监听提交
             form.on('submit(login_user)', function (data) {
-                // layer.alert(data.field);
-                // layer.msg(JSON.stringify(data.form));
                 let url = "<?php echo U('postLogin');?>";
                 let post = JSON.stringify(data.field);
                 console.log(url,post);
