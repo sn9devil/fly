@@ -29,13 +29,21 @@ class OrderController extends Controller {
 
     public function search(){
 
-        $uid = 1;            
+        $uid = session('user.uid');         
         $Orders = M('orders');
         $demo = M();
         $all = [];
         $order_id = [];
 
-        $order_list =  $Orders->where(['uid'=>$uid])->select();
+        // 通不get方法获取参数
+        $d = empty($_GET['d'])? 0: $_GET['d'];          // 当前目录ID
+        $p = empty($_GET['p'])? 1: $_GET['p'];          // 当前分页码
+        $count = count($Orders->distinct(true)->field('ooid')->select());// 查询满足要求的总记录数
+
+        $order_list = $Orders->where(['uid'=>$uid])->page($p.',2') ->order('ctime desc')->select();
+        $Page  = new \Think\Page($count,2);// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+
         foreach($order_list as $key => $value){
             $order_id[] = array('oid'=>$value['oid'],'status'=>$value['status'],'num'=>$value['num']);
         }
@@ -56,10 +64,23 @@ class OrderController extends Controller {
             $all []=array($value['oid'],$ticket['travel'],$ticket['date'],$value['status'],$value['num']);
         }
 
-        // echo '<pre>';
-        // var_dump($all);
         $this->assign('list', $all);
+        $this->assign('page',$show);// 赋值分页输出
         $this->display();           
 
+    }
+
+    public function cancel(){
+        $Model = M();
+        $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
+        $orderUpdate = $Model->execute($sql);
+        $this->success(U('Order/search'),1);exit;
+    }
+
+    public function pay(){
+        $Model = M();
+        $sql = 'update Orders set status = 1 where ooid='.$_GET['ooid'];
+        $orderUpdate = $Model->execute($sql);
+        $this->success('嘤嘤嘤',U('Order/search'),1);exit;
     }
 }
