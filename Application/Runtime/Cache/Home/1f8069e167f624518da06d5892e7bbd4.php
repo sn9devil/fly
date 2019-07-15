@@ -29,56 +29,23 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        
-                        <div class="layui-card-body ">
-                            <form action="<?php echo U('Contact/add');?>" class="layui-form layui-col-space5">
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input" value=""></div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="identity" placeholder="请输入身份证号码" autocomplete="off" class="layui-input"value=""></div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="layui-card-body ">
-                            <table class="layui-table layui-form">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input type="checkbox" name="" lay-skin="primary">
-                                        </th>
-                                        <th>姓名</th>
-                                        <th>身份证号码</th>
-										
-										<th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(is_array($contactList)): $i = 0; $__LIST__ = $contactList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$contact): $mod = ($i % 2 );++$i;?><tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary">
-                                        </td>
-                                        <td><?php echo ($contact["name"]); ?></td>
-                                        <td><?php echo ($contact["identity"]); ?></td>
-
-                                        <td class="td-manage">
-                                            <a title="编辑" href="<?php echo U('edit', ['cid'=>$contact['cid']]);?>">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" href="<?php echo U('delete', ['cid'=>$contact['cid']]);?>">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="layui-card-body ">
-                            <div class="page">
-                                <div>
+                        <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><div class="layui-card-body ">
+                                <form action="<?php echo U('update', ['cid'=>$list['cid']]);?>" class="layui-form layui-col-space5">
+                               
+                                    <div class="layui-input-inline layui-show-xs-block">
+                                        <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input" value=<?php echo ($list["name"]); ?>></div>
+                                    <div class="layui-input-inline layui-show-xs-block">
+                                        <input type="text" name="identity" placeholder="请输入身份证号码" autocomplete="off" class="layui-input"value=<?php echo ($list["identity"]); ?>></div>
+                                    
+                                    
+                                    
+                                    <div class="layui-input-inline layui-show-xs-block">
+                                        <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                                            <i class="layui-icon">&#xe615;</i></button>
                                     </div>
-                            </div>
-                        </div>
+                                
+                                </form>
+                            </div><?php endforeach; endif; else: echo "" ;endif; ?>
                     </div>
                 </div>
             </div>
@@ -88,15 +55,6 @@
         function() {
             var laydate = layui.laydate;
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
         });
 
         /*用户-停用*/

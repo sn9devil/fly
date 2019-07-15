@@ -29,28 +29,13 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-body ">
-                            <form action="{:U('Index/search')}" class="layui-form layui-col-space5">
-								<div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="go" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
-								<div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="arrive" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <input class="layui-input" placeholder="出发日期" name="date" id="start"></div>
-                                
-                                
-								<div class="layui-input-inline layui-show-xs-block">
-									<button class="layui-btn" lay-submit="" lay-filter="sreach">
-										<i class="layui-icon">&#xe615;</i></button>
-								</div>
-                            </form>
-                        </div>
+                        
                         <div class="layui-card-body ">
                             <form action="{:U('Contact/add')}" class="layui-form layui-col-space5">
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input" value=""></div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="identity" placeholder="请输入身份证号码" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="identity" placeholder="请输入身份证号码" autocomplete="off" class="layui-input"value=""></div>
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                         <i class="layui-icon">&#xe615;</i></button>
@@ -80,7 +65,7 @@
                                         <td>{$contact.identity}</td>
 
                                         <td class="td-manage">
-                                            <a title="编辑" href="javascript:;">
+                                            <a title="编辑" href="{:U('edit', ['cid'=>$contact['cid']])}">
                                                 <i class="layui-icon">&#xe63c;</i></a>
                                             <a title="删除" href="{:U('delete', ['cid'=>$contact['cid']])}">
                                                 <i class="layui-icon">&#xe640;</i></a>

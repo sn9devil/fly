@@ -28,10 +28,20 @@ class ContactController extends PublicController {
     }
 
     public function update(){
-        
+        $Contact = M("contact"); // 实例化User对象
+        // 要修改的数据对象属性赋值
+        $data['name'] = $_GET[name];
+        $data['identity'] = $_GET[identity];
+        $data['uid'] = session('user.uid');
+        $Contact->where('cid='.$_GET[cid])->save($data); // 根据条件更新记录
+        $this->success('嘤嘤嘤',U('Contact/index'),1);exit;
     }
 
-    public function eidt(){
+    public function edit(){
+        $Model = M();
+        $sql = 'select * from contact where cid='.$_GET[cid];
+        $list = $Model->query($sql);    
+        $this->assign('list', $list);
         $this->display();       
     }
 
