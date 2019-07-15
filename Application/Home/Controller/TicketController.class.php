@@ -53,7 +53,7 @@ class TicketController extends PublicController {
     //查询机票信息
     public function find($tid){
         $m = M('ticket');
-        $result = $m->where(['tid'=>$tid])->find();
+        $result = $m->where(['tid'=>$tid])->select();
         return $result;
 
     }

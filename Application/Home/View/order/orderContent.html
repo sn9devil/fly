@@ -13,12 +13,24 @@
         <script type="text/javascript" src="__HOME__/js/xadmin.js"></script>
     </head>
     <body>
-        
-            <select>
-                <volist name="contact" id="contact">
-                  <option value={$contact.cid} >{$contact.name}</option>
-                </volist>
-            </select>
-          
+
+            <form action="{:U('orderPay')}" method="GET">
+                <select>
+                    <volist name="contact" id="contact">
+                        <option name= value={$contact.cid} >{$contact.name}</option>
+                    </volist>
+                </select>
+                <button>确定</button>
+            <form>
+
+            <form>
+                <select>
+                    <volist name="contact" id="contact1">
+                        <option value={$contact1.cid} >{$contact1.name}</option>
+                    </volist>
+                </select>
+                <button>wori</button>
+            <form>
+
     </body>
 </html>

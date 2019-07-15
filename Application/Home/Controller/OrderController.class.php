@@ -1,6 +1,8 @@
 <?php
 namespace Home\Controller;
 use Home\Controller\PublicController;
+
+
 class OrderController extends PublicController {
 
     public function index(){
@@ -70,17 +72,24 @@ class OrderController extends PublicController {
 
     }
 
+    //下单页面
     public function  orderContent(){
-
         import('@.Controller.Contact');
         import('@.Controller.Ticket');
         $C = new ContactController();
         $T = new TicketController();
+
+        //需要传入的参数
+        $uid = session('user.uid');
+        $tid = 10;
+        $num = 3;
+
         $contact = $C->select();
+        var_dump($contact);
         // echo '<pre>';
         // var_dump($contact);
-        $tid = $_GET['tid'];
-        $ticket = $T->find(10);
+        
+        $ticket = $T->find($tid);
         // echo '<pre>';
         // var_dump($ticket);
         $this->assign('ticket',$ticket);
@@ -90,6 +99,7 @@ class OrderController extends PublicController {
 
     }
 
+    //支付页面
     public function orderPay(){
         //生成订单
         $Orders = M('orders');
@@ -103,10 +113,10 @@ class OrderController extends PublicController {
         $status = 0;
         $tid = 10;
 
+
         $ooid = $this->get_sn();
         $ctime = Date("Y/m/d G:i:s");
         $data = [];
-
         $data['uid'] = $uid;
         $data['num'] = $num;
         $data['ooid'] = $ooid;
@@ -116,7 +126,7 @@ class OrderController extends PublicController {
          
         $Orders->add($data);
         $oid = $Orders->where(['ooid'=>$ooid])->find();
-        var_dump($oid);
+        // var_dump($oid);
         $orderOid = (int)$oid['oid'];
         for($i = 1; $i <= $num; $i++){
             $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid]);
@@ -127,10 +137,12 @@ class OrderController extends PublicController {
         // var_dump($data);
         // $ctime = ;
         // $orders->
-
-
         //展示支付页面
-
+        $ticket_list = $ticket->where(['tid'=>$tid])->select();
+        $this->assign("data",array($data));
+        $this->assign("ticket",$ticket_list);
+        // var_dump($ticket_list);
+        $this->display();
 
     }
 
@@ -139,9 +151,10 @@ class OrderController extends PublicController {
         $Model = M();
         $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
-        $this->success('嘤嘤嘤',U('Order/search'),1);exit;
+        $this->success('取消订单',U('Order/search'),1);exit;
     }
 
+    //生成订单编号
     function get_sn() {
         return date('YmdHis').rand(100000, 999999);
     }
@@ -150,6 +163,6 @@ class OrderController extends PublicController {
         $Model = M();
         $sql = 'update Orders set status = 1 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
-        $this->success('嘤嘤嘤',U('Order/search'),1);exit;
+        $this->success('支付成功',U('Order/search'),1);exit;
     }
 }
