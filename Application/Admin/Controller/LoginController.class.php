@@ -17,4 +17,12 @@ class LoginController extends Controller {
     }
 
 
+    public function postLogin(){
+        $post = json_decode($_POST['post'], 1);
+        $data = [];
+        $data['msg'] = '欢迎光临';
+   
+        echo json_encode($data);
+    }
+
 }

@@ -1,0 +1,27 @@
+[ 2019-07-15T00:42:42+08:00 ] ::1 /fly/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000582s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001423s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'fly'
+
+[ 2019-07-15T09:12:52+08:00 ] ::1 /fly/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000672s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000928s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'fly'
+
+[ 2019-07-15T10:33:16+08:00 ] ::1 /fly/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000791s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000845s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'fly'
+
