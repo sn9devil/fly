@@ -74,7 +74,7 @@ class OrderController extends Controller {
         $Model = M();
         $sql = 'update Orders set status = 2 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
-        $this->success(U('Order/search'),1);exit;
+        $this->success('嘤嘤嘤',U('Order/search'),1);exit;
     }
 
     public function pay(){

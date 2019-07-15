@@ -24,12 +24,6 @@
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
             </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('User/login');?>">登录</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('Order/search');?>">我的订单</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('Contact/index');?>">我的常购联系人</a>
         </div>
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
@@ -93,6 +87,7 @@
                                         <td><?php echo ($ticket["go_time"]); ?></td>
 										<td><?php echo ($ticket["arrive_time"]); ?></td>
                                         <td><?php echo ($ticket["sprplus"]); ?></td>
+                                       
                                         <td class="td-manage">
                                             <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
@@ -106,7 +101,12 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    </div>
+                                    <a class="prev" href="">&lt;&lt;</a>
+                                    <a class="num" href="">1</a>
+                                    <span class="current">2</span>
+                                    <a class="num" href="">3</a>
+                                    <a class="num" href="">489</a>
+                                    <a class="next" href="">&gt;&gt;</a></div>
                             </div>
                         </div>
                     </div>

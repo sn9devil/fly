@@ -24,12 +24,6 @@
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
             </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('User/login');?>">登录</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('Order/search');?>">我的订单</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?php echo U('Contact/index');?>">我的常购联系人</a>
         </div>
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
@@ -51,11 +45,18 @@
 								</div>
                             </form>
                         </div>
-                        <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                                <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加公司','<?php echo U('Company/add');?>',800,600)">
-                                <i class="layui-icon"></i>添加</button></div>
+                        <div class="layui-card-body ">
+                            <form action="<?php echo U('Contact/add');?>" class="layui-form layui-col-space5">
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <input type="text" name="name" placeholder="请输入姓名" autocomplete="off" class="layui-input"></div>
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <input type="text" name="identity" placeholder="请输入身份证号码" autocomplete="off" class="layui-input"></div>
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                                        <i class="layui-icon">&#xe615;</i></button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
                                 <thead>
@@ -63,40 +64,24 @@
                                         <th>
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </th>
-                                        <th>支票编号</th>
-										<th>出发地</th>
-										<th>目的地</th>
-                                        <th>去程日期</th>
-                                        <th>经济座价格</th>
-										<th>商务座价格</th>
-										<th>航空公司</th>
-										<th>航班号</th>
-										<th>航班出发时间</th>
-										<th>航班到达时间</th>
-										<th>剩余机票数量</th>
+                                        <th>姓名</th>
+                                        <th>身份证号码</th>
+										
 										<th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ticket): $mod = ($i % 2 );++$i;?><tr>
+                                    <?php if(is_array($contactList)): $i = 0; $__LIST__ = $contactList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$contact): $mod = ($i % 2 );++$i;?><tr>
                                         <td>
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </td>
-                                        <td><?php echo ($ticket["tid"]); ?></td>
-                                        <td><?php echo ($ticket["go"]); ?></td>
-										<td><?php echo ($ticket["arrive"]); ?></td>
-										<td><?php echo ($ticket["date"]); ?></td>
-                                        <td><?php echo ($ticket["cheap_price"]); ?></td>
-										<td><?php echo ($ticket["expensive_price"]); ?></td>
-                                        <td><?php echo ($ticket["company"]); ?></td>
-										<td><?php echo ($ticket["flight_number"]); ?></td>
-                                        <td><?php echo ($ticket["go_time"]); ?></td>
-										<td><?php echo ($ticket["arrive_time"]); ?></td>
-                                        <td><?php echo ($ticket["sprplus"]); ?></td>
+                                        <td><?php echo ($contact["name"]); ?></td>
+                                        <td><?php echo ($contact["identity"]); ?></td>
+
                                         <td class="td-manage">
-                                            <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                            <a title="编辑" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="下单" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                            <a title="删除" href="<?php echo U('delete', ['cid'=>$contact['cid']]);?>">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
