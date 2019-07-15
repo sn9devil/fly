@@ -62,6 +62,7 @@
 										<th>出发日期</th>
                                         <th>张数</th>
                                         <th>状态</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,20 +75,22 @@
                                         <td><?php echo ($list["2"]); ?></td>                                        
                                         <td><?php echo ($list["4"]); ?></td>
                                         <td><?php echo ($list["3"]); ?></td>
+                                        <td class="td-manage">
+                                            <a title="支付" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                                <i class="layui-icon">&#xe63c;</i></a>
+                                            <a title="取消订单" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                                <i class="layui-icon">&#xe640;</i></a>
+                                        </td>
                                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                                    </volist>
+                                   
                                 </tbody>
                             </table>
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    <a class="prev" href="">&lt;&lt;</a>
-                                    <a class="num" href="">1</a>
-                                    <span class="current">2</span>
-                                    <a class="num" href="">3</a>
-                                    <a class="num" href="">489</a>
-                                    <a class="next" href="">&gt;&gt;</a></div>
+                                    <?php echo ($page); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
