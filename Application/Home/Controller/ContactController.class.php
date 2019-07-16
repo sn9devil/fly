@@ -24,7 +24,7 @@ class ContactController extends PublicController {
         // 查找有没有重复的联系人信息
         $repeat = $Contact->where(['name'=>$_GET['name'],['identity'=>$_GET['identity']])->find();
         if(!empty($repeat)){
-            $this->error('对不起，你输入的手机号已经被使用了。请使用别的手机号码进行注册');
+            $this->error('已存在相同的联系人信息');
             exit;
         }
         $data['name'] = $_GET[name];
