@@ -49,6 +49,7 @@
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 80,
                 title: '用户数据表',
+                limit: 10,
                 id: 'allUserInfoTable',
                 cols: [
                     [{
@@ -117,8 +118,8 @@
                                     },
                                     dataType: 'text',
                                     success: function (json) {
-                                        layer.alert('添加成功');
                                         layer.closeAll();
+                                        layer.alert('添加成功');
                                         table.reload('allUserInfoTable', {
                                             method: 'get',
                                             page: {
@@ -129,12 +130,8 @@
                                     }
                                 });
                             },
-                            btn2: function () {
-                                layer.alert('11111');
-                            },
-                            btn3: function () {
-                                layer.alert('2222');
-                            },
+                            btn2: function () {},
+                            btn3: function () {},
                             zIndex: layer.zIndex,
                             success: function (layero) {
                                 layer.setTop(layero);
@@ -143,7 +140,28 @@
                         break;
                     case 'mutDelUser':
                         var data = checkStatus.data;
-                        layer.msg('选中了：' + data.length + ' 个');
+                        var list = [];
+                        for (var i = 0; i < checkStatus.data.length; i++) {
+                            list[i] = data[i].uid;
+                        }
+                        // let post = JSON.stringify(list);
+                        console.log(JSON.stringify(list));
+                        $.ajax({
+                            url: "{:U('Users/mutdeluser')}",
+                            type: 'post',
+                            traditional: true,
+                            data: 'post='+JSON.stringify(list),
+                            dataType: 'text',
+                            success: function (json) {
+                                table.reload('allUserInfoTable', {
+                                    method: 'get',
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    },
+                                    where: {}
+                                });
+                            }
+                        });
                         break;
                 };
             });
@@ -151,12 +169,26 @@
             //监听行工具事件
             table.on('tool(test)', function (obj) {
                 var data = obj.data;
-                //console.log(obj)
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
-                        obj.del();
-                        layer.close(index);
-
+                        $.ajax({
+                            url: "{:U('Users/deluser')}",
+                            type: 'post',
+                            data: {
+                                'uid': data.uid,
+                            },
+                            dataType: 'text',
+                            success: function (json) {
+                                layer.closeAll();
+                                table.reload('allUserInfoTable', {
+                                    method: 'get',
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    },
+                                    where: {}
+                                });
+                            }
+                        });
                     });
                 } else if (obj.event === 'edit') {
                     layer.prompt({

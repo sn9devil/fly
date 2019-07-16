@@ -44,6 +44,25 @@ class UsersController extends Controller {
         echo  1;
     }
 
+    public function deluser(){
+        $Users = M('users');
+        $uid = $_POST['uid'];
+        var_dump($uid);
+        $Users = $Users->delete($uid);
+        echo 1;
+    }
+
+    public function mutdeluser(){
+        $Users = M('users');
+        $uid = $_POST['post'];
+        // $uid = substr($uid,0,-1);
+        $s = json_decode($uid);
+        // $s = "'".$uid."'";
+        echo $s;
+        echo gettype($uid);
+        // $Users = $Users->delete($s);
+        echo 1;
+    }
 
     public function users(){
         $this->display();
