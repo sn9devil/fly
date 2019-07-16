@@ -8,29 +8,45 @@ class IndexController extends Controller {
         $Model = M();
         $sql = 'select * from ticket a left join company b on a.cid=b.id';
         $list = $Model->query($sql);
-       
-        
         // 把数据传入模板
         $this->assign('list', $list);
         // 模板渲染
         $this->display();		
     }
 
+    
     public function search(){
-
-       
+        // echo '<pre>';
+        // var_dump($_GET);
+        // foreach($_GET as $key => $value){
+        //     echo "string";
+        // }
         $go = $_GET['go'];
         $arrive = $_GET['arrive'];
         $date = $_GET['date'];
-        
-        $Model = M();
-        $sql = 'select * from ticket a left join company b on a.cid=b.id where a.go='."'".$go."'".'and a.arrive='."'".$arrive."'".'and a.date='."'".$date."'";
-        $list = $Model->query($sql);
+        $back_date = $_GET['back_date'];
+        $num = $_GET['num'];
 
-        // 把数据传入模板
+        
+        $list = $this->findTicket($go,$arrive,$date);
         $this->assign('list', $list);
-        // 模板渲染
+
+        if(!empty($back_date)){
+            $back_list = $this->findTicket($arrive,$go,$back_date);
+            // var_dump($back_list);
+            $this->assign('back_list', $back_list);
+        }
+
         $this->display();		
 
     }
+
+    public function findTicket($go,$arrive,$date){
+        $Model = M();
+        $sql = 'select * from ticket a left join company b on a.cid=b.id where a.go='."'".$go."'".'and a.arrive='."'".$arrive."'".'and a.date='."'".$date."'";
+        $list = $Model->query($sql);
+        return $list;
+
+    }
+
 }

@@ -11,23 +11,6 @@
 </head>
 
 <body>
-
-    <table class="layui-hide" id="test" lay-filter="test"></table>
-
-    <script type="text/html" id="toolbarDemo">
-        <div class="layui-btn-container">
-
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        </div>
-        <!-- <div class="demoTable">
-        搜索用户名：
-        <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
-        </div>
-        <button class="layui-btn" data-type="reload" lay-event="searchUserInfo">搜索</button>
-    </div> -->
-    </script>
     <div class="demoTable">
         搜索用户名：
         <div class="layui-inline">
@@ -35,6 +18,15 @@
         </div>
         <div class="layui-btn" data-type="reload" lay-event="searchUserInfo">搜索</div>
     </div>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm " lay-event="addUser">添加</button>
+            <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="mutDelUser">批量删除</button>
+        </div>
+    </script>
+
 
 
     <script type="text/html" id="barDemo">
@@ -45,7 +37,6 @@
 
 
     <script src="/fly/public/admin/layui.js" charset="utf-8"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
     <script>
         layui.use('table', function () {
@@ -67,10 +58,12 @@
                         title: 'ID',
                         fixed: 'left',
                         unresize: true,
+                        sort: true,
                     }, {
                         field: 'username',
                         title: '用户名',
-                        edit: 'text'
+                        edit: 'text',
+                        sort: true,
                     }, {
                         field: 'password',
                         title: '密码',
@@ -82,29 +75,44 @@
                     }, {
                         field: 'member',
                         title: '会员',
+                        sort: true,
                     }, {
                         fixed: 'right',
                         title: '操作',
                         toolbar: '#barDemo',
                     }]
-                ]
-                ,page: true
+                ],
+                page: true
             });
 
             //头工具栏事件
             table.on('toolbar(test)', function (obj) {
                 var checkStatus = table.checkStatus(obj.config.id);
                 switch (obj.event) {
-                    case 'searchUserInfo':
+                    case 'addUser':
                         // var data = checkStatus.data;
-                        layer.alert("选择");
+                        // layer.alert("选择");
+                        layer.open({
+                            type: 2,
+                            title: '添加用户信息',
+                            area: ['350px', '500px'],
+                            shade: 0,
+                            content: ["<?php echo U('Users/adduser');?>","no"],
+                            yes: function () {
+                                $(that).click();
+                            },
+                            btn2: function () {
+                                    layer.closeAll();
+                                },
+                            zIndex: layer.zIndex,
+                            success: function (layero) {
+                                layer.setTop(layero);
+                            }
+                        });
                         break;
-                    case 'getCheckLength':
+                    case 'mutDelUser':
                         var data = checkStatus.data;
                         layer.msg('选中了：' + data.length + ' 个');
-                        break;
-                    case 'isAll':
-                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
                         break;
                 };
             });
@@ -131,24 +139,23 @@
                     });
                 }
             });
-            var $ = layui.$, active = {
+            var $ = layui.$,
+                active = {
                     reload: function () {
                         var demoReload = $('#demoReload');
-
                         //执行重载
                         table.reload('allUserInfoTable', {
+                            method: 'get',
                             page: {
                                 curr: 1 //重新从第 1 页开始
                             },
                             where: {
-                                key: {
-                                    uid: demoReload.val()
-                                }
+                                uid: demoReload.val()
                             }
                         });
                     }
                 };
-                //监听查询
+            //监听查询
             $('.demoTable .layui-btn').on('click', function () {
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';

@@ -37,7 +37,8 @@
                                     <input type="text" name="arrive" placeholder="请输入出发地" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="出发日期" name="date" id="start"></div>
-                                
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <input class="layui-input" placeholder="返程日期" name="back_date" id="start"></div>
                                 
 								<div class="layui-input-inline layui-show-xs-block">
 									<button class="layui-btn" lay-submit="" lay-filter="sreach">
@@ -75,7 +76,7 @@
                                     <volist name="list" id="ticket">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="" lay-skin="primary">
+                                            <input type="radio" name="tid" value={$ticket.tid} lay-skin="primary">
                                         </td>
                                         <td>{$ticket.tid}</td>
                                         <td>{$ticket.go}</td>
@@ -87,6 +88,57 @@
 										<td>{$ticket.flight_number}</td>
                                         <td>{$ticket.go_time}</td>
 										<td>{$ticket.arrive_time}</td>
+                                        <td>{$ticket.sprplus}</td>
+                                       
+                                        <td class="td-manage">
+                                            <a title="预订" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+                                                <i class="layui-icon">&#xe63c;</i></a>
+                                            <a title="下单" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                                <i class="layui-icon">&#xe640;</i></a>
+                                        </td>
+                                    </tr>
+                                    </volist>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 返程 -->
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" name="" lay-skin="primary">
+                                        </th>
+                                        <th>支票编号</th>
+                                        <th>出发地</th>
+                                        <th>目的地</th>
+                                        <th>去程日期</th>
+                                        <th>经济座价格</th>
+                                        <th>商务座价格</th>
+                                        <th>航空公司</th>
+                                        <th>航班号</th>
+                                        <th>航班出发时间</th>
+                                        <th>航班到达时间</th>
+                                        <th>剩余机票数量</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <volist name="back_list" id="ticket">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="" lay-skin="primary">
+                                        </td>
+                                        <td>{$ticket.tid}</td>
+                                        <td>{$ticket.go}</td>
+                                        <td>{$ticket.arrive}</td>
+                                        <td>{$ticket.date}</td>
+                                        <td>{$ticket.cheap_price}</td>
+                                        <td>{$ticket.expensive_price}</td>
+                                        <td>{$ticket.company}</td>
+                                        <td>{$ticket.flight_number}</td>
+                                        <td>{$ticket.go_time}</td>
+                                        <td>{$ticket.arrive_time}</td>
                                         <td>{$ticket.sprplus}</td>
                                        
                                         <td class="td-manage">
