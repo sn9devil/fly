@@ -69,10 +69,15 @@
                         </dl> -->
                     </li>
                     <li class="layui-nav-item">
-
                         <a href="<?php echo U('Tickets/tickets');?>" target="my_ifr">
                             <i class="layui-icon layui-icon-form"></i>
-                            <span>订票管理</span>
+                            <span>机票管理</span>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="<?php echo U('Orders/orders');?>" target="my_ifr">
+                            <i class="layui-icon layui-icon-template-1"></i>
+                            <span>订单管理</span>
                         </a>
                     </li>
                     <li class="layui-nav-item">
