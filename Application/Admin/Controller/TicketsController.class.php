@@ -37,10 +37,7 @@ class TicketsController extends Controller {
             $arr['count'] = $Ticket->where()->count();
             $arr['data']=$mo;
         }
-    	// $this->ajaxReturn($ticket,'JSON');
-        // if($ticket){
-        //     echo json_encode($ticket);
-        // }
+    	
         echo json_encode($arr);
     }
 

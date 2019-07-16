@@ -32,6 +32,19 @@ class UsersController extends Controller {
         	
     }
 
+    public function adduserinfo(){
+        $Users = M('users');
+        $username = $_GET['username'];
+        var_dump($username);
+        $password = $_GET['password'];
+        $phone_number = $_GET['phone_number'];
+        $member = $_GET['member'];
+        $users = $Users->add(['username'=>$username,'password'=>$password,'phone_number'=>$phone_number,'member'=>$member,'con_id'=>0]);
+
+        echo  "<script>alert('fhjhf');</script>";
+    }
+
+
     public function users(){
         $this->display();
     }
