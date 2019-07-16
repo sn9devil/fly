@@ -1,0 +1,296 @@
+body,html{
+	margin: 0px;
+	padding: 0px;
+}
+.layui-fluid{
+	   color: #333;
+       font-family: PingFangSC-Regular,microsoft yahei,STHeiTi,simsun,arial,sans-serif;
+       font-size: 14px;
+		background:url(../img/bg-booking.jpg) center top no-repeat #f7f7f7;
+		  background-attachment: fixed;
+		background-size: cover;
+}
+.layui-fluid,.rt{
+	  padding: 0!important;
+	  margin: 0;
+  }
+.bt{
+	  line-height: 3.6875rem;
+ }
+ /*订单进程*/
+ .steps{
+    position:absolute;
+    left: 20px;
+    top: 40px;
+    z-index: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+ }
+ .steps :before{
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    border-radius: 50%;
+    margin-top: 2px;
+    color: #fff;
+    background: #ccc;
+ }
+ .steps1 :before{
+	 background-color: #fd992e;
+ }
+.sr{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+	 border: 1px solid #ccc;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+ }
+ .steps1.sr{
+	  border: 1px solid #fd992e;
+ }
+ .steps1,.steps2{
+	 position: relative;
+	 top: -14px;
+ }
+ .sp{
+	 text-align: center;
+	 width: 19%;
+	 height: 50px;
+	 display: inline-block;
+ }
+.sp i{
+	color: #FFFFFF;
+}
+.sp span{
+	display: block;
+}
+ /*订单进程end*/
+ /*面板*/
+ .tab-b1{
+ 	width: 82%;
+ 	height:auto;
+ 	background-color: #FFFFFF;
+ 	position: relative;
+ 	top: 100px;
+ 	right: -10px;
+ 	padding-top: 40px;
+ 	padding-bottom: 40px;
+	margin-left: 140px;
+	margin-top: 40px;
+ }
+ .tab-b1 .go-city,.end-city,.go-time,.end-time,.d-selet{
+ 	display: inline-block;
+ 	height: 50px;
+ 	line-height: 50px;
+ 	border: 1px solid #e3e5e5;
+ 	padding: 0px 18px;
+ }
+ .tab-b1 .go-city,.tab-b1 .go-time{
+ 	margin-left: 2.5rem;
+ }
+ .tab-b1 .end-city{
+ 	margin-left: 3.5rem;
+ }
+ .go-city .gc-left,.end-city .end-left,.go-time .time-left,.end-time .time-left{
+ 	display: inline-block;
+ }
+ .go-city input,.end-city  input,.go-time input,.end-time input,.d-selet input{
+ 	display: inline-block;
+ 	outline: none;
+ 	border: none;
+ 	font-size: 0.9rem;
+ 	position: relative;
+ 	bottom: 1px;
+ }
+ .shift{
+ 	width: 32px;
+     height: 21px;
+     background: url(../img/trip-sprite.png) no-repeat;
+     background-position: 4px -135px;
+     cursor: pointer;
+ 	position: absolute;
+ 	top: 54px;
+ 	left: 309.6px;
+ }
+ /*单选按钮*/
+ .d-radio{   
+ 	display: inline-block;
+ 	font-size:0.9rem ;
+ }
+ .d-radio span{
+ 	position: relative;
+ 	bottom: 4px;
+ }
+ .d-radio .d-icon.on{
+ 	background: url(../img/radio-on.png) left center no-repeat;
+ }
+ .d-radio .d-icon {
+ 	display: inline-block;
+     width: 16px;
+     height: 16px;
+     margin: -8px 0 0 0;
+     background: url(../img/radio-off.png) left center no-repeat;
+ 	margin-left: 20px;
+ 	cursor: pointer;
+ 	}
+ /*单选按钮end*/
+ /*按钮*/
+ .d-btn,.d-btn1{
+ 	display: inline-block;
+ 	font-size: 14px;
+     width: 221px;
+     height: 40px;
+     line-height: 40px;
+ 	background-color: #cb0303;
+     -webkit-border-radius: 20px 0;
+     -moz-border-radius: 20px 0;
+     border-radius: 20px 0;
+     font-size: 16px;
+     color: #fff;
+     border: none;
+     cursor: pointer;
+     outline: none;
+ }
+ .d-btn{
+ 	margin-left: 40px;
+ 	top: 140px;
+ }
+ .d-btn1{
+ 	position: relative;
+ 	left: 800px;
+ 	top: 20px;
+ }
+ /*按钮end*/
+ /*时间*/
+ .go-time{
+      margin-top: 1.125rem;
+ }
+ .end-time{
+ 	margin-left: 3.5rem;
+ }
+ /*时间end*/
+ /*选择框*/
+ .d-selet{
+ 	margin-left: 2rem;
+ 	position: relative;
+ 	transition: all 1s;
+ }
+ .d-selet .d-icon{
+ 	background: url(../img/sprite-icon.png) no-repeat #fff;
+ 	height: 38px;
+     background-position: -73px -247px;
+ 	width: 46px;
+ 	position: absolute;
+     right: 0;
+     top: 0.53rem;
+     cursor: pointer;
+ }
+ /*选择框end*/
+ /*城市选择框*/
+ #in_city{
+ 	width: 700px!important;
+ 	position: absolute;
+ 	top: 90px!important;
+ 	left: 40px!important;
+ 	right: 0;
+ 	bottom: 0;
+ 	height: auto;
+ 	padding-top: 10px;
+ }
+ .city_pos{
+ 	background-color: #FFFFFF;
+ }
+ 
+ .Letter span{
+ 	color: #C92436;
+ 	font-weight: bold;
+ 	font-size: 0.9rem;
+ } 
+ /*城市选择框end*/
+ /*日期选择*/
+ .layui-laydate-header,.layui-laydate-content,.layui-laydate-content table,.layui-laydate-footter{
+ 	width: 37.5rem!important;
+ }
+ .layui-laydate-content table {
+ 	line-height: 40px!important;
+ }
+ .layui-laydate{
+ 	position: relative!important;
+ 	width:620px;
+ 	top:-13.4rem!important;
+ 	left: 20.6%!important;
+ }
+ /*日期选择end*/
+ /*人数选择*/
+ .selet{
+ 	display: none;
+ 	width:274px;
+ 	height: 80px;
+ 	background: #FFFFFF;
+ 	position: absolute;
+ 	left:33.5px;
+ 	top:50.6px;
+     padding-top: 15px;
+     margin-top: 0px;
+     padding-bottom: 15px;
+     margin-bottom: 0px;
+ 	border-top: 4px solid #f7f7f7;
+ 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+ }
+ .selet li{
+ 	height: 40px;
+ 	line-height: 40px;
+ 	text-align: left;
+ 	padding-left: 30px;
+ }
+ .selet li:hover{
+ 	background-color:#cdcdcd;
+ 	color: #1b8fa0;
+ }
+ .selet button{
+ 	width: 22px;
+     height: 22px;
+     background: #fff;
+     border: 1px solid #d1d1d1;
+     cursor: pointer;
+     vertical-align: middle;
+     display: inline-block;
+     line-height: 22px;
+ 	margin-right: 5px;
+ 	line-height: 22px;
+ }
+ .selet button span{
+ 	line-height: 20px;
+ 	font-size: 1.2rem;
+ }
+ .selet input{
+ 	 display: inline-block;
+     width: 30px;
+     border: 1px solid #ccc;
+     text-indent: 0;
+     height: 20px;
+     line-height: 20px;
+     text-align: center;
+     vertical-align: middle;
+ 	outline: none;
+     font-size: 1em;
+ 	line-height: 20px;
+ }
+ /*人数选择end*/
+ /*隐藏出发时间、达到时间、人数选择*/
+ .nt,.end-time.on.nt{
+ 	display: none;
+ }
+ .nt.on{
+ 	display: block;
+ }
+ /*隐藏出发时间、达到时间、人数选择end*/
+ /*面板end*/

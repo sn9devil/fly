@@ -109,8 +109,18 @@ class OrderController extends PublicController {
         //需要传入的参数
         $cid = $_GET['cid'];
         $uid = session('user.uid');
-        $num = 3;
-        $amount = 998;
+
+        //计算总价
+        $adult = 2
+        $children = 1
+        $price = 200;
+        $num = $adult + $children;
+
+        $amount = $adult * 200 + $children * 200 * 0.5;
+        //判断是否会员
+        if(session('user.member') == 1){
+            $amount = $amount * 0.9;
+        }
         $status = 0;
         $tid = 10;
 

@@ -1,0 +1,509 @@
+body,html{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	    font-family: Pingfang,'微软雅黑',SimSun,sans-serif;
+	background: #f5f5f5 url(../img/index-bg.jpg) center bottom no-repeat;
+}
+/*头部*/
+
+  .layui-fluid,.rt{
+	  padding: 0!important;
+	  margin: 0;
+  }
+  .bt{
+	  line-height: 3.6875rem;
+  }
+/*头部end*/
+/*内容*/
+.bg{
+	
+}
+/*内容end*/
+/*轮播图*/
+.layui-carousel-ind{
+	top: -160px!important;
+}
+/*轮播图end*/
+/*导航模板*/
+.layui-tab-title{
+	border: none!important;
+}
+.layui-tab{
+	width: 1200px;
+	margin: 0 auto!important;
+	background-color: none;
+	position: relative;
+	top: -130px;
+}
+.layui-tab-title li{
+    font-size: 1rem!important;
+	border: 0;
+    margin: 0;
+    padding: 0;
+	height: 80px!important;
+	line-height: 80px!important;
+	width: 30%;
+	text-align: center;
+	background: transparent url(../img/bg.png) left top repeat ;
+	background-size: cover;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.layui-tab-title .layui-this{
+	background: #FFFFFF!important;
+	color: #CB0303!important;
+	border: transparent!important;
+}
+.layui-tab-title .layui-this:after{
+	border: transparent!important;
+}
+/*模板*/
+/*面板1*/
+.tab-b1,.tab-b2{
+	width: 99.15%;
+	height:auto;
+	background-color: #FFFFFF;
+	position: relative;
+	top: 30px;
+	right: 10px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.tab-b1 .go-city,.end-city,.go-time,.end-time,.d-selet{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #e3e5e5;
+	padding: 0px 18px;
+}
+.tab-b1 .go-city,.tab-b1 .go-time{
+	margin-left: 2.5rem;
+}
+.tab-b1 .end-city{
+	margin-left: 3.5rem;
+}
+.go-city .gc-left,.end-city .end-left,.go-time .time-left,.end-time .time-left{
+	display: inline-block;
+}
+.go-city input,.end-city  input,.go-time input,.end-time input,.d-selet input{
+	display: inline-block;
+	outline: none;
+	border: none;
+	font-size: 0.9rem;
+	position: relative;
+	bottom: 1px;
+}
+.shift{
+	width: 32px;
+    height: 21px;
+    background: url(../img/trip-sprite.png) no-repeat;
+    background-position: 4px -135px;
+    cursor: pointer;
+	position: absolute;
+	top: 54px;
+	left: 325.5px;
+}
+/*面板1end*/
+/*面板2*/
+.tab-b2{
+	padding-top: 0.625rem;
+	padding-bottom: 13px;
+}
+.indent-title{
+	margin-top: 20px;
+}
+.indent-title .it1,.it2{
+	padding-left: 40px;
+	margin-left: 5px;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.indent-title strong{
+	    font-weight: normal;
+}
+.indent-title .layui-icon{
+	font-size: 1.4em!important;
+}
+.indent-title .it1.active,.it2.active{
+	color: #cb0303;
+}
+.indent-vip{
+	padding: 30px 50px 30px 50px;
+}
+.indent-selet,.selet-name,.selet-body,.indent-name,.indent-pwd,.selet-pwd,.selet-type{
+	display: inline-block;	
+}
+.indent-selet,.indent-name,.indent-pwd{
+	height: 48px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #e3e5e5;
+	height: 48px;
+	line-height: 48px;
+	color: #333;
+	font-size: 0.9rem;
+	text-indent: 15px;
+	font-family: Arial,Helvetica,sans-serif;
+	margin-left: 10px;
+}
+.selet-name,.selet-pwd,.selet-type{
+	color: #6e6d6d;
+}
+.indent-selet input,.indent-name input,.indent-pwd input{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	outline: none;
+    /* background: #eaeaea; */
+    border: none;
+    cursor: pointer;
+	height:46px;
+	line-height: 46px;
+	width: 260px;
+}
+.indent-selet .d-icon{
+	font-style: normal;
+	width: 46px;
+    height: 46px;
+    background: url(../img/sprite-icon.png) no-repeat #fff;
+    background-position: -73px -240px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.indent-selet ul{
+	display: none;
+	height: 86px;
+    padding-top: 15px;
+    margin-top: 0px;
+    padding-bottom: 15px;
+    margin-bottom: 0px;
+    position: absolute;
+	width: 100%;
+    left: 0;
+    top: 48px;
+    /* background: #eee; */
+    background-color: #fff;
+    border-top: 4px solid #f7f7f7;
+    padding: 15px 0;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+.indent-selet ul li{
+	font-size: 14px;
+    color: #565656;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px 0 25px;
+}
+.indent-selet ul li:hover{
+	background-color: #cdcdcd;
+	color: #1b8fa0;
+}
+
+/*面板2end*/
+/*单选按钮*/
+.d-radio{   
+	display: inline-block;
+	font-size:0.9rem ;
+}
+.d-radio span{
+	position: relative;
+	bottom: 4px;
+}
+.d-radio .d-icon.on{
+	background: url(../img/radio-on.png) left center no-repeat;
+}
+.d-radio .d-icon {
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 0;
+    background: url(../img/radio-off.png) left center no-repeat;
+	margin-left: 20px;
+	cursor: pointer;
+	}
+/*单选按钮end*/
+/*按钮*/
+.d-btn,.d-btn1{
+	display: inline-block;
+	font-size: 14px;
+    width: 221px;
+    height: 40px;
+    line-height: 40px;
+	background-color: #cb0303;
+    -webkit-border-radius: 20px 0;
+    -moz-border-radius: 20px 0;
+    border-radius: 20px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.d-btn{
+	margin-left: 40px;
+	top: 140px;
+}
+.d-btn1{
+	position: relative;
+	left: 800px;
+	top: 20px;
+}
+/*按钮end*/
+/*时间*/
+.go-time{
+     margin-top: 1.125rem;
+}
+.end-time{
+	margin-left: 3.5rem;
+}
+/*时间end*/
+/*选择框*/
+.d-selet{
+	margin-left: 2rem;
+	position: relative;
+	transition: all 1s;
+}
+.d-selet .d-icon{
+	background: url(../img/sprite-icon.png) no-repeat #fff;
+	height: 38px;
+    background-position: -73px -247px;
+	width: 46px;
+	position: absolute;
+    right: 0;
+    top: 0.53rem;
+    cursor: pointer;
+}
+/*选择框end*/
+/*城市选择框*/
+#in_city{
+	width: 700px!important;
+	position: absolute;
+	top: 90px!important;
+	left: 40px!important;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	padding-top: 10px;
+}
+.city_pos{
+	background-color: #FFFFFF;
+}
+
+.Letter span{
+	color: #C92436;
+	font-weight: bold;
+	font-size: 0.9rem;
+} 
+/*城市选择框end*/
+/*日期选择*/
+.layui-laydate-header,.layui-laydate-content,.layui-laydate-content table,.layui-laydate-footter{
+	width: 37.5rem!important;
+}
+.layui-laydate-content table {
+	line-height: 40px!important;
+}
+.layui-laydate{
+	position: relative!important;
+	width:620px;
+	top:-13.4rem!important;
+	left: 20.6%!important;
+}
+/*日期选择end*/
+/*人数选择*/
+.selet{
+	display: none;
+	width:274px;
+	height: 80px;
+	background: #FFFFFF;
+	position: absolute;
+	left:33.5px;
+	top:50.6px;
+    padding-top: 15px;
+    margin-top: 0px;
+    padding-bottom: 15px;
+    margin-bottom: 0px;
+	border-top: 4px solid #f7f7f7;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.selet li{
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	padding-left: 30px;
+}
+.selet li:hover{
+	background-color:#cdcdcd;
+	color: #1b8fa0;
+}
+.selet button{
+	width: 22px;
+    height: 22px;
+    background: #fff;
+    border: 1px solid #d1d1d1;
+    cursor: pointer;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 22px;
+	margin-right: 5px;
+	line-height: 22px;
+}
+.selet button span{
+	line-height: 20px;
+	font-size: 1.2rem;
+}
+.selet input{
+	 display: inline-block;
+    width: 30px;
+    border: 1px solid #ccc;
+    text-indent: 0;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+	outline: none;
+    font-size: 1em;
+	line-height: 20px;
+}
+/*人数选择end*/
+/*隐藏出发时间、达到时间、人数选择*/
+.nt,.end-time.on.nt{
+	display: none;
+}
+.nt.on{
+	display: block;
+}
+/*隐藏出发时间、达到时间、人数选择end*/
+/*模板end*/
+/*导航模板end*/
+/*内容*/
+.gt{
+	margin-left: 40px;
+	position: relative;
+	top: -60px;
+}
+.gt .ct-sp1{
+	font-size: 22px;
+    color: #656565;
+}
+.gt .ct-sp2{
+	font-size: 30px;
+    color: #000;
+    font-weight: normal;
+}
+/*内容轮播图*/
+#cont{
+	margin-left: 40px;
+}
+.layui-carousel-ind {
+	top: -60px!important;
+}
+.cont-tab{
+	background: #fff;
+    padding-top: 27px;
+    height: 460px;
+	margin-left: 40px;
+}
+.cont-tab strong{
+	
+	font-size: 18px;
+	
+}
+.gn{
+	position: relative;
+	bottom: 6px;
+	left: 6px;
+	color: #cb0402;
+}
+.st2{
+	color: #000000;
+	font-size: 1.25rem!important;
+}
+.icon-homeland{
+	display: inline-block;
+	width: 25px;
+    height: 25px;
+    background:  url(../img/index-sprite.png) no-repeat;
+    background-position: 0 -129px;
+}
+/*内容轮播图end*/
+.cont-tab .ct-lg{
+	font-size: 16px;
+	width: 20%!important;
+	text-align: center;
+    padding: 12px 0px 9px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    -webkit-transition: border .6s;
+    -o-transition: border .6s;
+    -moz-transition: border .6s;
+    transition: border .6s;
+}
+.lg{
+	text-align: center!important;
+	height:110px;
+}
+.lg:hover{
+	    box-shadow: 0px 2px 13px 0px rgba(28, 28, 28, 0.1);
+}
+/*表格内容位置*/
+.gh{
+	margin-top: 4px!important;
+}
+.ct-lg,.gh{
+	cursor: pointer;
+}
+.gz{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+    color: #666;
+    font-weight: bold;
+	position: relative;
+	left: 50px;
+}
+.gz1{
+	position: relative;
+	top: 12px;
+	right: 8px;
+}
+.gh{
+	margin-top: 18px;
+}
+.qh{
+	display: none;
+}
+.qh.active{
+	display: block;
+}
+.line-dashed{
+	width: 155px!important;
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+	position: relative;
+	top: 30px;
+	left: 28px;
+}
+/*城市选择*/
+.ct-lg.active{
+	color: #CB0303;
+	border-bottom: 3px solid #cb0402;
+}
+/*城市选择end*/
+/*表格内容位置end*/
+.icon-site{
+	display: inline-block;
+	width: 36px;
+    height: 16px;
+    background: url(../img/index-sprite.png) no-repeat;
+    background-position: -13px -71px;
+}
+/*内容end*/

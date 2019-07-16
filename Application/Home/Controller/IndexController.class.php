@@ -14,6 +14,11 @@ class IndexController extends Controller {
         $this->display();		
     }
 
+    public function index2(){       
+
+        $this->display();       
+    }
+
     //
     public function search(){
         $go = $_GET['go'];
