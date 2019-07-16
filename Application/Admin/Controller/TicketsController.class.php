@@ -13,7 +13,35 @@ class TicketsController extends Controller {
         // 把数据传入模板
         // $this->assign('list', $list);
         // 模板渲染
-        $this->display();		
+        $this->display("tickets");		
+    }
+
+    public function getTickets(){
+        $Ticket = M('ticket');
+        $Company = M('company');
+
+        $arr = array();
+        $arr['code'] = 0;
+        $arr['msg']="";
+
+        $post = $_POST['key'];
+        $tid=$post['tid'];
+        if($tid){
+            $mo=M('ticket as t')->join('company as c')->where('t.tid = '.$tid.' and t.cid = c.id')->select();
+            // $ticket = $Ticket->where('tid = '.$tid)->select();
+            $arr['count'] = $Ticket->where('tid = '.$tid)->count();
+            $arr['data']=$mo;
+        }else{
+            $mo=M('ticket as t')->join('company as c')->where("t.cid = c.id")->select();
+            // $ticket = $Ticket->where()->select();
+            $arr['count'] = $Ticket->where()->count();
+            $arr['data']=$mo;
+        }
+    	// $this->ajaxReturn($ticket,'JSON');
+        // if($ticket){
+        //     echo json_encode($ticket);
+        // }
+        echo json_encode($arr);
     }
 
 
