@@ -15,21 +15,22 @@
     <body>
 
             <form action="{:U('orderPay')}" method="GET">
-                <select>
-                    <volist name="contact" id="contact">
-                        <option name= value={$contact.cid} >{$contact.name}</option>
-                    </volist>
+                <select name="cid[1]">
+                    <option  value='1' >小明</option>
+                    <option  value='2' >小明</option>
+                    <option  value='3' >小明</option>
+                </select>
+                <select name="cid[2]">
+                    <option  value='1' >小明</option>
+                    <option  value='2' >小明</option>
+                    <option  value='3' >小明</option>
+                </select>
+                <select name="cid[3]">
+                    <option  value='1' >小明</option>
+                    <option  value='2' >小明</option>
+                    <option  value='3' >小明</option>
                 </select>
                 <button>确定</button>
-            <form>
-
-            <form>
-                <select>
-                    <volist name="contact" id="contact1">
-                        <option value={$contact1.cid} >{$contact1.name}</option>
-                    </volist>
-                </select>
-                <button>wori</button>
             <form>
 
     </body>
