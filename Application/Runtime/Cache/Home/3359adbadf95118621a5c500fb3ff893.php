@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html  class="x-admin-sm">
 <head>
 	<meta charset="UTF-8">
@@ -7,15 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="__HOME__/css/font.css">
-    <link rel="stylesheet" href="__HOME__/css/login.css">
-	 <link rel="stylesheet" href="__HOME__/css/xadmin.css">
+    <link rel="stylesheet" href="/fly/public/home/css/font.css">
+    <link rel="stylesheet" href="/fly/public/home/css/login.css">
+	 <link rel="stylesheet" href="/fly/public/home/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="/fly/public/home/lib/layui/layui.js" charset="utf-8"></script>
+
 </head>
 <body class="login-bg">
     
@@ -23,13 +20,12 @@
         <div class="message">用户注册</div>
         <div id="darkbannerwrap"></div>
         
-        <form id="form" action="{:U('User/reg')}" method="post" class="layui-form" >
+        <form id="form" action="<?php echo U('User/reg');?>" method="post" class="layui-form" >
             <input id="phone_number" name="phone_number" placeholder="手机号码"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input id="username" name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
-            <input id="email" name="email" placeholder="邮箱"  type="text" lay-verify="required" class="layui-input" >
-            <hr class="hr15">
+            
             <input id="password" name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
             <input id="r_password" name="r_password" lay-verify="required" placeholder="重新输入密码"  type="password" class="layui-input">
@@ -44,7 +40,7 @@
             let username = $('#username').val();
             let phone_number = $('#phone_number').val();
             let password = $('#password').val();
-            let email = $('#email').val();
+            
             let r_password = $('#r_password').val();
             if(username == ''){
                 alert('用户名不能为空');
@@ -54,20 +50,11 @@
                 alert('两次输入的密码不一样，请重新输入。');
                 return false;
             }
-            // console.log(username);
-            // return false;
         });
     </script>
-    <!-- 底部结束 -->
+
     <script>
-    //百度统计可去掉
-    // var _hmt = _hmt || [];
-    // (function() {
-    //   var hm = document.createElement("script");
-    //   hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    //   var s = document.getElementsByTagName("script")[0]; 
-    //   s.parentNode.insertBefore(hm, s);
-    // })();
+
     </script>
 </body>
 </html>
