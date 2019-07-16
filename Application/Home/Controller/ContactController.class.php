@@ -20,6 +20,14 @@ class ContactController extends PublicController {
     //添加常用联系人
     public function add(){
         $Contact = M("contact"); // 实例化User对象
+
+        // 查找有没有重复的联系人信息
+        $repeat = $Contact->where(['name'=>$_GET['name']].'and'.['identity'=>$_GET['identity']])->find();
+        if(!empty($repeat)){
+            $this->error('已存在相同的联系人信息');
+            exit;
+        }
+        
         $data['name'] = $_GET[name];
         $data['identity'] = $_GET[identity];
         $data['uid'] = session('user.uid');
@@ -29,6 +37,14 @@ class ContactController extends PublicController {
 
     public function update(){
         $Contact = M("contact"); // 实例化User对象
+
+        // 查找有没有重复的联系人信息
+        $repeat = $Contact->where(['name'=>$_GET['name']].'and'.['identity'=>$_GET['identity']])->find();
+        if(!empty($repeat)){
+            $this->error('已存在相同的联系人信息');
+            exit;
+        }
+
         // 要修改的数据对象属性赋值
         $data['name'] = $_GET[name];
         $data['identity'] = $_GET[identity];
@@ -44,8 +60,6 @@ class ContactController extends PublicController {
         $this->assign('list', $list);
         $this->display();       
     }
-
-
 
     public function delete(){
     	$Contact = M("contact"); // 实例化User对象

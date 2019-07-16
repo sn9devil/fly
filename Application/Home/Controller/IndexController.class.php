@@ -6,7 +6,7 @@ class IndexController extends Controller {
     public function index(){
         
         $Model = M();
-        $sql = 'select * from ticket a left join company b on a.cid=b.id';
+        $sql = "select * from ticket a left join company b on a.cid=b.id where date_format(go_time,'%Y-%m-%d-%H-%i-%S') > date_format(now(),'%Y-%m-%d-%H-%i-%S')";
         $list = $Model->query($sql);
         // 把数据传入模板
         $this->assign('list', $list);
