@@ -115,11 +115,17 @@
                                         'phone_number': body.find('#phone').val(),
                                         'member': body.find('#member').val(),
                                     },
-                                    dataType: 'json',
+                                    dataType: 'text',
                                     success: function (json) {
-
-                                        alert('添加成功');
-                                    
+                                        layer.alert('添加成功');
+                                        layer.closeAll();
+                                        table.reload('allUserInfoTable', {
+                                            method: 'get',
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            },
+                                            where: {}
+                                        });
                                     }
                                 });
                             },

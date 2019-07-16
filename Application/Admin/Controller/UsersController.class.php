@@ -41,7 +41,7 @@ class UsersController extends Controller {
         $member = $_GET['member'];
         $users = $Users->add(['username'=>$username,'password'=>$password,'phone_number'=>$phone_number,'member'=>$member,'con_id'=>0]);
 
-        echo  "<script>alert('fhjhf');</script>";
+        echo  1;
     }
 
 
