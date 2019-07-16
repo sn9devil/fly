@@ -3,8 +3,8 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
 
-    public function index(){
-        
+    //首页
+    public function index(){       
         $Model = M();
         $sql = "select * from ticket a left join company b on a.cid=b.id where date_format(go_time,'%Y-%m-%d-%H-%i-%S') > date_format(now(),'%Y-%m-%d-%H-%i-%S')";
         $list = $Model->query($sql);
@@ -14,13 +14,8 @@ class IndexController extends Controller {
         $this->display();		
     }
 
-    
+    //
     public function search(){
-        // echo '<pre>';
-        // var_dump($_GET);
-        // foreach($_GET as $key => $value){
-        //     echo "string";
-        // }
         $go = $_GET['go'];
         $arrive = $_GET['arrive'];
         $date = $_GET['date'];
@@ -33,7 +28,6 @@ class IndexController extends Controller {
 
         if(!empty($back_date)){
             $back_list = $this->findTicket($arrive,$go,$back_date);
-            // var_dump($back_list);
             $this->assign('back_list', $back_list);
         }
 
