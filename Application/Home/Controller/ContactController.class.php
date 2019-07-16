@@ -90,6 +90,7 @@ class ContactController extends PublicController {
             return 0;
     }
 
+    //是否成年 返回0成年，1未成年
     public static function is_adult($IDCard){
         $flag = 0;
         if(strlen($IDCard)==18){
