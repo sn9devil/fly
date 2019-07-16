@@ -107,6 +107,7 @@ class OrderController extends PublicController {
         $ticket = M('ticket');
 
         //需要传入的参数
+        $cid = $_GET['cid'];
         $uid = session('user.uid');
         $num = 3;
         $amount = 998;
@@ -129,7 +130,7 @@ class OrderController extends PublicController {
         // var_dump($oid);
         $orderOid = (int)$oid['oid'];
         for($i = 1; $i <= $num; $i++){
-            $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid]);
+            $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid,'c_id'=>$cid[$i]]);
             $ticket->where(['tid'=>$tid])->save(['sprplus'=>array('exp','sprplus -1')]);
         }
 
