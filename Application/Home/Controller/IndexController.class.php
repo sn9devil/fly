@@ -30,8 +30,8 @@ class IndexController extends Controller {
         $people = preg_replace('/([\x80-\xff]*)/i','',$people);
         $adult = $people[0];
         $children = $people[1];
-        // var_dump($adult);
-        // var_dump($children);
+        var_dump($adult);
+        var_dump($children);
 
         $list = $this->findTicket($go,$arrive,$date);
         $this->assign('list', $list);

@@ -32,7 +32,7 @@
 					<li>订单管理</li>
 					<li>航空公司查询</li>
 				</ul>
-				<form action="http://localhost/fly/Home/Index/index2" method="GET">
+				<form action="{:U('search')}" method="GET">
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show tab-b1">
 						<div class="go-city">
@@ -46,8 +46,8 @@
 						</div>
 						<div id="in_city" style="display: none"></div>
 						<div class="d-radio">
-							<a><input type="radio" name='w' value='1'></i><span>单程</span></a>
-							<a><input type="radio" name='w' value='2'> </i><span>往返</span></a>
+							<a><i class="d-icon on  d1"></i><span class="s1">单程</span></a>
+							<a><i class="d-icon d2"></i><span class="s2">往返</span></a>
 						</div>
 						<button class="d-btn">搜索航班</button>
 						<div class="nt">
@@ -61,7 +61,7 @@
 							</div>
 							<div style="position: relative;display: inline-block;">
 								<div class="d-selet" style="width:238px;cursor:pointer">
-									<input name="people" class="pl" value="1成人 0儿童 " style="cursor:pointer;" onfocus="this.blur()" /><i class="d-icon"></i>
+									<input name="people" class="pl" value="1成人0儿童" style="cursor:pointer;" onfocus="this.blur()" /><i class="d-icon"></i>
 								</div>
 								<ul class="selet">
 									<li>成人（≥12岁）<button  type="button" style="margin-left: 40px;" class="bt1"><span>-</span></button><input type="text" value="1"
@@ -127,7 +127,7 @@
 							<input type="datetime" placeholder="2019/7/13" id="test2" />
 						</div>
 						<div class="d-selet" style="width:200px;cursor:pointer">
-							<input class="text" value="1成人 0儿童 0婴儿" style="cursor:pointer" onfocus="this.blur()" /><i class="d-icon"></i>
+							<input class="text" value="1成人0儿童 0婴儿\" style="cursor:pointer" onfocus="this.blur()" /><i class="d-icon"></i>
 						</div>
 					</div>
 				</div>
