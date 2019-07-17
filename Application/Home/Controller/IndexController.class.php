@@ -19,7 +19,7 @@ class IndexController extends Controller {
         $this->display();       
     }
 
-    //
+    //查询页面
     public function search(){
         $go = $_GET['go'];
         $arrive = $_GET['arrive'];
@@ -34,13 +34,20 @@ class IndexController extends Controller {
         var_dump($children);
 
         $list = $this->findTicket($go,$arrive,$date);
-        $this->assign('list', $list);
+        foreach ($list as $key => $value) {
+            $time = $this->countTime($value['go_time'],$value['arrive_time']);
+            $list[$key]['time'] = $time;
+        }
 
         if(!empty($back_date)){
             $back_list = $this->findTicket($arrive,$go,$back_date);
+            foreach ($back_list as $key => $value) {
+                $time = $this->countTime($value['go_time'],$value['arrive_time']);
+                $back_list[$key]['time'] = $time;
+            }
             $this->assign('back_list', $back_list);
         }
-
+        $this->assign('list', $list);
         $this->display();		
 
     }
@@ -51,6 +58,17 @@ class IndexController extends Controller {
         $list = $Model->query($sql);
         return $list;
 
+    }
+
+    //计算飞行时间
+    public function countTime($date1,$date2){
+        $date1 = strtotime($date1);
+        $date2 = strtotime($date2);
+        $diff = abs($date1 - $date2);
+        $hour = (int)($diff / 3600);
+        $min =  $diff / 60 % 60;
+        $time = $hour.'h'.$min.'m';
+        return $time;
     }
 
 }
