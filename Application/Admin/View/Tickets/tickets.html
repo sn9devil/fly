@@ -71,22 +71,21 @@
                     // layer.alert(JSON.stringify(data));
                     layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '当你选择该窗体时，即会在最顶端'
-                        ,area: ['390px', '260px']
+                        ,title: '添加机票'
+                        ,area: ['700px', '480px']
                         ,shade: 0
                         ,maxmin: true
-                        ,offset: [ //为了演示，随机坐标
-                        Math.random()*($(window).height()-300)
-                        ,Math.random()*($(window).width()-390)
-                        ] 
-                        ,content: '//layer.layui.com/test/settop.html'
-                        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-                        ,yes: function(){
-                        $(that).click(); 
-                        }
-                        ,btn2: function(){
-                        layer.closeAll();
-                        }
+                        // ,offset: [ //为了演示，随机坐标
+                        //   type
+                        // ] 
+                        ,content: "{:U('Tickets/addTickets')}"
+                        // ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+                        // ,yes: function(){
+                        // $(that).click(); 
+                        // }
+                        // ,btn2: function(){
+                        // layer.closeAll();
+                        // }
                         
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
@@ -112,6 +111,7 @@
                   obj.del(); //删除对应行（tr）的DOM结构
                   layer.close(index);
                   //向服务端发送删除指令
+                  
                 });
               } else if(layEvent === 'edit'){
                 layer.msg('编辑操作');

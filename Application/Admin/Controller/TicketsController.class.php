@@ -41,5 +41,35 @@ class TicketsController extends Controller {
         echo json_encode($arr);
     }
 
+    public function addTickets(){
+        
+        $this->display("addTickets");
+    }
 
+    public function add(){
+        $post = json_decode($_POST['post'], 1);
+        // $Admin = M('manager');
+        // $admin = $Admin
+        //          ->field('aid, username')
+        //          ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
+        //          ->find();
+
+        // if($admin){
+        //     session('admin',$admin);
+        //     $data = [];
+        //     $data['msg'] = '欢迎光临';
+        //     $data['status']=1;
+        //     $data['url']=U('admin/Index/index');
+        //     echo json_encode($data);
+        // }else{
+        //     echo json_encode(['msg'=>'用户名或密码错误','status'=>0]);
+        // }         
+    
+        $Ticket = M('ticket');
+        // echo $post['flight_number'];
+        $data = [];
+        $data['msg'] = '添加成功';
+        $ticket = $Ticket->add(['flight_number'=>$post['flight_number'],'go'=>$post['go'],'arrive'=>$post['arrive'],'date'=>$post['date'],'cheap_price'=>$post['cheap_price'],'expensive_price'=>$post['expensive_price'],'sprplus'=>$post['sprplus'],'cid'=>$post['company'],'go_time'=>$post['go_time'],'arrive_time'=>$post['arrive_time']]);
+        echo json_encode($data);
+    }
 }
