@@ -82,14 +82,19 @@ class OrderController extends PublicController {
         //需要传入的参数
         $uid = session('user.uid');
         $tid = 10;
-        $num = 3;
+        $back_tid = 11;
+        $adult = 2;
+        $children = 1;
+        $num = $adult + $children;
 
         $contact = $C->select();
-        var_dump($contact);
-        // echo '<pre>';
-        // var_dump($contact);
-        
         $ticket = $T->find($tid);
+        if(!empty($back_tid)){
+            $back_ticket = $T->find($tid);
+            $this->assign('back_ticket',$back_ticket);
+
+        }
+
         // echo '<pre>';
         // var_dump($ticket);
         $this->assign('ticket',$ticket);
@@ -109,52 +114,93 @@ class OrderController extends PublicController {
         //需要传入的参数
         $cid = $_GET['cid'];
         $uid = session('user.uid');
+        $tid = 10;
+        $back_tid = 11；
+        //支付状态
+        $status = 0;
+        //机票类型
+        $priceType = 1;
+        $back_priceType = 1;
+        if($priceType){
+            $priceType = "cheap_price";
+        }else{
+            $priceType = "expensive_price";
+        }
+
+        if($back_priceType){
+            $priceType = "cheap_price";
+        }else{
+            $priceType = "expensive_price";
+        }
 
         //计算总价
-        $adult = 2
-        $children = 1
-        $price = 200;
-        $num = $adult + $children;
+        $adult = 2;
+        $children = 1;
+        //出发价格
+        $price = $ticket->where(['tid'=>tid])->find()[$priceType];
+        $amount = $this->ticketPrice($adult,$child,$price);
+        
+        //返程价格
+        if(!empty($back_tid)){
+            $price = $ticket->where(['tid'=>tid])->find()[$priceType];
+            $amount += $this->ticketPrice($adult,$child,$price);
+            $num += $num;
+        }
 
-        $amount = $adult * 200 + $children * 200 * 0.5;
         //判断是否会员
         if(session('user.member') == 1){
             $amount = $amount * 0.9;
         }
-        $status = 0;
-        $tid = 10;
 
+        $data['num'] = $num;
 
+        //生成订单号
         $ooid = $this->get_sn();
         $ctime = Date("Y/m/d G:i:s");
         $data = [];
         $data['uid'] = $uid;
-        $data['num'] = $num;
         $data['ooid'] = $ooid;
         $data['amount'] = $amount;
         $data['stauts'] = $status;
         $data['ctime'] = $ctime;
-         
+        //添加订单
         $Orders->add($data);
-        $oid = $Orders->where(['ooid'=>$ooid])->find();
-        // var_dump($oid);
-        $orderOid = (int)$oid['oid'];
+
+        $orderOid = $Orders->where(['ooid'=>$ooid])->find();
+        $oid = (int)$orderOid['oid'];
         for($i = 1; $i <= $num; $i++){
-            $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid,'c_id'=>$cid[$i]]);
+            $orders_item->add(['t_id'=>$tid,'o_id'=>$oid,'c_id'=>$cid[$i]]);
             $ticket->where(['tid'=>$tid])->save(['sprplus'=>array('exp','sprplus -1')]);
         }
 
-        // echo '<pre>';
-        // var_dump($data);
-        // $ctime = ;
-        // $orders->
+        //添加返程的机票详细
+        if(!empty($back_tid)){
+            for($i = 1; $i <= $num; $i++){
+                $orders_item->add(['t_id'=>$back_tid,'o_id'=>$oid,'c_id'=>$cid[$i]]);
+                $ticket->where(['tid'=>$back_tid])->save(['sprplus'=>array('exp','sprplus -1')]);
+            }
+        }
+
         //展示支付页面
         $ticket_list = $ticket->where(['tid'=>$tid])->select();
+        $back_ticket_list = $ticket->where(['tid'=>$back_tid])->select();
+        
         $this->assign("data",array($data));
         $this->assign("ticket",$ticket_list);
+        $this->assign("back_ticket",$back_ticket_list);
         // var_dump($ticket_list);
         $this->display();
 
+    }
+
+
+    //计算机票价钱
+    public function ticketPrice($adult, $children, $price){
+        $num = $adult + $children;
+        $childrenPrice =  $children * $price * 0.5;
+        $adultPrice =  $adult * $price;
+        $amount = $adultPrice + $childrenPrice;
+        return $amount;
     }
 
 
@@ -165,15 +211,16 @@ class OrderController extends PublicController {
         $this->success('取消订单',U('Order/search'),1);exit;
     }
 
-    //生成订单编号
-    function get_sn() {
-        return date('YmdHis').rand(100000, 999999);
-    }
-
     public function pay(){
         $Model = M();
         $sql = 'update Orders set status = 1 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
         $this->success('支付成功',U('Order/search'),1);exit;
     }
+
+    //生成订单编号
+    function get_sn() {
+        return date('YmdHis').rand(100000, 999999);
+    }
+
 }
