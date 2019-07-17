@@ -91,7 +91,7 @@ class ContactController extends PublicController {
     }
 
     //是否成年 返回0成年，1未成年
-    public static function is_adult($IDCard){
+    public function is_adult($IDCard){
         $flag = 0;
         if(strlen($IDCard)==18){
             $tyear=intval(substr($IDCard,6,4));
@@ -151,7 +151,7 @@ class ContactController extends PublicController {
     //添加常用联系人
     public function add(){
         $Model = M();
-       
+        $Contact = M('contact');
         $check_idcard = $_GET['identity'];
         if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
             $this->error('证件号码位数出错');
@@ -165,7 +165,7 @@ class ContactController extends PublicController {
                     $this->error('已存在相同的联系人信息');
                     exit;
                 }
-                $type = is_adult($check_idcard); 
+                $type = $this->is_adult($check_idcard); 
                 $data['name'] = $_GET[name];
                 $data['type'] = $type;
                 $data['identity'] = $_GET[identity];
@@ -182,24 +182,35 @@ class ContactController extends PublicController {
     }
 
     public function update(){
-        $Contact = M("contact"); // 实例化User对象
-
-        // 查找有没有重复的联系人信息
-        $repeat = $Contact->where(['name'=>$_GET['name']].'and'.['identity'=>$_GET['identity']])->find();
-        if(!empty($repeat)){
-            $this->error('已存在相同的联系人信息');
+        $Model = M();
+        $Contact = M('contact');
+        $check_idcard = $_GET['identity'];
+        if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
+            $this->error('证件号码位数出错');
             exit;
+        }else{
+            if($this->idcard_checksum18($check_idcard)){
+                // 查找有没有重复的联系人信息
+                $sql = 'select * from contact where name='."'".$_GET[cid]."'"."and identity="."'".$check_idcard."'";
+                $list = $Model->query($sql);
+                if(!empty($list)){
+                    $this->error('已存在相同的联系人信息');
+                    exit;
+                }
+                $type = $this->is_adult($check_idcard); 
+                $data['name'] = $_GET[name];
+                $data['type'] = $type;
+                $data['identity'] = $_GET[identity];
+                $data['uid'] = session('user.uid');
+                $Contact->where('cid='.$_GET[cid])->save($data); // 根据条件更新记录
+                $this->success('嘤嘤嘤',U('Contact/index'),1);exit;    
+            }else{
+                $this->error('证件号码填写有问题，请重新输入');
+                exit;
+            }
         }
-
-        // 要修改的数据对象属性赋值
-        $data['name'] = $_GET[name];
-        $data['type'] = $_GET[type];
-        $data['identity'] = $_GET[identity];
-        $data['uid'] = session('user.uid');
-        $Contact->where('cid='.$_GET[cid])->save($data); // 根据条件更新记录
-        $this->success('嘤嘤嘤',U('Contact/index'),1);exit;
     }
-
+    
     public function edit(){
         $Model = M();
         $sql = 'select * from contact where cid='.$_GET[cid];

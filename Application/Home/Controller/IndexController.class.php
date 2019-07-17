@@ -25,9 +25,14 @@ class IndexController extends Controller {
         $arrive = $_GET['arrive'];
         $date = $_GET['date'];
         $back_date = $_GET['back_date'];
-        $num = $_GET['num'];
+        $people = $_GET['people'];
+        //去除参数中的中文
+        $people = preg_replace('/([\x80-\xff]*)/i','',$people);
+        $adult = $people[0];
+        $children = $people[1];
+        var_dump($adult);
+        var_dump($children);
 
-        
         $list = $this->findTicket($go,$arrive,$date);
         $this->assign('list', $list);
 

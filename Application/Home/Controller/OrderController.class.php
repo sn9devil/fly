@@ -82,14 +82,19 @@ class OrderController extends PublicController {
         //需要传入的参数
         $uid = session('user.uid');
         $tid = 10;
-        $num = 3;
+        $back_tid = 11;
+        $adult = 2;
+        $children = 1;
+        $num = $adult + $children;
 
         $contact = $C->select();
-        var_dump($contact);
-        // echo '<pre>';
-        // var_dump($contact);
-        
         $ticket = $T->find($tid);
+        if(!empty($back_tid)){
+            $back_ticket = $T->find($tid);
+            $this->assign('back_ticket',$back_ticket);
+
+        }
+
         // echo '<pre>';
         // var_dump($ticket);
         $this->assign('ticket',$ticket);
@@ -99,64 +104,119 @@ class OrderController extends PublicController {
 
     }
 
+    //各自的价钱和票数 问题 为解决
     //支付页面
     public function orderPay(){
         //生成订单
         $Orders = M('orders');
-        $orders_item = M('orders_item');
         $ticket = M('ticket');
 
         //需要传入的参数
-        $cid = $_GET['cid'];
+        $cid[0] = 1;  //$_GET['cid'];
+        $cid[1] = 2;
+        $cid[2] = 3;    
         $uid = session('user.uid');
+        $tid = 10;
+        $back_tid = 13;
+        $num = 2;
 
+        //支付状态
+        $status = 0;
+        //机票类型
+        $priceType = 1;
+        $back_priceType = 1;
+        if($priceType){
+            $priceType = "cheap_price";
+        }else{
+            $priceType = "expensive_price";
+        }
+        if(!empty($back_tid)){
+            if($back_priceType){
+                $back_priceType = "cheap_price";
+            }else{
+                $back_priceType = "expensive_price";
+            }
+        }
         //计算总价
-        $adult = 2
-        $children = 1
-        $price = 200;
-        $num = $adult + $children;
+        $adult = 2;
+        $children = 1;
+        //出发价格
+        $go_price = $this->ticketPrice($tid, $adult, $child, $priceType);
+        $amount = $go_price; 
+        //返程价格
+        if(!empty($back_tid)){
+            $back_price =  $this->ticketPrice($back_tid, $adult, $child, $back_priceType);
+            $amount += $back_price;
+        }
 
-        $amount = $adult * 200 + $children * 200 * 0.5;
         //判断是否会员
         if(session('user.member') == 1){
             $amount = $amount * 0.9;
         }
-        $status = 0;
-        $tid = 10;
 
-
+        //生成订单号
         $ooid = $this->get_sn();
         $ctime = Date("Y/m/d G:i:s");
         $data = [];
         $data['uid'] = $uid;
-        $data['num'] = $num;
         $data['ooid'] = $ooid;
         $data['amount'] = $amount;
         $data['stauts'] = $status;
         $data['ctime'] = $ctime;
-         
+        $data['num'] = empty($back_tid) ?  $num : $num * 2;
+        //添加订单
         $Orders->add($data);
-        $oid = $Orders->where(['ooid'=>$ooid])->find();
-        // var_dump($oid);
-        $orderOid = (int)$oid['oid'];
-        for($i = 1; $i <= $num; $i++){
-            $orders_item->add(['t_id'=>$tid,'o_id'=>$orderOid,'c_id'=>$cid[$i]]);
-            $ticket->where(['tid'=>$tid])->save(['sprplus'=>array('exp','sprplus -1')]);
+
+        $orderOid = $Orders->where(['ooid'=>$ooid])->find();
+        $oid = (int)$orderOid['oid'];
+
+        //添加发出的机票详细
+        $this->productOrderItem($tid,$oid,$cid,$num);
+
+        //添加返程的机票详细
+        if(!empty($back_tid)){
+            $this->productOrderItem($back_tid,$oid,$cid,$num);
         }
 
-        // echo '<pre>';
-        // var_dump($data);
-        // $ctime = ;
-        // $orders->
         //展示支付页面
         $ticket_list = $ticket->where(['tid'=>$tid])->select();
+        $ticket_list[0]['num'] = $num;
+        if(!empty($back_tid)){
+            $back_ticket_list = $ticket->where(['tid'=>$back_tid])->select();
+            $back_ticket_list[0]['num'] = $num;
+            $this->assign("back_ticket",$back_ticket_list);     
+        }
+
         $this->assign("data",array($data));
         $this->assign("ticket",$ticket_list);
+
         // var_dump($ticket_list);
         $this->display();
 
     }
 
+
+    //计算机票价钱
+    //传入tid 成年人数 未成年数  机票类型
+    public function ticketPrice($tid, $adult, $children, $priceType){
+        $ticket = M('ticket');
+        $price = $ticket->where(['tid'=>$tid])->find()[$priceType];
+        $childrenPrice =  $children * $price * 0.5;
+        $adultPrice =  $adult * $price;
+        $amount = $adultPrice + $childrenPrice;
+        return $amount;
+    }
+
+
+    //生成订单详情
+    public function productOrderItem($tid, $oid, $cid, $num){
+        $ticket = M('ticket');
+        $orders_item = M('orders_item');
+        for($i = 0; $i < $num; $i++){
+            $orders_item->add(['t_id'=>$tid,'o_id'=>$oid,'c_id'=>$cid[$i]]);
+            $ticket->where(['tid'=>$tid])->save(['sprplus'=>array('exp','sprplus -1')]);
+        }
+    }
 
     public function cancel(){
         $Model = M();
@@ -165,15 +225,16 @@ class OrderController extends PublicController {
         $this->success('取消订单',U('Order/search'),1);exit;
     }
 
-    //生成订单编号
-    function get_sn() {
-        return date('YmdHis').rand(100000, 999999);
-    }
-
     public function pay(){
         $Model = M();
         $sql = 'update Orders set status = 1 where ooid='.$_GET['ooid'];
         $orderUpdate = $Model->execute($sql);
         $this->success('支付成功',U('Order/search'),1);exit;
     }
+
+    //生成订单编号
+    function get_sn() {
+        return date('YmdHis').rand(100000, 999999);
+    }
+
 }
