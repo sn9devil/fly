@@ -165,21 +165,10 @@
                     data: 'post=' +post,
                     dataType: 'json',
                     success: function(json){
-                       //console.log(json);
-                        // if(json.status == 1){
-                        //     console.log(000);
-                        //     // layer.msg(json.msg,function(){
-                                
-                        //     // });
-                        // }else{
-                        //     console.log(111);
-                        //     // layer.msg(json.msg,function(){
-                        //     //     return false;
-                        //     // });
-                        // }
-                        layer.msg(json.msg,function(){
+                        layer.msg(json.msg,{time:500},function(){
                             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                             parent.layer.close(index); //再执行关闭
+                            parent.layui.table.reload('ticket',{page: {curr: 1}});
                          });
                     }
                 });

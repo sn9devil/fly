@@ -8,14 +8,13 @@ class TicketsController extends Controller {
         // $Model = M();
         // $sql = 'select * from ticket a left join company b on a.cid=b.id';
         // $list = $Model->query($sql);
-       
-        
         // 把数据传入模板
         // $this->assign('list', $list);
         // 模板渲染
         $this->display("tickets");		
     }
 
+    //获取表格
     public function getTickets(){
         $Ticket = M('ticket');
         $Company = M('company');
@@ -41,35 +40,67 @@ class TicketsController extends Controller {
         echo json_encode($arr);
     }
 
+    //添加机票页面
     public function addTickets(){
         
         $this->display("addTickets");
     }
 
+    //添加机票操作
     public function add(){
         $post = json_decode($_POST['post'], 1);
-        // $Admin = M('manager');
-        // $admin = $Admin
-        //          ->field('aid, username')
-        //          ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
-        //          ->find();
-
-        // if($admin){
-        //     session('admin',$admin);
-        //     $data = [];
-        //     $data['msg'] = '欢迎光临';
-        //     $data['status']=1;
-        //     $data['url']=U('admin/Index/index');
-        //     echo json_encode($data);
-        // }else{
-        //     echo json_encode(['msg'=>'用户名或密码错误','status'=>0]);
-        // }         
-    
         $Ticket = M('ticket');
         // echo $post['flight_number'];
         $data = [];
         $data['msg'] = '添加成功';
         $ticket = $Ticket->add(['flight_number'=>$post['flight_number'],'go'=>$post['go'],'arrive'=>$post['arrive'],'date'=>$post['date'],'cheap_price'=>$post['cheap_price'],'expensive_price'=>$post['expensive_price'],'sprplus'=>$post['sprplus'],'cid'=>$post['company'],'go_time'=>$post['go_time'],'arrive_time'=>$post['arrive_time']]);
         echo json_encode($data);
+    }
+
+    //删除一行
+    public function deleteTickets(){
+        $Ticket = M('ticket');
+        $data = [];
+        $data['msg'] = '删除成功';
+        $tid = $_POST['tid'];
+        $ticket = $Ticket->delete($tid);
+        echo json_encode($data);
+    }
+
+    //删除多行
+    public function multiDelete(){
+        $Ticket = M('ticket');
+        $post = $_POST['array'];
+        $post = json_decode($post);
+        // $s = json_decode($tid);
+        // $count = count($s);
+
+        for($i=0;$i<count($post);$i++){
+           $tid =$tid.$post[$i].",";
+        }
+        $tid = substr($tid,0,-1);
+        $ticket = $Ticket->delete($tid);
+        
+    
+        // for($i=0;$i<count($post);$i++){
+        //     if($i==(count($post)-1)){
+        //         $tid =$tid.$post[$i];
+        //     }else{
+        //     $tid =$tid.$post[$i].",";
+        //     }
+        // }
+        // echo $tid;
+        $ticket = $Ticket->delete($tid);
+        $data = [];
+        $data['msg'] = '删除成功';
+        echo json_encode($data);
+    }
+
+    //编辑机票信息
+    public function editTickets(){
+        // $Ticket = M('ticket');
+        // $tid = $_GET['tid'];
+        // echo $tid;
+        $this->display("editTickets");
     }
 }

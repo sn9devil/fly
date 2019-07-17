@@ -40,7 +40,7 @@
             table.render({
                 elem: '#ticket_table'
                 ,id: 'ticket'
-                ,height: 420
+                ,height: 'full-300'
                 ,url:'{:U("Tickets/getTickets")}'//数据接口
                 ,title: '订单表'
                 ,page: true //开启分页
@@ -75,18 +75,7 @@
                         ,area: ['700px', '480px']
                         ,shade: 0
                         ,maxmin: true
-                        // ,offset: [ //为了演示，随机坐标
-                        //   type
-                        // ] 
                         ,content: "{:U('Tickets/addTickets')}"
-                        // ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-                        // ,yes: function(){
-                        // $(that).click(); 
-                        // }
-                        // ,btn2: function(){
-                        // layer.closeAll();
-                        // }
-                        
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
                         layer.setTop(layero); //重点2
@@ -95,7 +84,32 @@
                   break;
                   case 'multidelete':
                     var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
+                    //layer.msg('选中了：'+ data.length + ' 个');
+                    //layer.alert(JSON.stringify(data));
+                    var list = [];
+                    //alert(data[0].tid);
+                    for (var i = 0; i < checkStatus.data.length; i++) {
+                      list[i] = data[i].tid;
+                    }
+                    console.log(JSON.stringify(list));
+                    $.ajax({
+                      url: "{:U('Tickets/multiDelete')}",
+                      type: 'post',
+                      traditional: true,
+                      data: {array:JSON.stringify(list)},
+                      dataType: 'json',
+                      success: function (json) {
+                        // layer.msg(json.msg,function(){
+                        //   table.reload('ticket', {
+                        //       method: 'get',
+                        //       page: {
+                        //           curr: 1 //重新从第 1 页开始
+                        //       },
+                        //       where: {}
+                        //   });
+                        // });
+                      }
+                      });
                   break;
                 };
               });
@@ -108,13 +122,35 @@
                 layer.msg('查看操作');
               } else if(layEvent === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                  obj.del(); //删除对应行（tr）的DOM结构
-                  layer.close(index);
                   //向服务端发送删除指令
-                  
+                  $.ajax({
+                      url: "{:U('Tickets/deleteTickets')}",
+                      type: 'post',
+                      data: {
+                          'tid': data.tid,
+                      },
+                      dataType: 'json',
+                      success: function (json) {
+                        layer.msg(json.msg,function(){
+                          obj.del(); //删除对应行（tr）的DOM结构
+                          layer.close(index);
+                        });
+                      }
+                  });
                 });
               } else if(layEvent === 'edit'){
-                layer.msg('编辑操作');
+                layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '添加机票'
+                        ,area: ['700px', '480px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,content: "{:U('Tickets/editTickets')}"
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                        }
+                    });
               }
             });
   
