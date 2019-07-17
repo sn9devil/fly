@@ -27,7 +27,12 @@
             <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="mutDelUser">批量删除</button>
         </div>
     </script>
+    <!-- <script type="text/html" id="switchTpl">
+       
+    <input type="checkbox" name="member" value="222222222" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo"
+        {{ d.member == 1 ? 'checked' : '' }}>
 
+    </script> -->
 
 
     <script type="text/html" id="barDemo">
@@ -41,8 +46,8 @@
 
     <script>
         layui.use('table', function () {
-            var table = layui.table;
-
+            var table = layui.table,
+                form = layui.form;
             table.render({
                 elem: '#test',
                 url: "{:U('Users/getusersinfo')}",
@@ -77,7 +82,15 @@
                     }, {
                         field: 'member',
                         title: '会员',
-                        sort: true,
+                        unresize: true,
+                        templet: function (res) {
+                            console.log(res.member)
+                            if(res.member == 1){
+                                return "是"
+                            }else{
+                                return "否"
+                            }
+                        },
                     }, {
                         fixed: 'right',
                         title: '操作',
@@ -119,7 +132,8 @@
                                     dataType: 'text',
                                     success: function (json) {
                                         layer.closeAll();
-                                        layer.alert('添加成功');
+
+                                        var index = layer.load();
                                         table.reload('allUserInfoTable', {
                                             method: 'get',
                                             page: {
@@ -127,6 +141,7 @@
                                             },
                                             where: {}
                                         });
+                                        layer.close(index);
                                     }
                                 });
                             },
@@ -150,7 +165,9 @@
                             url: "{:U('Users/mutdeluser')}",
                             type: 'post',
                             traditional: true,
-                            data: 'post='+JSON.stringify(list),
+                            data: {
+                                array: JSON.stringify(list)
+                            },
                             dataType: 'text',
                             success: function (json) {
                                 table.reload('allUserInfoTable', {
@@ -168,7 +185,8 @@
 
             //监听行工具事件
             table.on('tool(test)', function (obj) {
-                var data = obj.data;
+                var data = obj.data,
+                value = obj.value;
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         $.ajax({
@@ -191,15 +209,60 @@
                         });
                     });
                 } else if (obj.event === 'edit') {
-                    layer.prompt({
-                        formType: 2,
-                        value: data.email
-                    }, function (value, index) {
-                        obj.update({
-                            email: value
+                    layer.open({
+                            type: 2,
+                            resize: true,
+                            title: '添加用户信息',
+                            area: ['350px', '450px'],
+                            shade: 0,
+                            btn: ['确认提交', '重置', '取消'],
+                            content: "{:U('Users/updatauser?uid=1')}",
+                            yes: function (index, layero) {
+                                var body = layer.getChildFrame('body', index);
+                                var iframeWin = window[layero.find('iframe')[0]['name']];
+                                body.find('#name').val() = data.username;
+                                body.find('#password').val() = data.password;
+                                body.find('#phone').val() = data.phone_number;
+                                body.find('#member').val() = data.member;
+                                console.log(body.find('#name').val());
+                                console.log(body.find('#password').val());
+                                console.log(body.find('#phone').val());
+                                console.log(body.find('#member').val());
+                                // $.ajax({
+                                //     url: "{:U('Users/adduserinfo')}",
+                                //     type: 'get',
+                                //     data: {
+                                //         'id':data.uid,
+                                //         'username': body.find('#name').val(),
+                                //         'password': body.find('#password').val(),
+                                //         'phone_number': body.find('#phone').val(),
+                                //         'member': body.find('#member').val(),
+                                //     },
+                                //     dataType: 'text',
+                                //     success: function (json) {
+                                //         layer.closeAll();
+
+                                //         var index = layer.load();
+                                //         table.reload('allUserInfoTable', {
+                                //             method: 'get',
+                                //             page: {
+                                //                 curr: 1 //重新从第 1 页开始
+                                //             },
+                                //             where: {}
+                                //         });
+                                //         layer.close(index);
+                                //     }
+                                // });
+                            },
+                            btn2: function () {},
+                            btn3: function () {},
+                            zIndex: layer.zIndex,
+                            success: function (layero) {
+                                layer.setTop(layero);
+                            }
                         });
-                        layer.close(index);
-                    });
+                } else if (obj.event === 'save') {
+                    layer.tips(data.member);
                 }
             });
             var $ = layui.$,
@@ -223,7 +286,16 @@
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
-
+            // form.on('switch(sexDemo)', function (obj) {
+            //     // layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
+            //     if(obj.elem.checked){
+            //         this.value = 1;
+            //         console.log("选中值为："+this.value);
+            //     }else{
+            //         this.value = 0;
+            //         console.log("未选中为："+this.value);
+            //     }
+            // });
         });
     </script>
 
