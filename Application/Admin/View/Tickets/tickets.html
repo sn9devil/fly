@@ -141,11 +141,11 @@
               } else if(layEvent === 'edit'){
                 layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '添加机票'
+                        ,title: '修改机票信息'
                         ,area: ['700px', '480px']
                         ,shade: 0
                         ,maxmin: true
-                        ,content: "{:U('Tickets/editTickets')}"
+                        ,content: "{:U('Tickets/editTickets')}?tid="+data.tid
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
                         layer.setTop(layero); //重点2

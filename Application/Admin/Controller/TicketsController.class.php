@@ -98,9 +98,10 @@ class TicketsController extends Controller {
 
     //编辑机票信息
     public function editTickets(){
-        // $Ticket = M('ticket');
-        // $tid = $_GET['tid'];
-        // echo $tid;
+        $Ticket = M('ticket');
+        $tid = $_GET['tid'];
+        $ticket = $Ticket->where('tid='.$tid)->select();
+        $this->assign('ticket',$ticket);
         $this->display("editTickets");
     }
 }

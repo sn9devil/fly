@@ -21,6 +21,7 @@
 
 <body class="layui-layout-body ">
     <form class="layui-form layui-form-pane" action="{:U('add')}" method="POST">
+        <volist name="ticket" id="ticket">
         <!-- <div class="layui-form-item">
           <label class="layui-form-label">长输入框</label>
           <div class="layui-input-block">
@@ -30,7 +31,7 @@
         <div class="layui-form-item">
           <label class="layui-form-label">航班号</label>
           <div class="layui-input-inline">
-            <input type="text" name="flight_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="flight_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value={$ticket.flight_number}>
           </div>
         </div>
         
@@ -61,7 +62,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">日期选择</label>
             <div class="layui-input-block">
-              <input type="text" name="date" id="date" autocomplete="off" class="layui-input">
+              <input type="text" name="date" id="date" autocomplete="off" class="layui-input" value={$ticket.date}>
             </div>
           </div>
         </div>
@@ -71,11 +72,11 @@
           <div class="layui-inline">
             <label class="layui-form-label">经济座单价</label>
             <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="cheap_price" placeholder="￥" autocomplete="off" class="layui-input">
+              <input type="text" name="cheap_price" placeholder="￥" autocomplete="off" class="layui-input" value={$ticket.cheap_price}>
             </div>
             <label class="layui-form-label">商务座单价</label>
             <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="expensive_price" placeholder="￥" autocomplete="off" class="layui-input">
+              <input type="text" name="expensive_price" placeholder="￥" autocomplete="off" class="layui-input" value={$ticket.expensive_price}>
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@
             <div class="layui-inline">
               <label class="layui-form-label">余票</label>
               <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input">
+                <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input" value={$ticket.sprplus} >
               </div>
               <label class="layui-form-label">航空公司</label>
               <div class="layui-input-inline">
@@ -103,13 +104,13 @@
                 <div class="layui-inline">
                   <label class="layui-form-label">出发时间</label>
                   <div class="layui-input-block">
-                    <input type="text" name="go_time" id="go_time" autocomplete="off" class="layui-input">
+                    <input type="text" name="go_time" id="go_time" autocomplete="off" class="layui-input" value={$ticket.go_time}>
                   </div>
                 </div>
                 <div class="layui-inline">
                         <label class="layui-form-label">到达时间</label>
                         <div class="layui-input-block">
-                          <input type="text" name="arrive_time" id="arrive_time" autocomplete="off" class="layui-input">
+                          <input type="text" name="arrive_time" id="arrive_time" autocomplete="off" class="layui-input" value={$ticket.arrive_time}>
                         </div>
                 </div>
         </div>
@@ -130,6 +131,7 @@
         <div class="layui-form-item add_btn">
           <button class="layui-btn" lay-submit="" lay-filter="add_tickets">提交</button>
         </div>
+        </volist>
     </form>
 
     <script src="__ADMIN__/layui.js"></script>
