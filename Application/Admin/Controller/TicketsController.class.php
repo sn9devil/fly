@@ -80,17 +80,6 @@ class TicketsController extends Controller {
         }
         $tid = substr($tid,0,-1);
         $ticket = $Ticket->delete($tid);
-        
-    
-        // for($i=0;$i<count($post);$i++){
-        //     if($i==(count($post)-1)){
-        //         $tid =$tid.$post[$i];
-        //     }else{
-        //     $tid =$tid.$post[$i].",";
-        //     }
-        // }
-        // echo $tid;
-        $ticket = $Ticket->delete($tid);
         $data = [];
         $data['msg'] = '删除成功';
         echo json_encode($data);
