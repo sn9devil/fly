@@ -21,8 +21,8 @@
 					<h5>订单时间：{$data.ctime}</h5>
 					<h5>总张数：{$data.num}</h5>
 					<h5>总额：{$data.amount}</h5>
-					
 				</volist>
+
 				<volist name="ticket" id="ticket">
 					<h5>起始地{$ticket.go}</h5>
 					<h5>重点：{$ticket.arrive}</h5>
@@ -38,6 +38,7 @@
 					<h5>到达时间：{$back_ticket.arrive_time}</h5>
 					<h5>票数：{$back_ticket.num}</h5>
 				</volist>
+				
 				<button>支付</button>
 		<form>
 				<button formaction="{:U('Order/search')}">取消</button>

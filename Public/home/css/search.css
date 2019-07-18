@@ -1,6 +1,7 @@
 body,html{
 	margin: 0px;
 	padding: 0px;
+	font-family: PingFangSC-Regular,microsoft yahei,STHeiTi,simsun,arial,sans-serif;
 }
 .layui-fluid{
 	   color: #333;
@@ -75,16 +76,19 @@ body,html{
  /*订单进程end*/
  /*面板*/
  .tab-b1{
- 	width: 82%;
+ 	width: 88%;
  	height:auto;
  	background-color: #FFFFFF;
  	position: relative;
  	top: 100px;
- 	right: -10px;
+ 	right: 0px;
+	padding-left:64px;
  	padding-top: 40px;
  	padding-bottom: 40px;
-	margin-left: 140px;
+	margin-left: 70px;
 	margin-top: 40px;
+	box-shadow: 0 3px 16px 0 rgba(0,0,0,0.18);
+
  }
  .tab-b1 .go-city,.end-city,.go-time,.end-time,.d-selet{
  	display: inline-block;
@@ -294,3 +298,137 @@ body,html{
  }
  /*隐藏出发时间、达到时间、人数选择end*/
  /*面板end*/
+ /*航班标题*/
+ .fly-title{
+	 font-size: 1.3rem;
+	 margin-left: 68px;
+ }
+ .fly-title span{
+	 color: #CB0303;
+	 font-size: 1.5rem;
+ }
+ /*航班标题end*/
+ /*航班内容*/
+ .col,.col1{
+	  box-shadow: 0 3px 16px 0 rgba(0,0,0,0.18);
+	  background-color: #FFFFFF;
+	  width:95%;
+	  margin-left: 70px;
+	  margin-top: 40px;
+ }
+ .fly-conter{
+	 width:100%;
+	 padding-left:64px;
+	 padding-top: 40px;
+	 padding-bottom: 40px;
+ }
+ .fly-conter .to-line {
+    position: relative;
+    background: #e4e4e6;
+    height: 2px;
+	width:100px;
+	margin: 28px auto;
+	}
+.fly-conter .to-line .fly-icon{
+	position: absolute;
+	 top: -7px;
+	left: 50%;
+	margin-left: -12px;
+	color: #ccc;
+	padding: 0 5px;
+	background-color: #fff;
+}
+.fly-conter .fly-time{
+	font-size: 1.6rem;
+}
+.fly-conter .arrive-time{
+	position: relative;
+	top: 8px;
+	left: 4px;
+	font-size: 12px;
+}
+.fil-plane,.img{
+	font-size: 1rem;
+	position: relative;
+}
+.fil-plane{
+	left: 120px;
+	top: 18px;
+}
+.img{
+	left: 120px;
+	top: 15px;
+}
+.fly-money{
+	 font-size: 20px;
+    font-weight: normal;
+}
+.business{
+	font-size: 16px;text-align: center;position: relative;top: -40px;
+}
+.fly-class{
+	position: relative;
+	top: 6px;
+}
+.rw{
+	width: 100%;
+	margin-left: 0px;
+}
+.fly-type,.fly-type1,.fly-type2{
+	text-align: center;
+	font-size: 14px;
+}
+.row{
+	position: relative;
+	top: 45px;
+	height: 142px;
+}
+.fly-type{
+	border-top: 4px solid #c96;
+}
+.fly-type1{
+	border-top: 4px solid #900;
+}
+.fly-type2{
+	border-top: 4px solid #EB7350;
+}
+.fly-class{
+	position: relative;
+	top: 4px;
+}
+.plane-lg,.plane-lg1,.plane-lg2,.plane-lg3{
+	height: auto;
+	cursor: pointer;
+}
+.plane-lg.active,.plane-lg1.active,.plane-lg2.active,.plane-lg3.active{
+	background-color: #fafafa;
+    box-shadow: 0 0 18px 0 rgba(0,0,0,0.11);
+	color: #666;
+}
+.fly-img,.fly-img1,.fly-img2{
+	position: relative;
+	top:18px;
+	display: none;
+    width: 100%;
+    height: 18px;
+    opacity: 1;
+    transition: all .3s linear;
+}
+.fly-img.active,.fly-img1.active,.fly-img2.active{
+	display: block;
+}
+/*判断单返程*/
+.arrive-close{
+	display: none;
+}
+.arrive-close.active{
+	display: block;
+}
+/*判断单返程end*/
+.fly-play{
+	margin-top: 40px;
+	position: relative;
+	left: 172px;
+	display: none;
+}
+ /*航班内容end*/

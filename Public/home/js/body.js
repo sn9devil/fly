@@ -59,12 +59,21 @@
 	inCity.cityClick(cityA); //显示赋值城市
 	/*城市选择end*/
 	/*焦点选择*/
-	$('#place,#destination').blur(function() {
+	// $(".tab-b1").parent().click(function(e){
+	// 		console.log(e.target);
+	// });
+	$(document).click(function(){
 		$('#in_city').hide(300);
 	});
-	$('#place,#destination').focus(function() {
-		$('#in_city').show(300);
+	$("#in_city").click(function(event){
+		event.stopPropagation();
 	});
+	//  $('#place').blur(function() {
+	//  
+	//  });
+	//  $('#in_city').focus(function() {
+	//  	
+	// });
 	
 	/*焦点选择end*/
 	/*人数选择  差一个输入验证*/

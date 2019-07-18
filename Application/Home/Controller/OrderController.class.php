@@ -119,7 +119,7 @@ class OrderController extends PublicController {
         $tid = 10;
         $back_tid = 13;
         $num = 2;
-
+        
         //支付状态
         $status = 0;
         //机票类型

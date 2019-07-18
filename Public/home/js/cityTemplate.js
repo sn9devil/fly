@@ -20,6 +20,7 @@ inCity.place = function (e) {
 		$('.d-selet').css("left","24px");
 		$('.d-btn').css("position","relative");
 		$('.tab-b1').css("padding-bottom","100px");
+		$('.lw').css("height","430px");
 		if($("#layui-laydate1").css('display')=="block"){
 			$("#layui-laydate1").hide();
 		}
@@ -43,6 +44,7 @@ inCity.destination = function (e){
 		$('.d-selet').css("left","24px");
 		$('.d-btn').css("position","relative");
 		$('.tab-b1').css("padding-bottom","100px");
+		$('.lw').css("height","430px");
 		if($("#layui-laydate1").css('display')=="block"){
 				$("#layui-laydate1").hide();
 		}
