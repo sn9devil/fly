@@ -56,25 +56,28 @@
                         field: 'uid',
                         title: 'ID',
                         fixed: 'left',
-                        unresize: true,
                         sort: true,
+                        width:'10%'
                     }, {
                         field: 'username',
                         title: '用户名',
                         sort: true,
+                        width:'10%'
 
                     }, {
                         field: 'password',
                         title: '密码',
+                        width:'30%'
 
                     }, {
                         field: 'phone_number',
                         title: '手机号码',
+                        width:'20%'
 
                     }, {
                         field: 'member',
                         title: '会员',
-                        unresize: true,
+                        width:'10%',
                         templet: function (res) {
                             if(res.member == 1){
                                 return "是"
@@ -100,7 +103,7 @@
                             type: 2,
                             resize: true,
                             title: '添加用户信息',
-                            area: ['350px', '450px'],
+                            area: ['350px', '360px'],
                             shade: 0,
                             content: "{:U('Users/adduser')}",
                             zIndex: layer.zIndex,
@@ -168,7 +171,7 @@
                             type: 2,
                             resize: true,
                             title: '添加用户信息',
-                            area: ['350px', '450px'],
+                            area: ['350px', '360px'],
                             shade: 0,
                             content: "{:U('Users/updatauser')}?uid="+data.uid,
                             zIndex: layer.zIndex,
