@@ -1,0 +1,36 @@
+.bottom-section{
+	width: 380px;
+    background: url(../curve.svg) 0 0 no-repeat;
+    font-size: 0;
+    padding-left: 11px;
+	height: 73px;
+	position: relative;
+	right: 1px;
+}
+.bottom-section img{
+	margin-top: 10px;
+}
+.title-rw{
+	font-size: 18px;
+	height: 72px;
+	line-height: 72px;
+	text-align: center;
+	transform: all 1s;
+}
+.title-rw .title-lg:hover{
+	border-bottom: 1px solid #990000;
+	animation: mymove 5s infinite;
+}
+.body-bottom{
+	margin-top:100px;
+	background-color: #424242;
+	height: 260px;
+	color: #FFFFFF;
+	font-size: 15px;
+}
+.bt-1{
+	margin-top: 20px;
+}
+.body-bottom i{
+	color: #757575;
+}

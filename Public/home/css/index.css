@@ -307,13 +307,10 @@ body{
 .layui-laydate-header,.layui-laydate-content,.layui-laydate-content table,.layui-laydate-footter{
 	width: 37.5rem!important;
 }
-.layui-laydate-content table {
-	line-height: 40px!important;
-}
 .layui-laydate{
-	position: relative!important;
+	position: absolute!important;
 	width:620px;
-	top:-13.4rem!important;
+	top:87.6%!important;
 	left: 20.6%!important;
 }
 /*日期选择end*/
