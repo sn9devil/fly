@@ -27,18 +27,11 @@
             <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="mutDelUser">批量删除</button>
         </div>
     </script>
-    <!-- <script type="text/html" id="switchTpl">
-       
-    <input type="checkbox" name="member" value="222222222" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo"
-        {{ d.member == 1 ? 'checked' : '' }}>
-
-    </script> -->
 
 
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="save">保存</a>
     </script>
 
 
@@ -54,7 +47,6 @@
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 80,
                 title: '用户数据表',
-                limit: 10,
                 id: 'allUserInfoTable',
                 cols: [
                     [{
@@ -69,22 +61,21 @@
                     }, {
                         field: 'username',
                         title: '用户名',
-                        edit: 'text',
                         sort: true,
+
                     }, {
                         field: 'password',
                         title: '密码',
-                        edit: 'text',
+
                     }, {
                         field: 'phone_number',
                         title: '手机号码',
-                        edit: 'text',
+
                     }, {
                         field: 'member',
                         title: '会员',
                         unresize: true,
                         templet: function (res) {
-                            console.log(res.member)
                             if(res.member == 1){
                                 return "是"
                             }else{
@@ -111,42 +102,7 @@
                             title: '添加用户信息',
                             area: ['350px', '450px'],
                             shade: 0,
-                            btn: ['确认提交', '重置', '取消'],
                             content: "{:U('Users/adduser')}",
-                            yes: function (index, layero) {
-                                var body = layer.getChildFrame('body', index);
-                                var iframeWin = window[layero.find('iframe')[0]['name']];
-                                console.log(body.find('#name').val());
-                                console.log(body.find('#password').val());
-                                console.log(body.find('#phone').val());
-                                console.log(body.find('#member').val());
-                                $.ajax({
-                                    url: "{:U('Users/adduserinfo')}",
-                                    type: 'get',
-                                    data: {
-                                        'username': body.find('#name').val(),
-                                        'password': body.find('#password').val(),
-                                        'phone_number': body.find('#phone').val(),
-                                        'member': body.find('#member').val(),
-                                    },
-                                    dataType: 'text',
-                                    success: function (json) {
-                                        layer.closeAll();
-
-                                        var index = layer.load();
-                                        table.reload('allUserInfoTable', {
-                                            method: 'get',
-                                            page: {
-                                                curr: 1 //重新从第 1 页开始
-                                            },
-                                            where: {}
-                                        });
-                                        layer.close(index);
-                                    }
-                                });
-                            },
-                            btn2: function () {},
-                            btn3: function () {},
                             zIndex: layer.zIndex,
                             success: function (layero) {
                                 layer.setTop(layero);
@@ -159,7 +115,6 @@
                         for (var i = 0; i < checkStatus.data.length; i++) {
                             list[i] = data[i].uid;
                         }
-                        // let post = JSON.stringify(list);
                         console.log(JSON.stringify(list));
                         $.ajax({
                             url: "{:U('Users/mutdeluser')}",
@@ -215,55 +170,13 @@
                             title: '添加用户信息',
                             area: ['350px', '450px'],
                             shade: 0,
-                            btn: ['确认提交', '重置', '取消'],
-                            content: "{:U('Users/updatauser?uid=1')}",
-                            yes: function (index, layero) {
-                                var body = layer.getChildFrame('body', index);
-                                var iframeWin = window[layero.find('iframe')[0]['name']];
-                                body.find('#name').val() = data.username;
-                                body.find('#password').val() = data.password;
-                                body.find('#phone').val() = data.phone_number;
-                                body.find('#member').val() = data.member;
-                                console.log(body.find('#name').val());
-                                console.log(body.find('#password').val());
-                                console.log(body.find('#phone').val());
-                                console.log(body.find('#member').val());
-                                // $.ajax({
-                                //     url: "{:U('Users/adduserinfo')}",
-                                //     type: 'get',
-                                //     data: {
-                                //         'id':data.uid,
-                                //         'username': body.find('#name').val(),
-                                //         'password': body.find('#password').val(),
-                                //         'phone_number': body.find('#phone').val(),
-                                //         'member': body.find('#member').val(),
-                                //     },
-                                //     dataType: 'text',
-                                //     success: function (json) {
-                                //         layer.closeAll();
-
-                                //         var index = layer.load();
-                                //         table.reload('allUserInfoTable', {
-                                //             method: 'get',
-                                //             page: {
-                                //                 curr: 1 //重新从第 1 页开始
-                                //             },
-                                //             where: {}
-                                //         });
-                                //         layer.close(index);
-                                //     }
-                                // });
-                            },
-                            btn2: function () {},
-                            btn3: function () {},
+                            content: "{:U('Users/updatauser')}?uid="+data.uid,
                             zIndex: layer.zIndex,
                             success: function (layero) {
                                 layer.setTop(layero);
                             }
                         });
-                } else if (obj.event === 'save') {
-                    layer.tips(data.member);
-                }
+                } 
             });
             var $ = layui.$,
                 active = {
@@ -286,16 +199,6 @@
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
-            // form.on('switch(sexDemo)', function (obj) {
-            //     // layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
-            //     if(obj.elem.checked){
-            //         this.value = 1;
-            //         console.log("选中值为："+this.value);
-            //     }else{
-            //         this.value = 0;
-            //         console.log("未选中为："+this.value);
-            //     }
-            // });
         });
     </script>
 
