@@ -99,15 +99,15 @@
                       data: {array:JSON.stringify(list)},
                       dataType: 'json',
                       success: function (json) {
-                        // layer.msg(json.msg,function(){
-                        //   table.reload('ticket', {
-                        //       method: 'get',
-                        //       page: {
-                        //           curr: 1 //重新从第 1 页开始
-                        //       },
-                        //       where: {}
-                        //   });
-                        // });
+                        layer.msg(json.msg,{time:500},function(){
+                          table.reload('ticket', {
+                              method: 'get',
+                              page: {
+                                  curr: 1 //重新从第 1 页开始
+                              },
+                              where: {}
+                          });
+                        });
                       }
                       });
                   break;
@@ -131,7 +131,7 @@
                       },
                       dataType: 'json',
                       success: function (json) {
-                        layer.msg(json.msg,function(){
+                        layer.msg(json.msg,{time:500},function(){
                           obj.del(); //删除对应行（tr）的DOM结构
                           layer.close(index);
                         });

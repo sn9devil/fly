@@ -89,12 +89,10 @@
               <label class="layui-form-label">航空公司</label>
               <div class="layui-input-inline">
                     <select name="company">
-                      <option value="1">海南航空</option>
-                      <option value="香港">香港</option>
-                      <option value="宁波" disabled="">宁波</option>
-                      <option value="温州">温州</option>
-                      <option value="温州">台州</option>
-                      <option value="温州">绍兴</option>
+                        <volist name="company" id="data">
+
+                            <option value="{$data.id}">{$data.company}</option>
+                        </volist>
                     </select>
                   </div>
             </div>
