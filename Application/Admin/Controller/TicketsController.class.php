@@ -42,7 +42,9 @@ class TicketsController extends Controller {
 
     //添加机票页面
     public function addTickets(){
-        
+        $Company = M('company');
+        $company = $Company->where()->select();
+        $this->assign('company',$company);
         $this->display("addTickets");
     }
 
@@ -80,17 +82,6 @@ class TicketsController extends Controller {
         }
         $tid = substr($tid,0,-1);
         $ticket = $Ticket->delete($tid);
-        
-    
-        // for($i=0;$i<count($post);$i++){
-        //     if($i==(count($post)-1)){
-        //         $tid =$tid.$post[$i];
-        //     }else{
-        //     $tid =$tid.$post[$i].",";
-        //     }
-        // }
-        // echo $tid;
-        $ticket = $Ticket->delete($tid);
         $data = [];
         $data['msg'] = '删除成功';
         echo json_encode($data);
@@ -102,6 +93,24 @@ class TicketsController extends Controller {
         $tid = $_GET['tid'];
         $ticket = $Ticket->where('tid='.$tid)->select();
         $this->assign('ticket',$ticket);
+
+        $Company = M('company');
+        $company = $Company->where()->select();
+        $this->assign('company',$company);
+        
         $this->display("editTickets");
     }
+
+    public function edit(){
+        $Ticket = M('ticket');
+        $post = json_decode($_POST['post'], 1);
+        $tid = $post['tid'];
+       
+        $ticket = $Ticket->where('tid='.$tid)->save($post);
+        $data = [];
+        $data['msg'] = '修改成功';
+        echo json_encode($data);
+    }
+
+
 }

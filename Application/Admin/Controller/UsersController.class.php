@@ -36,14 +36,10 @@ class UsersController extends Controller {
     //添加用户
     public function adduserinfo(){
         $Users = M('users');
-        $username = $_GET['username'];
-        var_dump($username);
-        $password = $_GET['password'];
-        $phone_number = $_GET['phone_number'];
-        $member = $_GET['member'];
-        $users = $Users->add(['username'=>$username,'password'=>$password,'phone_number'=>$phone_number,'member'=>$member,'con_id'=>0]);
-
-        echo  1;
+        //注意json_decode()的第二个参数
+        $post = json_decode($_GET['get'],1);
+        $Users->add(['username'=>$post['name'],'password'=>$post['password'],'phone_number'=>$post['phone'],'member'=>$post['member'],'con_id'=>0]);
+        echo  666;
     }
 
     //删除用户
@@ -74,15 +70,16 @@ class UsersController extends Controller {
      public function updatauser(){
         $Users = M('users');
         $id = $_GET['uid'];
-        // $Users->password = $_GET['password'];
-        // $Users->phone_number = $_GET['phone_number'];
-        // $Users->member = $_GET['member'];
-        // $users = $Users->find()->add(['username'=>$username,'password'=>$password,'phone_number'=>$phone_number,'member'=>$member,'con_id'=>0]);
         $user = $Users->where('uid='.$id)->select();
-        
         $this->assign('list',$user);
-        // $this->assign('ok',1111);
         $this->display();
+    }
+
+    public function updatauserinfo(){
+        $Users = M('users');
+        $get = json_decode($_GET['get'],1);
+        $Users->where('uid ='.$get['uid'])->save($get);
+
     }
 
     public function users(){

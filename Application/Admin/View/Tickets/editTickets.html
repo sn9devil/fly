@@ -14,7 +14,7 @@
             padding: 1rem;
         }
         .add_btn{
-            margin:0 auto;
+            /* margin:0 auto; */
         }
     </style>
 </head>
@@ -31,29 +31,57 @@
         <div class="layui-form-item">
           <label class="layui-form-label">航班号</label>
           <div class="layui-input-inline">
-            <input type="text" name="flight_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value={$ticket.flight_number}>
+            <input type="text" name="flight_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$ticket.flight_number}">
           </div>
         </div>
         
         <div class="layui-form-item">
             <label class="layui-form-label">出发地</label>
             <div class="layui-input-inline">
-              <select name="go">
+              <select name="go" id="go">
                 <option value="">出发地</option>
-                <option value="香港" selected="">香港</option>
-                <option value="香港">香港</option>
-                <option value="香港">香港</option>
+                <!-- <option value="泰国" selected="">泰国</option> -->
+                <if condition ="$ticket.go eq '泰国'">
+                    <option value="泰国" selected>泰国</option>
+                    <else />
+                    <option value="泰国">泰国</option>
+                </if>
+                <if condition ="$ticket.go eq '印度'">
+                    <option value="印度" selected>印度</option>
+                    <else />
+                    <option value="印度">印度</option>
+                </if>
+                <if condition ="$ticket.go eq '香港'">
+                    <option value="香港" selected>香港</option>
+                    <else />
+                    <option value="香港">香港</option>
+                </if>
               </select>
             </div>
             <label class="layui-form-label">目的地</label>
             <div class="layui-input-inline">
               <select name="arrive">
-                <option value="">目的地</option>
+                <!-- <option value="">目的地</option>
                 <option value="香港">香港</option>
                 <option value="宁波" disabled="">宁波</option>
                 <option value="温州">温州</option>
                 <option value="温州">台州</option>
-                <option value="温州">绍兴</option>
+                <option value="温州">绍兴</option> -->
+                <if condition ="$ticket.arrive eq '泰国'">
+                    <option value="泰国" selected>泰国</option>
+                    <else />
+                    <option value="泰国">泰国</option>
+                </if>
+                <if condition ="$ticket.arrive eq '印度'">
+                    <option value="印度" selected>印度</option>
+                    <else />
+                    <option value="印度">印度</option>
+                </if>
+                <if condition ="$ticket.arrive eq '香港'">
+                    <option value="香港" selected>香港</option>
+                    <else />
+                    <option value="香港">香港</option>
+                </if>
               </select>
             </div>
         </div>
@@ -62,7 +90,7 @@
           <div class="layui-inline">
             <label class="layui-form-label">日期选择</label>
             <div class="layui-input-block">
-              <input type="text" name="date" id="date" autocomplete="off" class="layui-input" value={$ticket.date}>
+              <input type="text" name="date" id="date" autocomplete="off" class="layui-input" value="{$ticket.date}">
             </div>
           </div>
         </div>
@@ -72,11 +100,11 @@
           <div class="layui-inline">
             <label class="layui-form-label">经济座单价</label>
             <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="cheap_price" placeholder="￥" autocomplete="off" class="layui-input" value={$ticket.cheap_price}>
+              <input type="text" name="cheap_price" placeholder="￥" autocomplete="off" class="layui-input" value="{$ticket.cheap_price}">
             </div>
             <label class="layui-form-label">商务座单价</label>
             <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="expensive_price" placeholder="￥" autocomplete="off" class="layui-input" value={$ticket.expensive_price}>
+              <input type="text" name="expensive_price" placeholder="￥" autocomplete="off" class="layui-input" value="{$ticket.expensive_price}">
             </div>
           </div>
         </div>
@@ -85,33 +113,35 @@
             <div class="layui-inline">
               <label class="layui-form-label">余票</label>
               <div class="layui-input-inline" style="width: 100px;">
-                <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input" value={$ticket.sprplus} >
+                <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input" value="{$ticket['sprplus']}" >
               </div>
               <label class="layui-form-label">航空公司</label>
               <div class="layui-input-inline">
-                    <select name="company">
-                      <option value="1">海南航空</option>
-                      <option value="香港">香港</option>
-                      <option value="宁波" disabled="">宁波</option>
-                      <option value="温州">温州</option>
-                      <option value="温州">台州</option>
-                      <option value="温州">绍兴</option>
-                    </select>
+                  <select name="company">
+                      <volist name="company" id="data">
+                          <if condition ="$data['id'] eq $ticket['cid']">
+                              <option value="{$data.id}" selected>{$data.company}</option>
+                              <else />
+                              <option value="{$data.id}">{$data.company}</option>
+                          </if>
+                      </volist>
+                  </select>
                   </div>
             </div>
         </div>
+        
         <div class="layui-form-item">
                 <div class="layui-inline">
                   <label class="layui-form-label">出发时间</label>
                   <div class="layui-input-block">
-                    <input type="text" name="go_time" id="go_time" autocomplete="off" class="layui-input" value={$ticket.go_time}>
+                    <input type="text" name="go_time" id="go_time" class="layui-input" value="{$ticket.go_time}">
                   </div>
                 </div>
                 <div class="layui-inline">
-                        <label class="layui-form-label">到达时间</label>
-                        <div class="layui-input-block">
-                          <input type="text" name="arrive_time" id="arrive_time" autocomplete="off" class="layui-input" value={$ticket.arrive_time}>
-                        </div>
+                  <label class="layui-form-label">到达时间</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="arrive_time" id="arrive_time"  class="layui-input" value="{$ticket.arrive_time}">
+                  </div>
                 </div>
         </div>
 
@@ -130,12 +160,14 @@
         </div> -->
         <div class="layui-form-item add_btn">
           <button class="layui-btn" lay-submit="" lay-filter="add_tickets">提交</button>
+          <button class="layui-btn" lay-submit="" type="reset" >重置</button>
         </div>
         </volist>
     </form>
 
     <script src="__ADMIN__/layui.js"></script>
     <script>
+        console.log('{$ticket.arrive_time}');
         layui.use(['form', 'layedit', 'laydate'], function () {
             var form = layui.form
             ,laydate = layui.laydate;
@@ -146,19 +178,19 @@
             });
             laydate.render({
                 elem: '#go_time',
-                trigger: 'click'
-                ,type: 'datetime'
-               
+                type: 'datetime'
+                ,trigger: 'click'
             });
             laydate.render({
                 elem: '#arrive_time',
-                trigger: 'click'
-                ,type: 'datetime'
+                type: 'datetime'
+                ,trigger: 'click'
             });
 
             //监听提交
             form.on('submit(add_tickets)', function (data) {
-                let url = "{:U('add')}";
+                let url = "{:U('edit')}";
+                data.field['tid'] = '{$ticket.tid}';
                 let post = JSON.stringify(data.field);
                 console.log(url,post);
                 $.ajax({
@@ -167,25 +199,30 @@
                     data: 'post=' +post,
                     dataType: 'json',
                     success: function(json){
-                       //console.log(json);
-                        // if(json.status == 1){
-                        //     console.log(000);
-                        //     // layer.msg(json.msg,function(){
-                                
-                        //     // });
-                        // }else{
-                        //     console.log(111);
-                        //     // layer.msg(json.msg,function(){
-                        //     //     return false;
-                        //     // });
-                        // }
-                        layer.msg(json.msg,function(){
+                        layer.msg(json.msg,{time:500},function(){
                             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                             parent.layer.close(index); //再执行关闭
+                            parent.layui.table.reload('ticket',{page: {curr: 1}});
                          });
                     }
                 });
                 return false;
+            });
+
+            //自定义验证规则
+            form.verify({
+              title: function(value){
+                if(value.length < 5){
+                  return '标题至少得5个字符啊';
+                }
+              }
+              ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+              ]
+              ,content: function(value){
+                layedit.sync(editIndex);
+              }
             });
         });
     </script>
