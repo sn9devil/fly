@@ -101,7 +101,21 @@ class TicketsController extends Controller {
         $Ticket = M('ticket');
         $tid = $_GET['tid'];
         $ticket = $Ticket->where('tid='.$tid)->select();
+
         $this->assign('ticket',$ticket);
         $this->display("editTickets");
     }
+
+    public function edit(){
+        $Ticket = M('ticket');
+        $post = json_decode($_POST['post'], 1);
+        $tid = $post['tid'];
+       
+        $ticket = $Ticket->where('tid='.$tid)->save($post);
+        $data = [];
+        $data['msg'] = '修改成功';
+        echo json_encode($data);
+    }
+
+
 }
