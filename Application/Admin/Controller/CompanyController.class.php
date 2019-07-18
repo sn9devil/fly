@@ -8,13 +8,16 @@ class CompanyController extends Controller {
         $this->display();		
     }
 
+    /*
+    *注意只可以只有一个echo
+    */
     public function getcompanyinfo(){
         $Company = M('company');
-        $post = $_POST['id'];
-        // var_dump $get;
+        $post = $_GET['company'];
+        // echo $post;
         if($post){
             $company = $Company
-            ->where('id = '.$post)
+            ->where('company like '.'"%'.$post.'%"')
             ->select();
             // var_dump($users);
         }else{
@@ -28,7 +31,8 @@ class CompanyController extends Controller {
         $arr['count'] = $Company->where()->count();
         $arr['msg'] = "";
         $arr['data'] = $company;
-
+        // echo $arr;
+        // echo json_encode($arr);
         if($company){
             // var_dump(json_encode($arr));
             echo json_encode($arr);
@@ -63,7 +67,8 @@ class CompanyController extends Controller {
              $id = $id.$post[$i].",";
          }
         $id = substr($id,0,-1);
-        $Users->delete($id);
+        echo $id;
+        $Company->delete($id);
         echo 1;
     }
 }
