@@ -82,7 +82,10 @@ class TicketsController extends Controller {
         }
         $tid = substr($tid,0,-1);
         $ticket = $Ticket->delete($tid);
+<<<<<<< HEAD
         $ticket = $Ticket->delete($tid);
+=======
+>>>>>>> cec4941306e8e33bf78256e7dc670bf061397e70
         $data = [];
         $data['msg'] = '删除成功';
         echo json_encode($data);

@@ -13,7 +13,7 @@
 
 <body>
     <div class="demoTable">
-        搜索用户名：
+        搜索公司名称：
         <div class="layui-inline">
             <input class="layui-input" name="id" id="demoReload" autocomplete="off">
         </div>
@@ -43,48 +43,41 @@
                 form = layui.form;
             table.render({
                 elem: '#test',
-                url: "{:U('Users/getusersinfo')}",
+                url: "{:U('Company/getcompanyinfo')}",
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 80,
-                title: '用户数据表',
+                title: '航空公司表',
                 id: 'allUserInfoTable',
                 cols: [
                     [{
                         type: 'checkbox',
                         fixed: 'left'
                     }, {
-                        field: 'uid',
+                        field: 'id',
                         title: 'ID',
                         fixed: 'left',
                         sort: true,
                         width:'6%'
                     }, {
-                        field: 'username',
-                        title: '用户名',
+                        field: 'company',
+                        title: '公司名称',
                         sort: true,
-                        width:'15%'
+                        width:'10%'
 
                     }, {
-                        field: 'password',
-                        title: '密码',
-                        width:'30%'
-
-                    }, {
-                        field: 'phone_number',
-                        title: '手机号码',
+                        field: 'address',
+                        title: '公司地址',
                         width:'20%'
 
                     }, {
-                        field: 'member',
-                        title: '会员',
-                        width:'6%',
-                        templet: function (res) {
-                            if(res.member == 1){
-                                return "是"
-                            }else{
-                                return "否"
-                            }
-                        },
+                        field: 'phone',
+                        title: '联系方式',
+                        width:'15%'
+
+                    }, {
+                        field: 'describe',
+                        title: '描述',
+                        width:'30%',
                     }, {
                         fixed: 'right',
                         title: '操作',
@@ -102,10 +95,10 @@
                         layer.open({
                             type: 2,
                             resize: true,
-                            title: '添加用户信息',
-                            area: ['350px', '360px'],
+                            title: '添加航空公司',
+                            area: ['360px', '430px'],
                             shade: 0,
-                            content: "{:U('Users/adduser')}",
+                            content: "{:U('Company/addcompany')}",
                             zIndex: layer.zIndex,
                             success: function (layero) {
                                 layer.setTop(layero);
@@ -146,12 +139,12 @@
                 var data = obj.data,
                 value = obj.value;
                 if (obj.event === 'del') {
-                    layer.confirm('真的删除行么', function (index) {
+                    layer.confirm('确认删除？', function (index) {
                         $.ajax({
-                            url: "{:U('Users/deluser')}",
+                            url: "{:U('Company/delcompany')}",
                             type: 'post',
                             data: {
-                                'uid': data.uid,
+                                'id': data.id,
                             },
                             dataType: 'text',
                             success: function (json) {
@@ -170,7 +163,7 @@
                     layer.open({
                             type: 2,
                             resize: true,
-                            title: '添加用户信息',
+                            title: '编辑公司信息',
                             area: ['350px', '360px'],
                             shade: 0,
                             content: "{:U('Users/updatauser')}?uid="+data.uid,
