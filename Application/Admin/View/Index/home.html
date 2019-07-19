@@ -1,18 +1,108 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        
-        <script src="" async defer></script>
-    </body>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="__ADMIN__/css/layui.css" media="all">
+    <script type="text/javascript" src="__ADMIN__/jquery/jquery-3.4.1.min.js"></script>
+    <script src="__ADMIN__/layui.js" charset="utf-8"></script>
+    <!-- 注意加载js的顺序 -->
+    <script src="__ADMIN__/echarts.js"></script>
+    <script src="__ADMIN__/dark.js"></script>
+</head>
+
+<body>
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'), 'dark');
+
+        // 指定图表的配置项和数据
+        // $.get("{:U('Index/getDayticket')}").done(function (data) {
+        // var t= JSON.stringify(data);
+        // console.log(typeof(data));
+        // JSON.parse(data);
+        // alert(data);
+        // alert(dat);
+
+        var option = {
+            title: {
+                text: '未来7天航空机票销售量'
+            },
+            tooltip: {},
+            legend: {},
+            dataset: {
+                source: [
+                    // ['25号',4],
+                    // ['26号',4],
+                    // ['27号',4],
+                    // ['28号',4],
+                    // ['29号',4],
+                    // ['30号',4],
+                    // ['31号',4],
+                    // [data[0].date, 4],
+                    // [data[1].data, data[1].count],
+                    // [data[2].data, data[2].count],
+                    // [data[3].data, data[3].count],
+                    // [data[4].data, data[4].count],
+                    // [data[5].data, data[5].count],
+                    // [data[6].data, data[6].count],
+                ]
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar',
+            }]
+        };
+        // });
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        $.ajax({
+            url: "{:U('Index/getDayticket')}",
+            type: 'post',
+            dataType: 'json',
+            // async: false,
+            success: function (data) {
+                // console.log(data[0].date)
+                // myChart.setOption({
+                //     series: [{
+                //         // data: data, //接受后台返回的数据，需要注意数据类型
+                //         ['25',4]
+                //         // [data[0].date,4],
+                //         // [data[1].date,4],
+                //         // [data[2].date,4],
+                //         // [data[3].date,4],
+                //         // [data[4].date,4],
+                //     }]
+                // });
+                myChart.setOption({
+                    series: [{
+                        data: data[0].date,//接受后台返回的数据，需要注意数据类型
+                        data: data[1].date,//接受后台返回的数据，需要注意数据类型
+                        data: data[2].date,//接受后台返回的数据，需要注意数据类型
+                        data: data[3].date,//接受后台返回的数据，需要注意数据类型
+                       
+                    }]
+                });
+            },
+            error: function () {
+
+            }
+
+        });
+    </script>
+</body>
+
 </html>
