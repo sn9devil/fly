@@ -6,11 +6,11 @@ class UsersController extends Controller {
     //获取用户信息
     public function getusersinfo(){
         $Users = M('users');
-        $get = $_GET['uid'];
+        $get = $_GET['username'];
         // var_dump $get;
         if($get){
             $users = $Users
-            ->where('uid = '.$get)
+            ->where('username like '.'"%'.$get.'%"')
             ->select();
             // var_dump($users);
         }else{
