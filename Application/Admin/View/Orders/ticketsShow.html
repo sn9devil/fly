@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="__ADMIN__/css/layui.css">
+    <meta name="renderer" content="webkit">
+    
+</head>
+
+<body class="layui-layout-body">
+
+    <table class="layui-hide" id="order_table" lay-filter="order"></table>
+    <!-- 头部工具栏 -->
+    <!-- <script type="text/html" id="toolbarDemo">
+        <div class="layui-inline" title="添加" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>
+        <div class="layui-inline" title="批量删除" lay-event="multidelete"><i class="layui-icon layui-icon-delete"></i></div>
+    </script> -->
+    <!-- 右侧工具栏 -->
+    <!-- <script type="text/html" id="barDemo"> -->
+
+      <!-- <a class="layui-btn layui-btn-xs  layui-btn-warm" lay-event="ticketsShow">机票</a>
+      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a> -->
+    </script>
+    <script src="__ADMIN__/layui.js"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('table', function () {
+            var table = layui.table;
+
+            table.render({
+                elem: '#order_table'
+                ,id: 'order'
+                ,height: 420
+                ,url:'{:U("Orders/getTickets")}?oid='+'{$oid}'//数据接口
+                ,title: '订单表'
+                ,page: true //开启分页
+                ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                ,totalRow: true //开启合计行
+                ,cols: [[ //表头
+                  {field: 'tid', title: 'ID',width:'6%', fixed: 'left', totalRowText: '合计：'}
+                  ,{field: 'flight_number', title: '航班号',width:'10%'}
+                  ,{field: 'go', title: '出发地',  totalRow: true,width:'10%'}
+                  ,{field: 'arrive', title: '目的地', width:'10%'}
+                  ,{field: 'cheap_price', title: '经济座单价',width:'12%'} 
+                  ,{field: 'expensive_price', title: '商务座单价',width:'12%'}
+                  ,{field: 'go_time', title: '出发时间',width:'15%'}
+                  ,{field: 'arrive_time', title: '到达时间',  width:'15%'}
+                  ,{field: 'company', title: '航空公司', width:'10%'}
+                ]]
+            });   
+        //     //监听头工具栏事件
+        //     table.on('toolbar(order)', function(obj){
+        //         var checkStatus = table.checkStatus(obj.config.id);
+        //         switch(obj.event){
+        //           case 'add':
+        //             // var data = checkStatus.data;
+        //             // layer.alert(JSON.stringify(data));
+        //             layer.open({
+            //                 type: 2 //此处以iframe举例
+            //                 ,title: '添加订单'
+        //                 ,area: ['700px', '480px']
+        //                 ,shade: 0
+        //                 ,maxmin: true
+        //                 ,content: "{:U('Orders/addOrders')}"
+        //                 ,zIndex: layer.zIndex //重点1
+        //                 ,success: function(layero){
+        //                 layer.setTop(layero); //重点2
+        //                 }
+        //             });
+        //           break;
+        //           case 'multidelete':
+        //             var data = checkStatus.data;
+        //             var list = [];
+        //             //alert(data[0].tid);
+        //             for (var i = 0; i < checkStatus.data.length; i++) {
+        //               list[i] = data[i].tid;
+        //             }
+        //             console.log(JSON.stringify(list));
+        //             $.ajax({
+        //               url: "{:U('Tickets/multiDelete')}",
+        //               type: 'post',
+        //               traditional: true,
+        //               data: {array:JSON.stringify(list)},
+        //               dataType: 'json',
+        //               success: function (json) {
+        //                 layer.msg(json.msg,{time:500},function(){
+        //                   table.reload('order', {
+        //                       method: 'get',
+        //                       page: {
+        //                           curr: 1 //重新从第 1 页开始
+        //                       },
+        //                       where: {}
+        //                   });
+        //                 });
+        //               }
+        //               });
+        //           break;
+        //         };
+        //       });
+            
+        //     //监听行工具事件
+        //     table.on('tool(order)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        //       var data = obj.data //获得当前行数据
+        //       ,layEvent = obj.event; //获得 lay-event 对应的值
+        //       if(layEvent === 'detail'){
+        //         layer.msg('查看操作');
+        //       } else if(layEvent === 'del'){
+        //         layer.confirm('真的删除行么', function(index){
+        //           //向服务端发送删除指令
+        //           $.ajax({
+        //               url: "{:U('Tickets/deleteTickets')}",
+        //               type: 'post',
+        //               data: {
+        //                   'tid': data.tid,
+        //               },
+        //               dataType: 'json',
+        //               success: function (json) {
+        //                 layer.msg(json.msg,{time:500},function(){
+        //                   obj.del(); //删除对应行（tr）的DOM结构
+        //                   layer.close(index);
+        //                 });
+        //               }
+        //           });
+        //         });
+        //       } else if(layEvent === 'ticketsShow'){
+        //         layer.open({
+        //                 type: 2 //此处以iframe举例
+        //                 ,title: '机票信息'
+        //                 ,area: ['700px', '480px']
+        //                 ,shade: 0
+        //                 ,maxmin: true
+        //                 ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid
+        //                 ,zIndex: layer.zIndex //重点1
+        //                 ,success: function(layero){
+        //                 layer.setTop(layero); //重点2
+        //                 }
+        //             });
+        //       }else if(layEvent === 'contactShow'){
+        //         layer.open({
+        //                 type: 2 //此处以iframe举例
+        //                 ,title: '常用联系人信息'
+        //                 ,area: ['700px', '480px']
+        //                 ,shade: 0
+        //                 ,maxmin: true
+        //                 ,content: "{:U('Orders/contactShow')}?oid="+data.oid
+        //                 ,zIndex: layer.zIndex //重点1
+        //                 ,success: function(layero){
+        //                 layer.setTop(layero); //重点2
+        //                 }
+        //             });
+        //       }
+        //     });
+  
+        //     var $ = layui.$, active = {
+        //       reload: function(){
+        //         var demoReload = $('#demoReload');
+        //         //执行重载
+        //         table.reload('order', {
+        //           method: 'post',
+        //           page: {
+        //             curr: 1 //重新从第 1 页开始
+        //           }
+        //           ,where: {
+        //            key: {
+        //               ooid: demoReload.val()
+        //             }
+        //           }
+        //         });
+        //       }
+        //     };
+            
+        //     $('.demoTable .layui-btn').on('click', function(){
+        //       var type = $(this).data('type');
+        //       active[type] ? active[type].call(this) : '';
+        //     });
+        });
+    </script>
+</body>
+
+</html>
