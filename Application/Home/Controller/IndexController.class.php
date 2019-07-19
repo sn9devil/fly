@@ -43,40 +43,44 @@ class IndexController extends Controller {
         // var_dump($children);
 
         $list = $this->findTicket($go,$arrive,$date);
+        //去程的机票数
+        $go_sum = count($list);
         //处理时间
-        foreach ($list as $key => $value) {
-            $time = $this->countTime($value['go_time'],$value['arrive_time']);
-            $data = $this->getTime($value['go_time']);
-            $list[$key]['go_month']  = $data['month'];
-            $list[$key]['go_day']  = $data['day'];
-            $list[$key]['go_hour']  = $data['hour'];
-            $data = $this->getTime($value['arrive_time']);
-            $list[$key]['back_month']  = $data['month'];
-            $list[$key]['back_day']  = $data['day'];
-            $list[$key]['back_hour']  = $data['hour'];
-            $list[$key]['cheap_price']  = (int)$list[$key]['cheap_price'];
-            $list[$key]['time'] = $time;
-        }
+        // foreach ($list as $key => $value) {
+        //     $time = $this->countTime($value['go_time'],$value['arrive_time']);
+        //     $data = $this->getTime($value['go_time']);
+        //     $list[$key]['go_month']  = $data['month'];
+        //     $list[$key]['go_day']  = $data['day'];
+        //     $list[$key]['go_hour']  = $data['hour'];
+        //     $data = $this->getTime($value['arrive_time']);
+        //     $list[$key]['back_month']  = $data['month'];
+        //     $list[$key]['back_day']  = $data['day'];
+        //     $list[$key]['back_hour']  = $data['hour'];
+        //     $list[$key]['cheap_price']  = (int)$list[$key]['cheap_price'];
+        //     $list[$key]['time'] = $time;
+        // }
 
         if(!empty($back_date)){
-            echo '222';
             $back_list = $this->findTicket($arrive,$go,$back_date);
-            foreach ($back_list as $key => $value) {
-                $time = $this->countTime($value['go_time'],$value['arrive_time']);
-                $data = $this->getTime($value['go_time']);
-                $back_list[$key]['go_month']  = $data['month'];
-                $back_list[$key]['go_day']  = $data['day'];
-                $back_list[$key]['go_hour']  = $data['hour'];
-                $data = $this->getTime($value['arrive_time']);
-                $back_list[$key]['back_month']  = $data['month'];
-                $back_list[$key]['back_day']  = $data['day'];
-                $back_list[$key]['back_hour']  = $data['hour'];
-                $back_list[$key]['cheap_price']  = (int)$back_list[$key]['cheap_price'];
-                $back_list[$key]['time'] = $time;
-            }
+            $back_sum = count($back_list);
+            // foreach ($back_list as $key => $value) {
+            //     $time = $this->countTime($value['go_time'],$value['arrive_time']);
+            //     $data = $this->getTime($value['go_time']);
+            //     $back_list[$key]['go_month']  = $data['month'];
+            //     $back_list[$key]['go_day']  = $data['day'];
+            //     $back_list[$key]['go_hour']  = $data['hour'];
+            //     $data = $this->getTime($value['arrive_time']);
+            //     $back_list[$key]['back_month']  = $data['month'];
+            //     $back_list[$key]['back_day']  = $data['day'];
+            //     $back_list[$key]['back_hour']  = $data['hour'];
+            //     $back_list[$key]['cheap_price']  = (int)$back_list[$key]['cheap_price'];
+            //     $back_list[$key]['time'] = $time;
+            // }
             $this->assign('back_list', $back_list);
+            $this->assign('back_sum', $back_sum);
         }
-        var_dump($back_list);
+        //var_dump($back_list);
+        $this->assign('go_sum', $go_sum);
         $this->assign('list', $list);
         $this->display();		
 
@@ -99,43 +103,43 @@ class IndexController extends Controller {
     }
 
     //计算飞行时间
-    public function countTime($date1,$date2){
-        $date1 = strtotime($date1);
-        $date2 = strtotime($date2);
-        $diff = abs($date1 - $date2);
-        $hour = (int)($diff / 3600);
-        $min =  $diff / 60 % 60;
-        $time = $hour.'h'.$min.'m';
-        return $time;
-    }
+    // public function countTime($date1,$date2){
+    //     $date1 = strtotime($date1);
+    //     $date2 = strtotime($date2);
+    //     $diff = abs($date1 - $date2);
+    //     $hour = (int)($diff / 3600);
+    //     $min =  $diff / 60 % 60;
+    //     $time = $hour.'h'.$min.'m';
+    //     return $time;
+    // }
 
-    public function getMonth($date){
-        $month = substr($date,5,2);
-        if($month[0] == '0'){
-            $month = $month[1];
-        }
-        return $month;
-    }
+    // public function getMonth($date){
+    //     $month = substr($date,5,2);
+    //     if($month[0] == '0'){
+    //         $month = $month[1];
+    //     }
+    //     return $month;
+    // }
 
-    public function getDay($date){
-        $day = substr($date,8,2);
-        if($day[0] == '0'){
-            $day = $day[1];
-        }
-        return $day;
-    }
+    // public function getDay($date){
+    //     $day = substr($date,8,2);
+    //     if($day[0] == '0'){
+    //         $day = $day[1];
+    //     }
+    //     return $day;
+    // }
 
-    public function getHourMin($date){
-        $hour = substr($date,11,5);
-        return $hour;
-    }
+    // public function getHourMin($date){
+    //     $hour = substr($date,11,5);
+    //     return $hour;
+    // }
 
-    //分割月日时分
-    public function getTime($date){
-        $data['month'] = $this->getMonth($date);
-        $data['day'] = $this->getDay($date);
-        $data['hour'] = $this->getHourMin($date);
-        return $data;
-    }
+    // //分割月日时分
+    // public function getTime($date){
+    //     $data['month'] = $this->getMonth($date);
+    //     $data['day'] = $this->getDay($date);
+    //     $data['hour'] = $this->getHourMin($date);
+    //     return $data;
+    // }
 
 }

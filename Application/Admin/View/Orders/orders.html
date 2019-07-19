@@ -12,7 +12,7 @@
 
 <body class="layui-layout-body">
     <div class="demoTable">
-      搜索ID：
+      搜索订单号：
       <div class="layui-inline">
         <input class="layui-input" name="id" id="demoReload" autocomplete="off">
       </div>
@@ -21,17 +21,17 @@
 
     <table class="layui-hide" id="order_table" lay-filter="order"></table>
     <!-- 头部工具栏 -->
-    <script type="text/html" id="toolbarDemo">
+    <!-- <script type="text/html" id="toolbarDemo">
         <div class="layui-inline" title="添加" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>
         <div class="layui-inline" title="批量删除" lay-event="multidelete"><i class="layui-icon layui-icon-delete"></i></div>
-    </script>
+    </script> -->
     <!-- 右侧工具栏 -->
     <script type="text/html" id="barDemo">
       <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
-      <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      <!-- <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a> -->
+      <a class="layui-btn layui-btn-xs  layui-btn-warm" lay-event="ticketsShow">机票</a>
+      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-      <a class="layui-btn layui-btn-xs  layui-btn-warm" lay-event="detail">机票</a>
-      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="detail">常用联系人</a>
     </script>
     <script src="__ADMIN__/layui.js"></script>
     <script>
@@ -56,12 +56,12 @@
                   ,{field: 'amount', title: '订单总价', sort: true,width:'10%'}
                   ,{field: 'ctime', title: '创建时间', sort: true, totalRow: true,width:'15%'}
                   ,{field: 'status', title: '订单状态',width:'10%',templet:function(res){if(res.status == 1){return "已支付"}else{return "未支付"}}} 
-                  ,{field: 'uid', title: '用户',width:'10%'}
+                  ,{field: 'username', title: '用户',width:'10%'}
                   ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
                 ]]
             });   
             //监听头工具栏事件
-              table.on('toolbar(order)', function(obj){
+            table.on('toolbar(order)', function(obj){
                 var checkStatus = table.checkStatus(obj.config.id);
                 switch(obj.event){
                   case 'add':
@@ -69,23 +69,11 @@
                     // layer.alert(JSON.stringify(data));
                     layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '当你选择该窗体时，即会在最顶端'
-                        ,area: ['390px', '260px']
+                        ,title: '添加订单'
+                        ,area: ['700px', '480px']
                         ,shade: 0
                         ,maxmin: true
-                        ,offset: [ //为了演示，随机坐标
-                        Math.random()*($(window).height()-300)
-                        ,Math.random()*($(window).width()-390)
-                        ] 
-                        ,content: '//layer.layui.com/test/settop.html'
-                        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-                        ,yes: function(){
-                        $(that).click(); 
-                        }
-                        ,btn2: function(){
-                        layer.closeAll();
-                        }
-                        
+                        ,content: "{:U('Orders/addOrders')}"
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
                         layer.setTop(layero); //重点2
@@ -94,7 +82,30 @@
                   break;
                   case 'multidelete':
                     var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
+                    var list = [];
+                    //alert(data[0].tid);
+                    for (var i = 0; i < checkStatus.data.length; i++) {
+                      list[i] = data[i].tid;
+                    }
+                    console.log(JSON.stringify(list));
+                    $.ajax({
+                      url: "",
+                      type: 'post',
+                      traditional: true,
+                      data: {array:JSON.stringify(list)},
+                      dataType: 'json',
+                      success: function (json) {
+                        layer.msg(json.msg,{time:500},function(){
+                          table.reload('order', {
+                              method: 'get',
+                              page: {
+                                  curr: 1 //重新从第 1 页开始
+                              },
+                              where: {}
+                          });
+                        });
+                      }
+                      });
                   break;
                 };
               });
@@ -107,12 +118,48 @@
                 layer.msg('查看操作');
               } else if(layEvent === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                  obj.del(); //删除对应行（tr）的DOM结构
-                  layer.close(index);
                   //向服务端发送删除指令
+                  $.ajax({
+                      url: "{:U('Orders/deleteOrders')}",
+                      type: 'post',
+                      data: {
+                          'oid': data.oid,
+                      },
+                      dataType: 'json',
+                      success: function (json) {
+                        layer.msg(json.msg,{time:500},function(){
+                          obj.del(); //删除对应行（tr）的DOM结构
+                          layer.close(index);
+                        });
+                      }
+                  });
                 });
-              } else if(layEvent === 'edit'){
-                layer.msg('编辑操作');
+              } else if(layEvent === 'ticketsShow'){
+                layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '机票信息'
+                        ,area: ['900px', '480px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                        }
+                    });
+              }else if(layEvent === 'contactShow'){
+                layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '常用联系人信息'
+                        ,area: ['700px', '480px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,content: "{:U('Orders/contactShow')}?oid="+data.oid
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                        }
+                    });
               }
             });
   
@@ -127,7 +174,7 @@
                   }
                   ,where: {
                    key: {
-                      oid: demoReload.val()
+                      ooid: demoReload.val()
                     }
                   }
                 });

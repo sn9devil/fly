@@ -30,6 +30,11 @@
                     <option  value='2' >小明</option>
                     <option  value='3' >小明</option>
                 </select>
+
+                <volist name="ticket" id="ticket">
+
+                    <h1>{$ticket.go_time|getHourMin}</h1>
+                </volist>
                 <button>确定</button>
             <form>
 
