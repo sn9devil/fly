@@ -85,20 +85,20 @@ class OrderController extends PublicController {
         $back_tid = $_GET["back_tid"];
         $ticket_type = $_GET["ticket_type"];
         $back_ticket_type = $_GET["back_ticket_type"];
-        $adult = 2;
-        $children = 1;
-        $num = $adult + $children;
+        // $people = $_GET['people']; 
+        // $people = preg_replace('/([\x80-\xff]*)/i','',$people);
+        // $adult = $people[0];
+        // $children = $people[1];
+        // $num = $adult + $children;
 
         $contact = $C->select();
         $ticket = $T->find($tid);
+        var_dump($ticket);
         if(!empty($back_tid)){
             $back_ticket = $T->find($back_tid);
             $this->assign('back_ticket',$back_ticket);
-
         }
 
-        // echo '<pre>';
-        // var_dump($ticket);
         $this->assign('ticket',$ticket);
         $this->assign('contact',$contact);
         $this->display();
@@ -106,7 +106,7 @@ class OrderController extends PublicController {
 
     }
 
-    //各自的价钱和票数 问题 为解决
+   
     //支付页面
     public function orderPay(){
         //生成订单
