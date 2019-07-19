@@ -15,7 +15,16 @@ class IndexController extends Controller {
     }
 
     public function index2(){       
-
+        $oneList = $this->findTicket2("北京");
+        $twoList = $this->findTicket2("海口");
+        $threeList = $this->findTicket2("三亚");
+        $fourList = $this->findTicket2("广州");
+        // echo '<pre>';
+        // print_r($twoList);
+        $this->assign('oneList', $oneList);
+        $this->assign('twoList', $twoList);
+        $this->assign('threeList', $threeList);
+        $this->assign('fourList', $fourList);
         $this->display();       
     }
 
@@ -76,6 +85,14 @@ class IndexController extends Controller {
     public function findTicket($go,$arrive,$date){
         $Model = M();
         $sql = 'select * from ticket a left join company b on a.cid=b.id where a.go='."'".$go."'".'and a.arrive='."'".$arrive."'".'and a.date='."'".$date."'";
+        $list = $Model->query($sql);
+        return $list;
+
+    }
+
+    public function findTicket2($go){
+        $Model = M();
+        $sql = 'select go,arrive,cast(cheap_price as decimal(9,0))cheap_price,date from ticket where go='."'".$go."' order by date asc";
         $list = $Model->query($sql);
         return $list;
 
