@@ -19,4 +19,12 @@ class IndexController extends Controller {
         $list = $Tickets->query($sql);
         echo json_encode($list) ;
     }
+
+    //统计各出发地的数量
+    public function getStartCity(){
+        $Tickets = M();
+        $sql = "select arrive ,count('arrive') as 'count' from (orders_item a left join ticket b on a.t_id=b.tid) group by arrive order by count asc";
+        $list = $Tickets->query($sql);
+        echo json_encode($list);
+    }
 }

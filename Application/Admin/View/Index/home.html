@@ -13,87 +13,168 @@
     <script src="__ADMIN__/layui.js" charset="utf-8"></script>
     <!-- 注意加载js的顺序 -->
     <script src="__ADMIN__/echarts.js"></script>
-    <script src="__ADMIN__/dark.js"></script>
+    <script src="__ADMIN__/macarons.js"></script>
 </head>
 
-<body>
-
+<body class="layui-layout-body">
+        <div class="layui-row layui-col-space100" >
+            <div class="layui-col-md6" style="background-color: white">
+                <div id="main" style="width: 100%;height:350px;"></div>
+            </div>
+            <div class="layui-col-md6" style="background-color: white">
+                <div id="startcity" style="width: 100%;height:350px;"></div>
+            </div>
+        </div>
+    
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <!-- <div id="main" style="width: 550px;height:350px;"></div> -->
+    <!-- <div id="startcity" style="width: 550px;height:350px;"></div> -->
+    <div id="main3" style="width: 550px;height:350px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'), 'dark');
-
-        // 指定图表的配置项和数据
-        // $.get("{:U('Index/getDayticket')}").done(function (data) {
-        // var t= JSON.stringify(data);
-        // console.log(typeof(data));
-        // JSON.parse(data);
-        // alert(data);
-        // alert(dat);
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
 
         var option = {
             title: {
-                text: '未来7天航空机票销售量'
+                text: '未来7天机票销售量',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal'
+                },
+                x: 'center'
             },
-            tooltip: {},
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
             legend: {},
             dataset: {
-                source: [
-                    // ['25号',4],
-                    // ['26号',4],
-                    // ['27号',4],
-                    // ['28号',4],
-                    // ['29号',4],
-                    // ['30号',4],
-                    // ['31号',4],
-                    // [data[0].date, 4],
-                    // [data[1].data, data[1].count],
-                    // [data[2].data, data[2].count],
-                    // [data[3].data, data[3].count],
-                    // [data[4].data, data[4].count],
-                    // [data[5].data, data[5].count],
-                    // [data[6].data, data[6].count],
-                ]
+                source: []
             },
             xAxis: {
-                type: 'category'
+                data: [],
+                boundaryGap: false,
             },
             yAxis: {},
             series: [{
-                type: 'bar',
+                areaStyle: {},
+                type: 'line',
+                smooth: true,
+                data: []
             }]
         };
-        // });
-
-
         // 使用刚指定的配置项和数据显示图表。
+        myChart.showLoading();
         myChart.setOption(option);
+        var date = []; //日期数组（实际用来盛放X轴坐标值）
+        var count = []; //统计数量数组（实际用来盛放Y坐标值）
+
         $.ajax({
             url: "{:U('Index/getDayticket')}",
             type: 'post',
             dataType: 'json',
-            // async: false,
             success: function (data) {
-                // console.log(data[0].date)
-                // myChart.setOption({
-                //     series: [{
-                //         // data: data, //接受后台返回的数据，需要注意数据类型
-                //         ['25',4]
-                //         // [data[0].date,4],
-                //         // [data[1].date,4],
-                //         // [data[2].date,4],
-                //         // [data[3].date,4],
-                //         // [data[4].date,4],
-                //     }]
-                // });
+                console.log(data);
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        date.push(data[i].date + "号"); //挨个取出日期并填入日期数组
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        count.push(data[i].count); //挨个取出数量并填入数量数组
+                    }
+                }
+                myChart.hideLoading();
                 myChart.setOption({
+                    xAxis: {
+                        data: date,
+                    },
                     series: [{
-                        // data: data[0].date,//接受后台返回的数据，需要注意数据类型
-                        // data: data[1].date,//接受后台返回的数据，需要注意数据类型
-                        // data: data[2].date,//接受后台返回的数据，需要注意数据类型
-                        // data: data[3].date,//接受后台返回的数据，需要注意数据类型
-                       
+                        data: count,
+
+                    }]
+                });
+            },
+            error: function () {
+
+            }
+
+        });
+        var startCityChat = echarts.init(document.getElementById('startcity'), 'macarons');
+        var startCityChatOption = {
+            title: {
+                // text: '出发地占比',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal'
+                },
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {},
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            dataset: {
+                source: []
+            },
+            series: [{
+                name: '出发地',
+                type: 'pie',
+                radius: [30, 110],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                data: []
+            }]
+        };
+        startCityChat.showLoading();
+        startCityChat.setOption(startCityChatOption);
+        $.ajax({
+            url: "{:U('Index/getStartCity')}",
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var nums = [];
+
+                $.each(data, function (key, values) { //此处我返回的是list<String,map<String,String>>循环map
+                    var obj = new Object();
+                    obj.name = values.arrive;
+                    obj.value = values.count;
+                    nums.push(obj);
+                });
+                console.log(nums);
+                startCityChat.hideLoading();
+                startCityChat.setOption({
+                    series: [{
+                        data: nums
                     }]
                 });
             },
