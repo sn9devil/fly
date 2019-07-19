@@ -29,7 +29,7 @@
 			</div>
 			<!-- 导航栏end -->
 			<!-- 航班进程 -->
-			<div class="layui-row" style="height: 1200px">
+			<div class="layui-row  ba" style="height: 1000px">
 				<div class="layui-col-lg-offset2 layui-col-lg8 layui-col-lg-offset2">
 					<div class="layui-row">
 						<div class="layui-col-lg12">
@@ -60,47 +60,49 @@
 					<!-- 航班进程 end-->
 					<!-- 航班面板 -->
 					<div class="layui-row lw" style="height:320px;">
-						<div class="layui-col-lg12">
-							<div class="tab-b1">
-								<div class="go-city">
-									<div class="gc-left">出发城市:</div>
-									<input type="text" placeholder="(拼音/汉字)" id="place" />
-								</div>
-								<div class="shift"></div>
-								<div class="end-city">
-									<div class="end-left">到达城市:</div>
-									<input type="text" placeholder="(拼音/汉字)" id="destination" />
-								</div>
-								<div id="in_city" style="display: none"></div>
-								<div class="d-radio">
-									<a><i class="d-icon on  d1"></i><span>单程</span></a>
-									<a><i class="d-icon d2"></i><span>往返</span></a>
-								</div>
-								<button class="d-btn">搜索航班</button>
-								<div class="nt">
-									<div class="go-time">
-										<div class="time-left">出发时间:</div>
-										<input type="datetime" placeholder="2019/7/12" id="test1" />
+						<form>
+							<div class="layui-col-lg12">
+								<div class="tab-b1">
+									<div class="go-city">
+										<div class="gc-left">出发城市:</div>
+										<input type="text" name="go" placeholder="(拼音/汉字)" id="place" />
 									</div>
-									<div class="end-time">
-										<div class="time-left">返程时间:</div>
-										<input type="datetime" placeholder="2019/7/13" id="test2" />
+									<div class="shift"></div>
+									<div class="end-city">
+										<div class="end-left">到达城市:</div>
+										<input type="text" name="arrive" placeholder="(拼音/汉字)" id="destination" />
 									</div>
-									<div style="position: relative;display: inline-block;">
-										<div class="d-selet" style="width:238px;cursor:pointer">
-											<input class="pl" value="1成人 0儿童 " style="cursor:pointer;" onfocus="this.blur()" /><i class="d-icon"></i>
+									<div id="in_city" style="display: none"></div>
+									<div class="d-radio">
+										<a><i class="d-icon on  d1"></i><span>单程</span></a>
+										<a><i class="d-icon d2"></i><span>往返</span></a>
+									</div>
+									<button class="d-btn">搜索航班</button>
+									<div class="nt">
+										<div class="go-time">
+											<div class="time-left">出发时间:</div>
+											<input type="datetime" name="date" placeholder="2019/7/12" id="test1" />
 										</div>
-										<ul class="selet">
-											<li>成人（≥12岁）<button style="margin-left: 40px;" class="bt1"><span>-</span></button><input type="text" value="1"
-												 class="st" /> <button class="bt2"><span>+</span></button></li>
-											<li>儿童（2-11岁）<button style="margin-left:37px;" class="bt3"><span>-</span></button><input type="text" value="0"
-												 class="st1" /> <button class="bt4"><span>+</span></button></li>
-										</ul>
+										<div class="end-time">
+											<div class="time-left">返程时间:</div>
+											<input type="datetime" name="back_date" placeholder="2019/7/13" id="test2" />
+										</div>
+										<div style="position: relative;display: inline-block;">
+											<div class="d-selet" style="width:238px;cursor:pointer">
+												<input class="pl" name="people" value="1成人0儿童" style="cursor:pointer;" onfocus="this.blur()" /><i class="d-icon"></i>
+											</div>
+											<ul class="selet">
+												<li>成人（≥12岁）<button style="margin-left: 40px;" class="bt1"><span>-</span></button><input type="text" value="1"
+													 class="st" /> <button class="bt2"><span>+</span></button></li>
+												<li>儿童（2-11岁）<button style="margin-left:37px;" class="bt3"><span>-</span></button><input type="text" value="0"
+													 class="st1" /> <button class="bt4"><span>+</span></button></li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</from>
 					<!-- 航班面板end-->
 					<!-- 去程航班信息 -->
 					<div class="layui-row">
@@ -130,6 +132,7 @@
 													</div>
 												</div>
 											</div>
+											<div class="tid" style="display:none" >{$list.tid}</div>
 											<div class="layui-col-lg4">
 												<div class="to-line">
 													<i class="layui-icon layui-icon-release fly-icon"></i>
@@ -165,7 +168,7 @@
 											<span class="fly-class" >公务舱</span>
 										</div>
 										<div class="layui-col-lg12 row">
-											<span class="fly-money">￥{$list.cheap_price}</span>起
+											<span class="fly-money">￥{$list.expensive_price}</span>起
 										</div>
 										<img src="__HOME__/img/arrow_down_01.png" class="fly-img"/>
 									</div>
@@ -176,7 +179,7 @@
 											<span class="fly-class" >经济舱</span>
 										</div>
 										<div class="layui-col-lg12 row">
-											<span class="fly-money">￥{$list.expensive_price}</span>起
+											<span class="fly-money">￥{$list.cheap_price}</span>起
 										</div>
 										<img src="__HOME__/img/arrow_down_01.png" class="fly-img" />
 									</div>
@@ -223,6 +226,7 @@
 													</div>
 												</div>
 											</div>
+											<div class="tid" style="display:none" >{$back_list.tid}</div>
 											<div class="layui-col-lg4">
 												<div class="to-line">
 													<i class="layui-icon layui-icon-release fly-icon"></i>
@@ -258,9 +262,9 @@
 											<span class="fly-class">公务舱</span>
 										</div>
 										<div class="layui-col-lg12 row">
-											<span class="fly-money">￥{$back_list.cheap_price}</span>起
+											<span class="fly-money">￥{$back_list.expensive_price}</span>起
 										</div>
-										<img src="img/arrow_down_01.png" class="fly-img1"/>
+										<img src="__HOME__/img/arrow_down_01.png" class="fly-img1"/>
 									</div>
 								</div>
 								<div class="layui-col-lg4 plane-lg1 qt" name=<?php echo rand(1,10000000) ?> >
@@ -269,9 +273,9 @@
 											<span class="fly-class">经济舱</span>
 										</div>
 										<div class="layui-col-lg12 row">
-											<span class="fly-money">￥{$back_list.expensive_price}</span>起
+											<span class="fly-money">￥{$back_list.cheap_price}</span>起
 										</div>
-										<img src="img/arrow_down_01.png" class="fly-img1" />
+										<img src="__HOME__/img/arrow_down_01.png" class="fly-img1" />
 									</div>
 								</div>
 								<div class="layui-col-lg4 plane-lg3 " name=<?php echo rand(1,10000000) ?>  >
@@ -292,7 +296,7 @@
 					<!-- 立即预定 -->
 					<div class="layui-row fly-play">
 						<div class="layui-col-lg-offset8  layui-col-lg4">
-							<button class="d-btn">立即预定</button>
+							<button class="d-btn" type="button" >立即预定</button>
 						</div>
 					</div>
 					<!-- 立即预定end -->
@@ -389,7 +393,7 @@
 			var selet = getQueryVariable("back_date");
 			if(!selet){
 				 	/*选择*/
-				 	$('.plane-lg').click(function(){
+				$('.plane-lg').click(function(){
 				 	var name=$(this).attr("name");
 				 	$('.plane-lg.active').removeClass('active');
 				 	$('.plane-lg[name="'+name+'"]').addClass('active');
@@ -399,21 +403,41 @@
 				 	$('.plane-lg .row').css('top','45px');
 				 	$('.plane-lg[name="'+name+'"] .fly-class').css('top','65px');
 				 	$('.plane-lg[name="'+name+'"] .row').css('top','65px');
-				 });
-				 $('.plane-lg1').click(function(){
 				 	var name=$(this).attr("name");
-				 	$('.plane-lg1.active,.plane-lg2.active').removeClass('active');
-				 	$('.plane-lg1[name="'+name+'"]').addClass('active');
-				 	$('.fly-img1.active,.fly-img2.active').removeClass('active');
-				 	$('.plane-lg1[name="'+name+'"] img').addClass('active');
-				 	$('.plane-lg1 .fly-class').css('top','6px');
-				 	$('.plane-lg1 .row').css('top','45px');
-				 	$('.plane-lg2 .fly-class').css('top','6px');
-				 	$('.plane-lg2 .row').css('top','45px');
-				 	$('.plane-lg1[name="'+name+'"] .fly-class').css('top','65px');
-				 	$('.plane-lg1[name="'+name+'"] .row').css('top','65px');
+     				$('.plane-lg').addClass('qt');
+      				$('.plane-lg[name="'+name+'"].qt').removeClass('qt');
 				 });
-				 
+				 $('.plane-lg2').click(function(){
+				      var name=$(this).attr("name");
+				      var name1= $(this).parent().parent().parent().attr("name");
+				      var name2=$(this).parent().attr('name');
+				      var rt=$(this).parent().find('.fly-class').css("top");
+				      var rt1=new Array(); 
+				      $(this).parent().find('.fly-class').each(function(){
+				       rt1[2]=$(this).css("top");
+				      });
+				      if(rt1[2]=="65px" || rt=="65px"){
+				        $('.plane-lg2').css("display","none");
+				        $('.plane-lg.qt').css("display","none");
+				      }else{
+				       alert('请选择去程机票类型');
+				       return false;
+				      }
+				      $('.col').css("display","none");
+				      $('.col[name="'+name1+'"]').css("display","block");
+				      $('.plane-lg2.active').removeClass('active');
+				      $('.plane-lg2[name="'+name+'"]').addClass('active');
+				      $('.fly-img2.active').removeClass('active');
+				      $('.plane-lg2[name="'+name+'"] img').addClass('active');
+				      $('.plane-lg2 .fly-class').css('top','6px');
+				      $('.plane-lg2 .row').css('top','45px');
+				      $('.plane-lg2[name="'+name+'"] .fly-class').css('top','65px');
+				      $('.plane-lg2[name="'+name+'"] .row').css('top','65px');
+				     $('.ba').css('height','800px');
+				     if( $('.plane-lg2').hasClass('active')  ){
+				      $('.fly-play').css('display','block');
+				    }
+				});
 				 /*选择end*/
 			}else{
 				var selet = new Array();
@@ -502,7 +526,42 @@
 					if($('.plane-lg2').hasClass('active')){
 						$('.fly-play').css('display','block');
 					}
+					$('.col1').css("display","none");
+                    $('.col1[name="'+name1+'"]').css("display","block");
 				});
+				//获取选中的 tid和机票类型
+                var url = "{:U('Order/orderContent')}" + "?";
+				$(".d-btn").click(function(){
+					var s = $('.col').each(function(item,v){
+						if($(v).css("display") == "block"){
+							type = $(v).find('.plane-lg.active .fly-class').html();
+							tid = $(v).find('.tid').html();
+							if(type=="经济舱"){
+								type = 0;
+							}else{
+								type = 1;
+							}
+							url += "tid="+tid+"&ticket_type="+type;
+						}
+					});
+
+					var s = $('.col1').each(function(item,v){
+						if($(v).css("display") == "block"){
+							type = $(v).find('.plane-lg1.active .fly-class').html();
+							tid = $(v).find('.tid').html();
+							if(type=="经济舱"){
+								type = 0;
+							}else{
+								type = 1;
+							}
+							url += "&back_tid="+tid+"&back_ticket_type="+type;
+						}
+						
+					});
+					var people = getQueryVariable("people");
+					window.location = url;
+				})
+
 			}
 			/*判断是单程还是返程end*/
 		</script>

@@ -138,807 +138,254 @@
 								<div class="layui-col-lg2  ct-lg" name="city4"><span>广州</span></div>
 								<div class="layui-col-lg2  ct-lg"><span>更多&nbsp;&nbsp;»</span></div>
 							</div>
-							<div class="qh active" name="city1">
+							<div class="qh active" name="city1">							
 								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
+									<volist name="oneList" id="firstRow" offset="0" length='4'>
+										<div class="layui-col-lg3 lg">
+											<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+												<div class="layui-col-lg12 gz">
+													<div class="layui-col-lg2">{$firstRow.go}</div>
+													<div class="layui-col-lg2"><i class="icon-site"></i></div>
+													<div class="layui-col-lg2">{$firstRow.arrive}</div>
+												</div>
+												<div class="layuu-col-lg12 gz1">
+													<span>￥</span><strong class="st2">{$firstRow.cheap_price}</strong>
+												</div>
+												<div class="layuu-col-lg12 gz1">
+													<span>{$firstRow.date}</span>
+												</div>
+												<div class="layui-col-lg12 line-dashed"></div>
+											</a>
+										</div>
+									</volist>
 								</div>
 								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
+										<volist name="oneList" id="secondRow" offset="4" length='4'>
+											<div class="layui-col-lg3 lg">
+												<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+													<div class="layui-col-lg12 gz">
+														<div class="layui-col-lg2">{$secondRow.go}</div>
+														<div class="layui-col-lg2"><i class="icon-site"></i></div>
+														<div class="layui-col-lg2">{$secondRow.arrive}</div>
+													</div>
+													<div class="layuu-col-lg12 gz1">
+														<span>￥</span><strong class="st2">{$secondRow.cheap_price}</strong>
+													</div>
+													<div class="layuu-col-lg12 gz1">
+														<span>{$secondRow.date}</span>
+													</div>
+													<div class="layui-col-lg12 line-dashed"></div>
+												</a>
 											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
+										</volist>
 								</div>
-								<div class="layui-col-lg12  gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
+								<div class="layui-col-lg12 gh">
+										<volist name="oneList" id="thirdRow" offset="8" length='4'>
+											<div class="layui-col-lg3 lg">
+												<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+													<div class="layui-col-lg12 gz">
+														<div class="layui-col-lg2">{$thirdRow.go}</div>
+														<div class="layui-col-lg2"><i class="icon-site"></i></div>
+														<div class="layui-col-lg2">{$thirdRow.arrive}</div>
+													</div>
+													<div class="layuu-col-lg12 gz1">
+														<span>￥</span><strong class="st2">{$thirdRow.cheap_price}</strong>
+													</div>
+													<div class="layuu-col-lg12 gz1">
+														<span>{$thirdRow.date}</span>
+													</div>
+													<div class="layui-col-lg12 line-dashed"></div>
+												</a>
 											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
+										</volist>
 								</div>
 							</div>
 							<div class="qh" name="city2">
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12  gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
+										<div class="layui-col-lg12 gh">	
+											<volist name="twoList" id="firstRow" offset="0" length="4">									
+												<div class="layui-col-lg3 lg">
+													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+															<div class="layui-col-lg12 gz">
+																<div class="layui-col-lg2">{$firstRow.go}</div>
+																<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																<div class="layui-col-lg2">{$firstRow.arrive}</div>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>￥</span><strong class="st2">{$firstRow.cheap_price}</strong>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>{$firstRow.date}</span>
+															</div>
+															<div class="layui-col-lg12 line-dashed"></div>
+														</a>
+												</div>
+											</volist>		
+										</div>
+										<div class="layui-col-lg12 gh">	
+												<volist name="twoList" id="secondRow" offset="4" length="4">									
+													<div class="layui-col-lg3 lg">
+														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+																<div class="layui-col-lg12 gz">
+																	<div class="layui-col-lg2">{$secondRow.go}</div>
+																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																	<div class="layui-col-lg2">{$secondRow.arrive}</div>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>￥</span><strong class="st2">{$secondRow.cheap_price}</strong>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>{$secondRow.date}</span>
+																</div>
+																<div class="layui-col-lg12 line-dashed"></div>
+															</a>
+													</div>
+												</volist>		
+										</div>
+										<div class="layui-col-lg12 gh">	
+												<volist name="twoList" id="thirdRow" offset="8" length="4">									
+													<div class="layui-col-lg3 lg">
+														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+																<div class="layui-col-lg12 gz">
+																	<div class="layui-col-lg2">{$thirdRow.go}</div>
+																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																	<div class="layui-col-lg2">{$thirdRow.arrive}</div>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>￥</span><strong class="st2">{$thirdRow.cheap_price}</strong>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>{$thirdRow.date}</span>
+																</div>
+																<div class="layui-col-lg12 line-dashed"></div>
+															</a>
+													</div>
+												</volist>		
+										</div>
 							</div>
 							<div class="qh" name="city3">
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12  gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="qh" name="city4">
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12 gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-								<div class="layui-col-lg12  gh">
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-									<div class="layui-col-lg3 lg">
-										<a href="">
-											<div class="layui-col-lg12 gz">
-												<div class="layui-col-lg2">海口</div>
-												<div class="layui-col-lg2"><i class="icon-site"></i></div>
-												<div class="layui-col-lg2">南京</div>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>￥</span><strong class="st2">295</strong>
-											</div>
-											<div class="layuu-col-lg12 gz1">
-												<span>2019-07-7</span>
-											</div>
-											<div class="layui-col-lg12 line-dashed"></div>
-										</a>
-									</div>
-								</div>
-							</div>
+									<div class="layui-col-lg12 gh">	
+											<volist name="threeList" id="firstRow" offset="0" length="4">									
+												<div class="layui-col-lg3 lg">
+													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+															<div class="layui-col-lg12 gz">
+																<div class="layui-col-lg2">{$firstRow.go}</div>
+																<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																<div class="layui-col-lg2">{$firstRow.arrive}</div>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>￥</span><strong class="st2">{$firstRow.cheap_price}</strong>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>{$firstRow.date}</span>
+															</div>
+															<div class="layui-col-lg12 line-dashed"></div>
+														</a>
+												</div>
+											</volist>		
+										</div>
+										<div class="layui-col-lg12 gh">	
+												<volist name="threeList" id="secondRow" offset="4" length="4">									
+													<div class="layui-col-lg3 lg">
+														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+																<div class="layui-col-lg12 gz">
+																	<div class="layui-col-lg2">{$secondRow.go}</div>
+																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																	<div class="layui-col-lg2">{$secondRow.arrive}</div>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>￥</span><strong class="st2">{$secondRow.cheap_price}</strong>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>{$secondRow.date}</span>
+																</div>
+																<div class="layui-col-lg12 line-dashed"></div>
+															</a>
+													</div>
+												</volist>		
+										</div>
+										<div class="layui-col-lg12 gh">	
+												<volist name="threeList" id="thirdRow" offset="8" length="4">									
+													<div class="layui-col-lg3 lg">
+														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+																<div class="layui-col-lg12 gz">
+																	<div class="layui-col-lg2">{$thirdRow.go}</div>
+																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																	<div class="layui-col-lg2">{$thirdRow.arrive}</div>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>￥</span><strong class="st2">{$thirdRow.cheap_price}</strong>
+																</div>
+																<div class="layuu-col-lg12 gz1">
+																	<span>{$thirdRow.date}</span>
+																</div>
+																<div class="layui-col-lg12 line-dashed"></div>
+															</a>
+													</div>
+												</volist>		
+										</div>
 						</div>
+						<div class="qh" name="city4">
+								<div class="layui-col-lg12 gh">	
+										<volist name="fourList" id="firstRow" offset="0" length="4">									
+											<div class="layui-col-lg3 lg">
+												<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+														<div class="layui-col-lg12 gz">
+															<div class="layui-col-lg2">{$firstRow.go}</div>
+															<div class="layui-col-lg2"><i class="icon-site"></i></div>
+															<div class="layui-col-lg2">{$firstRow.arrive}</div>
+														</div>
+														<div class="layuu-col-lg12 gz1">
+															<span>￥</span><strong class="st2">{$firstRow.cheap_price}</strong>
+														</div>
+														<div class="layuu-col-lg12 gz1">
+															<span>{$firstRow.date}</span>
+														</div>
+														<div class="layui-col-lg12 line-dashed"></div>
+													</a>
+											</div>
+										</volist>		
+									</div>
+									<div class="layui-col-lg12 gh">	
+											<volist name="fourList" id="secondRow" offset="4" length="4">									
+												<div class="layui-col-lg3 lg">
+													<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+															<div class="layui-col-lg12 gz">
+																<div class="layui-col-lg2">{$secondRow.go}</div>
+																<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																<div class="layui-col-lg2">{$secondRow.arrive}</div>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>￥</span><strong class="st2">{$secondRow.cheap_price}</strong>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>{$secondRow.date}</span>
+															</div>
+															<div class="layui-col-lg12 line-dashed"></div>
+														</a>
+												</div>
+											</volist>		
+									</div>
+									<div class="layui-col-lg12 gh">	
+											<volist name="fourList" id="thirdRow" offset="8" length="4">									
+												<div class="layui-col-lg3 lg">
+													<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+															<div class="layui-col-lg12 gz">
+																<div class="layui-col-lg2">{$thirdRow.go}</div>
+																<div class="layui-col-lg2"><i class="icon-site"></i></div>
+																<div class="layui-col-lg2">{$thirdRow.arrive}</div>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>￥</span><strong class="st2">{$thirdRow.cheap_price}</strong>
+															</div>
+															<div class="layuu-col-lg12 gz1">
+																<span>{$thirdRow.date}</span>
+															</div>
+															<div class="layui-col-lg12 line-dashed"></div>
+														</a>
+												</div>
+											</volist>		
+									</div>
+					</div>
 					</div>
 				</div>
 			</div>

@@ -81,8 +81,10 @@ class OrderController extends PublicController {
 
         //需要传入的参数
         $uid = session('user.uid');
-        $tid = 10;
-        $back_tid = 11;
+        $tid = $_GET["tid"];
+        $back_tid = $_GET["back_tid"];
+        $ticket_type = $_GET["ticket_type"];
+        $back_ticket_type = $_GET["back_ticket_type"];
         $adult = 2;
         $children = 1;
         $num = $adult + $children;
@@ -90,7 +92,7 @@ class OrderController extends PublicController {
         $contact = $C->select();
         $ticket = $T->find($tid);
         if(!empty($back_tid)){
-            $back_ticket = $T->find($tid);
+            $back_ticket = $T->find($back_tid);
             $this->assign('back_ticket',$back_ticket);
 
         }

@@ -164,9 +164,9 @@
                         type: 2,
                         resize: true,
                         title: '编辑公司信息',
-                        area: ['350px', '360px'],
+                        area: ['360px', '430px'],
                         shade: 0,
-                        content: "{:U('Users/updatauser')}?uid=" + data.uid,
+                        content: "{:U('Company/updatacompany')}?id=" + data.id,
                         zIndex: layer.zIndex,
                         success: function (layero) {
                             layer.setTop(layero);
@@ -199,19 +199,6 @@
             });
         });
 
-        // function search() {
-        //     var demoReload = $('#demoReload');
-        //     console.log(demoReload);
-        //     table.reload('allUserInfoTable', {
-        //         method: 'post',
-        //         page: {
-        //             curr: 1 //重新从第 1 页开始
-        //         },
-        //         where: {
-        //             company: demoReload.val()
-        //         }
-        //     });
-        // }
     </script>
 
 </body>
