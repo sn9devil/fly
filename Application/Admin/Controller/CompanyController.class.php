@@ -71,4 +71,22 @@ class CompanyController extends Controller {
         $Company->delete($id);
         echo 1;
     }
+
+
+    //更新公司信息的先查询方法
+    public function updatacompany(){
+        $Company = M('company');
+        $id = $_GET['id'];
+        $company = $Company->where('id='.$id)->select();
+        $this->assign('list',$company);
+        $this->display();
+    }
+
+    //真正更新公司信息方法
+    public function updatacompanyinfo(){
+        $Company = M('company');
+        $get = json_decode($_GET['get'],1);
+        $Company->where('id ='.$get['id'])->save($get);
+
+    }
 }
