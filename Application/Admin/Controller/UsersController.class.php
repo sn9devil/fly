@@ -26,7 +26,7 @@ class UsersController extends Controller {
         $arr['data'] = $users;
 
         if($users){
-            // var_dump(json_encode($arr));
+
             echo json_encode($arr);
         }
         // $this->display();

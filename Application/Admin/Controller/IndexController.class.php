@@ -9,6 +9,8 @@ class IndexController extends Controller {
     }
 
     public function home(){
+        $name =  session('admin');
+        $this->assign('name',$name['username']);
         $this->display();
     }
 
