@@ -85,11 +85,11 @@ class OrderController extends PublicController {
         $back_tid = $_GET["back_tid"];
         $ticket_type = $_GET["ticket_type"];
         $back_ticket_type = $_GET["back_ticket_type"];
-        // $people = $_GET['people']; 
-        // $people = preg_replace('/([\x80-\xff]*)/i','',$people);
-        // $adult = $people[0];
-        // $children = $people[1];
-        // $num = $adult + $children;
+        $people = $_GET['people']; 
+        $people = preg_replace('/([\x80-\xff]*)/i','',$people);
+        $adult = $people[0];
+        $children = $people[1];
+        $num = $adult + $children;
 
         $contact = $C->select();
         $ticket = $T->find($tid);
@@ -106,7 +106,7 @@ class OrderController extends PublicController {
         }
         $this->assign('ticket',$ticket);
         $this->assign('ticket_type',$ticket_type);
-        $this->assign('contact',$contact);
+        $this->assign('num',$num);
         $this->display();
 
 

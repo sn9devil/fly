@@ -120,6 +120,7 @@
 .text-selet {
 	border: 0;
 	outline: 0;
+	width:160px!important;
 }
 
 .rq {
