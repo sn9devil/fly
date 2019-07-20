@@ -23,20 +23,40 @@ class TicketsController extends Controller {
         $arr['code'] = 0;
         $arr['msg']="";
 
-        $post = $_POST['key'];
-        $tid=$post['tid'];
-        if($tid){
-            $mo=M('ticket as t')->join('company as c')->where('t.tid = '.$tid.' and t.cid = c.id')->select();
-            // $ticket = $Ticket->where('tid = '.$tid)->select();
-            $arr['count'] = $Ticket->where('tid = '.$tid)->count();
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+
+
+        $post = $_POST['arr'];
+       
+        // $tid=$post['tid'];
+        // $flight_number=$post['flight_number'];
+
+        // echo $post['flight_number'];
+        // $post = json_decode($post,1);
+        
+        //删除空值的数组的键
+        foreach ($post as $key=>$value)
+        {
+            if(empty($value)){  
+                unset($post[$key]);
+            }
+        }
+        // echo json_encode($post);
+
+        $map['t.tid'] = 1;
+        if($post){
+            //$mo=M('ticket as t')->join('company as c')->where('t.tid = '.$tid.' and t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
+            //$m1o=M('ticket as t')->join('company as c')->where($map)->where('t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
+            $mo=M('ticket as t')->join('company as c')->where($post)->where('t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
+            //echo $m1o ."------" .$mo;
+            $arr['count'] = M('ticket as t')->join('company as c')->where($map)->where('t.cid = c.id')->order('t.tid asc')->count();
             $arr['data']=$mo;
         }else{
-            $mo=M('ticket as t')->join('company as c')->where("t.cid = c.id")->select();
-            // $ticket = $Ticket->where()->select();
-            $arr['count'] = $Ticket->where()->count();
+            $mo=M('ticket as t')->join('company as c')->where("t.cid = c.id")->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
+            $arr['count'] = M('ticket as t')->join('company as c')->where("t.cid = c.id")->count();
             $arr['data']=$mo;
         }
-    	
         echo json_encode($arr);
     }
 
