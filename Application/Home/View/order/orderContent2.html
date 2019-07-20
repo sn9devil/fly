@@ -62,7 +62,7 @@
 			<!-- 航班进程 end-->
 			<!-- 内容 -->
 			<div class="layui-row" style="height: 800px;margin-top: 40px;">
-				<div class="layui-col-lg-offset2 layui-col-lg8 layui-col-lg-offset2 ct-bg">
+				<div class="layui-col-lg-offset3 layui-col-lg6 layui-col-lg-offset2 ct-bg">
 					<div class="layui-row">
 						<div class="layui-col-lg8">
 							<div class="layui-row text-title">
@@ -87,15 +87,15 @@
 														选择常用乘机人
 													</div>
 													<div class="selet-check">
-														<ul class="check-people">
-															<li><i class="d-icon" name="d1"></i><span class="people-name">小明</span></li>
-															
+														<ul>
+															<li name="n1"><i class="d-icon" name="d1"></i><span class="people-name">小明</span></li>
+															<li name="n2"><i class="d-icon" name="d2"></i><span class="people-name">小明</span></li>
 														</ul>
 													</div>
 												</div>
 												<div class="layui-col-lg-offset2  layui-col-lg2">
 													<div class="save-speople">
-														添加常用乘机人
+														保存常用乘机人
 													</div>
 												</div>
 											</div>
@@ -105,24 +105,24 @@
 									<!-- 第二条 -->
 									<div class="layui-row">
 										<div class="layui-col-lg12">
-											<div class="layui-row  rq">
+											<div class="layui-row rq">
 												<div class="layui-col-lg4 rw">
 													<div class="layui-row">
-														<div class="layui-col-lg3" style="position: relative;left:18px;">
+														<div class="layui-col-lg3" style="position: relative;left: 20px;">
 															姓名:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text" class="text-selet message-name" disabled="disabled">
+															<input type="text" class="text-selet">
 														</div>
 													</div>
 												</div>
-												<div class="layui-col-lg-offset1 layui-col-lg4 rw">
+												<div class="layui-col-lg-offset2 layui-col-lg4 rw">
 													<div class="layui-row">
-														<div class="layui-col-lg3" style="position: relative;left: 18px;">
+														<div class="layui-col-lg3" style="position: relative;left: 20px;">
 															身份证:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text" class="text-selet message-id" disabled="disabled">
+															<input type="text" class="text-selet">
 														</div>
 													</div>
 												</div>
@@ -134,7 +134,9 @@
 							</div>
 						</div>
 						<!-- 右内容 -->
+
 						<div class="layui-col-lg4  right-content" style="">
+                            <volist name="ticket" id="ticket">
 							<div class="layui-row">
 								<div class="layui-col-lg12">
 									<div class="layui-row">
@@ -142,7 +144,7 @@
 											<i class="layui-icon layui-icon-home"></i>
 										</div>
 										<div class="layui-col-lg11 r-text">
-											北京
+											&nbsp;&nbsp;{$ticket.go}
 										</div>
 									</div>
 									<div class="layui-row">
@@ -150,7 +152,7 @@
 											<i class="i-line"></i>
 										</div>
 										<div class="layui-col-lg-offset1 layui-col-lg11">
-											北京首都国际航站楼T1
+											
 										</div>
 									</div>
 								</div>
@@ -162,12 +164,12 @@
 											<i class="layui-icon layui-icon-location"></i>
 										</div>
 										<div class="layui-col-lg11 r-text">
-											上海虹桥
+											&nbsp;&nbsp;{$ticket.arrive}
 										</div>
 									</div>
 									<div class="layui-row">
 										<div class="layui-col-lg-offset1  layui-col-lg11">
-											上海红旗航站楼T2
+											
 										</div>
 									</div>
 								</div>
@@ -179,7 +181,7 @@
 											<i class="layui-icon layui-icon-console"></i>
 										</div>
 										<div class="layui-col-lg11" style="position: relative;top: 4px;">
-											2019-08-15 07:45&nbsp;-&nbsp;10:00
+											&nbsp;&nbsp;{$ticket.date} {$ticket.go_time|getHourMin}&nbsp;-&nbsp;{$ticket.arrive_time|getHourMin}
 										</div>
 									</div>
 									<div class="layui-row" style="position: relative;left: 25px;top: 12px;">
@@ -191,14 +193,88 @@
 											</div>
 											<div class="layui-row">
 												<div class="layui-col-lg12" style="font-size: 20px!important;font-weight: bold;">
-													￥670
-												</div>
+													￥{$ticket.price|interge}
+                                                </br>
+												    ￥{$ticket.price|childrenPrice} <span style="font-size:14px">(未成年价格)</span>
+                                                </div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+                        </volist>
+                        </br>  
+                        </br>           
+                    <if condition="!empty($back_ticket)">
+                        <volist name="back_ticket" id="ticket">
+                            <div class="layui-row">
+                                <div class="layui-col-lg12">
+                                    <div class="layui-row">
+                                        <div class="layui-col-lg1" style="position: relative;top: 12px;">
+                                            <i class="layui-icon layui-icon-home"></i>
+                                        </div>
+                                        <div class="layui-col-lg11 r-text">
+                                            &nbsp;&nbsp;{$ticket.go}
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-lg1">
+                                            <i class="i-line"></i>
+                                        </div>
+                                        <div class="layui-col-lg-offset1 layui-col-lg11">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-top: 40px;">
+                                <div class="layui-col-lg12">
+                                    <div class="layui-row">
+                                        <div class="layui-col-lg1" style="position: relative;top: 10px;">
+                                            <i class="layui-icon layui-icon-location"></i>
+                                        </div>
+                                        <div class="layui-col-lg11 r-text">
+                                            &nbsp;&nbsp;{$ticket.arrive}
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-col-lg-offset1  layui-col-lg11">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row" style="margin-top: 25px;">
+                                <div class="layui-col-lg12">
+                                    <div class="layui-row">
+                                        <div class="layui-col-lg1">
+                                            <i class="layui-icon layui-icon-console"></i>
+                                        </div>
+                                        <div class="layui-col-lg11" style="position: relative;top: 4px;">
+                                            &nbsp;&nbsp;{$ticket.date} {$ticket.go_time|getHourMin}&nbsp;-&nbsp;{$ticket.arrive_time|getHourMin}
+                                        </div>
+                                    </div>
+                                    <div class="layui-row" style="position: relative;left: 25px;top: 12px;">
+                                        <div class="layui-col-lg12">
+                                            <div class="layui-row">
+                                                <div class="layui-col-lg12" style="font-size: 15px!important;font-weight: bold;">
+                                                    行程价格明细
+                                                </div>
+                                            </div>
+                                            <div class="layui-row">
+                                                <div class="layui-col-lg12" style="font-size: 20px!important;font-weight: bold;">
+                                                    ￥{$ticket.price|interge}
+                                                </br>
+                                                    ￥{$ticket.price|childrenPrice}<span style="font-size:14px">(未成年价格)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </volist>
+                </if>
 						<!-- 右内容end -->
 					</div>
 				</div>
@@ -207,7 +283,7 @@
 					<div class="save-text">
 						<div class="save-name">
 							<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
-							<input type="text" class="text-selet text-name">
+							<input type="text" class="text-selet  text-name">
 						</div>
 						<div class="save-id">
 							<span>身份证:</span>
@@ -304,11 +380,8 @@
 			});
 			$(document).click(function() {
 				$('.selet-form').hide();
-				$('.selet-check').hide();
-				$('.selet-people').show();
-				$('.rq').css("margin-top", "0px");
 			});
-			$('.selet-form,.save-speople,.selet-people,.selet-check').click(function(event) {
+			$('.selet-form,.save-speople').click(function(event) {
 				event.stopPropagation();
 			});
 			$('.d-btn1').click(function() {
@@ -317,55 +390,26 @@
 			/*关闭弹出框end*/
 			/*选择乘机人*/
 			/*获取名字*/
-            var arr;
-            var tempHtml="";
-			$('.d-btn').click(function() {	
-                // $.post("{:U('Contact/selectApi')}",);
-                postApi();
+			$('.d-btn').click(function() {
+				var name = $('.text-name').val();
+				$('.people-name').html(name);
 			});
 			/*获取名字end*/
 			$('.selet-people').click(function() {
 				$('.selet-people').hide();
 				$('.selet-check').show();
-				$('.rq').css("margin-top", "26px");
 			});
-			/*选择乘机人end*/
-			/*填入input*/
-
-			/*填入input end*/
-			function btn(obj){
-				var thisobj=$(obj);
-				var name=thisobj.attr("name");
+			$('.d-icon').click(function() {
+				var name = $(this).attr("name");
 				$('.d-icon.on').removeClass('on');
 				$('.d-icon[name="' + name + '"]').addClass('on');
-				$('.rq').css("display", "block");
-				var username=arr[name]['name'];
-				var card=arr[name]['identity'];
-				$('.message-name').val(username);
-				$('.message-id').val(card);
-			}
+			});
+			/*选择乘机人end*/
+            $.post("{:U('Contact/selectApi')}",function(data){
+                var obj = eval(data);  
+                console.log(obj[0]);
 
-            function postApi(){
-                $.post("{:U('Contact/selectApi')}",function(data){
-                    arr = JSON.parse(data);
-                    //console.log(typeof(arr));
-                    $('.check-people').html(tempHtml);
-                    $.each(arr,function(item,v){
-                        console.log(item);
-                        console.log(v);
-                        tempHtml += '<li>';
-                        tempHtml += '<i class="d-icon" name="'+item+'" onclick="btn(this)">';
-                        tempHtml += '</i>';
-                        tempHtml += '<span class="people-name">'+v['name']+'';
-                        tempHtml += '</span>';
-                        tempHtml += '</li>';    
-                    })
-                    //更新Listview中的html内容
-                    $(".check-people").html(tempHtml);
-                    //刷新Listview，使CSS生效
-                }); 
-            }
-            postApi();
+            });
 		</script>
 	</body>
 </html>

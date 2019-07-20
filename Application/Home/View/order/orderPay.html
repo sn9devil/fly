@@ -1,63 +1,329 @@
 <!DOCTYPE html>
-<html class="x-admin-sm">
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>欢迎页面-X-admin2.2</title>
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="__HOME__/css/font.css">
-        <link rel="stylesheet" href="__HOME__/css/xadmin.css">
-        <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="__HOME__/js/xadmin.js"></script>
-    </head>
-    
-    <body>
-    	<form action="{:U('pay')}" method="GET" >
-				<volist name="data" id="data">
-					<input type="text" name='ooid' value="{$data.ooid}">
-					<h5>订单号：{$data.ooid}</h5>
-					<h5>订单时间：{$data.ctime}</h5>
-					<h5>总张数：{$data.num}</h5>
-					<h5>总额：{$data.amount}</h5>
-				</volist>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="__HOME__/css/tyle.css" />
+		<link rel="stylesheet" href="__HOME__/css/body.css" />
+		<link rel="stylesheet" href="__HOME__/css/pay.css" />
+		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
+	</head>
+	<body>
+		<!-- 导航栏 -->
+		<div class=" layui-fluid" style="">
+			<div class="layui-row  rt" style="background-color: #FFFfff;">
+				<div class="layui-col-lg3  bt">
+					<div class="bottom-section">
+						<img src="__HOME__/kq-logo.svg">
+						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+					</div>
+				</div>
+				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+					<div class="layui-row title-rw">
+						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+					</div>
+				</div>
+			</div>
+			<!-- 导航栏end -->
+			<!-- 航班进程 -->
+			<div class="layui-row  ba" style="height: 100px">
+				<div class="layui-col-lg-offset2 layui-col-lg8 layui-col-lg-offset2">
+					<div class="layui-row">
+						<div class="layui-col-lg12">
+							<div class="steps">
+								<div class="steps1 sp">
+									<i class=" layui-icon layui-icon-search sr"></i>
+									<span class="dot">航班查询</span>
+								</div>
+								<div class="steps1 sp">
+									<i class=" layui-icon layui-icon-release sr"></i>
+									<span class="dot">航班选择</span>
+								</div>
+								<div class="steps1 sp">
+									<i class="layui-icon layui-icon-survey sr"></i>
+									<span class="dot"> 填写信息</span>
+								</div>
+								<div class="steps1 sp">
+									<i class="layui-icon layui-icon-rmb sr"></i>
+									<span class="dot">订单支付</span>
+								</div>
+								<div class="steps2 sp">
+									<i class="layui-icon layui-icon-ok sr"></i>
+									<span class="dot">订单完成</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 航班进程 end-->
+			<!-- 内容 -->
+			<!-- 内容头部 -->
+			<div class="layui-row">
+				<div class="layui-col-lg-offset2  layui-col-lg8  layui-col-lg-offset2">
+					<div class="layui-row" style="font-size: 14px;position: relative;left: 40px;line-height: 26px;">
+						<div class="layui-col-lg12" style="font-size: 30px;margin-bottom: 20px;">您的订单已生成!</div>
+						<div class="layui-col-lg12">*我们将为您保留30分钟，请在<span style="color: #D43F3A;" id="time">30:00</span>之内完成支付</div>
+						<div class="layui-col-lg12" style="color: #D43F3A;">*请检查预订信息，避免重复订票</div>
+						<div class="layui-col-lg12">我们将通过短信及邮件方式通知您订票出票成功，您的行程将在收到通知后得到确认和保障</div>
+						<div class="layui-col-lg12">订票编号:<span style="color: #D43F3A;">201944245644</span></div>
+					</div>
+				</div>
+			</div>
+			<!-- 内容头部end -->
+			<!-- 主体 -->
 
-				<volist name="ticket" id="ticket">
-					<h5>起始地{$ticket.go}</h5>
-					<h5>重点：{$ticket.arrive}</h5>
-					<h5>出发时间：{$ticket.go_time}</h5>
-					<h5>到达时间：{$ticket.arrive_time}</h5>
-					<h5>票数：{$ticket.num}</h5>
-				</volist>
+			<div class="layui-row">
+				<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2 ct-bg">
+					<!-- 机票信息 -->
+					<div class="layui-row">
+						<div class="layui-col-lg12 plane-message">
+							<span style="position: relative;left: 10px;">机票行程信息</span>
+						</div>
+					</div>
+					<div class="layui-row col">
+						<div class="layui-col-lg12">
+							<div class="layui-row" style="text-align: center;font-size: 13px;padding: 20px 0;">
+								<div class="layui-col-lg6">
+									<div class="layui-row">
+										<div class="layui-col-lg5">
+											<div class="layui-row">
+												<div class="layui-col-lg12 g1">
+													北京
+												</div>
+												<div class="layui-col-lg12">
+													北京首都国际机场
+												</div>
+												<div class="layui-col-lg12">
+													T1
+												</div>
+											</div>
+										</div>
+										<div class="layui-col-lg2" style="position: relative;right: 14px;">
+											<div class="to-line">
+												<i class="layui-icon layui-icon-release fly-icon"></i>
+											</div>
+										</div>
+										<div class="layui-col-lg5">
+											<div class="layui-row">
+												<div class="layui-col-lg12  g1">
+													三亚
+												</div>
+												<div class="layui-col-lg12">
+													三亚凤凰国际机场
+												</div>
+												<div class="layui-col-lg12">
+													T1
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-lg6" style="position: relative;top: 20px;right: 20px;">
+									<div class="layui-row">
+										<div class="layui-col-lg8">
+											2019.07.24 07:50-2019.07-24 11:50
+										</div>
+										<div class="layui-col-lg4">
+											<div class="layui-row">
+												<div class="layui-col-lg1" style="position: relative;bottom: 2px;">
+													<img src="img/logo_HU.png">
+												</div>
+												<div class="layui-col-lg11">
+													CN 7179 P舱
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 机票信息end -->
+					<!-- 乘机人信息 -->
+					<div class="layui-row">
+						<div class="layui-row">
+							<div class="layui-col-lg12 plane-message">
+								<span style="position: relative;left: 10px;">乘机人信息</span>
+							</div>
+						</div>
+						<div class="layui-row col">
+							<div class="layui-col-lg12">
+								<table class="layui-hide" id="demo">
 
-				<volist name="back_ticket" id="back_ticket">
-					<h5>起始地{$back_ticket.go}</h5>
-					<h5>重点：{$back_ticket.arrive}</h5>
-					<h5>出发时间：{$back_ticket.go_time}</h5>
-					<h5>到达时间：{$back_ticket.arrive_time}</h5>
-					<h5>票数：{$back_ticket.num}</h5>
-				</volist>
-				
-				<button>支付</button>
-		<form>
-				<button formaction="{:U('Order/search')}">取消</button>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- 乘机人信息end -->
+					<div class="layui-row" style="margin-top: 40px;font-size: 20px;">
+						<div class="layui-col-lg-offset8 layui-col-lg4">
+							总共价格为<span style="color: #D43F3A;font-size: 30px;">￥4500</span>
+						</div>
+					</div>
+					<div class="layui-row" style="margin-top: 40px;font-size: 20px;">
+						<div class="layui-col-lg-offset8 layui-col-lg4">
+							<div class="layui-row">
+								<div class="layui-col-lg6">
+									<button class="d-btn">提交</button>
+								</div>
+								<div class="layui-col-lg6">
+									<button type="button" class="d-btn">取消</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 主体end -->
+			<!-- 内容end -->
+			<!-- 尾部 -->
+			<div class="layui-row">
+				<div class="layui-col-lg12 body-bottom">
+					<div class="layui-row">
+						<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="position: relative;left: 40px;">
+							<div class="layui-row" style="margin-top: 10px;">
+								<div class="layui-col-lg12">
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											其他站点
+										</div>
+										<div class="layui-col-lg3">
+											有用链接
+										</div>
+										<div class="layui-col-lg3">
+											联系我们
+										</div>
+										<div class="layui-col-lg3">
+											关注我们
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											航班通行证
+										</div>
+										<div class="layui-col-lg3">
+											隐私政策
+										</div>
+										<div class="layui-col-lg3">
+											品牌大使
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											BlueBiz
+										</div>
+										<div class="layui-col-lg3">
+											免责声明
+										</div>
+										<div class="layui-col-lg3">
+											预订政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											团体预订
+										</div>
+										<div class="layui-col-lg3">
+											昆虫杀灭
+										</div>
+										<div class="layui-col-lg3">
+											肯航管理政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 尾部end -->
+			<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
+			<script src="__HOME__/js/unslider.min.js"></script>
+			<script src="__HOME__/js/layui.js"></script>
+			<script src="__HOME__/js/layui.all.js"></script>
+			<script src="__HOME__/js/cityTemplate.js"></script>
+			<script src="__HOME__/js/body.js"></script>
+			<script>
+				$(function() {
+					var m = 29;
+					var s = 59;
+					setInterval(function() {
+						if (s < 10) {
+							//如果秒数少于10在前面加上0
+							$('#time').html(m + ':0' + s);
+						} else {
+							$('#time').html(m + ':' + s);
+						}
+						s--;
+						if (s < 0) {
+							//如果秒数少于0就变成59秒
+							s = 59;
+							m--;
+						}
+					}, 1000)
+				});
+				// 乘机人信息
+				layui.use('table', function() {
+					var table = layui.table;
 
-<!-- 				<?php reset($data); ?> 
-			<volist name="data" id="data">
-				<input type="text" name='ooid' value="{$data.ooid}">
-				<h5>订单号：{$data.ooid}</h5>
-				<h5>订单时间：{$data.ctime}</h5>
-				<h5>张数：{$data.num}</h5>
-				<h5>总额：{$data.amount}</h5>
-				<h5>订单号：{$data.ooid}</h5>
-			</volist>
-			<volist name="ticket" id="ticket">
-				<h5>起始地{$ticket.go}</h5>
-				<h5>重点：{$ticket.back}</h5>
-				<h5>出发时间：{$ticket.go_time}</h5>
-				<h5>到达时间：{$ticket.arrive_time}</h5>
-
-			</volist> -->
-</body>	
+					//展示已知数据
+					table.render({
+						elem: '#demo',
+						cols: [
+							[ //标题栏
+								 {
+									field: 'username',
+									title: '姓名',
+									width: 170
+								}, {
+									field: 'people-type',
+									title: '乘机人类型',
+									Width:100
+								}, {
+									field: 'card-type',
+									title: '证件类型',
+									Width: 100
+								}, {
+									field: 'card-number',
+									title: '证件号码',
+									minwidth:300
+								}, {
+									field: 'money',
+									title: '价格小计',
+									width: 170
+								}
+							]
+						],
+						data: [{
+								"username": "杜甫",
+								"people-type": "成人",
+								"card-type": "身份证",
+								"card-number": "440582199509084230",
+								"money": "5600",
+							}]
+							//,skin: 'line' //表格风格
+							,
+						even: true
+						//,page: true //是否显示分页
+						//,limits: [5, 7, 10]
+						//,limit: 5 //每页默认显示的数量
+					});
+				});
+			</script>
+			// 乘机人信息end
+			</script>
+	</body>
 </html>

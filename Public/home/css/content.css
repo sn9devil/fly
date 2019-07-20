@@ -1,0 +1,211 @@
+/*内容*/
+.ct-bg {
+	background-color: #faf8f9;
+	width: 100%;
+	height: 800px;
+	margin-top: 80px;
+}
+
+/*内容标题*/
+.text-title,
+.text-conter {
+	padding: 18px 0;
+	background: #fff;
+	margin-bottom: 20px;
+	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+}
+
+.text-title {
+	padding-left: 20px;
+}
+
+/*内容标题*/
+/*左内容*/
+.text-conter {
+	margin-top: 20px;
+}
+
+.people-text {
+	border-left: 3px solid #d80000;
+	padding-left: 10px;
+	line-height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.people-message {
+	font-size: 16px;
+	font-weight: bolder;
+	padding-left: 60px;
+	padding-top: 6px;
+	position: relative;
+	line-height: 27px;
+}
+
+.selet-people {
+	display: inline-block;
+	width: 110px;
+	height: 24px;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 18px;
+	border: 1px solid #333;
+	position: relative;
+	top: -25px;
+	left: 90px;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.save-speople {
+	font-weight: bolder;
+	line-height: 33px;
+	cursor: pointer;
+}
+
+.selet-check {
+	position: absolute;
+	font-weight: normal;
+	font-size: 14px;
+	left: 150px;
+	top: 8px;
+}
+
+.d-icon {
+	display: inline-block;
+	font-style: normal;
+	width: 20px;
+	height: 20px;
+	background: url(../img/radio-off.png) no-repeat;
+	cursor: pointer;
+}
+
+.selet-check {
+	box-sizing: content-box;
+	position: absolute;
+	top: -17px;
+	left: 150px;
+	padding: 5px 0;
+	background-color: white;
+	border: 1px solid #dcdcdc;
+	width: 120px;
+	max-height: 300px;
+	z-index: 10;
+	display: none;
+}
+
+.selet-check ul {
+	text-align: center;
+	position: relative;
+	top: 6px;
+}
+
+.selet-check span {
+	position: relative;
+	top: -7.8px;
+	right: 2px;
+}
+
+.d-icon.on {
+	background: url(../img/radio-on.png) left center no-repeat;
+}
+
+.rw {
+	border: 1px solid #dcdcdc;
+	padding: 5px;
+	margin-left: 65px;
+}
+
+.text-selet {
+	border: 0;
+	outline: 0;
+}
+
+.rq {
+	padding: 10px;
+}
+/*左内容end*/
+/* 右内容 */
+.right-content {
+	position: relative;
+	left: 40px;
+}
+
+.right-content i {
+	font-size: 22px;
+	color: #bacbdd;
+	font-weight: bolder;
+}
+
+.i-line {
+	display: block;
+	background-image: url(../img/style.png);
+	position: absolute;
+	top: -6px;
+	left: 2px;
+	background-position: 0 0;
+	width: 16px;
+	height: 69px;
+}
+
+.r-text {
+	font-size: 30px!important;
+
+}
+/* 右内容end */
+/*内容end*/
+/*弹出框*/
+.selet-form{
+	box-sizing: content-box;
+	position: absolute;
+	top: 400px;
+	left: 700px;
+	padding: 5px 0;
+	width: 400px;
+	max-height: 300px;
+	z-index: 999;
+	height: 200px;
+	background: #fff;
+	margin-bottom: 20px;
+	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	display: none;
+}
+.save-text{
+	position: absolute;
+	width: 400px;
+	height: 200px;
+	top: 20px;
+	left: 75px;
+	line-height: 60px;
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.save-name input,.save-id input{
+   border: 1px solid #dcdcdc;
+}
+.save-text span,.save-text input{
+	display: inline-block;
+}
+.d-btn,.d-btn1{
+	display: inline-block;
+	font-size: 14px;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #d9534f;
+	border-radius: 2rem;
+	font-size: 16px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	margin-right: 40px;
+	border-color: #d43f3a;
+}
+.d-btn{
+	margin-left: 20px;
+}
+/*弹出框end*/
