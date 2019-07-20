@@ -31,8 +31,9 @@
     <script type="text/html" id="barDemo">
       <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
       <!-- <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a> -->
-      <a class="layui-btn layui-btn-xs  layui-btn-warm" lay-event="ticketsShow">机票</a>
-      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a>
+      <a class="layui-btn layui-btn-xs " lay-event="">保存</a>
+      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="ticketsShow">机票详情</a>
+      <!-- <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a> -->
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
     <script src="__ADMIN__/layui.js"></script>
@@ -57,8 +58,8 @@
                   ,{field: 'num', title: '机票总数', sort: true, totalRow: true,width:'8%'}
                   ,{field: 'amount', title: '订单总价', sort: true,width:'10%'}
                   ,{field: 'ctime', title: '创建时间', sort: true, totalRow: true,width:'15%'}
-                  ,{field: 'status', title: '订单状态',width:'10%',templet:function(res){if(res.status == 1){return "已支付"}else{return "未支付"}}} 
-                  ,{field: 'username', title: '用户',width:'10%'}
+                  ,{field: 'status', title: '订单状态',width:'15%',templet:function(res){if(res.status == 1){return "已支付"}else{return "未支付"}}} 
+                  ,{field: 'username', title: '用户',width:'15%'}
                   ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
                 ]]
             });   
@@ -140,7 +141,7 @@
                 layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '机票信息'
-                        ,area: ['900px', '480px']
+                        ,area: ['1000px', '480px']
                         ,shade: 0
                         ,maxmin: true
                         ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid

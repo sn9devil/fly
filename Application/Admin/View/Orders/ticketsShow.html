@@ -19,18 +19,14 @@
         <div class="layui-inline" title="批量删除" lay-event="multidelete"><i class="layui-icon layui-icon-delete"></i></div>
     </script> -->
     <!-- 右侧工具栏 -->
-    <!-- <script type="text/html" id="barDemo"> -->
-
-      <!-- <a class="layui-btn layui-btn-xs  layui-btn-warm" lay-event="ticketsShow">机票</a>
-      <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a>
-      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a> -->
-    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">乘客信息</a>
+      </script>
     <script src="__ADMIN__/layui.js"></script>
     <script>
         //JavaScript代码区域
         layui.use('table', function () {
             var table = layui.table;
-
             table.render({
                 elem: '#order_table'
                 ,id: 'order'
@@ -43,13 +39,16 @@
                 ,cols: [[ //表头
                   {field: 'tid', title: 'ID',width:'6%', fixed: 'left', totalRowText: '合计：'}
                   ,{field: 'flight_number', title: '航班号',width:'10%'}
-                  ,{field: 'go', title: '出发地',  totalRow: true,width:'10%'}
-                  ,{field: 'arrive', title: '目的地', width:'10%'}
-                  ,{field: 'cheap_price', title: '经济座单价',width:'12%'} 
-                  ,{field: 'expensive_price', title: '商务座单价',width:'12%'}
-                  ,{field: 'go_time', title: '出发时间',width:'15%'}
-                  ,{field: 'arrive_time', title: '到达时间',  width:'15%'}
+                  ,{field: 'go', title: '出发地',  totalRow: true,width:'8%'}
+                  ,{field: 'arrive', title: '目的地', width:'8%'}
+                //   ,{field: 'cheap_price', title: '经济座单价',width:'12%'} 
+                //   ,{field: 'expensive_price', title: '商务座单价',width:'12%'}
+                  ,{field: 'go_time', title: '出发时间',width:'18%'}
+                  ,{field: 'arrive_time', title: '到达时间',  width:'18%'}
                   ,{field: 'company', title: '航空公司', width:'10%'}
+                  ,{field: 'name', title: '乘客姓名', width:'10%'}
+                  ,{field: 'cid', title: 'cid',hide:true}
+                  ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
                 ]]
             });   
         //     //监听头工具栏事件
@@ -102,58 +101,58 @@
         //         };
         //       });
             
-        //     //监听行工具事件
-        //     table.on('tool(order)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-        //       var data = obj.data //获得当前行数据
-        //       ,layEvent = obj.event; //获得 lay-event 对应的值
-        //       if(layEvent === 'detail'){
-        //         layer.msg('查看操作');
-        //       } else if(layEvent === 'del'){
-        //         layer.confirm('真的删除行么', function(index){
-        //           //向服务端发送删除指令
-        //           $.ajax({
-        //               url: "{:U('Tickets/deleteTickets')}",
-        //               type: 'post',
-        //               data: {
-        //                   'tid': data.tid,
-        //               },
-        //               dataType: 'json',
-        //               success: function (json) {
-        //                 layer.msg(json.msg,{time:500},function(){
-        //                   obj.del(); //删除对应行（tr）的DOM结构
-        //                   layer.close(index);
-        //                 });
-        //               }
-        //           });
-        //         });
-        //       } else if(layEvent === 'ticketsShow'){
-        //         layer.open({
-        //                 type: 2 //此处以iframe举例
-        //                 ,title: '机票信息'
-        //                 ,area: ['700px', '480px']
-        //                 ,shade: 0
-        //                 ,maxmin: true
-        //                 ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid
-        //                 ,zIndex: layer.zIndex //重点1
-        //                 ,success: function(layero){
-        //                 layer.setTop(layero); //重点2
-        //                 }
-        //             });
-        //       }else if(layEvent === 'contactShow'){
-        //         layer.open({
-        //                 type: 2 //此处以iframe举例
-        //                 ,title: '常用联系人信息'
-        //                 ,area: ['700px', '480px']
-        //                 ,shade: 0
-        //                 ,maxmin: true
-        //                 ,content: "{:U('Orders/contactShow')}?oid="+data.oid
-        //                 ,zIndex: layer.zIndex //重点1
-        //                 ,success: function(layero){
-        //                 layer.setTop(layero); //重点2
-        //                 }
-        //             });
-        //       }
-        //     });
+            //监听行工具事件
+            table.on('tool(order)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+              var data = obj.data //获得当前行数据
+              ,layEvent = obj.event; //获得 lay-event 对应的值
+              if(layEvent === 'detail'){
+                layer.msg('查看操作');
+              } else if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                  //向服务端发送删除指令
+                  $.ajax({
+                      url: "{:U('Tickets/deleteTickets')}",
+                      type: 'post',
+                      data: {
+                          'tid': data.tid,
+                      },
+                      dataType: 'json',
+                      success: function (json) {
+                        layer.msg(json.msg,{time:500},function(){
+                          obj.del(); //删除对应行（tr）的DOM结构
+                          layer.close(index);
+                        });
+                      }
+                  });
+                });
+              } else if(layEvent === 'ticketsShow'){
+                layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '机票信息'
+                        ,area: ['700px', '480px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                        }
+                    });
+              }else if(layEvent === 'contactShow'){
+                layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '常用联系人信息'
+                        ,area: ['700px', '480px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,content: "{:U('Orders/contactShow')}?oid="+data.oid
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                        }
+                    });
+              }
+            });
   
         //     var $ = layui.$, active = {
         //       reload: function(){
@@ -173,10 +172,10 @@
         //       }
         //     };
             
-        //     $('.demoTable .layui-btn').on('click', function(){
-        //       var type = $(this).data('type');
-        //       active[type] ? active[type].call(this) : '';
-        //     });
+            // $('.demoTable .layui-btn').on('click', function(){
+            //   var type = $(this).data('type');
+            //   active[type] ? active[type].call(this) : '';
+            // });
         });
     </script>
 </body>

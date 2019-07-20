@@ -33,3 +33,7 @@
 	function interge($k){
         return (int)$k;
     }
+	
+	function childrenPrice($k){
+        return (int)$k * 0.5;
+    }

@@ -1,0 +1,59 @@
+/* 內容 */
+.ct-bg{
+    background-color: #faf8f9;
+	width: 100%;
+	height: 800px;
+	margin-top: 20px;
+}
+.plane-message,.plane-message1{
+	font-size: 19px;
+	font-weight: bold;
+	border-left: 3px solid crimson;
+	position: relative;
+	left: 40px;
+	top: 20px;
+}
+.to-line{
+	 position: relative;
+	background: #e4e4e6;
+	height: 2px;
+	width:100px;
+	margin: 28px auto;
+}
+.to-line .fly-icon{
+	position: absolute;
+	 top: -7px;
+	left: 50%;
+	margin-left: -12px;
+	color: #ccc;
+	padding: 0 5px;
+	background-color: #fff;
+}
+.col{
+	 box-shadow: 0 3px 16px 0 rgba(0,0,0,0.18);
+	background-color: #FFFFFF;
+	width:95%;
+	margin-left:22px;
+	margin-top: 40px;
+}
+.g1{
+	font-size: 18px;
+	font-weight: bold;
+}
+.d-btn{
+	display: inline-block;
+	font-size: 14px;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #d9534f;
+	border-radius: 2rem;
+	font-size: 16px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	margin-right: 40px;
+	border-color: #d43f3a;
+}
+/* 內容end */

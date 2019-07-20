@@ -148,37 +148,62 @@ class ContactController extends PublicController {
         return $contactList;
     }
 
+    public function selectApi(){
+        $Model = M();
+        $sql = 'select * from contact where uid='.session('user.uid');
+        $contactList = $Model->query($sql);
+        $list = [];
+
+        foreach ($contactList as $key => $value) {
+                $list[$value['cid']] = $value;
+            }  
+        echo json_encode($list);
+    }
+
     //添加常用联系人
     public function add(){
         $Model = M();
         $Contact = M('contact');
-        $check_idcard = $_GET['identity'];
+        $check_idcard = $_POST['identity'];
+        // var_dump($check_idcard);
+        // var_dump($name);
         if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
-            $this->error('证件号码位数出错');
-            exit;
+            $list['status'] = 0;
+            $list['mgs'] = "证件号码位数出错";
+            echo json_encode($list);
+            return ;
         }else{
             if($this->idcard_checksum18($check_idcard)){
                 // 查找有没有重复的联系人信息
-                $sql = 'select * from contact where name='."'".$_GET[cid]."'"."and identity="."'".$check_idcard."'";
+                $sql = 'select * from contact where name='."'".$_POST['name']."'"."and identity="."'".$check_idcard."'";
                 $list = $Model->query($sql);
                 if(!empty($list)){
-                    $this->error('已存在相同的联系人信息');
-                    exit;
+                    $list['status'] = 0;
+                    $list['mgs'] = "已存在相同的联系人信息";
+                    echo json_encode($list);
+                    return ;        
                 }
                 $type = $this->is_adult($check_idcard); 
-                $data['name'] = $_GET[name];
+                $data['name'] = $_POST[name];
                 $data['type'] = $type;
-                $data['identity'] = $_GET[identity];
+                $data['identity'] = $_POST[identity];
                 $data['uid'] = session('user.uid');
                 $Contact->data($data)->add();
-                $this->success('嘤嘤嘤',U('Contact/index'),1);exit;    
+
+                $list['status'] = 1;
+                $list['mgs'] = "成功添加";
+                echo json_encode($list);
+                return ;
+                // $this->success('嘤嘤嘤',U('Contact/index'),1);exit;    
             }else{
-                $this->error('证件号码填写有问题，请重新输入');
-                exit;
+                $list['status'] = 0;
+                $list['mgs'] = "证件号码填写有问题，请重新输入";
+                echo json_encode($list);
+                return ;    
+                // $this->error('证件号码填写有问题，请重新输入');
+                // exit;
             }
         }
-        
-           
     }
 
     public function update(){

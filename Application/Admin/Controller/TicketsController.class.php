@@ -26,9 +26,7 @@ class TicketsController extends Controller {
         $page = $_GET['page'];
         $limit = $_GET['limit'];
 
-
-        $post = $_POST['arr'];
-       
+        $get = $_GET['arr'];
         // $tid=$post['tid'];
         // $flight_number=$post['flight_number'];
 
@@ -36,21 +34,20 @@ class TicketsController extends Controller {
         // $post = json_decode($post,1);
         
         //删除空值的数组的键
-        foreach ($post as $key=>$value)
+        foreach ($get as $key=>$value)
         {
             if(empty($value)){  
-                unset($post[$key]);
+                unset($get[$key]);
             }
         }
         // echo json_encode($post);
 
-        $map['t.tid'] = 1;
-        if($post){
+        if($get){
+            // echo "due";
             //$mo=M('ticket as t')->join('company as c')->where('t.tid = '.$tid.' and t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
             //$m1o=M('ticket as t')->join('company as c')->where($map)->where('t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
-            $mo=M('ticket as t')->join('company as c')->where($post)->where('t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
-            //echo $m1o ."------" .$mo;
-            $arr['count'] = M('ticket as t')->join('company as c')->where($map)->where('t.cid = c.id')->order('t.tid asc')->count();
+            $mo=M('ticket as t')->join('company as c')->where($get)->where('t.cid = c.id')->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();
+            $arr['count'] = M('ticket as t')->join('company as c')->where($get)->where('t.cid = c.id')->order('t.tid asc')->count();
             $arr['data']=$mo;
         }else{
             $mo=M('ticket as t')->join('company as c')->where("t.cid = c.id")->order('t.tid asc')->limit(($page-1)*$limit,$limit)->select();

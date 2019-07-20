@@ -44,7 +44,7 @@
             table.render({
                 elem: '#ticket_table'
                 ,id: 'ticket'
-                ,height: 'full-100'
+                // ,height: 'full-100'
                 ,url:'{:U("Tickets/getTickets")}'//数据接口
                 ,title: '订单表'
                 ,page: true //开启分页
@@ -162,22 +162,29 @@
               reload: function(){
                 var searchID = $('#searchID');
                 var searchFlight = $('#searchFlight');
+                // if(searchFlight.val().length != 0){
+                //   searchFlight.val("%"+searchFlight.val()+"%");
+                //   console.log(searchFlight.val());
+                // }
                 // var arr = {};
                 // arr.tid =  searchID.val();
                 // arr.flight_number = searchFlight.val();
                 // console.log(arr);
                 //执行重载
                 table.reload('ticket', {
-                  method: 'post',
                   page: {
                     curr: 1 //重新从第 1 页开始
+                    // ,limit:10
                   }
                   ,where: {
-                   arr: {
-                      "t.tid": searchID.val(),
-                      "t.flight_number":searchFlight.val()
-                    }
-                  // arr:arr
+                    arr: {
+                        "t.tid": searchID.val(),
+                        "t.flight_number":searchFlight.val()
+                      }
+                    // ,pal:{
+                    //     page:1,
+                    //     limit:10
+                    // }
                   }
                 });
               }

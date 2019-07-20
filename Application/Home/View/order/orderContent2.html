@@ -62,7 +62,7 @@
 			<!-- 航班进程 end-->
 			<!-- 内容 -->
 			<div class="layui-row" style="height: 800px;margin-top: 40px;">
-				<div class="layui-col-lg-offset2 layui-col-lg8 layui-col-lg-offset2 ct-bg">
+				<div class="layui-col-lg-offset3 layui-col-lg6 layui-col-lg-offset2 ct-bg">
 					<div class="layui-row">
 						<div class="layui-col-lg8">
 							<div class="layui-row text-title">
@@ -78,27 +78,24 @@
 							<div class="layui-row text-conter">
 								<div class="layui-col-lg12">
 									<!-- 第一条 -->
-                               
-                                <for start="1" end="$num + 1" name="i">
-                                    <div class="layui-row  user-selet" name=<?php echo rand(1,10000000) ?> >
 									<div class="layui-row">
 										<div class="layui-col-lg12">
 											<div class="layui-row">
 												<div class="layui-col-lg8 people-message">
-													第<span>{$i}</span>位乘客
-													<div class="selet-people" style="display:block;" name=<?php echo $w = rand(1,10000000) ?>  >
+													第<span>1</span>位乘客
+													<div class="selet-people" style="display:block;">
 														选择常用乘机人
 													</div>
-													<div class="selet-check" name="st2">
-														<ul class="check-people">
-															<li><i class="d-icon" name="d1"></i><span class="people-name">小明</span></li>
-															
+													<div class="selet-check">
+														<ul>
+															<li name="n1"><i class="d-icon" name="d1"></i><span class="people-name">小明</span></li>
+															<li name="n2"><i class="d-icon" name="d2"></i><span class="people-name">小明</span></li>
 														</ul>
 													</div>
 												</div>
 												<div class="layui-col-lg-offset2  layui-col-lg2">
 													<div class="save-speople">
-														添加常用乘机人
+														保存常用乘机人
 													</div>
 												</div>
 											</div>
@@ -108,106 +105,103 @@
 									<!-- 第二条 -->
 									<div class="layui-row">
 										<div class="layui-col-lg12">
-											<div class="layui-row  rq">
+											<div class="layui-row rq">
 												<div class="layui-col-lg4 rw">
 													<div class="layui-row">
-														<div class="layui-col-lg3" style="position: relative;left:18px;">
+														<div class="layui-col-lg3" style="position: relative;left: 20px;">
 															姓名:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text"  class="text-selet message-name" disabled="disabled"  name="username">
-														</div>ia
+															<input type="text" class="text-selet">
+														</div>
 													</div>
 												</div>
-												<div class="layui-col-lg-offset1 layui-col-lg4 rw">
+												<div class="layui-col-lg-offset2 layui-col-lg4 rw">
 													<div class="layui-row">
-														<div class="layui-col-lg3" style="position: relative;left: 18px;">
+														<div class="layui-col-lg3" style="position: relative;left: 20px;">
 															身份证:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text" class="text-selet message-id" disabled="disabled" name="usercard">
+															<input type="text" class="text-selet">
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-                                </br></br>
 									<!-- 第二条end -->
 								</div>
-                                </for>
 							</div>
 						</div>
-                    </div>
-
 						<!-- 右内容 -->
-                        <div class="layui-col-lg4  right-content" style="">
+
+						<div class="layui-col-lg4  right-content" style="">
                             <volist name="ticket" id="ticket">
-                            <div class="layui-row">
-                                <div class="layui-col-lg12">
-                                    <div class="layui-row">
-                                        <div class="layui-col-lg1" style="position: relative;top: 12px;">
-                                            <i class="layui-icon layui-icon-home"></i>
-                                        </div>
-                                        <div class="layui-col-lg11 r-text">
-                                            &nbsp;&nbsp;{$ticket.go}
-                                        </div>
-                                    </div>
-                                    <div class="layui-row">
-                                        <div class="layui-col-lg1">
-                                            <i class="i-line"></i>
-                                        </div>
-                                        <div class="layui-col-lg-offset1 layui-col-lg11">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row" style="margin-top: 40px;">
-                                <div class="layui-col-lg12">
-                                    <div class="layui-row">
-                                        <div class="layui-col-lg1" style="position: relative;top: 10px;">
-                                            <i class="layui-icon layui-icon-location"></i>
-                                        </div>
-                                        <div class="layui-col-lg11 r-text">
-                                            &nbsp;&nbsp;{$ticket.arrive}
-                                        </div>
-                                    </div>
-                                    <div class="layui-row">
-                                        <div class="layui-col-lg-offset1  layui-col-lg11">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-row" style="margin-top: 25px;">
-                                <div class="layui-col-lg12">
-                                    <div class="layui-row">
-                                        <div class="layui-col-lg1">
-                                            <i class="layui-icon layui-icon-console"></i>
-                                        </div>
-                                        <div class="layui-col-lg11" style="position: relative;top: 4px;">
-                                            &nbsp;&nbsp;{$ticket.date} {$ticket.go_time|getHourMin}&nbsp;-&nbsp;{$ticket.arrive_time|getHourMin}
-                                        </div>
-                                    </div>
-                                    <div class="layui-row" style="position: relative;left: 25px;top: 12px;">
-                                        <div class="layui-col-lg12">
-                                            <div class="layui-row">
-                                                <div class="layui-col-lg12" style="font-size: 15px!important;font-weight: bold;">
-                                                    行程价格明细
-                                                </div>
-                                            </div>
-                                            <div class="layui-row">
-                                                <div class="layui-col-lg12" style="font-size: 20px!important;font-weight: bold;">
-                                                    ￥{$ticket.price|interge}
+							<div class="layui-row">
+								<div class="layui-col-lg12">
+									<div class="layui-row">
+										<div class="layui-col-lg1" style="position: relative;top: 12px;">
+											<i class="layui-icon layui-icon-home"></i>
+										</div>
+										<div class="layui-col-lg11 r-text">
+											&nbsp;&nbsp;{$ticket.go}
+										</div>
+									</div>
+									<div class="layui-row">
+										<div class="layui-col-lg1">
+											<i class="i-line"></i>
+										</div>
+										<div class="layui-col-lg-offset1 layui-col-lg11">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row" style="margin-top: 40px;">
+								<div class="layui-col-lg12">
+									<div class="layui-row">
+										<div class="layui-col-lg1" style="position: relative;top: 10px;">
+											<i class="layui-icon layui-icon-location"></i>
+										</div>
+										<div class="layui-col-lg11 r-text">
+											&nbsp;&nbsp;{$ticket.arrive}
+										</div>
+									</div>
+									<div class="layui-row">
+										<div class="layui-col-lg-offset1  layui-col-lg11">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-row" style="margin-top: 25px;">
+								<div class="layui-col-lg12">
+									<div class="layui-row">
+										<div class="layui-col-lg1">
+											<i class="layui-icon layui-icon-console"></i>
+										</div>
+										<div class="layui-col-lg11" style="position: relative;top: 4px;">
+											&nbsp;&nbsp;{$ticket.date} {$ticket.go_time|getHourMin}&nbsp;-&nbsp;{$ticket.arrive_time|getHourMin}
+										</div>
+									</div>
+									<div class="layui-row" style="position: relative;left: 25px;top: 12px;">
+										<div class="layui-col-lg12">
+											<div class="layui-row">
+												<div class="layui-col-lg12" style="font-size: 15px!important;font-weight: bold;">
+													行程价格明细
+												</div>
+											</div>
+											<div class="layui-row">
+												<div class="layui-col-lg12" style="font-size: 20px!important;font-weight: bold;">
+													￥{$ticket.price|interge}
                                                 </br>
-                                                    ￥{$ticket.price|childrenPrice} <span style="font-size:14px">(未成年价格)</span>
+												    ￥{$ticket.price|childrenPrice} <span style="font-size:14px">(未成年价格)</span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                         </volist>
                         </br>  
                         </br>           
@@ -289,12 +283,11 @@
 					<div class="save-text">
 						<div class="save-name">
 							<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
-							<input type="text" id="name" class="text-selet text-name">
+							<input type="text" class="text-selet  text-name">
 						</div>
 						<div class="save-id">
 							<span>身份证:</span>
-							<input type="text" id="identity" class="text-selet text-id">
-                            <span style="color: red;position: absolute;top:90px;bottom: 0;left:50px;right: 0;width: 250px;height:0px" class="card-err"></span>
+							<input type="text" class="text-selet text-id">
 						</div>
 						<button class="d-btn" type="button">提交</button>
 						<button class="d-btn1" type="button">取消</button>
@@ -387,106 +380,36 @@
 			});
 			$(document).click(function() {
 				$('.selet-form').hide();
-				$('.selet-check').hide();
-				$('.selet-people').show();
-                $('#name').val("");
-                $('#identity').val("");
-				$('.rq').css("margin-top", "0px");
 			});
-			$('.selet-form,.save-speople,.selet-people,.selet-check').click(function(event) {
+			$('.selet-form,.save-speople').click(function(event) {
 				event.stopPropagation();
 			});
 			$('.d-btn1').click(function() {
 				$('.selet-form').hide();
-                $('#name').val("");
-                $('#identity').val("");
 			});
 			/*关闭弹出框end*/
 			/*选择乘机人*/
 			/*获取名字*/
-            var arr;
-
-			$('.d-btn').click(function() {	
-                name = $("#name").val();
-                identity = $("#identity").val();
-                
-                $.post("{:U('Contact/add')}",
-                    {
-                        'name':name,
-                        'identity':identity
-                    },
-                    function(data){
-                        var j = JSON.parse(data);
-                        if(j.status == 0){
-                            //失败
-                            $('.card-err').html(j.mgs);
-                        }else{
-                            //成功
-                            postApi();
-                            $('#name').val("");
-                            $('#identity').val("");
-                            $('.selet-form').hide();
-                        }
-                        
-                    });
+			$('.d-btn').click(function() {
+				var name = $('.text-name').val();
+				$('.people-name').html(name);
 			});
 			/*获取名字end*/
-
-
-
 			$('.selet-people').click(function() {
-                var name = $(this).attr("name");
-                alert(name);
-				$('.selet-people[name="'+name+'"]').hide();
-				$('.selet-check[name="'+name+'"]').show();
-				$('.rq').css("margin-top", "26px");
+				$('.selet-people').hide();
+				$('.selet-check').show();
 			});
-			/*选择乘机人end*/
-			/*填入input*/
-
-			/*填入input end*/
-			function btn(obj){
-				var thisobj=$(obj);
-				var name=thisobj.attr("name");
+			$('.d-icon').click(function() {
+				var name = $(this).attr("name");
 				$('.d-icon.on').removeClass('on');
 				$('.d-icon[name="' + name + '"]').addClass('on');
-				$('.rq').css("display", "block");
-				var username=arr[name]['name'];
-				var card=arr[name]['identity'];
-                var name1=thisobj.parent().parent().parent().parent().parent().parent().parent().parent().attr('name');
-                alert(name1);
-				$('.user-selet[name="'+name1+'"] .message-name').val(username);
-				$('.user-selet[name="'+name1+'"] .message-id').val(card);
-			}
+			});
+			/*选择乘机人end*/
+            $.post("{:U('Contact/selectApi')}",function(data){
+                var obj = eval(data);  
+                console.log(obj[0]);
 
-            function postApi(){
-                $.post("{:U('Contact/selectApi')}",function(data){
-                    var tempHtml="";
-                    arr = JSON.parse(data);
-                    //console.log(typeof(arr));
-                    $('.check-people').html(tempHtml);
-                    console.log('1');
-                    $.each(arr,function(item,v){
-                        // console.log(item);
-                        // console.log(v);
-                        tempHtml += '<li>';
-                        tempHtml += '<i class="d-icon" name="'+item+'" onclick="btn(this)">';
-                        tempHtml += '</i>';
-                        tempHtml += '<span class="people-name">'+v['name']+'';
-                        tempHtml += '</span>';
-                        tempHtml += '</li>';    
-                    })
-                    console.log(tempHtml);
-                    //更新Listview中的html内容
-                    $(".check-people").html(tempHtml);
-                    //刷新Listview，使CSS生效
-                }); 
-            }
-            window.onload = function(){
-                alert("www");
-                    postApi();
-            }
-
+            });
 		</script>
 	</body>
 </html>

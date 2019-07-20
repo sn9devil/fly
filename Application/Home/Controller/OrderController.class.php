@@ -85,22 +85,28 @@ class OrderController extends PublicController {
         $back_tid = $_GET["back_tid"];
         $ticket_type = $_GET["ticket_type"];
         $back_ticket_type = $_GET["back_ticket_type"];
-        // $people = $_GET['people']; 
-        // $people = preg_replace('/([\x80-\xff]*)/i','',$people);
-        // $adult = $people[0];
-        // $children = $people[1];
-        // $num = $adult + $children;
+        $people = $_GET['people']; 
+        $people = preg_replace('/([\x80-\xff]*)/i','',$people);
+        $adult = $people[0];
+        $children = $people[1];
+        $num = $adult + $children;
 
         $contact = $C->select();
         $ticket = $T->find($tid);
-        var_dump($ticket);
+        
+        $ticket_type = $this->getTicketType($ticket_type);
+        $ticket[0]['price'] = $ticket[0][$ticket_type];
+
         if(!empty($back_tid)){
             $back_ticket = $T->find($back_tid);
+            $back_ticket_type = $this->getTicketType($back_ticket_type);
+            $back_ticket[0]['price'] = $back_ticket[0][$back_ticket_type];
             $this->assign('back_ticket',$back_ticket);
+            $this->assign('back_ticket_type',$back_ticket_type);
         }
-
         $this->assign('ticket',$ticket);
-        $this->assign('contact',$contact);
+        $this->assign('ticket_type',$ticket_type);
+        $this->assign('num',$num);
         $this->display();
 
 
@@ -112,36 +118,38 @@ class OrderController extends PublicController {
         //生成订单
         $Orders = M('orders');
         $ticket = M('ticket');
+        $contact = M('contact');
 
         //需要传入的参数
         $cid[0] = 1;  //$_GET['cid'];
         $cid[1] = 2;
-        $cid[2] = 3;    
+        $contact_list = [];
+        foreach ($cid as $key => $value) {
+            $contact_list[] = $contact->where(['cid' => $value])->find();
+        }  
+        // echo '<pre>';
+        // var_dump($contact_list);
         $uid = session('user.uid');
-        $tid = 10;
-        $back_tid = 13;
-        $num = 2;
+        $tid = $_GET["tid"];
+        $back_tid = $_GET["back_tid"];
+        $ticket_type = $_GET["ticket_type"];
+        $back_ticket_type = $_GET["back_ticket_type"];
         
+        $num = 2;
+        $adult = 2;
+        $children = 1;
+
         //支付状态
         $status = 0;
         //机票类型
-        $priceType = 1;
-        $back_priceType = 1;
-        if($priceType){
-            $priceType = "cheap_price";
-        }else{
-            $priceType = "expensive_price";
-        }
+
+        $ticket_type = $this->getTicketType($ticket_type);
+
         if(!empty($back_tid)){
-            if($back_priceType){
-                $back_priceType = "cheap_price";
-            }else{
-                $back_priceType = "expensive_price";
-            }
+            $back_ticket_type = $this->getTicketType($back_ticket_type);
         }
         //计算总价
-        $adult = 2;
-        $children = 1;
+
         //出发价格
         $go_price = $this->ticketPrice($tid, $adult, $child, $priceType);
         $amount = $go_price; 
@@ -237,6 +245,16 @@ class OrderController extends PublicController {
     //生成订单编号
     function get_sn() {
         return date('YmdHis').rand(100000, 999999);
+    }
+
+
+    function getTicketType($priceType){
+        if($priceType){
+            $priceType = "cheap_price";
+        }else{
+            $priceType = "expensive_price";
+        }
+        return $priceType;
     }
 
 }
