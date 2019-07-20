@@ -148,6 +148,18 @@ class ContactController extends PublicController {
         return $contactList;
     }
 
+    public function selectApi(){
+        $Model = M();
+        $sql = 'select * from contact where uid='.session('user.uid');
+        $contactList = $Model->query($sql);
+        $list = [];
+
+        foreach ($contactList as $key => $value) {
+                $list[$value['cid']] = $value;
+            }  
+        echo json_encode($list);
+    }
+
     //添加常用联系人
     public function add(){
         $Model = M();
@@ -177,8 +189,6 @@ class ContactController extends PublicController {
                 exit;
             }
         }
-        
-           
     }
 
     public function update(){

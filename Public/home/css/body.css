@@ -1,3 +1,27 @@
+body,html{
+	margin: 0px;
+	padding: 0px;
+	font-family: PingFangSC-Regular,microsoft yahei,STHeiTi,simsun,arial,sans-serif;
+}
+ul{
+	list-style: none;
+}
+.layui-fluid{
+	   color: #333;
+       font-family: PingFangSC-Regular,microsoft yahei,STHeiTi,simsun,arial,sans-serif;
+       font-size: 14px;
+		background:url(../img/bg-booking.jpg) center top no-repeat #f7f7f7;
+		  background-attachment: fixed;
+		background-size: cover;
+}
+.layui-fluid,.rt{
+	  padding: 0!important;
+	  margin: 0;
+  }
+.bt{
+	  line-height: 3.6875rem;
+ }
+
 .bottom-section{
 	width: 380px;
     background: url(../curve.svg) 0 0 no-repeat;
@@ -34,3 +58,59 @@
 .body-bottom i{
 	color: #757575;
 }
+ /*订单进程*/
+ .steps{
+    position:absolute;
+    left: 20px;
+    top: 40px;
+    z-index: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+ }
+ .steps :before{
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    border-radius: 50%;
+    margin-top: 2px;
+    color: #fff;
+    background: #ccc;
+ }
+ .steps1 :before{
+	 background-color: #fd992e;
+ }
+.sr{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+	 border: 1px solid #ccc;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+ }
+ .steps1.sr{
+	  border: 1px solid #fd992e;
+ }
+ .steps1,.steps2{
+	 position: relative;
+	 top: -14px;
+ }
+ .sp{
+	 text-align: center;
+	 width: 19%;
+	 height: 50px;
+	 display: inline-block;
+ }
+.sp i{
+	color: #FFFFFF;
+}
+.sp span{
+	display: block;
+}
+ /*订单进程end*/

@@ -179,3 +179,7 @@
 		$('#destination').val(place);
 	});
 	/*地址转换*/
+	/*当前日期*/
+	var now = new Date(); 
+	$('#test1').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
+	/*当前日期end*/
