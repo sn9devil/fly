@@ -25,7 +25,7 @@
                 elem: '#contact_table'
                 ,id: 'contact'
                 ,height: 420
-                ,url:'{:U("Orders/getContact")}?oid='+'{$oid}'//数据接口
+                ,url:'{:U("Orders/getContact")}?cid='+'{$cid}'//数据接口
                 ,title: '订单表'
                 ,page: true //开启分页
                 ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -33,8 +33,8 @@
                 ,cols: [[ //表头
                   {field: 'cid', title: 'ID',width:'10%', fixed: 'left', totalRowText: '合计：'}
                   ,{field: 'name', title: '姓名',width:'15%'}
-                  ,{field: 'type', title: '旅客类型',  totalRow: true,width:'15%'}
-                  ,{field: 'identity', title: '身份证号码', width:'50%'}
+                  ,{field: 'type', title: '旅客类型',  totalRow: true,width:'20%',templet:function(res){if(res.status == 1){return "会员"}else{return "普通用户"}}} 
+                  ,{field: 'identity', title: '身份证号码', width:'60%'}
                 ]]
             });   
         });

@@ -48,7 +48,6 @@ class OrdersController extends Controller {
         $oid = $_GET['oid'];
         $Orders_item = M('orders_item');
 
-        //id
         // $t_id = $Orders_item->field('t_id')->where('o_id = '.$oid)->buildSql();
         // // echo json_encode($t_id);
         // // $c_id = $Orders_item->field('c_id')->where('tid in '.$t_id)->buildSql();
@@ -72,32 +71,24 @@ class OrdersController extends Controller {
         echo json_encode($arr);
     }
 
-    //订单-常用联系人弹窗
+    //乘客信息弹窗
     public function contactShow(){
-        $oid = $_GET['oid'];
-        $this->assign('oid',$oid);
+        $cid = $_GET['cid'];
+        $this->assign('cid',$cid);
         $this->display("contactShow");	
     }
 
-    //获取订单-常用联系人
+    //获取乘客信息
     public function getContact(){
-        $oid = $_GET['oid'];
-        $Orders_item = M('orders_item');
-
-        $c_id = $Orders_item->field('c_id')->where('o_id = '.$oid)->select();
-        echo json_encode($c_id);
-
-        // $Contact = M('contact');
-        // $contact = $Contact->where('cid in '.$c_id)->select();
-        // echo json_encode($contact);
-
-        // $ticket = M('ticket as t')->join('company as c')->where('t.tid in '.$t_id.'and t.cid = c.id')->select();
-    //     $arr = array();
-    //     $arr['code'] = 0;
-    //     $arr['msg']="";
-    //     $arr['count'] =  $Contact->where('cid in '.$c_id)->count();
-    //     $arr['data']=$contact;
-    //     echo json_encode($arr);
+        $cid = $_GET['cid'];
+        $Contact = M('contact');
+        $contact = $Contact->where("cid = ".$cid)->select();
+        $arr = array();
+        $arr['code'] = 0;
+        $arr['msg']="";
+        $arr['count'] = $Contact->where("cid = ".$cid)->count();
+        $arr['data']=$contact;
+        echo json_encode($arr);
      }
 
 
