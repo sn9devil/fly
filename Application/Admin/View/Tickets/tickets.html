@@ -11,15 +11,19 @@
 </head>
 
 <body class="layui-layout-body">
+    <div style="background-color: white; padding: 10px">
     <div class="demoTable">
-      搜索ID：
       <div class="layui-inline">
-        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+        <input class="layui-input" name="id" id="searchID" autocomplete="off" placeholder="ID">
+      </div>
+      <div class="layui-inline">
+        <input class="layui-input" name="flight_number" id="searchFlight" autocomplete="off" placeholder="航班号">
       </div>
       <button class="layui-btn" data-type="reload">搜索</button>
     </div>
 
     <table class="layui-hide" id="ticket_table" lay-filter="ticket"></table>
+    </div>
     <!-- 头部工具栏 -->
     <script type="text/html" id="toolbarDemo">
         <div class="layui-inline" title="添加" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>
@@ -40,7 +44,7 @@
             table.render({
                 elem: '#ticket_table'
                 ,id: 'ticket'
-                ,height: 'full-300'
+                ,height: 'full-100'
                 ,url:'{:U("Tickets/getTickets")}'//数据接口
                 ,title: '订单表'
                 ,page: true //开启分页
@@ -156,7 +160,12 @@
   
             var $ = layui.$, active = {
               reload: function(){
-                var demoReload = $('#demoReload');
+                var searchID = $('#searchID');
+                var searchFlight = $('#searchFlight');
+                // var arr = {};
+                // arr.tid =  searchID.val();
+                // arr.flight_number = searchFlight.val();
+                // console.log(arr);
                 //执行重载
                 table.reload('ticket', {
                   method: 'post',
@@ -164,13 +173,17 @@
                     curr: 1 //重新从第 1 页开始
                   }
                   ,where: {
-                   key: {
-                      tid: demoReload.val()
+                   arr: {
+                      "t.tid": searchID.val(),
+                      "t.flight_number":searchFlight.val()
                     }
+                  // arr:arr
                   }
                 });
               }
             };
+
+            
             
             $('.demoTable .layui-btn').on('click', function(){
               var type = $(this).data('type');

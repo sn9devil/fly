@@ -1,18 +1,320 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        
-        <script src="" async defer></script>
-    </body>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="__ADMIN__/css/layui.css" media="all">
+    <script type="text/javascript" src="__ADMIN__/jquery/jquery-3.4.1.min.js"></script>
+    <script src="__ADMIN__/layui.js" charset="utf-8"></script>
+    <!-- 注意加载js的顺序 -->
+    <script src="__ADMIN__/echarts.js"></script>
+    <script src="__ADMIN__/macarons.js"></script>
+    <script src="__ADMIN__/roma.js"></script>
+    <script src="__ADMIN__/shine.js"></script>
+    <style>
+        .layui-elem-quote {
+            margin: 0px;
+            background-color: white;
+            border-radius: 5px
+        }
+    </style>
+</head>
+
+<body class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12" style=" ">
+            <blockquote class="layui-elem-quote">引用区域的文字</blockquote>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-md6">
+            <div id="endcity"
+                style="width: 100%;height:400px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div id="startcity"
+                style="width: 100%;height:400px ;background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space20">
+        <div class="layui-col-md6">
+            <div id="main"
+                style="width: 100%;height:400px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
+            </div>
+        </div>
+    </div>
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+
+
+        var endCityChat = echarts.init(document.getElementById('endcity'), 'macarons');
+        var endCityChatOption = {
+            title: {
+                text: '目的地占比',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal'
+                },
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 20,
+                top: 20,
+                bottom: 20,
+            },
+            itemStyle: {
+                // 阴影的大小
+                shadowBlur: 100,
+                // 阴影水平方向上的偏移
+                shadowOffsetX: 0,
+                // 阴影垂直方向上的偏移
+                shadowOffsetY: 0,
+                // 阴影颜色
+                shadowColor: 'rgba(0, 0, 0, 0.3)'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            dataset: {
+                source: []
+            },
+            series: [{
+                name: '出发地',
+                type: 'pie',
+                radius: [30, 150],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                data: []
+            }]
+        };
+        endCityChat.showLoading();
+        endCityChat.setOption(endCityChatOption);
+        $.ajax({
+            url: "{:U('Index/getEndCity')}",
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                // console.log("返回的"+data);
+                // var res = JSON.parse(data);
+                // console.log(typeof(data));
+                var nums = [];
+
+                $.each(data, function (key, values) { //此处我返回的是list<String,map<String,String>>循环map
+                    var obj = new Object();
+                    obj.name = values.arrive;
+                    obj.value = values.count;
+                    nums.push(obj);
+                });
+                // console.log("返回的json"+nums);
+                endCityChat.hideLoading();
+                endCityChat.setOption({
+                    series: [{
+                        data: nums
+                    }]
+                });
+            },
+            error: function () {}
+        });
+
+        var startCityChat = echarts.init(document.getElementById('startcity'), 'roma');
+        var startCityChatOption = {
+            title: {
+                text: '出发地占比',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal'
+                },
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 20,
+                top: 20,
+                bottom: 20,
+            },
+            itemStyle: {
+                // 阴影的大小
+                shadowBlur: 100,
+                // 阴影水平方向上的偏移
+                shadowOffsetX: 0,
+                // 阴影垂直方向上的偏移
+                shadowOffsetY: 0,
+                // 阴影颜色
+                shadowColor: 'rgba(0, 0, 0, 0.3)'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            dataset: {
+                source: []
+            },
+            series: [{
+                name: '目的地',
+                type: 'pie',
+                radius: [30, 150],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                data: []
+            }]
+        };
+        startCityChat.showLoading();
+        startCityChat.setOption(startCityChatOption);
+        $.ajax({
+            url: "{:U('Index/getStartCity')}",
+            type: 'post',
+            dataType: 'text',
+            success: function (data) {
+                // console.log("返回的"+data);
+                var res = JSON.parse(data);
+                // console.log(typeof(data));
+                var nums = [];
+
+                $.each(res, function (key, values) { //此处我返回的是list<String,map<String,String>>循环map
+                    var obj = new Object();
+                    obj.name = values.go;
+                    obj.value = values.count;
+                    nums.push(obj);
+                });
+                // console.log("返回的json"+nums);
+                startCityChat.hideLoading();
+                startCityChat.setOption({
+                    series: [{
+                        data: nums
+                    }]
+                });
+            },
+            error: function () {}
+        });
+
+
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        var option = {
+            title: {
+                text: '未来7天机票销售量',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal'
+                },
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            legend: {},
+            dataset: {
+                source: []
+            },
+            xAxis: {
+                data: [],
+                boundaryGap: false,
+            },
+            yAxis: {},
+            series: [{
+                areaStyle: {},
+                type: 'line',
+                smooth: true,
+                data: []
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.showLoading();
+        myChart.setOption(option);
+        var date = []; //日期数组（实际用来盛放X轴坐标值）
+        var count = []; //统计数量数组（实际用来盛放Y坐标值）
+
+        $.ajax({
+            url: "{:U('Index/getDayticket')}",
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        date.push(data[i].date + "号"); //挨个取出日期并填入日期数组
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        count.push(data[i].count); //挨个取出数量并填入数量数组
+                    }
+                }
+                myChart.hideLoading();
+                myChart.setOption({
+                    xAxis: {
+                        data: date,
+                    },
+                    series: [{
+                        data: count,
+
+                    }]
+                });
+            },
+            error: function () {}
+        });
+    </script>
+</body>
+
 </html>
