@@ -19,15 +19,17 @@ class OrdersController extends Controller {
 
         $post = $_POST['key'];//订单号
         $ooid=$post['ooid'];
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
         if($ooid){
-            $mo=M('orders as o')->join('users as u')->where('o.ooid = '.$ooid.' and o.uid = u.uid')->select();
+            $mo=M('orders as o')->join('users as u')->where('o.ooid = '.$ooid.' and o.uid = u.uid')->limit(($page-1)*$limit,$limit)->select();
             // $ticket = $Ticket->where('tid = '.$tid)->select();
-            $arr['count'] = $Order->where('ooid = '.$ooid)->count();
+            $arr['count'] = M('orders as o')->join('users as u')->where('o.ooid = '.$ooid.' and o.uid = u.uid')->count();
             $arr['data']=$mo;
         }else{
-            $mo=M('orders as o')->join('users as u')->where("o.uid = u.uid")->select();
+            $mo=M('orders as o')->join('users as u')->where("o.uid = u.uid")->limit(($page-1)*$limit,$limit)->select();
             // $ticket = $Ticket->where()->select();
-            $arr['count'] = $Order->where()->count();
+            $arr['count'] = M('orders as o')->join('users as u')->where("o.uid = u.uid")->count();
             $arr['data']=$mo;
         }
     	
