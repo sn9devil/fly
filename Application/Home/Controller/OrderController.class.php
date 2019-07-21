@@ -249,7 +249,7 @@ class OrderController extends PublicController {
         $Model = M();
         $sql = 'update Orders set status = 1 where ooid='.$_POST['ooid'];
         $orderUpdate = $Model->execute($sql);
-        $this->success('支付成功',U('Index/index2'),1);exit;
+        $this->success('支付成功',U('Index/index'),1);exit;
     }
 
     //生成订单编号
