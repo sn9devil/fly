@@ -80,6 +80,6 @@ class UserController extends PublicController {
 	// 用户登出
     public function logOut(){
 		session('user', null);
-		$this->success('你已经成功退出', U('index/index'), 1);exit;    
+		$this->redirect('Index/index');  
     }
 }

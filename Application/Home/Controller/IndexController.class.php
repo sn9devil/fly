@@ -4,17 +4,17 @@ use Think\Controller;
 class IndexController extends Controller {
 
     //首页
-    public function index(){       
-        $Model = M();
-        $sql = "select * from ticket a left join company b on a.cid=b.id where date_format(go_time,'%Y-%m-%d-%H-%i-%S') > date_format(now(),'%Y-%m-%d-%H-%i-%S')";
-        $list = $Model->query($sql);
-        // 把数据传入模板
-        $this->assign('list', $list);
-        // 模板渲染
-        $this->display();		
-    }
+    // public function index(){       
+    //     $Model = M();
+    //     $sql = "select * from ticket a left join company b on a.cid=b.id where date_format(go_time,'%Y-%m-%d-%H-%i-%S') > date_format(now(),'%Y-%m-%d-%H-%i-%S')";
+    //     $list = $Model->query($sql);
+    //     // 把数据传入模板
+    //     $this->assign('list', $list);
+    //     // 模板渲染
+    //     $this->display();		
+    // }
 
-    public function index2(){       
+    public function index(){       
         $oneList = $this->findTicket2("北京");
         $twoList = $this->findTicket2("海口");
         $threeList = $this->findTicket2("三亚");

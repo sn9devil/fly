@@ -2,14 +2,12 @@
 namespace Home\Controller;
 use Home\Controller\PublicController;
 
-
 class OrderController extends PublicController {
 
     public function index(){
         /*
             orders 订单编号 订单日期 票数总额 订单状态
             ticket 出发地 目的地 出发日期
-
         */
         $Model = M();
         $sql = 'select * from (orders_item a left join ticket b on a.t_id=b.tid) left join orders c on a.o_id=c.oid';
@@ -18,6 +16,9 @@ class OrderController extends PublicController {
         foreach($orderlist as $key => $value){
             if($value['status'] == '1'){
                 $orderlist[$key]['status'] = "已支付";
+            }
+            if($value['status'] == '2'){
+                $orderlist[$key]['status'] = "未支付";
             }
         }
 
