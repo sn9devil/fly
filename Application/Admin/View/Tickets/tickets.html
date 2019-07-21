@@ -7,18 +7,38 @@
     <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="__ADMIN__/css/layui.css">
     <meta name="renderer" content="webkit">
-    
+    <style>
+      .demoTable{
+       
+      }
+      .searchleft{
+        float: left;
+      }
+      .layui-table-tool{
+        z-index:1;
+      }
+    </style>
 </head>
 
 <body class="layui-layout-body" style="padding: 15px;">
     <div style="background-color: white; padding: 10px">
     <div class="demoTable">
-      <div class="layui-inline">
-        <input class="layui-input" name="id" id="searchID" autocomplete="off" placeholder="ID">
-      </div>
-      <div class="layui-inline">
-        <input class="layui-input" name="flight_number" id="searchFlight" autocomplete="off" placeholder="航班号">
-      </div>
+      <div class="searchleft">
+
+        <div class="layui-inline">
+          <input class="layui-input" name="id" id="searchID" autocomplete="off" placeholder="ID">
+        </div>
+        <div class="layui-inline">
+          <input class="layui-input" name="flight_number" id="searchFlight" autocomplete="off" placeholder="航班号">
+        </div>
+        
+        <div class="layui-inline">
+            <input type="text" value="" size="15" class="layui-input" id="go" name="go" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" placeholder="出发城市" />
+        </div>
+        <div class="layui-inline">
+            <input type="text" value="" size="15"  class="layui-input" id="arrive" name="arrive" mod="address|notice" mod_address_source="hotel"  mod_address_reference="getcityid" placeholder="到达城市" />
+        </div>
+      </div>  
       <button class="layui-btn" data-type="reload">搜索</button>
     </div>
 
@@ -35,6 +55,9 @@
       <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+      <!-- 城市选择js -->
+      <script type="text/javascript" src="__ADMIN__/cityselect/fixdiv.js"></script>
+      <script type="text/javascript" src="__ADMIN__/cityselect/address.js"></script>
     <script src="__ADMIN__/layui.js"></script>
     <script>
         //JavaScript代码区域
@@ -76,9 +99,11 @@
                     layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '添加机票'
-                        ,area: ['700px', '480px']
+                        ,area: ['700px', '500px']
                         ,shade: 0
                         ,maxmin: true
+                        ,scrollbar:true
+                        ,resize:true
                         ,content: "{:U('Tickets/addTickets')}"
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
@@ -146,7 +171,7 @@
                 layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '修改机票信息'
-                        ,area: ['700px', '480px']
+                        ,area: ['700px', '500px']
                         ,shade: 0
                         ,maxmin: true
                         ,content: "{:U('Tickets/editTickets')}?tid="+data.tid
@@ -162,6 +187,8 @@
               reload: function(){
                 var searchID = $('#searchID');
                 var searchFlight = $('#searchFlight');
+                var go = $('#go');
+                var arrive = $('#arrive');
                 // if(searchFlight.val().length != 0){
                 //   searchFlight.val("%"+searchFlight.val()+"%");
                 //   console.log(searchFlight.val());
@@ -179,7 +206,9 @@
                   ,where: {
                     arr: {
                         "t.tid": searchID.val(),
-                        "t.flight_number":searchFlight.val()
+                        "t.flight_number":searchFlight.val(),
+                        "t.go":go.val(),
+                        "t.arrive":arrive.val()
                       }
                     // ,pal:{
                     //     page:1,

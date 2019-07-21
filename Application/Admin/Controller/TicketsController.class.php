@@ -40,7 +40,7 @@ class TicketsController extends BasicController {
                 unset($get[$key]);
             }
         }
-        // echo json_encode($post);
+        // echo json_encode($get);
 
         if($get){
             // echo "due";
