@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class TicketsController extends Controller {
+class TicketsController extends BasicController {
 
     public function tickets(){
         

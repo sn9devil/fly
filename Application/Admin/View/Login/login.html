@@ -85,6 +85,8 @@
         .img {
             display: block;
             margin: 0 auto;
+            padding-top: 45px;
+            padding-bottom: 10px
         }
     </style>
 </head>
@@ -92,15 +94,15 @@
 <body class="layui-layout-body ">
     <form class="layui-form" action="{:U('postLogin')}" method="post">
         <div class="login layui-form-item">
-            <div class="login_top">
-                <img src="__ADMIN__/images/fly.png" alt="" height="55%" class="img">
+            <div class="login_top" style="box-sizing: border-box">
+                <img src="__ADMIN__/images/fly.png" alt="" height="150" class="img" style="">
                 <span>欢迎回来</span>
             </div>
             <div class="login_center">
                 <input type="text" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
                     class="layui-input">
-                <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
-                    class="layui-input">
+                <input type="password" name="password" required lay-verify="required" placeholder="密码"
+                    autocomplete="off" class="layui-input">
             </div>
             <div class="login_buttom layui-form-item">
                 <input lay-submit="" lay-filter="login_user" class="login_btn" value="Login" type="submit"></input>
@@ -117,21 +119,26 @@
             form.on('submit(login_user)', function (data) {
                 let url = "{:U('postLogin')}";
                 let post = JSON.stringify(data.field);
-                console.log(url,post);
+                console.log(url, post);
                 $.ajax({
-                    type:'post',
+                    type: 'post',
                     url: url,
-                    data: 'post=' +post,
+                    data: 'post=' + post,
                     dataType: 'json',
-                    success: function(json){
+                    success: function (json) {
                         console.log(json);
-                        if(json.status == 1){
-                            layer.msg(json.msg,function(){
-                                location.href = json.url;
-                            });
-                        }else{
-                            console.log(111);
-                            layer.msg(json.msg,function(){
+                        if (json.status == 1) {
+                            layer.msg(json.msg, {
+                                    icon: 1,
+                                    time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+                                },function () {
+                                    location.href = json.url;
+                                });
+                        } else {
+                            layer.msg(json.msg, {
+                                    icon: 2,
+                                    time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+                                }, function () {
                                 return false;
                             });
                         }

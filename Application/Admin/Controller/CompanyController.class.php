@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class CompanyController extends Controller {
+class CompanyController extends BasicController {
 
     public function company(){
         

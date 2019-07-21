@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class UsersController extends Controller {
+class UsersController extends BasicController {
 
     //获取用户信息
     public function getusersinfo(){

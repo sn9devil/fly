@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class OrdersController extends Controller {
+class OrdersController extends BasicController {
 
     public function orders(){
         

@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends BasicController {
 
     public function index(){
 
@@ -36,5 +36,14 @@ class IndexController extends Controller {
         $list = $Tickets->query($sql);
         // var_dump("拿到的".$list);
         echo json_encode($list);
+    }
+
+    //退出登录
+    public function loginOut(){
+        session('[destroy]');
+        $name = session('?admin');
+        if(isset($name)){
+            $this->redirect('Login/login');
+        }
     }
 }
