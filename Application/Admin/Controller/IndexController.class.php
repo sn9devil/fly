@@ -4,7 +4,8 @@ use Think\Controller;
 class IndexController extends BasicController {
 
     public function index(){
-
+        $name =  session('admin');
+        $this->assign('name',$name['username']);
         $this->display();		
     }
 

@@ -38,8 +38,8 @@ class UsersController extends BasicController {
         $Users = M('users');
         //注意json_decode()的第二个参数
         $post = json_decode($_GET['get'],1);
-        $Users->add(['username'=>$post['name'],'password'=>$post['password'],'phone_number'=>$post['phone'],'member'=>$post['member'],'con_id'=>0]);
-        echo  666;
+        $phone = intval($post['phone']);
+        $Users->add(['username'=>$post['name'],'password'=>$post['password'],'phone_number'=>$phone,'member'=>$post['member'],'con_id'=>0]);
     }
 
     //删除用户

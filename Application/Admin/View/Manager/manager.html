@@ -9,12 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="__ADMIN__/css/layui.css" media="all">
     <script src="__ADMIN__/jquery/jquery-3.4.1.min.js"></script>
+    <style>
+
+    </style>
 </head>
 
-<body style="padding: 15px;">
+<body style="padding: 15px; ">
     <div style="background-color: white; padding: 10px">
         <div class="demoTable">
-            搜索公司名称：
+            搜索管理员名：
             <div class="layui-inline">
                 <input class="layui-input" name="id" id="demoReload" autocomplete="off">
             </div>
@@ -22,6 +25,8 @@
         </div>
         <table class="layui-hide" id="test" lay-filter="test"></table>
     </div>
+
+
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
             <button class="layui-btn layui-btn-sm " lay-event="addUser">添加</button>
@@ -33,7 +38,6 @@
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="ticket">机票</a>
     </script>
 
 
@@ -45,42 +49,51 @@
                 form = layui.form;
             table.render({
                 elem: '#test',
-                url: "{:U('Company/getcompanyinfo')}",
+                url: "{:U('Manager/getmanagerinfo')}",
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 80,
-                title: '航空公司表',
+                title: '管理员表',
                 id: 'allUserInfoTable',
                 cols: [
                     [{
                         type: 'checkbox',
                         fixed: 'left'
                     }, {
-                        field: 'id',
+                        field: 'aid',
                         title: 'ID',
                         fixed: 'left',
                         sort: true,
                         width: '6%'
                     }, {
-                        field: 'company',
-                        title: '公司名称',
-                        sort: true,
-                        width: '10%'
+                        field: 'username',
+                        title: '用户名',
+                        width: '8%'
 
                     }, {
-                        field: 'address',
-                        title: '公司地址',
-                        width: '20%'
+                        field: 'password',
+                        title: '密码',
+                        width: '23%'
 
                     }, {
+                        field: 'sex',
+                        title: '性别',
+                        width: '6%'
+                    },{
                         field: 'phone',
-                        title: '联系方式',
-                        width: '15%'
+                        title: '手机号码',
+                        width: '13%'
 
                     }, {
-                        field: 'describe',
-                        title: '描述',
-                        width: '30%',
-                    }, {
+                        field: 'email',
+                        title: '邮箱',
+                        width: '15%',
+                    },{
+                        field: 'jointime',
+                        title: '加入时间',
+                        sort: true,
+                        width: '13%',
+                    }, 
+                    {
                         fixed: 'right',
                         title: '操作',
                         toolbar: '#barDemo',
@@ -97,10 +110,10 @@
                         layer.open({
                             type: 2,
                             resize: true,
-                            title: '添加航空公司',
-                            area: ['360px', '430px'],
+                            title: '添加管理员信息',
+                            area: ['340px', '400px'],
                             shade: 0,
-                            content: "{:U('Company/addcompany')}",
+                            content: "{:U('Manager/addmanager')}",
                             zIndex: layer.zIndex,
                             success: function (layero) {
                                 layer.setTop(layero);
@@ -108,17 +121,18 @@
                         });
                         break;
                     case 'mutDelUser':
-                        layer.confirm('确定删除这些公司?', {
+                        //批量删除管理员
+                        layer.confirm('确定删除这些管理员?', {
                             btn: ['确定', '取消']
                         }, function (index, layero) {
                             var data = checkStatus.data;
                             var list = [];
                             for (var i = 0; i < checkStatus.data.length; i++) {
-                                list[i] = data[i].id;
+                                list[i] = data[i].aid;
                             }
                             console.log(JSON.stringify(list));
                             $.ajax({
-                                url: "{:U('Company/mutdeluser')}",
+                                url: "{:U('Manager/mutdelmanager')}",
                                 type: 'post',
                                 traditional: true,
                                 data: {
@@ -126,10 +140,11 @@
                                 },
                                 dataType: 'text',
                                 success: function (json) {
-                                    layer.close(index)
-                                    layer.msg('删除成功', {
-                                        time: 800
-                                    }, function (index, layero) {
+                                    layer.close(index);
+                                    layer.msg('删除成功',{
+                                        time: 700 //0.5秒关闭（如果不配置，默认是3秒）
+                                    }, function () {
+                                        //关闭当前对话框
                                         table.reload('allUserInfoTable', {
                                             method: 'get',
                                             page: {
@@ -137,7 +152,7 @@
                                             },
                                             where: {}
                                         });
-                                    })
+                                    });
                                 }
                             });
                         });
@@ -150,12 +165,12 @@
                 var data = obj.data,
                     value = obj.value;
                 if (obj.event === 'del') {
-                    layer.confirm('确认删除？', function (index) {
+                    layer.confirm('是否删除！', function (index) {
                         $.ajax({
-                            url: "{:U('Company/delcompany')}",
+                            url: "{:U('Users/deluser')}",
                             type: 'post',
                             data: {
-                                'id': data.id,
+                                'uid': data.uid,
                             },
                             dataType: 'text',
                             success: function (json) {
@@ -174,17 +189,15 @@
                     layer.open({
                         type: 2,
                         resize: true,
-                        title: '编辑公司信息',
-                        area: ['360px', '430px'],
+                        title: '编辑管理员信息',
+                        area: ['340px', '400px'],
                         shade: 0,
-                        content: "{:U('Company/updatacompany')}?id=" + data.id,
+                        content: "{:U('Manager/updatamanager')}?aid=" + data.aid,
                         zIndex: layer.zIndex,
                         success: function (layero) {
                             layer.setTop(layero);
                         }
                     });
-                }else if(obj.event === 'ticket'){
-                    layer.msg('对应机票，正在开发...')
                 }
             });
             var $ = layui.$,
@@ -192,15 +205,13 @@
                     reload: function () {
                         var demoReload = $('#demoReload');
                         //执行重载
-                        console.log(demoReload.val());
-
                         table.reload('allUserInfoTable', {
                             method: 'get',
                             page: {
                                 curr: 1 //重新从第 1 页开始
                             },
                             where: {
-                                company: demoReload.val()
+                                username: demoReload.val()
                             }
                         });
                     }
