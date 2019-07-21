@@ -50,56 +50,7 @@
                   ,{field: 'cid', title: 'cid',hide:true}
                   ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
                 ]]
-            });   
-        //     //监听头工具栏事件
-        //     table.on('toolbar(order)', function(obj){
-        //         var checkStatus = table.checkStatus(obj.config.id);
-        //         switch(obj.event){
-        //           case 'add':
-        //             // var data = checkStatus.data;
-        //             // layer.alert(JSON.stringify(data));
-        //             layer.open({
-            //                 type: 2 //此处以iframe举例
-            //                 ,title: '添加订单'
-        //                 ,area: ['700px', '480px']
-        //                 ,shade: 0
-        //                 ,maxmin: true
-        //                 ,content: "{:U('Orders/addOrders')}"
-        //                 ,zIndex: layer.zIndex //重点1
-        //                 ,success: function(layero){
-        //                 layer.setTop(layero); //重点2
-        //                 }
-        //             });
-        //           break;
-        //           case 'multidelete':
-        //             var data = checkStatus.data;
-        //             var list = [];
-        //             //alert(data[0].tid);
-        //             for (var i = 0; i < checkStatus.data.length; i++) {
-        //               list[i] = data[i].tid;
-        //             }
-        //             console.log(JSON.stringify(list));
-        //             $.ajax({
-        //               url: "{:U('Tickets/multiDelete')}",
-        //               type: 'post',
-        //               traditional: true,
-        //               data: {array:JSON.stringify(list)},
-        //               dataType: 'json',
-        //               success: function (json) {
-        //                 layer.msg(json.msg,{time:500},function(){
-        //                   table.reload('order', {
-        //                       method: 'get',
-        //                       page: {
-        //                           curr: 1 //重新从第 1 页开始
-        //                       },
-        //                       where: {}
-        //                   });
-        //                 });
-        //               }
-        //               });
-        //           break;
-        //         };
-        //       });
+            });  
             
             //监听行工具事件
             table.on('tool(order)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"

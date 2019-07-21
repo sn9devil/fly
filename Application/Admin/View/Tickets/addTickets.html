@@ -35,27 +35,25 @@
         </div>
         
         <div class="layui-form-item">
-            <label class="layui-form-label">出发地</label>
-            <div class="layui-input-inline">
-              <select name="go">
-                <option value="">出发地</option>
-                <option value="香港" selected="">香港</option>
-                <option value="香港">香港</option>
-                <option value="香港">香港</option>
-              </select>
-            </div>
-            <label class="layui-form-label">目的地</label>
-            <div class="layui-input-inline">
-              <select name="arrive">
-                <option value="">目的地</option>
-                <option value="香港">香港</option>
-                <option value="宁波" disabled="">宁波</option>
-                <option value="温州">温州</option>
-                <option value="温州">台州</option>
-                <option value="温州">绍兴</option>
-              </select>
-            </div>
+          <label class="layui-form-label">出发地</label>
+          <div class="layui-input-inline">
+          <input type="text" value="" size="15" class="layui-input" id="homecity_name" name="go" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" />
+          </div>
+          <div class="layui-input-inline">
+            <input id="cityid" name="cityid" type="hidden" value="{$cityid}" />
+          </div>
+      </div>
+
+
+      <div class="layui-form-item">
+          <label class="layui-form-label">目的地</label>
+          <div class="layui-input-inline">
+          <input type="text" value="" size="15"  class="layui-input" id="getcity_name" name="arrive" mod="address|notice" mod_address_source="hotel"  mod_address_reference="getcityid" mod_notice_tip="中文/拼音" />
         </div>
+          <div class="layui-input-inline">
+		        <input id="getcityid" name="getcityid" type="hidden" value="{$getcityid}" />
+          </div>
+      </div>
 
         <div class="layui-form-item">
           <div class="layui-inline">
@@ -87,7 +85,7 @@
                 <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input">
               </div>
               <label class="layui-form-label">航空公司</label>
-              <div class="layui-input-inline">
+              <div class="layui-input-inline" style="width: 100px;">
                     <select name="company">
                         <volist name="company" id="data">
 
@@ -129,6 +127,10 @@
           <button class="layui-btn" lay-submit="" lay-filter="add_tickets">提交</button>
         </div>
     </form>
+
+    <!-- 城市选择js -->
+    <script type="text/javascript" src="__ADMIN__/cityselect/fixdiv.js"></script>
+    <script type="text/javascript" src="__ADMIN__/cityselect/address.js"></script>
 
     <script src="__ADMIN__/layui.js"></script>
     <script>
