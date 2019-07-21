@@ -4,7 +4,7 @@ use Think\Controller;
 class LoginController extends Controller {
 
     public function login(){
-
+        
         $this->display();		
     }
 
@@ -20,7 +20,7 @@ class LoginController extends Controller {
         if($admin){
             session('admin',$admin);
             $data = [];
-            $data['msg'] = '欢迎光临';
+            $data['msg'] = '登录成功';
             $data['status']=1;
             $data['url']=U('admin/Index/index');
             echo json_encode($data);

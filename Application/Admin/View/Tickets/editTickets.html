@@ -38,51 +38,21 @@
         <div class="layui-form-item">
             <label class="layui-form-label">出发地</label>
             <div class="layui-input-inline">
-              <select name="go" id="go">
-                <option value="">出发地</option>
-                <!-- <option value="泰国" selected="">泰国</option> -->
-                <if condition ="$ticket.go eq '泰国'">
-                    <option value="泰国" selected>泰国</option>
-                    <else />
-                    <option value="泰国">泰国</option>
-                </if>
-                <if condition ="$ticket.go eq '印度'">
-                    <option value="印度" selected>印度</option>
-                    <else />
-                    <option value="印度">印度</option>
-                </if>
-                <if condition ="$ticket.go eq '香港'">
-                    <option value="香港" selected>香港</option>
-                    <else />
-                    <option value="香港">香港</option>
-                </if>
-              </select>
+            <input type="text" value="{$ticket.go}" size="15" class="layui-input" id="homecity_name" name="go" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" mod_notice_tip="中文/拼音" />
             </div>
+            <div class="layui-input-inline">
+              <input id="cityid" name="cityid" type="hidden" value="{$cityid}" />
+            </div>
+        </div>
+  
+  
+        <div class="layui-form-item">
             <label class="layui-form-label">目的地</label>
             <div class="layui-input-inline">
-              <select name="arrive">
-                <!-- <option value="">目的地</option>
-                <option value="香港">香港</option>
-                <option value="宁波" disabled="">宁波</option>
-                <option value="温州">温州</option>
-                <option value="温州">台州</option>
-                <option value="温州">绍兴</option> -->
-                <if condition ="$ticket.arrive eq '泰国'">
-                    <option value="泰国" selected>泰国</option>
-                    <else />
-                    <option value="泰国">泰国</option>
-                </if>
-                <if condition ="$ticket.arrive eq '印度'">
-                    <option value="印度" selected>印度</option>
-                    <else />
-                    <option value="印度">印度</option>
-                </if>
-                <if condition ="$ticket.arrive eq '香港'">
-                    <option value="香港" selected>香港</option>
-                    <else />
-                    <option value="香港">香港</option>
-                </if>
-              </select>
+            <input type="text" value="{$ticket.arrive}" size="15"  class="layui-input" id="getcity_name" name="arrive" mod="address|notice" mod_address_source="hotel"  mod_address_reference="getcityid" mod_notice_tip="中文/拼音" />
+          </div>
+            <div class="layui-input-inline">
+              <input id="getcityid" name="getcityid" type="hidden" value="{$getcityid}" />
             </div>
         </div>
 
@@ -116,7 +86,7 @@
                 <input type="text" name="sprplus" placeholder="张" autocomplete="off" class="layui-input" value="{$ticket['sprplus']}" >
               </div>
               <label class="layui-form-label">航空公司</label>
-              <div class="layui-input-inline">
+              <div class="layui-input-inline" style="width: 100px;">
                   <select name="company">
                       <volist name="company" id="data">
                           <if condition ="$data['id'] eq $ticket['cid']">
@@ -144,27 +114,15 @@
                   </div>
                 </div>
         </div>
-
-        <!-- <div class="layui-form-item">
-          <label class="layui-form-label">单行选择框</label>
-          <div class="layui-input-block">
-            <select name="interest" lay-filter="aihao">
-              <option value=""></option>
-              <option value="0">写作</option>
-              <option value="1" selected="">阅读</option>
-              <option value="2">游戏</option>
-              <option value="3">音乐</option>
-              <option value="4">旅行</option>
-            </select>
-          </div>
-        </div> -->
         <div class="layui-form-item add_btn">
           <button class="layui-btn" lay-submit="" lay-filter="add_tickets">提交</button>
           <button class="layui-btn" lay-submit="" type="reset" >重置</button>
         </div>
         </volist>
     </form>
-
+  <!-- 城市选择js -->
+  <script type="text/javascript" src="__ADMIN__/cityselect/fixdiv.js"></script>
+  <script type="text/javascript" src="__ADMIN__/cityselect/address.js"></script>
     <script src="__ADMIN__/layui.js"></script>
     <script>
         console.log('{$ticket.arrive_time}');

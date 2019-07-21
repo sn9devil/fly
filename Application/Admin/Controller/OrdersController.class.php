@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class OrdersController extends Controller {
+class OrdersController extends BasicController {
 
     public function orders(){
         
@@ -48,48 +48,47 @@ class OrdersController extends Controller {
         $oid = $_GET['oid'];
         $Orders_item = M('orders_item');
 
-        $t_id = $Orders_item->field('t_id')->where('o_id = '.$oid)->buildSql();
-        // echo json_encode($t_id);
+        // $t_id = $Orders_item->field('t_id')->where('o_id = '.$oid)->buildSql();
+        // // echo json_encode($t_id);
+        // // $c_id = $Orders_item->field('c_id')->where('tid in '.$t_id)->buildSql();
+        // $Ticket = M('ticket');
+        // // $ticket = $Ticket->where('tid in '.$t_id)->select();
+        // // echo json_encode($ticket);
+        $demo = M();
+        $result = $demo->table('orders_item as o,contact as con,company as c, ticket as t')->field('t.tid,t.flight_number,t.go,t.arrive,t.date,t.go_time,t.arrive_time,con.cid,con.name,c.company')
+            ->where("o.o_id='".$oid."' and o.c_id= con.cid and o.t_id=t.tid and t.cid=c.id")
+            ->select();
+        // var_dump($result);
+        // $ticket = M('ticket as t')->join('company as c')->where('t.tid in '.$t_id.'and t.cid = c.id')->select();
 
-        $Ticket = M('ticket');
-        // $ticket = $Ticket->where('tid in '.$t_id)->select();
-        // echo json_encode($ticket);
-
-        $ticket = M('ticket as t')->join('company as c')->where('t.tid in '.$t_id.'and t.cid = c.id')->select();
         $arr = array();
         $arr['code'] = 0;
         $arr['msg']="";
-        $arr['count'] =  M('ticket as t')->join('company as c')->where('t.tid in '.$t_id.'and t.cid = c.id')->count();
-        $arr['data']=$ticket;
+        $arr['count'] =  $demo->table('orders_item as o,contact as con,company as c, ticket as t')
+        ->where("o.o_id='".$oid."' and o.c_id= con.cid and o.t_id=t.tid and t.cid=c.id")
+        ->count();
+        $arr['data']=$result;
         echo json_encode($arr);
     }
 
-    //订单-常用联系人弹窗
+    //乘客信息弹窗
     public function contactShow(){
-        $oid = $_GET['oid'];
-        $this->assign('oid',$oid);
+        $cid = $_GET['cid'];
+        $this->assign('cid',$cid);
         $this->display("contactShow");	
     }
 
-    //获取订单-常用联系人
+    //获取乘客信息
     public function getContact(){
-        $oid = $_GET['oid'];
-        $Orders_item = M('orders_item');
-
-        $c_id = $Orders_item->field('c_id')->where('o_id = '.$oid)->select();
-        echo json_encode($c_id);
-
-        // $Contact = M('contact');
-        // $contact = $Contact->where('cid in '.$c_id)->select();
-        // echo json_encode($contact);
-
-        // $ticket = M('ticket as t')->join('company as c')->where('t.tid in '.$t_id.'and t.cid = c.id')->select();
-    //     $arr = array();
-    //     $arr['code'] = 0;
-    //     $arr['msg']="";
-    //     $arr['count'] =  $Contact->where('cid in '.$c_id)->count();
-    //     $arr['data']=$contact;
-    //     echo json_encode($arr);
+        $cid = $_GET['cid'];
+        $Contact = M('contact');
+        $contact = $Contact->where("cid = ".$cid)->select();
+        $arr = array();
+        $arr['code'] = 0;
+        $arr['msg']="";
+        $arr['count'] = $Contact->where("cid = ".$cid)->count();
+        $arr['data']=$contact;
+        echo json_encode($arr);
      }
 
 

@@ -22,16 +22,54 @@
             background-color: white;
             border-radius: 5px
         }
+
+        .my_input {
+            background-color: white;
+            display: block
+        }
     </style>
 </head>
 
-<body class="layui-fluid">
-    <div class="layui-row">
-        <div class="layui-col-md12" style=" ">
-            <blockquote class="layui-elem-quote">引用区域的文字</blockquote>
+<body class="layui-fluid" style="padding: 15px;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <blockquote class="layui-elem-quote">
+                <input class="my_input" type="text" id="adminname" style="border:none;"
+                    value="欢迎您 {$name} 管理员" disabled="true">
+                <input class="my_input" type="text" id="nowtime" style="border:none; width: 300px;  margin-top: 5px"
+                    disabled="true"></input>
+            </blockquote>
         </div>
     </div>
-    <div class="layui-row layui-col-space20">
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header" style="font-size: 25px">出行量</div>
+                <div class="layui-card-body">
+                    <h4>32</h4>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header" style="font-size: 25px">访问量</div>
+                <div class="layui-card-body">
+                    <h4>281</h4>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header" style="font-size: 25px">收入</div>
+                <div class="layui-card-body">
+                    <h4>85471</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
         <div class="layui-col-md6">
             <div id="endcity"
                 style="width: 100%;height:400px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
@@ -46,11 +84,10 @@
     <div class="layui-row layui-col-space20">
         <div class="layui-col-md6">
             <div id="main"
-                style="width: 100%;height:400px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
+                style="width: 100%;height:300px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
             </div>
         </div>
     </div>
-
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
     <script type="text/javascript">
@@ -65,7 +102,8 @@
                     fontFamily: 'Microsoft YaHei',
                     fontWeight: 'normal'
                 },
-                x: 'center'
+                x: 'center',
+                top: 10
             },
             tooltip: {
                 trigger: 'item',
@@ -157,9 +195,12 @@
                 text: '出发地占比',
                 textStyle: {
                     fontFamily: 'Microsoft YaHei',
-                    fontWeight: 'normal'
+                    fontWeight: 'normal',
+                    color: '#008ACD'
                 },
-                x: 'center'
+                x: 'center',
+                top: 10
+
             },
             tooltip: {
                 trigger: 'item',
@@ -254,7 +295,8 @@
                     fontFamily: 'Microsoft YaHei',
                     fontWeight: 'normal'
                 },
-                x: 'center'
+                x: 'center',
+                top: 10
             },
             tooltip: {
                 trigger: 'axis',
@@ -314,6 +356,23 @@
             },
             error: function () {}
         });
+
+        function showTime() {
+            var t = new Date()
+            var year = t.getFullYear();
+            var month = t.getMonth();
+            var day = t.getDate();
+            var week = t.getDay();
+            var arr = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+            var hour = t.getHours();
+            var minturs = t.getMinutes();
+            var second = t.getSeconds();
+            var showtime = year + "/" + month + "/" + day + " " + arr[week] + " " + hour + ((minturs < 10) ? ":0" :
+                ":") + minturs + ((second < 10) ? ":0" : ":") + second + ((hour > 12) ? ".pm" : ".am");
+            // console.log(showtime);
+            document.getElementById("nowtime").value = "现在时间：" + showtime;
+        }
+        setInterval("showTime()", 1000);
     </script>
 </body>
 

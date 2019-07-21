@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body>
+<body style="padding: 15px; ">
     <div style="background-color: white; padding: 10px">
         <div class="demoTable">
             搜索用户名：
@@ -38,6 +38,7 @@
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="contact">常用联系人</a>
     </script>
 
 
@@ -119,29 +120,40 @@
                         });
                         break;
                     case 'mutDelUser':
-                        var data = checkStatus.data;
-                        var list = [];
-                        for (var i = 0; i < checkStatus.data.length; i++) {
-                            list[i] = data[i].uid;
-                        }
-                        console.log(JSON.stringify(list));
-                        $.ajax({
-                            url: "{:U('Users/mutdeluser')}",
-                            type: 'post',
-                            traditional: true,
-                            data: {
-                                array: JSON.stringify(list)
-                            },
-                            dataType: 'text',
-                            success: function (json) {
-                                table.reload('allUserInfoTable', {
-                                    method: 'get',
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
-                                    },
-                                    where: {}
-                                });
+                        //批量删除用户
+                        layer.confirm('确定删除这些用户?', {
+                            btn: ['确定', '取消']
+                        }, function (index, layero) {
+                            var data = checkStatus.data;
+                            var list = [];
+                            for (var i = 0; i < checkStatus.data.length; i++) {
+                                list[i] = data[i].uid;
                             }
+                            console.log(JSON.stringify(list));
+                            $.ajax({
+                                url: "{:U('Users/mutdeluser')}",
+                                type: 'post',
+                                traditional: true,
+                                data: {
+                                    array: JSON.stringify(list)
+                                },
+                                dataType: 'text',
+                                success: function (json) {
+                                    layer.close(index);
+                                    layer.msg('删除成功', {
+                                        time: 700 //0.5秒关闭（如果不配置，默认是3秒）
+                                    }, function () {
+                                        //关闭当前对话框
+                                        table.reload('allUserInfoTable', {
+                                            method: 'get',
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            },
+                                            where: {}
+                                        });
+                                    });
+                                }
+                            });
                         });
                         break;
                 };
@@ -185,6 +197,8 @@
                             layer.setTop(layero);
                         }
                     });
+                } else if (obj.event === 'contact') {
+                    layer.msg('常用联系人，正在开发...')
                 }
             });
             var $ = layui.$,

@@ -5,21 +5,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>layout 后台大布局 - Layui</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="__ADMIN__/css/layui.css">
     <meta name="renderer" content="webkit">
-    
+    <style>
+      .demoTable{
+       
+      }
+      .searchleft{
+        float: left;
+      }
+      .layui-table-tool{
+        z-index:1;
+      }
+    </style>
 </head>
 
-<body class="layui-layout-body">
+<body  style="padding: 15px;">
     <div style="background-color: white; padding: 10px">
     <div class="demoTable">
-      <div class="layui-inline">
-        <input class="layui-input" name="id" id="searchID" autocomplete="off" placeholder="ID">
-      </div>
-      <div class="layui-inline">
-        <input class="layui-input" name="flight_number" id="searchFlight" autocomplete="off" placeholder="航班号">
-      </div>
-      <button class="layui-btn" data-type="reload">搜索</button>
+      <div class="searchleft">
+
+        <div class="layui-inline">
+          <input class="layui-input" name="id" id="searchID" autocomplete="off" placeholder="ID">
+        </div>
+        <div class="layui-inline">
+          <input class="layui-input" name="flight_number" id="searchFlight" autocomplete="off" placeholder="航班号">
+        </div>
+        
+        <div class="layui-inline">
+            <input  type="text" value="" size="15" class="layui-input" id="go" name="go" mod="address|notice" mod_address_source="hotel" mod_address_suggest="" mod_address_reference="cityid" placeholder="出发城市" />
+        </div>
+        <div class="layui-inline">
+            <input type="text" value="" size="15"  class="layui-input" id="arrive" name="arrive" mod="address|notice" mod_address_source="hotel"  mod_address_reference="getcityid" placeholder="到达城市" />
+        </div>
+      </div>  
+      <button class="layui-btn" data-type="reload" style="margin-left: 1rem">搜索</button>
     </div>
 
     <table class="layui-hide" id="ticket_table" lay-filter="ticket"></table>
@@ -35,6 +56,9 @@
       <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+      <!-- 城市选择js -->
+      <script type="text/javascript" src="__ADMIN__/cityselect/fixdiv.js"></script>
+      <script type="text/javascript" src="__ADMIN__/cityselect/address.js"></script>
     <script src="__ADMIN__/layui.js"></script>
     <script>
         //JavaScript代码区域
@@ -44,7 +68,7 @@
             table.render({
                 elem: '#ticket_table'
                 ,id: 'ticket'
-                ,height: 'full-100'
+                // ,height: 'full-100'
                 ,url:'{:U("Tickets/getTickets")}'//数据接口
                 ,title: '订单表'
                 ,page: true //开启分页
@@ -63,7 +87,7 @@
                   ,{field: 'go_time', title: '出发时间', sort: true, totalRow: true,width:'10%'}
                   ,{field: 'arrive_time', title: '到达时间', sort: true, totalRow: true,width:'10%'}
                   ,{field: 'company', title: '航空公司', sort: true, totalRow: true,width:'8%'}
-                  ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
+                  ,{fixed: 'right', minWidth:'10%',align:'center', toolbar: '#barDemo'}
                 ]]
             });   
             //监听头工具栏事件
@@ -76,9 +100,11 @@
                     layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '添加机票'
-                        ,area: ['700px', '480px']
+                        ,area: ['700px', '500px']
                         ,shade: 0
                         ,maxmin: true
+                        ,scrollbar:true
+                        ,resize:true
                         ,content: "{:U('Tickets/addTickets')}"
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
@@ -146,7 +172,7 @@
                 layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '修改机票信息'
-                        ,area: ['700px', '480px']
+                        ,area: ['700px', '500px']
                         ,shade: 0
                         ,maxmin: true
                         ,content: "{:U('Tickets/editTickets')}?tid="+data.tid
@@ -162,22 +188,33 @@
               reload: function(){
                 var searchID = $('#searchID');
                 var searchFlight = $('#searchFlight');
+                var go = $('#go');
+                var arrive = $('#arrive');
+                // if(searchFlight.val().length != 0){
+                //   searchFlight.val("%"+searchFlight.val()+"%");
+                //   console.log(searchFlight.val());
+                // }
                 // var arr = {};
                 // arr.tid =  searchID.val();
                 // arr.flight_number = searchFlight.val();
                 // console.log(arr);
                 //执行重载
                 table.reload('ticket', {
-                  method: 'post',
                   page: {
                     curr: 1 //重新从第 1 页开始
+                    // ,limit:10
                   }
                   ,where: {
-                   arr: {
-                      "t.tid": searchID.val(),
-                      "t.flight_number":searchFlight.val()
-                    }
-                  // arr:arr
+                    arr: {
+                        "t.tid": searchID.val(),
+                        "t.flight_number":searchFlight.val(),
+                        "t.go":go.val(),
+                        "t.arrive":arrive.val()
+                      }
+                    // ,pal:{
+                    //     page:1,
+                    //     limit:10
+                    // }
                   }
                 });
               }
