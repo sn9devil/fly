@@ -78,7 +78,13 @@
 							<div class="layui-row text-conter">
 								<div class="layui-col-lg12">
 									<!-- 第一条 -->
-                               
+                               <form  id="formcontent" action="{:U('orderPay')}" method="GET">
+                                <input type="text" style="display: none" disabled="disabled" value="{$tid}" name="tid">
+                                <input type="text" style="display: none" disabled="disabled" value="{$ticket_type}" name="ticket_type">
+                                <input type="text" style="display: none" disabled="disabled" value="{$back_tid}" name="back_tid">
+                                <input type="text" style="display: none" disabled="disabled" value="{$back_ticket_type}" name="back_ticket_type">
+                                <input type="text" style="display: none" disabled="disabled" value="{$adult}" name="adult">
+                                <input type="text" style="display: none" disabled="disabled" value="{$children}" name="children">
                                 <for start="1" end="$num + 1" name="i">
                                     <div class="layui-row  user-selet" name=<?php echo rand(1,10000000) ?> >
 									<div class="layui-row">
@@ -86,10 +92,10 @@
 											<div class="layui-row">
 												<div class="layui-col-lg8 people-message">
 													第<span>{$i}</span>位乘客
-													<div class="selet-people" style="display:block;" name=<?php echo $w = rand(1,10000000) ?>  >
+													<div class="selet-people" style="display:block;" name={$i} >
 														选择常用乘机人
 													</div>
-													<div class="selet-check" name="st2">
+													<div class="selet-check" name={$i}>
 														<ul class="check-people">
 															<li><i class="d-icon" name="d1"></i><span class="people-name">小明</span></li>
 															
@@ -115,8 +121,9 @@
 															姓名:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text"  class="text-selet message-name" disabled="disabled"  name="username">
-														</div>ia
+															<input type="text"  class="text-selet message-name"  disabled="disabled" name="U{$i}">
+                                                            <input type="text"  class="text-selet message-cid" disabled="disabled"  name="cid[{$i}]" style="display: none">
+														</div>
 													</div>
 												</div>
 												<div class="layui-col-lg-offset1 layui-col-lg4 rw">
@@ -125,7 +132,7 @@
 															身份证:
 														</div>
 														<div class="layui-col-lg9">
-															<input type="text" class="text-selet message-id" disabled="disabled" name="usercard">
+															<input type="text" class="text-selet message-id" disabled="disabled" name="S{$i}">
 														</div>
 													</div>
 												</div>
@@ -136,7 +143,10 @@
 									<!-- 第二条end -->
 								</div>
                                 </for>
+                                 <button class="d-btn2" type="button" >提交</button>
+                            </form>
 							</div>
+                                                       
 						</div>
                     </div>
 
@@ -281,11 +291,12 @@
                         </div>
                     </volist>
                 </if>
+
 						<!-- 右内容end -->
 					</div>
 				</div>
 				<!-- 弹出框 -->
-				<form method="post" action="content.html" class="selet-form">
+				<form method="get" action="{:U('orderPay')}" class="selet-form">
 					<div class="save-text">
 						<div class="save-name">
 							<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
@@ -300,7 +311,9 @@
 						<button class="d-btn1" type="button">取消</button>
 					</div>
 				</form>
+
 				<!-- 弹出框end -->
+
 			</div>
 			<!-- 内容end -->
 			<!-- 尾部 -->
@@ -372,6 +385,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- 尾部end -->
 		</div>
 		<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
@@ -381,6 +395,12 @@
 		<script src="__HOME__/js/cityTemplate.js"></script>
 		<script src="__HOME__/js/body.js"></script>
 		<script>
+            $('.d-btn2').click(function(){
+                $('input[type="text"]').removeAttr("disabled");
+                $("#formcontent").submit();
+            })
+
+
 			/*关闭弹出框*/
 			$('.save-speople').click(function() {
 				$('.selet-form').show();
@@ -436,7 +456,6 @@
 
 			$('.selet-people').click(function() {
                 var name = $(this).attr("name");
-                alert(name);
 				$('.selet-people[name="'+name+'"]').hide();
 				$('.selet-check[name="'+name+'"]').show();
 				$('.rq').css("margin-top", "26px");
@@ -453,10 +472,12 @@
 				$('.rq').css("display", "block");
 				var username=arr[name]['name'];
 				var card=arr[name]['identity'];
+                var cid=arr[name]['cid'];
                 var name1=thisobj.parent().parent().parent().parent().parent().parent().parent().parent().attr('name');
-                alert(name1);
-				$('.user-selet[name="'+name1+'"] .message-name').val(username);
+                //alert(name1);
+				$('.user-selet[name="'+name1+'"] .message-name').attr("value",username);
 				$('.user-selet[name="'+name1+'"] .message-id').val(card);
+                $('.user-selet[name="'+name1+'"] .message-cid').val(cid);
 			}
 
             function postApi(){
@@ -483,7 +504,6 @@
                 }); 
             }
             window.onload = function(){
-                alert("www");
                     postApi();
             }
 

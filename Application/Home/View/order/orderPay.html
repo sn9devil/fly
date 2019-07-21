@@ -69,7 +69,7 @@
 						<div class="layui-col-lg12">*我们将为您保留30分钟，请在<span style="color: #D43F3A;" id="time">30:00</span>之内完成支付</div>
 						<div class="layui-col-lg12" style="color: #D43F3A;">*请检查预订信息，避免重复订票</div>
 						<div class="layui-col-lg12">我们将通过短信及邮件方式通知您订票出票成功，您的行程将在收到通知后得到确认和保障</div>
-						<div class="layui-col-lg12">订票编号:<span style="color: #D43F3A;">201944245644</span></div>
+						<div class="layui-col-lg12" id='ooid' >订票编号:<span style="color: #D43F3A;">{$ooid}</span></div>
 					</div>
 				</div>
 			</div>
@@ -91,15 +91,11 @@
 									<div class="layui-row">
 										<div class="layui-col-lg5">
 											<div class="layui-row">
+												<br>
 												<div class="layui-col-lg12 g1">
-													北京
+													{$ticket.0.go}
 												</div>
-												<div class="layui-col-lg12">
-													北京首都国际机场
-												</div>
-												<div class="layui-col-lg12">
-													T1
-												</div>
+
 											</div>
 										</div>
 										<div class="layui-col-lg2" style="position: relative;right: 14px;">
@@ -109,15 +105,11 @@
 										</div>
 										<div class="layui-col-lg5">
 											<div class="layui-row">
+												<br>
 												<div class="layui-col-lg12  g1">
-													三亚
+													{$ticket.0.arrive}
 												</div>
-												<div class="layui-col-lg12">
-													三亚凤凰国际机场
-												</div>
-												<div class="layui-col-lg12">
-													T1
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -125,15 +117,15 @@
 								<div class="layui-col-lg6" style="position: relative;top: 20px;right: 20px;">
 									<div class="layui-row">
 										<div class="layui-col-lg8">
-											2019.07.24 07:50-2019.07-24 11:50
+											{$ticket.0.date} {$ticket.0.go_time|getHourMin} -- {$ticket.0.date} {$ticket.0.arrive_time|getHourMin}
 										</div>
 										<div class="layui-col-lg4">
 											<div class="layui-row">
 												<div class="layui-col-lg1" style="position: relative;bottom: 2px;">
-													<img src="img/logo_HU.png">
+													<img src="__HOME__/img/logo_HU.png">
 												</div>
 												<div class="layui-col-lg11">
-													CN 7179 P舱
+													{$ticket.0.flight_number}
 												</div>
 											</div>
 										</div>
@@ -141,6 +133,58 @@
 								</div>
 							</div>
 						</div>
+						<!-- 返程 -->
+							<if condition="!empty($back_ticket)" >
+							<div class="layui-col-lg12">
+							<div class="layui-row" style="text-align: center;font-size: 13px;padding: 20px 0;">
+								<div class="layui-col-lg6">
+									<div class="layui-row">
+										<div class="layui-col-lg5">
+											<div class="layui-row">
+												<br>
+												<div class="layui-col-lg12 g1">
+													{$back_ticket.0.go}
+												</div>
+
+											</div>
+										</div>
+										<div class="layui-col-lg2" style="position: relative;right: 14px;">
+											<div class="to-line">
+												<i class="layui-icon layui-icon-release fly-icon"></i>
+											</div>
+										</div>
+										<div class="layui-col-lg5">
+											<div class="layui-row">
+												<br>
+												<div class="layui-col-lg12  g1">
+													{$back_ticket.0.arrive}
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-lg6" style="position: relative;top: 20px;right: 20px;">
+									<div class="layui-row">
+										<div class="layui-col-lg8">
+											{$back_ticket.0.date} {$back_ticket.0.go_time|getHourMin} -- {$back_ticket.0.date} {$back_ticket.0.arrive_time|getHourMin}
+										</div>
+										<div class="layui-col-lg4">
+											<div class="layui-row">
+												<div class="layui-col-lg1" style="position: relative;bottom: 2px;">
+													<img src="__HOME__/img/logo_HU.png">
+												</div>
+												<div class="layui-col-lg11">
+													{$back_ticket.0.flight_number}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</if>
+						<!--返程end -->
 					</div>
 					<!-- 机票信息end -->
 					<!-- 乘机人信息 -->
@@ -161,14 +205,17 @@
 					<!-- 乘机人信息end -->
 					<div class="layui-row" style="margin-top: 40px;font-size: 20px;">
 						<div class="layui-col-lg-offset8 layui-col-lg4">
-							总共价格为<span style="color: #D43F3A;font-size: 30px;">￥4500</span>
+							总共价格为<span style="color: #D43F3A;font-size: 30px;">￥{$amount}</span>
 						</div>
 					</div>
 					<div class="layui-row" style="margin-top: 40px;font-size: 20px;">
 						<div class="layui-col-lg-offset8 layui-col-lg4">
 							<div class="layui-row">
 								<div class="layui-col-lg6">
+									<form action="{:U(pay)}" method="POST">
+									<input type="text" name="ooid" style="display: none" value="{$ooid}">
 									<button class="d-btn">提交</button>
+									</form>
 								</div>
 								<div class="layui-col-lg6">
 									<button type="button" class="d-btn">取消</button>
@@ -278,18 +325,21 @@
 				// 乘机人信息
 				layui.use('table', function() {
 					var table = layui.table;
-
+					var ooid = $('#ooid > span').html();
 					//展示已知数据
 					table.render({
 						elem: '#demo',
+						url:"{:U('getOrderContact')}",
+						where:{'ooid':ooid},
+						method: 'post',
 						cols: [
 							[ //标题栏
 								 {
-									field: 'username',
+									field: 'name',
 									title: '姓名',
 									width: 170
 								}, {
-									field: 'people-type',
+									field: 'type',
 									title: '乘机人类型',
 									Width:100
 								}, {
@@ -297,25 +347,26 @@
 									title: '证件类型',
 									Width: 100
 								}, {
-									field: 'card-number',
+									field: 'identity',
 									title: '证件号码',
 									minwidth:300
-								}, {
-									field: 'money',
-									title: '价格小计',
-									width: 170
 								}
+								// , {
+								// 	field: 'money',
+								// 	title: '价格小计',
+								// 	width: 170
+								// }
 							]
 						],
-						data: [{
-								"username": "杜甫",
-								"people-type": "成人",
-								"card-type": "身份证",
-								"card-number": "440582199509084230",
-								"money": "5600",
-							}]
-							//,skin: 'line' //表格风格
-							,
+						// data: [{
+						// 		"username": "杜甫",
+						// 		"people-type": "成人",
+						// 		"card-type": "身份证",
+						// 		"card-number": "440582199509084230",
+						// 		// "money": "5600",
+						// 	}]
+						// 	//,skin: 'line' //表格风格
+						// 	,
 						even: true
 						//,page: true //是否显示分页
 						//,limits: [5, 7, 10]
