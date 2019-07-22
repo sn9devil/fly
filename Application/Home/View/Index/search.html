@@ -108,6 +108,7 @@
 					<div class="layui-row">
 						<div class="latui-col-lg12">
 							<div class="fly-title">
+								<span id="people" style="display: none" >{$people}</span>
 								已找到<span>&nbsp;{$go_sum}&nbsp;</span>个航班，请选择去程航班
 							</div>
 						</div>
@@ -563,7 +564,8 @@
 					}
 					
 				});
-				var people = getQueryVariable("people");
+				var people = $('#people').html();
+				console.log(people);
 				url += "&people=" + people;
 				window.location = url;
 			})

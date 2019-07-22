@@ -165,8 +165,6 @@ class ContactController extends PublicController {
         $Model = M();
         $Contact = M('contact');
         $check_idcard = $_POST['identity'];
-        // var_dump($check_idcard);
-        // var_dump($name);
         if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
             $list['status'] = 0;
             $list['mgs'] = "证件号码位数出错";

@@ -1,60 +1,224 @@
-<!doctype html>
-<html  class="x-admin-sm">
-<head>
-	<meta charset="UTF-8">
-	<title>用户注册</title>
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="__HOME__/css/font.css">
-    <link rel="stylesheet" href="__HOME__/css/login.css">
-	 <link rel="stylesheet" href="__HOME__/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
-
-</head>
-<body class="login-bg">
-    
-    <div class="login layui-anim layui-anim-up">
-        <div class="message">用户注册</div>
-        <div id="darkbannerwrap"></div>
-        
-        <form id="form" action="{:U('User/reg')}" method="post" class="layui-form" >
-            <input id="phone_number" name="phone_number" placeholder="手机号码"  type="text" lay-verify="required" class="layui-input" >
-            <hr class="hr15">
-            <input id="username" name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
-            <hr class="hr15">
-            
-            <input id="password" name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
-            <hr class="hr15">
-            <input id="r_password" name="r_password" lay-verify="required" placeholder="重新输入密码"  type="password" class="layui-input">
-            <hr class="hr15">
-            <input value="注册" lay-submit lay-filter="login" style="width:100%;" type="submit">
-            <hr class="hr20" >
-        </form>
-    </div>
-
-    <script>
-        $('#form').submit(function (){
-            let username = $('#username').val();
-            let phone_number = $('#phone_number').val();
-            let password = $('#password').val();
-            
-            let r_password = $('#r_password').val();
-            if(username == ''){
-                alert('用户名不能为空');
-                return false;
-            }
-            if(password !== r_password){
-                alert('两次输入的密码不一样，请重新输入。');
-                return false;
-            }
-        });
-    </script>
-
-    <script>
-
-    </script>
-</body>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="__HOME__/css/tyle.css" />
+		<link rel="stylesheet" href="__HOME__/css/body.css" />
+		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
+		<link rel="stylesheet" type="text/css" href="__HOME__/css/register.css">
+		<link rel = "stylesheet" type="text/css" href="__HOME__/font-awesome/css/font-awesome.min.css">
+	</head>
+	<body>
+		<!-- 导航栏 -->
+		<div class=" layui-fluid" style="">
+			<div class="layui-row  rt" style="background-color: #FFFfff;">
+				<div class="layui-col-lg3  bt">
+					<div class="bottom-section">
+						<img src="__HOME__/kq-logo.svg">
+						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+					</div>
+				</div>
+				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+					<div class="layui-row title-rw">
+						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+					</div>
+				</div>
+			</div>
+			<!-- 导航栏end -->
+			<!-- 内容 -->
+			<div class="layui-row">
+				<div class="layui-col-lg12">
+				    <div class="middle">
+						<form method="post" class="info" action="{:U('User/reg')}" onsubmit="return on_submit();">
+							<div class="register-list">
+								<div class="register-hd">用户注册</div>
+									<!-- <div class="item1">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>手机号：</span>
+										<input class="inputbox" type="text" name="phone" id="phone"/>
+										<label style="display:none" class="tip" id="phone_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入正确格式的手机号</span>
+										</label>
+									</div> -->
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>用户名：</span>
+										<input class="inputbox" type="text" id="username" name="username">
+										<label style="display:none" class="tip" id="username_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+										</label>
+									</div>
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>密码：</span>
+										<input class="inputbox" type="password" id="password" name="password">
+										<label style="display:none" class="tip" id="password_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入6位数字的密码</span>
+										</label>
+									</div>
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>确认密码：</span>
+										<input class="inputbox" type="password" id="password2" name="password2">
+										<label style="display:none" class="tip" id="password2_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入相同的密码</span>
+										</label>
+									</div>
+									<!-- <div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>姓名：</span>
+										<input class="inputbox" type="text" id="name" name="name">
+										<label style="display:none" class="tip" id="name_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入汉字，不少于2个！</span>
+										</label>
+									</div>
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件类型：</span>
+										<div class="sexbox">
+											<input type="radio" name="cardtype value="1" checked="checked" />居民身份证&nbsp;&nbsp;&nbsp;&nbsp;
+										</div>
+									</div>
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件号码：</span>
+										<input class="inputbox" type="text" id="idcard" name="idcard">
+										<label style="display:none" class="tip" id="idcard_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span style="color: red;position: absolute;top:90px;bottom: 0;left:50px;right: 0;width: 250px;height:0px" class="card-err"></span>
+										</label>
+									</div>
+									<div class="item">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>性别：</span>
+										<div class="sexbox">
+											<input type="radio" name="sex" value="1" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="sex" value="0"/>女
+										</div>
+									</div> -->
+									<div class="item2">
+										<label>
+											<span class="span">&nbsp;&nbsp;*</span><input type="checkbox" checked="checked" >我已阅读并理解瓦坎达航空<a href="#" class="link">《隐私条款》</a>
+										</label>
+									</div>
+								<div class="btnreg">
+										<button class="btnregister" id="button" onclick="on_submit();">立&nbsp;即&nbsp;注&nbsp;册</button>
+								</div>
+							</div>
+						</form>
+				    </div>
+				</div>
+			</div>
+			<!-- 内容end -->
+			<!-- 尾部 -->
+			<div class="layui-row">
+				<div class="layui-col-lg12 body-bottom">
+					<div class="layui-row">
+						<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="position: relative;left: 40px;">
+							<div class="layui-row" style="margin-top: 10px;">
+								<div class="layui-col-lg12">
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											其他站点
+										</div>
+										<div class="layui-col-lg3">
+											有用链接
+										</div>
+										<div class="layui-col-lg3">
+											联系我们
+										</div>
+										<div class="layui-col-lg3">
+											关注我们
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											航班通行证
+										</div>
+										<div class="layui-col-lg3">
+											隐私政策
+										</div>
+										<div class="layui-col-lg3">
+											品牌大使
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											BlueBiz
+										</div>
+										<div class="layui-col-lg3">
+											免责声明
+										</div>
+										<div class="layui-col-lg3">
+											预订政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											团体预订
+										</div>
+										<div class="layui-col-lg3">
+											昆虫杀灭
+										</div>
+										<div class="layui-col-lg3">
+											肯航管理政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 尾部end -->
+			<script>
+				$('.btnregister').click(function() {	
+					username = $("#username").val();
+					password = $("#password").val();
+					
+					$.post("{:U('User/reg')}",
+						{
+							'username':username,
+							'password':password
+						},
+						function(data){
+							var j = JSON.parse(data);
+							if(j.status == 0){
+								//失败
+								//alert(j.mgs);
+							}
+							
+						});
+					$.ajax({
+						type:'post',
+						url: url,
+						data: 'post='+post,
+						dataType: 'json',
+						success: function(json){
+							console.log(json);
+							if(json.status == 1){
+								layer.msg(json.msg,function(){
+									location.href = json.url;
+								});
+							}else{
+								layer.msg(json.msg,function(){
+									return false;
+								});
+							}
+						}
+					});
+				});
+			</script>
+			<script type="text/javascript" src="__HOME__/js/form02.js"></script>
+			<script type="text/javascript" src="__HOME__/js/yanzheng.js"></script>
+	</body>
 </html>
