@@ -39,86 +39,73 @@ class UserController extends PublicController {
 	// 用户注册
     public function reg(){
         $post = json_decode($_POST['post'], 1);
-        import('@.Controller.Contact');
-        $C = new ContactController();
+        
        
         if(!empty($post)){
             $Model = M();
-            // $sql = 'select * from users where phone_number='."'".$_POST['phone_number']."'";
-            // $phoneList = $Model->query($sql);
-            // if(!empty($phoneList)){
-            //     $this->error('对不起，你输入的手机号已经被使用了。请使用别的手机号码进行注册');
-            //     exit;
-            // }
-            $sql = 'select * from users where username='."'".$_POST['username']."'";
+    
+            $sql = 'select * from users where username='."'".$post['username']."'";
             $usernameList = $Model->query($sql);
-            var_dump($usernameList);
-            // 查找有没有重复的用户名
+           
+            $sql = 'select * from users where phone_number='."'".$post['phone_number']."'";
+            $phoneList = $Model->query($sql);
+            
             if(!empty($usernameList)){
-                $list['status'] = 0;
-                $list['mgs'] = "已存在相同的用户名";
-                echo json_encode($list);
-                return ;
+                echo json_encode(['msg'=>'已存在相同的用户名','status'=>0]);
+                return ;   
             }
-			
-            // 把用户数据插入到数据库
-            // 1.1 把数据进行整理
-            // unset($_POST['r_password']);
-            // $_POST['password'] = md5($_POST['password']);
-
-            // // 1.2 把数据插入数据库
-            // $User = M('users');
-            // $result = $User->data($_POST)->add();
+            else if(!empty($phoneList)){
+                echo json_encode(['msg'=>'已存在同样的电话','status'=>0]); 
+                return ;  
+            }
+               
             
 
-            // $sql = 'select uid from users where username='."'".$_POST['username']."'";
-            // $uidList = $Model->query($sql);
+            
+            // 把用户数据插入到数据库
+            // 1.1 把数据进行整理
+            unset($post['password2']);
+            $post['password'] = md5($post['password']);
 
-            // if(!empty($_POST['name'])  && !empty($_POST['identity'])){
-               
-            //     $Contact = M('contact');
-            //     $check_idcard = $_POST['identity'];
-            //     if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
-            //         $list['status'] = 0;
-            //         $list['mgs'] = "证件号码位数出错";
-            //         echo json_encode($list);
-            //         return ;
-            //     }else{
-            //         if($C->idcard_checksum18($check_idcard)){
-            //             // 查找有没有重复的联系人信息
-            //             $sql = 'select * from contact where name='."'".$_POST['name']."'"."and identity="."'".$check_idcard."'";
-            //             $list = $Model->query($sql);
-            //             if(!empty($list)){
-            //                 $list['status'] = 0;
-            //                 $list['mgs'] = "已存在相同的联系人信息";
-            //                 echo json_encode($list);
-            //                 return ;        
-            //             }
-            //             $type = $C->is_adult($check_idcard); 
-            //             $data['name'] = $_POST[name];
-            //             $data['type'] = $type;
-            //             $data['identity'] = $_POST[identity];
-            //             $data['uid'] = $uidList['uid'];
-            //             $Contact->data($data)->add();
+            // // 1.2 把数据插入数据库
+            $User = M('users');
+            $result = $User->data($post)->add();
 
-            //             $list['status'] = 1;
-            //             $list['mgs'] = "成功添加";
-            //             echo json_encode($list);
-            //             return ;
-            //         }else{
-            //             $list['status'] = 0;
-            //             $list['mgs'] = "证件号码填写有问题，请重新输入";
-            //             echo json_encode($list);
-            //             return ;    
-            //         }
-            //     }
-            // }
+            $sql = 'select uid from users where username='."'".$post['username']."'";
+            $uid = $Model->query($sql);
+            echo 1;
+            import('@.Controller.Contact');
+            $C = new ContactController();
 
-            // if(!empty($result)){
-            //     $this->redirect('User/login');
-            // }else{
-            //     $this->error('注册失败');
-            // }
+            $Contact = M('contact');
+            $check_idcard = $post['identity'];
+            echo $check_idcard;
+            if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
+                $sql = 'delete from users where uid='.$uid['uid'];
+                $Model->execute($sql);
+                echo json_encode(['msg'=>'证件号码不合法','status'=>0]); 
+                return ;
+            }else{
+                if($C->idcard_checksum18($check_idcard)){
+                    $type = $C->is_adult($check_idcard); 
+                    $data['name'] = $post[name];
+                    $data['type'] = $type;
+                    $data['identity'] = $post[identity];
+                    $data['uid'] = $uid['uid'];
+                    $Contact->data($data)->add();
+                    
+                }else{
+                    $sql = 'delete from users where uid='.$uid['uid'];
+                    $Model->execute($sql);
+                    echo json_encode(['msg'=>'证件号码不合法','status'=>0]); 
+                    return ;    
+                }
+            }
+            
+            echo json_encode(['msg'=>'注册成功','status'=>1]);   
+        
+            $this->redirect('User/login');
+
         }
     
     }
@@ -129,4 +116,37 @@ class UserController extends PublicController {
 		session('user', null);
 		$this->redirect('Index/index');  
     }
+
+    //个人信息
+    public function information(){
+        $Model = M();
+        $sql = 'select * from contact a left join users b on a.uid=b.uid group by a.uid';
+        $result = $Model->query($sql);
+        foreach ($result as $key => $value) {
+            if($result[$key]['member'] == 0){
+                $result[$key]['member'] = "否";
+            }else{
+                $result[$key]['member'] = "是";
+            }
+        }
+        $this->assign('result',$result);
+        $this->display();		// 模板渲染
+    }
+
+    public function getContact(){
+        $Contact = M('contact');
+        $contact = $Contact->where('uid='.session('user.uid'))->select();
+        
+        $arr = array();
+        $arr['code'] = 0;
+        $arr['count'] = $Contact->where('uid='.session('user.uid'))->count();
+        $arr['msg'] ="";
+        $arr['data'] = $contact;
+        if($contact){
+            echo json_encode($arr);
+        }
+        
+
+    }
+  
 }

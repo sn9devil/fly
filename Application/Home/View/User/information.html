@@ -15,8 +15,8 @@
 			<div class="layui-row  rt" style="background-color: #FFFfff;">
 				<div class="layui-col-lg3  bt">
 					<div class="bottom-section">
-						<img src="kq-logo.svg">
-						<img src="skyteam.svg" style="margin-left: 8px;margin-top: px;">
+						<img src="__HOME__/kq-logo.svg">
+						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
 					</div>
 				</div>
 				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
@@ -44,10 +44,10 @@
 											<div class="layui-col-lg7" style="color: #FFFFFF;padding-top: 5px;">
 												<div class="layui-row">
 													<div class="layui-col-lg12">
-														naname1587
+														{:session('user.username')}
 													</div>
 													<div class="layui-col-lg12">
-														邓满
+														
 													</div>
 													<div class="layui-col-lg12" style="margin-top: 5px;">
 														<a href="#" style="color: #FFFFFF;">退出登录</a>
@@ -69,48 +69,44 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="layui-col-lg9" style="padding-right: 25px;position: relative;right:20px ;">
 							<div class="layui-row">
 								<div class="layui-col-lg12" style="font-size: 20px;margin-top: 40px;">
-									<span style="color: #CB0402;">邓满，</span>欢迎您
+									<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
 								</div>
 							</div>
 							<!-- 账号信息 -->
 							<div class="layui-row active  st" name="u1" style="margin-left: 30px;">
+								<volist name="result" id="my">
 								<div class="latui-col-lg12 gb" style="">
 									<div class="layui-row">
 										<div class="layui-col-lg2">
 											用户名:
 										</div>
 										<div class="layui-col-lg2">
-											Nona么587
+											{$my.username}
 										</div>
 									</div>
-									<div class="layui-row">
-										<div class="layui-col-lg2">
-											常旅客卡号:
-										</div>
-										<div class="layui-col-lg2">
-											5040322851
-										</div>
-									</div>
+									
 									<div class="layui-row">
 										<div class="layui-col-lg2">
 											手机号码:
 										</div>
 										<div class="layui-col-lg2">
-											1805654175
+											{$my.phone_number}
 										</div>
 									</div>
 									<div class="layui-row">
 										<div class="layui-col-lg2">
-											电子邮箱:
+											是否会员:
 										</div>
 										<div class="layui-col-lg2">
-											****@qq.com
+											{$my.member}
 										</div>
 									</div>
 								</div>
+								</volist>
 							</div>
 							<!-- 账号信息end -->
 							<!-- 乘机人信息 -->
@@ -236,7 +232,7 @@
 			<script src="__HOME__/js/cityTemplate.js"></script>
 			<script src="__HOME__/js/body.js"></script>
 			<script type="text/html" id="sc">
-			 <a  class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;">删除</a>
+			 <a href="{:U('Contact/delete')}" class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;">删除</a>
 			</script>
 			<script>
 				// 选择
@@ -254,32 +250,22 @@
 					//展示已知数据
 					table.render({
 						elem: '#demo',
+						url:"{:U('User/getContact')}",
 						cols: [
 							[ //标题栏
+								{
+									field: 'cid',
+									title: '编号',
+									width:60	
+								},
 								 {
-									field: 'username',
+									field: 'name',
 									title: '姓名',
 									width:60	
-								}, {
-									field: 'people-type',
-									title: '类型',
-									width:60
-								}, {
-									field: 'card-type',
-									title: '证件类型',
-									width: 80
-								}, {
-									field: 'card-number',
+								},{
+									field: 'identity',
 									title: '证件号码',
 									width:200
-								}, {
-									field: 'date',
-									title: '出生日期',
-									width: 100
-								}, {
-									field: 'phone',
-									title: '电话',
-									width: 146,
 								},{
 									title:'操作',
 								    toolbar: '#sc',
@@ -287,18 +273,7 @@
 								}
 							]
 						],
-						data: [{
-								"username": "杜甫",
-								"people-type": "成人",
-								"card-type": "身份证",
-								"card-number": "440582199509084230",
-							}]
-							//,skin: 'line' //表格风格
-							,
 						even: true
-						//,page: true //是否显示分页
-						//,limits: [5, 7, 10]
-						//,limit: 5 //每页默认显示的数量
 					});
 				});
 				// 删除

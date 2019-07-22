@@ -10,7 +10,7 @@ class PublicController extends Controller {
         // 判断当前的URL地址。如果是用户登录的控制器方法，就不需要用户验证
         if(CONTROLLER_NAME != 'Index' && CONTROLLER_NAME != 'User'){
             $this->checkLogin();
-        }else if(ACTION_NAME != 'index' && ACTION_NAME != 'search' && ACTION_NAME != 'findTicket' && ACTION_NAME != 'login' && ACTION_NAME != 'postLogin' && ACTION_NAME != 'reg' && ACTION_NAME != 'register'){
+        }else if(ACTION_NAME != 'index' && ACTION_NAME != 'search' && ACTION_NAME != 'findTicket' && ACTION_NAME != 'login' && ACTION_NAME != 'postLogin' && ACTION_NAME != 'reg' && ACTION_NAME != 'register' && ACTION_NAME!= 'reg'){
             $this->checkLogin();
         }
     } 
