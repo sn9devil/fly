@@ -35,6 +35,7 @@ class IndexController extends Controller {
         $date = $_GET['date'];
         $back_date = $_GET['back_date'];
         $people = $_GET['people'];
+        $this->assign('people', $people);
         //去除参数中的中文
         $people = preg_replace('/([\x80-\xff]*)/i','',$people);
         $adult = $people[0];

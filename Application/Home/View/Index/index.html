@@ -20,6 +20,8 @@
 				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
 					<div class="layui-row title-rw">
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 						<div class="layui-col-lg3 title-lg">
 							<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
 								<a href="{:U('User/login')}">登录</a>/				
@@ -29,8 +31,6 @@
 								<a href="{:U('User/logOut')}">退出</a>
 							</if>
 						</div>
-						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 					</div>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 								<div class="layui-col-lg12 gh">
 									<volist name="oneList" id="firstRow" offset="0" length='4'>
 										<div class="layui-col-lg3 lg">
-											<a  class="ying" href="{:U('search',array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+											<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'people'=>'1成人0儿童'))}">
 												<div class="layui-col-lg12 gz">
 													<div class="layui-col-lg2">{$firstRow.go}</div>
 													<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -170,7 +170,7 @@
 										</div>
 									</volist>
 								</div>
-								<!-- <div class="layui-col-lg12 gh">
+								<div class="layui-col-lg12 gh">
 										<volist name="oneList" id="secondRow" offset="4" length='4'>
 											<div class="layui-col-lg3 lg">
 												<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
@@ -335,8 +335,8 @@
 												</volist>		
 										</div>
 						</div>
-						<div class="qh" name="city4"> -->
-								<!-- <div class="layui-col-lg12 gh">	
+						<div class="qh" name="city4">
+								<div class="layui-col-lg12 gh">	
 										<volist name="fourList" id="firstRow" offset="0" length="4">									
 											<div class="layui-col-lg3 lg">
 												<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
@@ -395,19 +395,12 @@
 														</a>
 												</div>
 											</volist>		
-									</div> -->
+									</div>
 					</div>
 					</div>
 				</div>
 			</div>
-			<!-- 	 <div class="layui-row" style="margin-top:100px">
-				    <div class="layui-col-lg-offset2  layui-col-lg8  layui-col-lg-offset2">
-				    	<div class="layui-col-lg12 gt">
-				    		<p class="ct-sp1">实惠</p>
-				    		<p class="ct-sp2">精挑细选 自在出行</p>
-				    	</div>
-					</div>
-				 </div> -->
+
 			<span class="s3" style="display: none;"></span>
 			<div class="layui-row">
 			<div class="layui-col-lg12 body-bottom">
@@ -568,6 +561,7 @@
 				}, 60);
 				btn = $('.s2').html();
 				$('.s3').html(btn);
+				$('#test2').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 			});
 			/*按钮点击end*/
 			/*传参数*/
@@ -576,11 +570,9 @@
 				window.location.href = "search.html?valus=" + selet;
 			});
 
-
 			/*传参数end*/
 			var now = new Date(); 
 			$('#test1').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
-			$('#test2').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 		</script>
 	</body>
 </html>

@@ -16,14 +16,23 @@
 					<div class="bottom-section">
 						<img src="__HOME__/kq-logo.svg">
 						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+
 					</div>
 				</div>
 				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
 					<div class="layui-row title-rw">
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+						<div class="layui-col-lg3 title-lg">
+							<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
+								<a href="{:U('User/login')}">登录</a>/				
+								<a href="{:U('User/register')}">注册</a>
+							<else/>
+								<!-- {:session('user.username')} -->
+								<a href="{:U('User/logOut')}">退出</a>
+							</if>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -108,6 +117,7 @@
 					<div class="layui-row">
 						<div class="latui-col-lg12">
 							<div class="fly-title">
+								<span id="people" style="display: none" >{$people}</span>
 								已找到<span>&nbsp;{$go_sum}&nbsp;</span>个航班，请选择去程航班
 							</div>
 						</div>
@@ -563,7 +573,8 @@
 					}
 					
 				});
-				var people = getQueryVariable("people");
+				var people = $('#people').html();
+				console.log(people);
 				url += "&people=" + people;
 				window.location = url;
 			})
