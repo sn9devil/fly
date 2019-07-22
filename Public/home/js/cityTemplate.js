@@ -17,7 +17,8 @@ inCity.place = function (e) {
 				nt.slideDown("fast");
 			  }
 		$(".end-time").addClass('nt');
-		$('.d-selet').css("left","24px");
+        $('.d-selet').css("left","24px");
+        $('.selet').css("left","56.5px");
 		$('.d-btn').css("position","relative");
 		$('.tab-b1').css("padding-bottom","100px");
 		$('.lw').css("height","430px");
@@ -41,7 +42,8 @@ inCity.destination = function (e){
 						nt.slideDown("fast");
 					  }
 		$(".end-time").addClass('nt');
-		$('.d-selet').css("left","24px");
+        $('.d-selet').css("left","24px");
+        $('.selet').css("left","56.5px");
 		$('.d-btn').css("position","relative");
 		$('.tab-b1').css("padding-bottom","100px");
 		$('.lw').css("height","430px");
