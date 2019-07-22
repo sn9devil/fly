@@ -43,14 +43,15 @@
 					<div><img src="__HOME__/img/W020190709489373897349%20(1).jpg" alt=""></div>
 				</div>
 			</div>
+		 <form action="{:U('search')}" method="get" ">
 			<div class="layui-tab">
 				<ul class="layui-tab-title">
 					<li class="layui-this">预定行程</li>
 					<li>订单管理</li>
 					<li>航空公司查询</li>
-				</ul>
-				<div class="layui-tab-content">
-					<form action="{:U('search')}" method="get" ">
+				</ul>	
+
+				<div class="layui-tab-content">	
 					<div class="layui-tab-item layui-show tab-b1">
 						<div class="go-city">
 							<div class="gc-left">出发城市:</div>
@@ -117,8 +118,10 @@
 							</div>
 						</div>
 					</div>
+					<!-- </form> -->
 				</div>
 			</div>
+		</form>
 			<div class="layui-row" style="">
 				<div class="layui-col-lg-offset2  layui-col-lg8  layui-col-lg-offset2">
 					<div class="layui-col-lg12 gt">
@@ -150,7 +153,7 @@
 								<div class="layui-col-lg12 gh">
 									<volist name="oneList" id="firstRow" offset="0" length='4'>
 										<div class="layui-col-lg3 lg">
-											<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+											<a  class="ying" href="{:U('search',array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
 												<div class="layui-col-lg12 gz">
 													<div class="layui-col-lg2">{$firstRow.go}</div>
 													<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -167,10 +170,10 @@
 										</div>
 									</volist>
 								</div>
-								<div class="layui-col-lg12 gh">
+								<!-- <div class="layui-col-lg12 gh">
 										<volist name="oneList" id="secondRow" offset="4" length='4'>
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+												<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
 													<div class="layui-col-lg12 gz">
 														<div class="layui-col-lg2">{$secondRow.go}</div>
 														<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -190,7 +193,7 @@
 								<div class="layui-col-lg12 gh">
 										<volist name="oneList" id="thirdRow" offset="8" length='4'>
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+												<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
 													<div class="layui-col-lg12 gz">
 														<div class="layui-col-lg2">{$thirdRow.go}</div>
 														<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -212,7 +215,7 @@
 										<div class="layui-col-lg12 gh">	
 											<volist name="twoList" id="firstRow" offset="0" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+													<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$firstRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -232,7 +235,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="twoList" id="secondRow" offset="4" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+														<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$secondRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -252,7 +255,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="twoList" id="thirdRow" offset="8" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+														<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$thirdRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -274,7 +277,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="threeList" id="firstRow" offset="0" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+													<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$firstRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -294,7 +297,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="threeList" id="secondRow" offset="4" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+														<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$secondRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -314,7 +317,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="threeList" id="thirdRow" offset="8" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+														<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$thirdRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -332,11 +335,11 @@
 												</volist>		
 										</div>
 						</div>
-						<div class="qh" name="city4">
-								<div class="layui-col-lg12 gh">	
+						<div class="qh" name="city4"> -->
+								<!-- <div class="layui-col-lg12 gh">	
 										<volist name="fourList" id="firstRow" offset="0" length="4">									
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'type'=>'1成人0儿童'))}">
+												<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
 														<div class="layui-col-lg12 gz">
 															<div class="layui-col-lg2">{$firstRow.go}</div>
 															<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -356,7 +359,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="fourList" id="secondRow" offset="4" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'type'=>'1成人0儿童'))}">
+													<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$secondRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -376,7 +379,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="fourList" id="thirdRow" offset="8" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'type'=>'1成人0儿童'))}">
+													<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$thirdRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -392,7 +395,7 @@
 														</a>
 												</div>
 											</volist>		
-									</div>
+									</div> -->
 					</div>
 					</div>
 				</div>
@@ -573,9 +576,11 @@
 				window.location.href = "search.html?valus=" + selet;
 			});
 
+
 			/*传参数end*/
 			var now = new Date(); 
 			$('#test1').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
+			$('#test2').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 		</script>
 	</body>
 </html>

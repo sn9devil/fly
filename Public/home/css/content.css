@@ -80,7 +80,24 @@
 	background: url(../img/radio-off.png) no-repeat;
 	cursor: pointer;
 }
-
+.d-btn2{
+	display: none;
+ 	font-size: 14px;
+     width: 180px;
+     height: 40px;
+     line-height: 40px;
+ 	background-color: #cb0303;
+     -webkit-border-radius: 20px 0;
+     -moz-border-radius: 20px 0;
+     border-radius: 20px 0;
+     font-size: 16px;
+     color: #fff;
+     border: none;
+     cursor: pointer;
+	 outline: none;
+	 position: relative;
+	 left: 600px;
+}
 .selet-check {
 	box-sizing: content-box;
 	position: absolute;
@@ -125,6 +142,7 @@
 
 .rq {
 	padding: 10px;
+	display: none;
 }
 /*左内容end*/
 /* 右内容 */
@@ -160,8 +178,8 @@
 .selet-form{
 	box-sizing: content-box;
 	position: absolute;
-	top: 400px;
-	left: 700px;
+	top: 200px;
+	left: 300px;
 	padding: 5px 0;
 	width: 400px;
 	max-height: 300px;

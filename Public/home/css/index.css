@@ -103,7 +103,7 @@ body{
     cursor: pointer;
 	position: absolute;
 	top: 54px;
-	left: 325.5px;
+	left: 309px;
 }
 /*面板1end*/
 /*面板2*/
@@ -310,7 +310,7 @@ body{
 .layui-laydate{
 	position: absolute!important;
 	width:620px;
-	top:87.6%!important;
+	top:90.5%!important;
 	left: 20.6%!important;
 }
 /*日期选择end*/
@@ -321,7 +321,7 @@ body{
 	height: 80px;
 	background: #FFFFFF;
 	position: absolute;
-	left:33.5px;
+	left:32.5px;
 	top:50.6px;
     padding-top: 15px;
     margin-top: 0px;
@@ -399,9 +399,9 @@ body{
 #cont{
 	margin-left: 40px;
 }
-.layui-carousel-ind {
-	top: -60px!important;
-}
+/* .layui-carousel-ind {
+	top:0px!important;
+} */
 .cont-tab{
 	background: #fff;
     padding-top: 27px;
