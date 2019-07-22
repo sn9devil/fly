@@ -30,7 +30,11 @@ class OrderController extends PublicController {
         $this->display();		
     }
 
-    public function search(){
+    public function orders(){
+        $this->display();
+    }
+
+    public function searchOrders(){
 
         $uid = session('user.uid');         
         $Orders = M('orders');
@@ -38,15 +42,15 @@ class OrderController extends PublicController {
         $all = [];
         $order_id = [];
 
-        // 通不get方法获取参数
-        $d = empty($_GET['d'])? 0: $_GET['d'];          // 当前目录ID
-        $p = empty($_GET['p'])? 1: $_GET['p'];          // 当前分页码
-        $count = count($Orders->distinct(true)->field('ooid')->select());// 查询满足要求的总记录数
+        // // 通不get方法获取参数
+        // $d = empty($_GET['d'])? 0: $_GET['d'];          // 当前目录ID
+        // $p = empty($_GET['p'])? 1: $_GET['p'];          // 当前分页码
+        // $count = count($Orders->distinct(true)->field('ooid')->select());// 查询满足要求的总记录数
 
-        $order_list = $Orders->where(['uid'=>$uid])->page($p.',2') ->order('ctime desc')->select();
-        $Page  = new \Think\Page($count,2);// 实例化分页类 传入总记录数和每页显示的记录数
-        $show = $Page->show();// 分页显示输出
-
+        // $order_list = $Orders->where(['uid'=>$uid])->page($p.',2') ->order('ctime desc')->select();
+        // $Page  = new \Think\Page($count,2);// 实例化分页类 传入总记录数和每页显示的记录数
+        // $show = $Page->show();// 分页显示输出
+        $order_list = $Orders->where(['uid'=>$uid])->order('ctime desc')->select();
         foreach($order_list as $key => $value){
             $order_id[] = array('oid'=>$value['oid'],'status'=>$value['status'],'num'=>$value['num']);
         }
@@ -54,22 +58,35 @@ class OrderController extends PublicController {
         foreach($order_id as $key => $value){
             $ticket['travel'] = '';
             $ticket['date'] = '';
-            $result = $demo->table('orders_item a,ticket b')
-                ->where('a.t_id = b.tid and a.o_id ="'.$value['oid'].'"')
-                ->field('go,arrive,date')
+            $result = $demo->table('orders_item a,ticket b,orders as o')
+                ->where('a.t_id = b.tid and o.oid=a.o_id and a.o_id ="'.$value['oid'].'"')
+                ->field('go,arrive,date,ooid,amount')
                 ->group('b.tid')
                 ->select();
             foreach($result as $k => $v){
                 $ticket['travel'] .= '<p>'.$v['go'].'--'.$v['arrive'].'</p>';
                 $ticket['date'] .= '<p>'.$v['date'].'</p>';
- 
+                $ticket['ooid'] = $v['ooid'];
+                $ticket['amount'] = $v['amount'];
             }
-            $all []=array($value['oid'],$ticket['travel'],$ticket['date'],$value['status'],$value['num']);
+            if($value['status'] == 0){
+                $value['status'] = '未支付';
+            }else if($value['status'] == 1){
+                $value['status'] = '已支付';
+            }else{
+                $value['status'] = "取消订单";
+            }
+            
+            $all []=array('ooid'=>$ticket['ooid'],'travel'=>$ticket['travel'],'date'=>$ticket['date'],'status'=>$value['status'],'num'=>$value['num'],'amount'=>$ticket['amount']);
         }
-
-        $this->assign('list', $all);
-        $this->assign('page',$show);// 赋值分页输出
-        $this->display();           
+        $data['code'] = 0;
+        $data['data'] = $all;
+        echo json_encode($data);
+        // echo '<pre>';
+        // var_dump($all);
+        // $this->assign('list', $all);
+        // // $this->assign('page',$show);// 赋值分页输出
+        // $this->display();           
 
     }
 

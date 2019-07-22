@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="__HOME__/css/tyle.css" />
+		<link rel="stylesheet" href="__HOME__/css/body.css" />
+		<link rel="stylesheet" href="__HOME__/css/payandinformation.css" />
+		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
+	</head>
+	<body>
+		<!-- 表格高度自适应 -->
+		<style>
+		  .layui-table-cell{
+		      display:table-cell;
+		      vertical-align: middle;
+		  }
+		</style>
+	   <!-- 导航栏 -->
+	   <div class=" layui-fluid" style="">
+	   	<div class="layui-row  rt" style="background-color: #FFFfff;">
+	   		<div class="layui-col-lg3  bt">
+					<a href="{:U('Index/index')}">
+					<div class="bottom-section">
+						<img src="__HOME__/kq-logo.svg">
+						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+					</div>
+					</a>
+	   		</div>
+	   		<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+	   			<div class="layui-row title-rw">
+	   				<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+	   				<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+	   				<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+					<div class="layui-col-lg3 title-lg">
+					<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
+						<a href="{:U('User/login')}">登录</a>/				
+						<a href="{:U('User/register')}">注册</a>
+					<else/>
+						<!-- {:session('user.username')} -->
+						<a href="{:U('User/logOut')}">退出</a>
+					</if>
+				</div>
+	   			</div>
+	   		</div>
+	   	</div>
+	   	<!-- 导航栏end -->
+		<!-- 内容 -->
+		  <!-- 主体 -->
+		  <div class="layui-row">
+		  	<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2 ct-bg" style="height: 400px;">
+		  		<!-- 乘机人信息 -->
+		  		<div class="layui-row">
+		  			<div class="layui-row">
+		  				<div class="layui-col-lg12 plane-message">
+		  					<span style="position: relative;left: 10px;">订单管理</span>
+		  				</div>
+		  			</div>
+		  			<div class="layui-row col" style="position: relative;top: 20px;">
+		  				<div class="layui-col-lg12">
+		  					<table class="layui-hide" id="demo">
+		  
+		  					</table>
+		  				</div>
+		  			</div>
+		  		</div>
+		  		
+		  	</div>
+		  </div>
+		  <!-- 主体end -->
+		  <!-- 内容end -->
+		<!-- 内容end -->
+		<!-- 尾部 -->
+		<div class="layui-row">
+			<div class="layui-col-lg12 body-bottom">
+				<div class="layui-row">
+					<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="position: relative;left: 40px;">
+						<div class="layui-row" style="margin-top: 10px;">
+							<div class="layui-col-lg12">
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										其他站点
+									</div>
+									<div class="layui-col-lg3">
+										有用链接
+									</div>
+									<div class="layui-col-lg3">
+										联系我们
+									</div>
+									<div class="layui-col-lg3">
+										关注我们
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										航班通行证
+									</div>
+									<div class="layui-col-lg3">
+										隐私政策
+									</div>
+									<div class="layui-col-lg3">
+										品牌大使
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										BlueBiz
+									</div>
+									<div class="layui-col-lg3">
+										免责声明
+									</div>
+									<div class="layui-col-lg3">
+										预订政策
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										团体预订
+									</div>
+									<div class="layui-col-lg3">
+										昆虫杀灭
+									</div>
+									<div class="layui-col-lg3">
+										肯航管理政策
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 尾部end -->
+		<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
+		<script src="__HOME__/js/unslider.min.js"></script>
+		<script src="__HOME__/js/layui.js"></script>
+		<script src="__HOME__/js/layui.all.js"></script>
+		<script src="__HOME__/js/cityTemplate.js"></script>
+		<script src="__HOME__/js/body.js"></script>
+		<script>
+		layui.use('table', function() {
+				var table = layui.table;
+		
+				//展示已知数据
+				table.render({
+					elem: '#demo',
+					url:"{:U('searchOrders')}",
+					cols: [
+						[ //标题栏
+							 {
+								field: 'ooid',
+								title: '订单号',
+								width: 300
+							}, {
+								field: 'travel',
+								title: '行程',
+								Width:100
+							}, {
+								field: 'date',
+								title: '时间',
+								Width: 100
+							}, {
+								field: 'num',
+								title: '票数',
+								minwidth:100
+							}, {
+								field: 'amount',
+								title: '金额',
+								width: 170
+							}, {
+								field: 'status',
+								title: '支付状态',
+								width: 170
+							}
+						]
+					],
+					data: [{
+							"username": "杜甫",
+							"people-type": "成人",
+							"card-type": "身份证",
+							"card-number": "440582199509084230",
+							"money": "5600",
+						}]
+						//,skin: 'line' //表格风格
+						,
+					even: true
+					//,page: true //是否显示分页
+					//,limits: [5, 7, 10]
+					//,limit: 5 //每页默认显示的数量
+				});
+			});
+		</script>
+	</body>
+</html>

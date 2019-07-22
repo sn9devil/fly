@@ -92,6 +92,17 @@ class UsersController extends BasicController {
         $this->display();
     }
 
+    public function updataContactInfo(){
+        $Contact = M('contact');
+        $get = json_decode($_GET['get'],1);
+        $cid = $get['cid'];
+        $newdata['name'] = $get['name'.$cid];
+        $newdata['type'] = $get['type'.$cid];
+        $newdata['identity'] = $get['identity'.$cid];
+        $Contact->where('cid ='.$cid)->save($newdata);
+        echo "更新常用联系人成功";  
+    }
+
     public function users(){
         $this->display();
     }
