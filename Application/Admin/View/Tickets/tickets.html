@@ -10,7 +10,7 @@
     <meta name="renderer" content="webkit">
     <style>
       .demoTable{
-       
+          
       }
       .searchleft{
         float: left;
@@ -52,7 +52,7 @@
     </script>
     <!-- 右侧工具栏 -->
     <script type="text/html" id="barDemo">
-      <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+      <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
       <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
@@ -87,7 +87,7 @@
                   ,{field: 'go_time', title: '出发时间', sort: true, totalRow: true,width:'10%'}
                   ,{field: 'arrive_time', title: '到达时间', sort: true, totalRow: true,width:'10%'}
                   ,{field: 'company', title: '航空公司', sort: true, totalRow: true,width:'8%'}
-                  ,{fixed: 'right', minWidth:'10%',align:'center', toolbar: '#barDemo'}
+                  ,{fixed: 'right',align:'center', toolbar: '#barDemo'}
                 ]]
             });   
             //监听头工具栏事件
