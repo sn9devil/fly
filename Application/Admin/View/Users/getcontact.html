@@ -1,3 +1,17 @@
+<?php
+$name = "";
+function getmyrandom(){
+    $name = rand(0,10);
+
+    echo (string)$name;
+}
+
+function gettwo(){
+
+    echo (string)$name;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -25,24 +39,26 @@
 </head>
 
 <body>
-    <form class="layui-form" action="">
-        <volist id="list" name="list">
+    <volist id="list" name="list">
+        <form class="layui-form" action="">
             <fieldset class="layui-elem-field">
                 <legend>常用联系人ID：{$list.cid}</legend>
                 <div class="layui-field-box">
                     <div class="layui-form-item">
                         <label class="layui-form-label">乘客名字：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入名字"
-                                id="name" class="layui-input" style="width:50%" value="{$list.name}">
+                            <input type="text" name="name{$list.cid}" lay-verify="name" autocomplete="off"
+                                placeholder="请输入名字" id="name" class="layui-input" style="width:50%"
+                                value="{$list.name}">
                         </div>
 
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">身份证：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="identity" lay-verify="pass" placeholder="请输入密码" id="identity"
-                                autocomplete="off" class="layui-input" style="width:80%" value="{$list.identity}">
+                            <input type="text" name="identity{$list.cid}" lay-verify="pass" placeholder="请输入密码"
+                                id="identity" autocomplete="off" class="layui-input" style="width:80%"
+                                value="{$list.identity}">
                         </div>
                     </div>
 
@@ -50,32 +66,33 @@
                         <label class="layui-form-label">类型：</label>
                         <div class="layui-input-block" id="type">
                             <if condition="$list.type eq 1">
-                                <input type="radio" name="type" value="1" title="成年xx" checked>
-                                <input type="radio" name="type" value="0" title="儿童">
-                                <else/>
-                                <input type="radio" name="type2" value="1" title="成年yy">
-                                <input type="radio" name="type2" value="0" title="儿童" checked>
+                                <input type="radio" value="1" title="成年" checked id="check1" name=type{$list.cid}>
+                                <input type="radio" value="0" title="儿童" id="check2" name=type{$list.cid}>
+                                <else />
+                                <input type="radio" value="1" title="成年" id="check1" name=type{$list.cid}>
+                                <input type="radio" value="0" title="儿童" checked id="check2" name=type{$list.cid}>
                             </if>
-                            <!-- {$list.type} -->
                         </div>
                     </div>
-
+                    <div class="layui-form-item add_btn">
+                        <div class="layui-input-block" style="margin-left: 0px; float: right">
+                            <button class="layui-btn" lay-submit="" lay-filter="save_contact">保存</button>
+                        </div>
+                    </div>
                 </div>
-
             </fieldset>
-        </volist>
-    </form>
-    <div class="layui-form-item add_btn">
-        <div class="layui-input-block" style="margin-left: 0px; float: right">
-            <button class="layui-btn" lay-submit="" lay-filter="save_contact">保存</button>
-        </div>
-    </div>
+        </form>
+    </volist>
+
+
+
     <script>
+
         layui.use(['form', 'layedit', 'laydate'], function () {
             var form = layui.form;
             form.on('submit(save_contact)', function (data) {
-                let get = JSON.stringify(data.field);
-                console.log(get);
+                // let get = JSON.stringify(data.field);
+                console.log(data);
                 // $.ajax({
                 //     type: 'get',
                 //     url: "{:U('Users/adduserinfo')}",
@@ -98,10 +115,6 @@
                 return false;
             });
         });
-
-        function rendem(){
-            return Math.floor(Math.random());
-        }
     </script>
 
 </body>

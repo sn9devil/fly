@@ -34,8 +34,8 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <blockquote class="layui-elem-quote">
-                <input class="my_input" type="text" id="adminname" style="border:none;"
-                    value="欢迎您 {$name} 管理员" disabled="true">
+                <input class="my_input" type="text" id="adminname" style="border:none;" value="欢迎您 {$name} 管理员"
+                    disabled="true">
                 <input class="my_input" type="text" id="nowtime" style="border:none; width: 300px;  margin-top: 5px"
                     disabled="true"></input>
             </blockquote>
@@ -45,25 +45,25 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 25px">出行量</div>
+                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">出行量</div>
                 <div class="layui-card-body">
-                    <h4>32</h4>
+                    <div style="font-size: 30px; padding: 10px; color: #666666">32</div>
                 </div>
             </div>
         </div>
         <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 25px">访问量</div>
+                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">访问量</div>
                 <div class="layui-card-body">
-                    <h4>281</h4>
+                    <div style="font-size: 30px; padding: 10px; color: #666666">235</div>
                 </div>
             </div>
         </div>
         <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 25px">收入</div>
+                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">收入</div>
                 <div class="layui-card-body">
-                    <h4>85471</h4>
+                    <div style="font-size: 30px; padding: 10px;  color: #666666">748516</div>
                 </div>
             </div>
         </div>
@@ -186,7 +186,7 @@
                     }]
                 });
             },
-            error: function () {}
+            error: function () { }
         });
 
         var startCityChat = echarts.init(document.getElementById('startcity'), 'roma');
@@ -283,7 +283,7 @@
                     }]
                 });
             },
-            error: function () {}
+            error: function () { }
         });
 
 
@@ -354,7 +354,7 @@
                     }]
                 });
             },
-            error: function () {}
+            error: function () { }
         });
 
         function showTime() {
