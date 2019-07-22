@@ -94,7 +94,6 @@ function gettwo(){
             ,layer = layui.layer;
             form.on('submit(save_contact)', function (data) {
                 let get = JSON.stringify(data.field);
-                console.log(get);
                 $.ajax({
                     type: 'get',
                     url: "{:U('Users/updataContactInfo')}",
