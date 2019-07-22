@@ -164,7 +164,7 @@
                 var data = obj.data,
                     value = obj.value;
                 if (obj.event === 'del') {
-                    layer.confirm('真的删除行么', function (index) {
+                    layer.confirm('是否删除！', function (index) {
                         $.ajax({
                             url: "{:U('Users/deluser')}",
                             type: 'post',
@@ -198,7 +198,18 @@
                         }
                     });
                 } else if (obj.event === 'contact') {
-                    layer.msg('常用联系人，正在开发...')
+                    layer.open({
+                        type: 2,
+                        resize: true,
+                        title: '该用户的联系人（乘客）',
+                        area: ['600px', '360px'],
+                        shade: 0,
+                        content: "{:U('Users/getcontact')}?uid=" + data.uid,
+                        zIndex: layer.zIndex,
+                        success: function (layero) {
+                            layer.setTop(layero);
+                        }
+                    });
                 }
             });
             var $ = layui.$,

@@ -2,16 +2,16 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
-    <link rel="stylesheet" href="__ADMIN__/css/layui.css">
-    <meta name="renderer" content="webkit">
-    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="__ADMIN__/css/layui.css">
+  <meta name="renderer" content="webkit">
+
 </head>
 
-<body  style="padding: 15px;">
-    <div style="background-color: white; padding: 10px">
+<body style="padding: 15px;">
+  <div style="background-color: white; padding: 10px">
     <div class="demoTable">
       搜索订单号：
       <div class="layui-inline">
@@ -21,176 +21,224 @@
     </div>
 
     <table class="layui-hide" id="order_table" lay-filter="order"></table>
-    </div>
-    <!-- 头部工具栏 -->
-    <!-- <script type="text/html" id="toolbarDemo">
+
+  </div>
+  <!-- 复选框
+  <script type="text/html" id="checkboxTpl">
+      <input type="checkbox" name="lock" value="{{d.status}}" title="已支付" lay-filter="lockDemo" {{ d.status == 1 ? 'checked' : '' }}>
+    </script> -->
+
+
+  <!-- 头部工具栏 -->
+  <!-- <script type="text/html" id="toolbarDemo">
         <div class="layui-inline" title="添加" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>
         <div class="layui-inline" title="批量删除" lay-event="multidelete"><i class="layui-icon layui-icon-delete"></i></div>
     </script> -->
-    <!-- 右侧工具栏 -->
-    <script type="text/html" id="barDemo">
+  <!-- 右侧工具栏 -->
+  <script type="text/html" id="barDemo">
       <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
       <!-- <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a> -->
-      <a class="layui-btn layui-btn-xs " lay-event="">保存</a>
+      <a class="layui-btn layui-btn-xs " lay-event="save">保存</a>
       <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="ticketsShow">机票详情</a>
       <!-- <a class="layui-btn layui-btn-xs  layui-btn-normal" lay-event="contactShow">常用联系人</a> -->
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-    <script src="__ADMIN__/layui.js"></script>
-    <script>
-        //JavaScript代码区域
-        layui.use('table', function () {
-            var table = layui.table;
-
-            table.render({
-                elem: '#order_table'
-                ,id: 'order'
-                ,height: 420
-                ,url:'{:U("Orders/getOrders")}'//数据接口
-                ,title: '订单表'
-                ,page: true //开启分页
-                ,toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-                ,totalRow: true //开启合计行
-                ,cols: [[ //表头
-                  {type: 'checkbox', fixed: 'left'}
-                  ,{field: 'oid', title: 'ID',width:'5%',sort: true, fixed: 'left', totalRowText: '合计：'}
-                  ,{field: 'ooid', title: '订单单号',width:'8%', totalRow: true}
-                  ,{field: 'num', title: '机票总数', sort: true, totalRow: true,width:'8%'}
-                  ,{field: 'amount', title: '订单总价', sort: true,width:'10%'}
-                  ,{field: 'ctime', title: '创建时间', sort: true, totalRow: true,width:'15%'}
-                  ,{field: 'status', title: '订单状态',width:'15%',templet:function(res){if(res.status == 1){return "已支付"}else{return "未支付"}}} 
-                  ,{field: 'username', title: '用户',width:'15%'}
-                  ,{fixed: 'right', align:'center', toolbar: '#barDemo'}
-                ]]
-            });   
-            //监听头工具栏事件
-            table.on('toolbar(order)', function(obj){
-                var checkStatus = table.checkStatus(obj.config.id);
-                switch(obj.event){
-                  case 'add':
-                    // var data = checkStatus.data;
-                    // layer.alert(JSON.stringify(data));
-                    layer.open({
-                        type: 2 //此处以iframe举例
-                        ,title: '添加订单'
-                        ,area: ['700px', '480px']
-                        ,shade: 0
-                        ,maxmin: true
-                        ,content: "{:U('Orders/addOrders')}"
-                        ,zIndex: layer.zIndex //重点1
-                        ,success: function(layero){
-                        layer.setTop(layero); //重点2
+  <script src="__ADMIN__/layui.js"></script>
+  <script>
+    //JavaScript代码区域
+    layui.use('table', function () {
+      var table = layui.table
+        , form = layui.form;
+      table.render({
+        elem: '#order_table'
+        , id: 'order'
+        , height: 420
+        , url: '{:U("Orders/getOrders")}'//数据接口
+        , title: '订单表'
+        , page: true //开启分页
+        , toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+        , totalRow: true //开启合计行
+        , cols: [[ //表头
+          { type: 'checkbox', fixed: 'left' }
+          , { field: 'oid', title: 'ID', width: '5%', sort: true, fixed: 'left', totalRowText: '合计：' }
+          , { field: 'ooid', title: '订单单号', width: '8%', totalRow: true }
+          , { field: 'num', title: '机票总数', sort: true, totalRow: true, width: '8%' }
+          , { field: 'amount', title: '订单总价', sort: true, width: '10%' }
+          , { field: 'ctime', title: '创建时间', sort: true, totalRow: true, width: '15%' }
+          , { field: 'status', title: '订单状态', width: '15%',templet:function(row){
+                        // var html = "<input type='checkbox' lay-skin='primary' lay-filter='checkboxIsSelected' table-index='"+row.LAY_TABLE_INDEX+"' class='checkboxIsSelected' value='1' ";
+                        // if(row.status== 1){
+                        //     html += " checked ";
+                        // }
+                        // html += ">";
+                        // return html;
+                        var html = "<input type='checkbox' name='lock' value='"+row.status+"' title='已支付' lay-filter='lockDemo' table-index='"+row.LAY_TABLE_INDEX+"' ";
+                        if(row.status== 1){
+                            html += " checked ";
                         }
-                    });
-                  break;
-                  case 'multidelete':
-                    var data = checkStatus.data;
-                    var list = [];
-                    //alert(data[0].tid);
-                    for (var i = 0; i < checkStatus.data.length; i++) {
-                      list[i] = data[i].tid;
-                    }
-                    console.log(JSON.stringify(list));
-                    $.ajax({
-                      url: "",
-                      type: 'post',
-                      traditional: true,
-                      data: {array:JSON.stringify(list)},
-                      dataType: 'json',
-                      success: function (json) {
-                        layer.msg(json.msg,{time:500},function(){
-                          table.reload('order', {
-                              method: 'get',
-                              page: {
-                                  curr: 1 //重新从第 1 页开始
-                              },
-                              where: {}
-                          });
-                        });
-                      }
-                      });
-                  break;
-                };
-              });
-            
-            //监听行工具事件
-            table.on('tool(order)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-              var data = obj.data //获得当前行数据
-              ,layEvent = obj.event; //获得 lay-event 对应的值
-              if(layEvent === 'detail'){
-                layer.msg('查看操作');
-              } else if(layEvent === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                  //向服务端发送删除指令
-                  $.ajax({
-                      url: "{:U('Orders/deleteOrders')}",
-                      type: 'post',
-                      data: {
-                          'oid': data.oid,
-                      },
-                      dataType: 'json',
-                      success: function (json) {
-                        layer.msg(json.msg,{time:500},function(){
-                          obj.del(); //删除对应行（tr）的DOM结构
-                          layer.close(index);
-                        });
-                      }
-                  });
-                });
-              } else if(layEvent === 'ticketsShow'){
-                layer.open({
-                        type: 2 //此处以iframe举例
-                        ,title: '机票信息'
-                        ,area: ['1000px', '480px']
-                        ,shade: 0
-                        ,scrollbar:true
-                        ,maxmin: true
-                        ,content: "{:U('Orders/ticketsShow')}?oid="+data.oid
-                        ,zIndex: layer.zIndex //重点1
-                        ,success: function(layero){
-                        layer.setTop(layero); //重点2
+                        html += ">";
+                        return html;
+              }}
+          , { field: 'username', title: '用户', width: '15%' }
+          , { fixed: 'right', align: 'center', toolbar: '#barDemo' }
+        ]]
+        ,done: function (obj) {
+                    console.log(obj);
+                    form.on('checkbox(lockDemo)', function(data){
+                      console.log(data);
+                        var _index = $(data.elem).attr('table-index')||0;
+                        console.log(_index);
+                          if(data.elem.checked){
+                           obj.data[_index].status = 1;
+                        }else{
+                           obj.data[_index].status = 2;
                         }
-                    });
-              }else if(layEvent === 'contactShow'){
-                layer.open({
-                        type: 2 //此处以iframe举例
-                        ,title: '常用联系人信息'
-                        ,area: ['700px', '480px']
-                        ,shade: 0
-                        ,maxmin: true
-                        ,content: "{:U('Orders/contactShow')}?oid="+data.oid
-                        ,zIndex: layer.zIndex //重点1
-                        ,success: function(layero){
-                        layer.setTop(layero); //重点2
-                        }
-                    });
+                    });   
+                    
+                }
+      });
+      //监听头工具栏事件
+      table.on('toolbar(order)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        switch (obj.event) {
+          case 'add':
+            // var data = checkStatus.data;
+            // layer.alert(JSON.stringify(data));
+            layer.open({
+              type: 2 //此处以iframe举例
+              , title: '添加订单'
+              , area: ['700px', '480px']
+              , shade: 0
+              , maxmin: true
+              , content: "{:U('Orders/addOrders')}"
+              , zIndex: layer.zIndex //重点1
+              , success: function (layero) {
+                layer.setTop(layero); //重点2
               }
             });
-  
-            var $ = layui.$, active = {
-              reload: function(){
-                var demoReload = $('#demoReload');
-                //执行重载
+            break;
+        };
+      });
+
+      //监听行工具事件
+      table.on('tool(order)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        var data = obj.data //获得当前行数据
+          , layEvent = obj.event; //获得 lay-event 对应的值
+        if (layEvent === 'detail') {
+          layer.msg('查看操作');
+        } else if (layEvent === 'del') {
+          layer.confirm('真的删除行么', function (index) {
+            //向服务端发送删除指令
+            $.ajax({
+              url: "{:U('Orders/deleteOrders')}",
+              type: 'post',
+              data: {
+                'oid': data.oid,
+              },
+              dataType: 'json',
+              success: function (json) {
+                layer.msg(json.msg, { time: 500 }, function () {
+                  obj.del(); //删除对应行（tr）的DOM结构
+                  layer.close(index);
+                });
+              }
+            });
+          });
+        } else if (layEvent === 'ticketsShow') {
+          layer.open({
+            type: 2 //此处以iframe举例
+            , title: '机票信息'
+            , area: ['1000px', '480px']
+            , shade: 0
+            , scrollbar: true
+            , maxmin: true
+            , content: "{:U('Orders/ticketsShow')}?oid=" + data.oid
+            , zIndex: layer.zIndex //重点1
+            , success: function (layero) {
+              layer.setTop(layero); //重点2
+            }
+          });
+        } else if (layEvent === 'save') {
+          //保存-----------------------
+          let url = "{:U('save')}";
+          // var tr = obj.tr;
+          // console.log(tr);
+          // let status = data.status;
+          // var post={};
+          // post.oid = data.oid;
+          // post.status = data.status;
+          console.log(data.status);
+
+          $.ajax({
+            type: 'post',
+            url: url,
+            // data: 'post=' +post,
+            data: {
+              post: {
+                oid: data.oid,
+                status: data.status
+              }
+            },
+
+            dataType: 'json',
+            success: function (json) {
+              layer.msg(json.msg, { time: 500 }, function () {
                 table.reload('order', {
-                  method: 'post',
+                  method: 'get',
                   page: {
                     curr: 1 //重新从第 1 页开始
-                  }
-                  ,where: {
-                   key: {
-                      ooid: demoReload.val()
-                    }
-                  }
+                  },
+                  where: {}
                 });
+              });
+            }
+          });
+        }
+      });
+
+      var $ = layui.$, active = {
+        reload: function () {
+          var demoReload = $('#demoReload');
+          //执行重载
+          table.reload('order', {
+            method: 'post',
+            page: {
+              curr: 1 //重新从第 1 页开始
+            }
+            , where: {
+              key: {
+                ooid: demoReload.val()
               }
-            };
-            
-            $('.demoTable .layui-btn').on('click', function(){
-              var type = $(this).data('type');
-              active[type] ? active[type].call(this) : '';
-            });
-        });
-    </script>
+            }
+          });
+        }
+      };
+
+      $('.demoTable .layui-btn').on('click', function () {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+      });
+      //监听锁定操作
+      // form.on('checkbox(lockDemo)', function (obj) {
+      //   if (obj.elem.checked) {
+      //     // this.value = 1;
+      //     obj.value = 1;
+        
+      //     console.log(obj);
+      //   } else {
+      //     // this.value = 2;
+      //     obj.value = 2;
+      //     console.log(obj);
+      //   }
+      // });
+
+      // table.on('checkbox(lockDemo)', function(obj){
+      //   console.log(obj.checked); //当前是否选中状态
+      //   console.log(obj.data); //选中行的相关数据
+      //   console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+      // });
+    });
+  </script>
 </body>
 
 </html>

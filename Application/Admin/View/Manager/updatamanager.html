@@ -49,12 +49,12 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">性别：</label>
                 <div class="layui-input-block" id="sex">
-                    <if condition="$list.sex eq 是">
-                        <input type="radio" name="sex" value="是" title="是" checked>
-                        <input type="radio" name="sex" value="否" title="否">
+                    <if condition="$list.sex eq 男">
+                        <input type="radio" name="sex" value="男" title="男" checked>
+                        <input type="radio" name="sex" value="女" title="女">
                         <else />
-                        <input type="radio" name="sex" value="是" title="是">
-                        <input type="radio" name="sex" value="否" title="否" checked>
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
                     </if>
                 </div>
             </div>
@@ -82,6 +82,7 @@
                         <button class="layui-btn" lay-submit="" lay-filter="save_manager">提交</button>
                     </div>
                 </div>
+            </div>
         </volist>
     </form>
 

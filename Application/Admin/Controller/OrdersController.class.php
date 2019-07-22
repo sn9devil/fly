@@ -102,4 +102,20 @@ class OrdersController extends BasicController {
         echo json_encode($data);
     }
 
+    //保存订单状态
+    public function save(){
+        $Order = M('orders');
+        $data = [];
+        $data['msg'] = '保存成功';
+        $post = $_POST['post'];
+        // $post = json_decode($_POST['post'], 1);
+        $oid = $post['oid'];
+        // echo  $post['status'];
+        // var_dump($post);
+        
+        // echo $post['oid'];
+        $order = $Order->where('oid = '.$oid)->save($post);
+        echo json_encode($data);
+    }
+
 }
