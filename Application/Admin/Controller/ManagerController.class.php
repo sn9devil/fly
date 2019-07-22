@@ -39,7 +39,8 @@ class ManagerController extends BasicController {
         //注意json_decode()的第二个参数
         $get = json_decode($_GET['get'],1);
         // $phone = intval($get['phone']);
-        $Manager->add(['username'=>$get['name'],'password'=>$get['password'],'sex'=>$get['sex'],'phone'=>$get['phone'],'email'=>$get['email'],'jointime'=>$get['jointime']]);
+        $password = md5($get['password']);
+        $Manager->add(['username'=>$get['name'],'password'=>$password,'sex'=>$get['sex'],'phone'=>$get['phone'],'email'=>$get['email'],'jointime'=>$get['jointime']]);
         echo '添加管理成功';
     }
 
@@ -80,6 +81,7 @@ class ManagerController extends BasicController {
     public function updataManagerInfo(){
         $Manager = M('manager');
         $get = json_decode($_GET['get'],1);
+        $get['password'] = md5($get['password']);
         $Manager->where('aid ='.$get['aid'])->save($get);
     }
 

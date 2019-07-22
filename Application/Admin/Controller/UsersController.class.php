@@ -82,6 +82,16 @@ class UsersController extends BasicController {
 
     }
 
+    //获取对应用户常用联系人的查询方法
+    public function getcontact(){
+        $Contact = M('contact');
+        $id = $_GET['uid'];
+        $contact = $Contact->where('uid='.$id)->select();
+    //    var_dump($contact);
+        $this->assign('list',$contact);
+        $this->display();
+    }
+
     public function users(){
         $this->display();
     }
