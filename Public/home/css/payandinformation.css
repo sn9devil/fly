@@ -1,0 +1,154 @@
+/* 內容 */
+.ct-bg{
+    background-color: #faf8f9;
+	width: 100%;
+	height: 800px;
+	margin-top: 20px;
+}
+.plane-message,.plane-message1{
+	font-size: 19px;
+	font-weight: bold;
+	border-left: 3px solid crimson;
+	position: relative;
+	left: 40px;
+	top: 20px;
+}
+.to-line{
+	 position: relative;
+	background: #e4e4e6;
+	height: 2px;
+	width:100px;
+	margin: 28px auto;
+}
+.to-line .fly-icon{
+	position: absolute;
+	 top: -7px;
+	left: 50%;
+	margin-left: -12px;
+	color: #ccc;
+	padding: 0 5px;
+	background-color: #fff;
+}
+.col{
+	 box-shadow: 0 3px 16px 0 rgba(0,0,0,0.18);
+	background-color: #FFFFFF;
+	width:95%;
+	margin-left:22px;
+	margin-top: 40px;
+	position: relative;
+}
+.g1{
+	font-size: 18px;
+	font-weight: bold;
+}
+.d-btn{
+	display: inline-block;
+	font-size: 14px;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #d9534f;
+	border-radius: 2rem;
+	font-size: 16px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	margin-right: 40px;
+	border-color: #d43f3a;
+}
+/* 內容end */
+/*信息内容*/
+.layui-nav{
+	background: #fff!important;
+	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+}
+.layui-nav-tree .layui-nav-item a{
+	height: 60px!important;
+	line-height: 60px!important;
+}
+.layui-nav .layui-nav-item a{
+	color: #000000!important;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover{
+	background-color: #CB0402!important;
+	color: #fff!important;
+}
+.layui-nav-tree .layui-nav-item a:hover,.layui-nav-item layui-this{
+	background-color: #FFF9EC!important;	
+	color: #000000!important;
+}
+.layui-nav-bar{
+	background-color: #D43F3A!important;
+}
+.gb{
+	padding: 20px;
+	line-height: 28px;
+	background-color: #faf8f9;
+	margin: 20px 20px 20px 0;
+}
+.st{
+	display: none;
+}
+.st.active{
+	display: block;
+}
+/*信息内容end*/
+/*弹出框*/
+.selet-form{
+	box-sizing: content-box;
+	position: absolute;
+	top: 250px;
+	left: 500px;
+	padding: 5px 0;
+	width: 400px;
+	max-height: 300px;
+	z-index: 999;
+	height: 200px;
+	background: #fff;
+	margin-bottom: 20px;
+	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+	display: none;
+}
+.save-text{
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	top: 20px;
+	left: 75px;
+	line-height: 60px;
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.save-name,.save-id{
+	width: 260px;
+}
+.save-name input,.save-id input{
+   border: 1px solid #dcdcdc;
+}
+.save-text span,.save-text input{
+	display: inline-block;
+}
+.d-btn,.d-btn1{
+	display: inline-block;
+	font-size: 14px;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #d9534f;
+	border-radius: 2rem;
+	font-size: 16px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	margin-right: 40px;
+	border-color: #d43f3a;
+}
+.d-btn{
+	margin-left: 20px;
+}
+/*弹出框end*/
