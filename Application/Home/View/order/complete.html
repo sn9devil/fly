@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="__HOME__/css/tyle.css" />
+		<link rel="stylesheet" href="__HOME__/css/body.css" />
+		<link rel="stylesheet" href="__HOME__/css/payandinformation.css" />
+		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
+	</head>
+	<body>
+		<!-- 导航栏 -->
+		<div class=" layui-fluid" style="">
+			<div class="layui-row  rt" style="background-color: #FFFfff;">
+				<div class="layui-col-lg3  bt">
+					<div class="bottom-section">
+						<img src="__HOME__/kq-logo.svg">
+						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+					</div>
+				</div>
+				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+					<div class="layui-row title-rw">
+						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+						<div class="layui-col-lg3 title-lg">
+							<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
+								<a href="{:U('User/login')}">登录</a>/				
+								<a href="{:U('User/register')}">注册</a>
+							<else/>
+								<!-- {:session('user.username')} -->
+								<a href="{:U('User/logOut')}">退出</a>
+							</if>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 导航栏end -->
+			<!-- 航班进程 -->
+			<div class="layui-row  ba" style="height: 100px">
+				<div class="layui-col-lg-offset2 layui-col-lg8 layui-col-lg-offset2">
+					<div class="layui-row">
+						<div class="layui-col-lg12">
+							<div class="steps">
+								<div class="steps1 sp">
+									<i class=" layui-icon layui-icon-search sr"></i>
+									<span class="dot">航班查询</span>
+								</div>
+								<div class="steps1 sp">
+									<i class=" layui-icon layui-icon-release sr"></i>
+									<span class="dot">航班选择</span>
+								</div>
+								<div class="steps1 sp">
+									<i class="layui-icon layui-icon-survey sr"></i>
+									<span class="dot"> 填写信息</span>
+								</div>
+								<div class="steps1 sp">
+									<i class="layui-icon layui-icon-rmb sr"></i>
+									<span class="dot">订单支付</span>
+								</div>
+								<div class="steps1 sp">
+									<i class="layui-icon layui-icon-ok sr"></i>
+									<span class="dot">订单完成</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 航班进程 end-->
+			<!-- 内容 -->
+			<!-- 主体 -->
+
+			<div class="layui-row" style="height: 436px;">
+				<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="color: #CB0402;font-size: 35px;height: 138px;padding-top: 180px;padding-left:360px;">
+					     订单支付成功！谢谢您的惠顾。
+					     <br>
+					     <span style="color: #D43F3A;" id="time">5</span><span>秒后为你跳转到主页</span>
+				</div>
+			</div>
+			<!-- 主体end -->
+			<!-- 内容end -->
+			<!-- 尾部 -->
+			<div class="layui-row">
+				<div class="layui-col-lg12 body-bottom">
+					<div class="layui-row">
+						<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="position: relative;left: 40px;">
+							<div class="layui-row" style="margin-top: 10px;">
+								<div class="layui-col-lg12">
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											其他站点
+										</div>
+										<div class="layui-col-lg3">
+											有用链接
+										</div>
+										<div class="layui-col-lg3">
+											联系我们
+										</div>
+										<div class="layui-col-lg3">
+											关注我们
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											航班通行证
+										</div>
+										<div class="layui-col-lg3">
+											隐私政策
+										</div>
+										<div class="layui-col-lg3">
+											品牌大使
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											BlueBiz
+										</div>
+										<div class="layui-col-lg3">
+											免责声明
+										</div>
+										<div class="layui-col-lg3">
+											预订政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
+										</div>
+									</div>
+									<div class="layui-row bt-1">
+										<div class="layui-col-lg3">
+											团体预订
+										</div>
+										<div class="layui-col-lg3">
+											昆虫杀灭
+										</div>
+										<div class="layui-col-lg3">
+											肯航管理政策
+										</div>
+										<div class="layui-col-lg3">
+											<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 尾部end -->
+			<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
+			<script src="__HOME__/js/unslider.min.js"></script>
+			<script src="__HOME__/js/layui.js"></script>
+			<script src="__HOME__/js/layui.all.js"></script>
+			<script src="__HOME__/js/cityTemplate.js"></script>
+			<script src="__HOME__/js/body.js"></script>
+			<script type="text/javascript">
+			$(function() {
+					
+					var s = 5;
+					setInterval(function() {
+						$('#time').html(s);
+						s--;
+					}, 1000)
+				});
+
+			</script>
+			
+	</body>
+</html>

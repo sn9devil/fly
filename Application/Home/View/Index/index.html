@@ -20,6 +20,8 @@
 				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
 					<div class="layui-row title-rw">
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 						<div class="layui-col-lg3 title-lg">
 							<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
 								<a href="{:U('User/login')}">登录</a>/				
@@ -29,8 +31,6 @@
 								<a href="{:U('User/logOut')}">退出</a>
 							</if>
 						</div>
-						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 					</div>
 				</div>
 			</div>
@@ -335,7 +335,7 @@
 												</volist>		
 										</div>
 						</div>
-						<div class="qh" name="city4"> -->
+						<div class="qh" name="city4">
 								<div class="layui-col-lg12 gh">	
 										<volist name="fourList" id="firstRow" offset="0" length="4">									
 											<div class="layui-col-lg3 lg">
@@ -400,14 +400,7 @@
 					</div>
 				</div>
 			</div>
-				 <div class="layui-row" style="margin-top:100px">
-				    <div class="layui-col-lg-offset2  layui-col-lg8  layui-col-lg-offset2">
-				    	<div class="layui-col-lg12 gt">
-				    		<p class="ct-sp1">实惠</p>
-				    		<p class="ct-sp2">精挑细选 自在出行</p>
-				    	</div>
-					</div>
-				 </div>
+
 			<span class="s3" style="display: none;"></span>
 			<div class="layui-row">
 			<div class="layui-col-lg12 body-bottom">

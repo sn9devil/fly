@@ -126,10 +126,6 @@ class OrderController extends PublicController {
         $ticket = M('ticket');
         $contact = M('contact');
         $cid = $_GET['cid'];
-        //var_dump($cid);
-        //需要传入的参数
-        // $cid[0] = 1;  //$_GET['cid'];
-        // $cid[1] = 2;
         $contact_list = [];
         foreach ($cid as $key => $value) {
             $contact_list[] = $contact->where(['cid' => $value])->find();
@@ -249,8 +245,17 @@ class OrderController extends PublicController {
         $Model = M();
         $sql = 'update Orders set status = 1 where ooid='.$_POST['ooid'];
         $orderUpdate = $Model->execute($sql);
-        $this->success('支付成功',U('Index/index'),1);exit;
+        // $this->success('支付成功',U('Index/index'),1);exit;
     }
+
+    public function complete(){
+        // $this->pay();
+        $this->display();
+        redirect(U('Index/index'), 5, '页面跳转中...');
+        // $this->success('支付成功',U('Index/index'),1);exit;
+    }
+
+
 
     //生成订单编号
     function get_sn() {
