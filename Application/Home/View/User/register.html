@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
 		<link rel="stylesheet" type="text/css" href="__HOME__/css/register.css">
 		<link rel = "stylesheet" type="text/css" href="__HOME__/font-awesome/css/font-awesome.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
 	</head>
 	<body>
 		<!-- 导航栏 -->
@@ -32,18 +34,10 @@
 			<!-- 内容 -->
 			<div class="layui-row">
 				<div class="layui-col-lg12">
-				    <div class="middle">
-						<form method="post" class="info" action="{:U('User/reg')}" onsubmit="return on_submit();">
+					<div class="layui-layout-body">
+						<form action="{:U('User/postLogin')}" method="post" class="layui-form">	
 							<div class="register-list">
-								<div class="register-hd">用户注册</div>
-									<!-- <div class="item1">
-										<span class="text"><span class="span">&nbsp;&nbsp;*</span>手机号：</span>
-										<input class="inputbox" type="text" name="phone" id="phone"/>
-										<label style="display:none" class="tip" id="phone_tip">
-											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
-											<span>请输入正确格式的手机号</span>
-										</label>
-									</div> -->
+								<div class="register-hd">用户注册</div>	
 									<div class="item">
 										<span class="text"><span class="span">&nbsp;&nbsp;*</span>用户名：</span>
 										<input class="inputbox" type="text" id="username" name="username">
@@ -67,42 +61,15 @@
 											<span>请输入相同的密码</span>
 										</label>
 									</div>
-									<!-- <div class="item">
-										<span class="text"><span class="span">&nbsp;&nbsp;*</span>姓名：</span>
-										<input class="inputbox" type="text" id="name" name="name">
-										<label style="display:none" class="tip" id="name_tip">
-											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
-											<span>请输入汉字，不少于2个！</span>
-										</label>
-									</div>
-									<div class="item">
-										<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件类型：</span>
-										<div class="sexbox">
-											<input type="radio" name="cardtype value="1" checked="checked" />居民身份证&nbsp;&nbsp;&nbsp;&nbsp;
-										</div>
-									</div>
-									<div class="item">
-										<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件号码：</span>
-										<input class="inputbox" type="text" id="idcard" name="idcard">
-										<label style="display:none" class="tip" id="idcard_tip">
-											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
-											<span style="color: red;position: absolute;top:90px;bottom: 0;left:50px;right: 0;width: 250px;height:0px" class="card-err"></span>
-										</label>
-									</div>
-									<div class="item">
-										<span class="text"><span class="span">&nbsp;&nbsp;*</span>性别：</span>
-										<div class="sexbox">
-											<input type="radio" name="sex" value="1" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" name="sex" value="0"/>女
-										</div>
-									</div> -->
+									
 									<div class="item2">
 										<label>
 											<span class="span">&nbsp;&nbsp;*</span><input type="checkbox" checked="checked" >我已阅读并理解瓦坎达航空<a href="#" class="link">《隐私条款》</a>
 										</label>
 									</div>
 								<div class="btnreg">
-										<button class="btnregister" id="button" onclick="on_submit();">立&nbsp;即&nbsp;注&nbsp;册</button>
+										<!-- <button class="btnregister" lay-submit="" lay-filter="register" id="button">立&nbsp;即&nbsp;注&nbsp;册</button> -->
+										<input class="btnregister" lay-submit="" lay-filter="login" type="submit"  value="注&nbsp;&nbsp;册" >
 								</div>
 							</div>
 						</form>
@@ -181,44 +148,44 @@
 			</div>
 			<!-- 尾部end -->
 			<script>
-				$('.btnregister').click(function() {	
-					username = $("#username").val();
-					password = $("#password").val();
-					
-					$.post("{:U('User/reg')}",
-						{
-							'username':username,
-							'password':password
-						},
-						function(data){
-							var j = JSON.parse(data);
-							if(j.status == 0){
-								//失败
-								//alert(j.mgs);
+					layui.use('form', function () {
+					var form = layui.form;
+					console.log("AAA");
+					//监听提交
+					form.on('submit(register)', function (data) {
+						
+						let url = "{:U('reg')}";
+						let post = JSON.stringify(data.field);
+						console.log(url, post);
+						$.ajax({
+							type: 'post',
+							url: url,
+							data: 'post=' + post,
+							dataType: 'json',
+							success: function (json) {
+								console.log(json);
+								if (json.status == 1) {
+									layer.msg(json.msg, {
+											icon: 1,
+											time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+										},function () {
+											location.href = json.url;
+										});
+								} else {
+									layer.msg(json.msg, {
+											icon: 2,
+											time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+										}, function () {
+										return false;
+									});
+								}
 							}
-							
 						});
-					$.ajax({
-						type:'post',
-						url: url,
-						data: 'post='+post,
-						dataType: 'json',
-						success: function(json){
-							console.log(json);
-							if(json.status == 1){
-								layer.msg(json.msg,function(){
-									location.href = json.url;
-								});
-							}else{
-								layer.msg(json.msg,function(){
-									return false;
-								});
-							}
-						}
+						return false;
 					});
 				});
 			</script>
-			<script type="text/javascript" src="__HOME__/js/form02.js"></script>
-			<script type="text/javascript" src="__HOME__/js/yanzheng.js"></script>
+			<!-- <script type="text/javascript" src="__HOME__/js/form02.js"></script>
+			<script type="text/javascript" src="__HOME__/js/yanzheng.js"></script> -->
 	</body>
 </html>

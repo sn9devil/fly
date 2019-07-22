@@ -38,10 +38,11 @@ class UserController extends PublicController {
 	
 	// 用户注册
     public function reg(){
-        // import('@.Controller.Contact');
-        // $C = new ContactController();
+        $post = json_decode($_POST['post'], 1);
+        import('@.Controller.Contact');
+        $C = new ContactController();
        
-        if(!empty($_POST)){
+        if(!empty($post)){
             $Model = M();
             // $sql = 'select * from users where phone_number='."'".$_POST['phone_number']."'";
             // $phoneList = $Model->query($sql);
@@ -51,6 +52,7 @@ class UserController extends PublicController {
             // }
             $sql = 'select * from users where username='."'".$_POST['username']."'";
             $usernameList = $Model->query($sql);
+            var_dump($usernameList);
             // 查找有没有重复的用户名
             if(!empty($usernameList)){
                 $list['status'] = 0;
@@ -61,16 +63,16 @@ class UserController extends PublicController {
 			
             // 把用户数据插入到数据库
             // 1.1 把数据进行整理
-            unset($_POST['r_password']);
-            $_POST['password'] = md5($_POST['password']);
+            // unset($_POST['r_password']);
+            // $_POST['password'] = md5($_POST['password']);
 
-            // 1.2 把数据插入数据库
-            $User = M('users');
-            $result = $User->data($_POST)->add();
+            // // 1.2 把数据插入数据库
+            // $User = M('users');
+            // $result = $User->data($_POST)->add();
             
 
-            $sql = 'select uid from users where username='."'".$_POST['username']."'";
-            $uidList = $Model->query($sql);
+            // $sql = 'select uid from users where username='."'".$_POST['username']."'";
+            // $uidList = $Model->query($sql);
 
             // if(!empty($_POST['name'])  && !empty($_POST['identity'])){
                
@@ -118,7 +120,7 @@ class UserController extends PublicController {
             //     $this->error('注册失败');
             // }
         }
-        $this->display();
+    
     }
 
 
