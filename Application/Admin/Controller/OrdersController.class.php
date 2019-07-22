@@ -110,12 +110,12 @@ class OrdersController extends BasicController {
         $post = $_POST['post'];
         // $post = json_decode($_POST['post'], 1);
         $oid = $post['oid'];
-        echo  $post['status'];
+        // echo  $post['status'];
         // var_dump($post);
         
         // echo $post['oid'];
         $order = $Order->where('oid = '.$oid)->save($post);
-        // echo json_encode($data);
+        echo json_encode($data);
     }
 
 }
