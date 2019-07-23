@@ -56,11 +56,11 @@ class ManagerController extends BasicController {
     }
 
     //删除管理员
-    public function deluser(){
-        $Users = M('users');
-        $uid = $_POST['uid'];
-        var_dump($uid);
-        $Users = $Users->delete($uid);
+    public function delmanager(){
+        $Manager = M('manager');
+        $aid = $_POST['aid'];
+        // var_dump($aid);
+        $Manager->delete($aid);
         echo 1;
     }
 

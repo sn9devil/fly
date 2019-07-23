@@ -165,12 +165,13 @@
                 var data = obj.data,
                     value = obj.value;
                 if (obj.event === 'del') {
-                    layer.confirm('是否删除！', function (index) {
+                    console.log(data.aid);
+                    layer.confirm('是否删除?', function (index) {
                         $.ajax({
-                            url: "{:U('Users/deluser')}",
+                            url: "{:U('Manager/delmanager')}",
                             type: 'post',
                             data: {
-                                'uid': data.uid,
+                                'aid': data.aid,
                             },
                             dataType: 'text',
                             success: function (json) {
