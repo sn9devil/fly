@@ -29,8 +29,17 @@
 			</div>
 			<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
 				<div class="layui-row title-rw">
-					<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
-					<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="{:U('Index/index')}">首页</a></div>
+						<div class="layui-col-lg3 title-lg">
+								<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
+									<a href="{:U('User/login')}">登录</a>/				
+									<a href="{:U('User/register')}">注册</a>
+								<else/>
+									<!-- {:session('user.username')} -->
+									<a href="{:U('User/logOut')}">退出</a>
+									<a href="{:U('User/information')}">个人信息</a>
+								</if>
+						</div>
 					<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
 					<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 				</div>
@@ -88,8 +97,13 @@
 								<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
 
 								<span  margin-right=""  style="color: #CB0402;">
-						
-									<a href="{:U('User/beMember')}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;变成会员</a>
+										
+										<if condition="$Think.session.user.member eq 0">
+												<a href="{:U('User/beMember')}" style="float: right">变成会员</a>
+										<else />
+											
+										</if>
+									
 
 								</span>
 							</div>

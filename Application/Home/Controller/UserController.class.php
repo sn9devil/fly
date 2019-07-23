@@ -20,10 +20,10 @@ class UserController extends PublicController {
         $post = json_decode($_POST['post'], 1);
         $User = M('users');
         $user = $User
-                 ->field('uid, username')
+                 ->field('uid, username,member')
                  ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
                  ->find();
-        //var_dump($post['username']);
+        
         if($user or $phone){
             session('user',$user);
             $data = [];
@@ -169,6 +169,10 @@ class UserController extends PublicController {
         $Model = M();
         $sql = 'update users set member = 1 where username ='."'".session('user.username')."'";
         $contact = $Model->execute($sql);
-        $this->redirect('Index/index'); 
+        
+        session('user.member',1);  //设置session
+        
+
+        $this->redirect('User/information'); 
     }
 }
