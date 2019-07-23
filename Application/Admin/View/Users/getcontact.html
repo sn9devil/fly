@@ -67,12 +67,12 @@ function gettwo(){
                     <div class="layui-form-item">
                         <label class="layui-form-label">类型：</label>
                         <div class="layui-input-block" id="type">
-                            <if condition="$list.type eq 1">
-                                <input type="radio" value="1" title="成年" checked id="check1" name=type{$list.cid}>
-                                <input type="radio" value="0" title="儿童" id="check2" name=type{$list.cid}>
+                            <if condition="$list.type eq 0">
+                                <input type="radio" value="0" title="成人" checked id="check1" name=type{$list.cid}>
+                                <input type="radio" value="1" title="儿童" id="check2" name=type{$list.cid}>
                                 <else />
-                                <input type="radio" value="1" title="成年" id="check1" name=type{$list.cid}>
-                                <input type="radio" value="0" title="儿童" checked id="check2" name=type{$list.cid}>
+                                <input type="radio" value="0" title="成人" id="check1" name=type{$list.cid}>
+                                <input type="radio" value="1" title="儿童" checked id="check2" name=type{$list.cid}>
                             </if>
                         </div>
                     </div>
