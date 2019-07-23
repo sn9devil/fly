@@ -102,7 +102,8 @@
 						</div>
 						<div class="indent-body">
 							<div class="indent-vip active">
-								<div class="indent-selet">
+								<if condition="$Think.session.uid egt 1">
+								<div class="indent-selet" >
 									<div class="selet-type">登录方式:</div>
 									<input class="selet-body" value="用户名" readonly="true" type="text" /><i class="d-icon"></i>
 									<ul>
@@ -119,6 +120,9 @@
 									<input value="" name="password" type="password" />
 								</div>
 								<button class="d-btn1">登录</button>
+							<else />
+								<div style="font-size: 16px;margin: 0 auto;width: 250px	" >您已注册，<a>点击此处</a>查看您在订单</div>
+							</if>
 							</div>
 						</div>
 					 	</form>

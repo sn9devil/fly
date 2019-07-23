@@ -46,7 +46,7 @@
 					<div class="middle">
 						<div class="login-list">
 							<div class="login-hd">会员登录</div>
-							<div class="layui-layout-body">
+							<div class="layui-layout-body" style="margin-top: 60px">
 								<form action="{:U('User/postLogin')}" method="post" class="layui-form">			
 									<div class="item1">
 										<span class="text"><span class="span">&nbsp;&nbsp;*</span>用户名：</span>
@@ -65,18 +65,11 @@
 										<input class="inputbox" type="password" name="password" id="password" value=""/>
 									</div>
 								
-									<div class="btnlink layui-form-item">
-										<input class="btnlogin" lay-submit="" lay-filter="login" type="submit"  value="登&nbsp;&nbsp;录" >
-										
-										<a class="forgetpass" href="forgetpass.html">忘记密码？</a>
+									<div class="btnlink layui-form-item" style="position: relative;right: 30px">
+										<button class="d-btn" style="margin-right: 40px">登录</button>
+										<button class="d-btn">注册</button>
 									</div>
 								</form>
-							</div>
-							<div class="reg-bd">
-								<strong>会员可享受</strong><span class="">
-								<i class="fa fa-space-shuttle fa-1x" ></i>全航班预定票价9折优惠</span><span class="">
-								<i class="fa fa-space-shuttle fa-1x" ></i>快捷方便管理历史订单记录</span>
-								<a href="register.html" class="btn-go">去注册</a>
 							</div>
 							
 							
