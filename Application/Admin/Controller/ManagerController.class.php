@@ -8,20 +8,21 @@ class ManagerController extends BasicController {
         $Manager = M('manager');
         $get = $_GET['username'];
         // var_dump $get;
+        $arr = array();
+        $arr['code'] = 0;
         if($get){
             $manager = $Manager
             ->where('username like '.'"%'.$get.'%"')
             ->select();
+            $arr['count'] = $Manager->where('username like '.'"%'.$get.'%"')->count();
             // var_dump($users);
         }else{
             $manager = $Manager
             ->where()
             ->select();
+            $arr['count'] = $Manager->where()->count();
         }
         // echo $users;
-        $arr = array();
-        $arr['code'] = 0;
-        $arr['count'] = $Manager->where()->count();
         $arr['msg'] = "";
         $arr['data'] = $manager;
 
