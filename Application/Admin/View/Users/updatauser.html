@@ -38,7 +38,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="password" lay-verify="pass" placeholder="请输入密码" id="password"
+                    <input type="text" name="password" placeholder="请输入密码" id="password"
                         autocomplete="off" class="layui-input" value={$list.password}>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">手机号码：</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="phone"  autocomplete="off"
+                        <input type="tel" name="phone"  autocomplete="off" lay-verify="phone" 
                             class="layui-input" id="phone" value={$list.phone_number}>
                     </div>
                 </div>
@@ -101,6 +101,21 @@
                     }
                 });
                 return false;
+            });
+            form.verify({
+                //手机号码
+                name: [
+                    /^.{1,10}$/,
+                    '请输入10个字符以内的用户名'
+                ],
+                // pass: [
+                //     /^[A-Za-z0-9]{4,20}$/,
+                //     '请输入4-20个字符/数字的密码'
+                // ],
+                phone: [
+                    /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/,
+                    '请输入正确的手机号码'
+                ],          
             });
         });
     </script>

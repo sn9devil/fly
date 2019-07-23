@@ -31,6 +31,11 @@ class IndexController extends BasicController {
         $user_num = $Order->query($count_user);
         $this->assign('user',$user_num);
         
+        //公司
+        $count_com = "select count('id') as nu from company"; 
+        $com_num = $Order->query($count_com);
+        $this->assign('com',$com_num);
+
         $this->display();
     }
 
