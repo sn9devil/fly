@@ -138,11 +138,9 @@ color:red;
 	height:35px;
 	width:310px;
 	line-height:33px;
-	float:left;
 	display:inline-block;
 	border:1px solid #e3e5e5;
 	background-color:white;
-	padding-left:15px;
 }
 
 .tip{
