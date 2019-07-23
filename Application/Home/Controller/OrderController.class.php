@@ -145,8 +145,16 @@ class OrderController extends PublicController {
         $contact = M('contact');
         $cid = $_GET['cid'];
         $contact_list = [];
+        $adult = 0;
+        $children = 0;
         foreach ($cid as $key => $value) {
-            $contact_list[] = $contact->where(['cid' => $value])->find();
+             $item = $contact->where(['cid' => $value])->find();
+             $contact_list[] = $item;
+             if($item['type'] == 0){
+                $adult++;
+             }else{
+                 $children++;
+             }
         }  
         // echo '<pre>';
         // var_dump($contact_list);
@@ -155,8 +163,7 @@ class OrderController extends PublicController {
         $back_tid = $_GET["back_tid"];
         $ticket_type = $_GET["ticket_type"];
         $back_ticket_type = $_GET["back_ticket_type"];
-        $adult = $_GET["adult"];;
-        $children = $_GET["children"];;
+
         $num = $children + $adult;
         //支付状态
         $status = 0;
