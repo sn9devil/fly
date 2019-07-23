@@ -85,6 +85,9 @@ class ManagerController extends BasicController {
         $Manager->where('aid ='.$get['aid'])->save($get);
     }
 
+    
+
+
     public function manager(){
         $this->display();
     }

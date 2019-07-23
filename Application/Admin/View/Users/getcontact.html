@@ -50,6 +50,8 @@ function gettwo(){
                             <input type="text" name="name{$list.cid}" lay-verify="name" autocomplete="off"
                                 placeholder="请输入名字" id="name" class="layui-input" style="width:50%"
                                 value="{$list.name}">
+                            <input type="text" name="cid" id="cid" class="layui-input" style="display: none"
+                                value="{$list.cid}">
                         </div>
 
                     </div>
@@ -87,31 +89,22 @@ function gettwo(){
 
 
     <script>
-
         layui.use(['form', 'layedit', 'laydate'], function () {
-            var form = layui.form;
+            var form = layui.form
+            ,layer = layui.layer;
             form.on('submit(save_contact)', function (data) {
-                // let get = JSON.stringify(data.field);
-                console.log(data);
-                // $.ajax({
-                //     type: 'get',
-                //     url: "{:U('Users/adduserinfo')}",
-                //     data: {
-                //         'get': get
-                //     },
-                //     dataType: 'json',
-                //     success: function (json) {
-                //         // layer.msg(json.msg,{time:500},function(){
-                //         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                //         parent.layer.close(index); //再执行关闭
-                //         parent.layui.table.reload('allUserInfoTable', {
-                //             page: {
-                //                 curr: 1
-                //             }
-                //         });
-                //         //  });
-                //     }
-                // });
+                let get = JSON.stringify(data.field);
+                $.ajax({
+                    type: 'get',
+                    url: "{:U('Users/updataContactInfo')}",
+                    data: {
+                        'get': get
+                    },
+                    dataType: 'text',
+                    success: function (json) {
+                        layer.msg('保存成功')
+                    }
+                });
                 return false;
             });
         });

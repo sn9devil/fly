@@ -35,9 +35,17 @@
 			<div class="layui-row">
 				<div class="layui-col-lg12">
 					<div class="layui-layout-body">
-						<form action="{:U('User/postLogin')}" method="post" class="layui-form">	
+						<form action="{:U('User/reg')}" method="post" class="layui-form">	
 							<div class="register-list">
-								<div class="register-hd">用户注册</div>	
+								<div class="register-hd">用户注册</div>
+									<div class="item1">
+										<span class="text"><span class="span">&nbsp;&nbsp;*</span>手机号：</span>
+										<input class="inputbox" type="text" name="phone_number" id="phone"/>
+										<label style="display:none" class="tip" id="phone_tip">
+											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入正确格式的手机号</span>
+										</label>
+									</div>
 									<div class="item">
 										<span class="text"><span class="span">&nbsp;&nbsp;*</span>用户名：</span>
 										<input class="inputbox" type="text" id="username" name="username">
@@ -50,7 +58,7 @@
 										<input class="inputbox" type="password" id="password" name="password">
 										<label style="display:none" class="tip" id="password_tip">
 											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
-											<span>请输入6位数字的密码</span>
+											
 										</label>
 									</div>
 									<div class="item">
@@ -61,15 +69,36 @@
 											<span>请输入相同的密码</span>
 										</label>
 									</div>
-									
+									<div class="item">
+											<span class="text"><span class="span">&nbsp;&nbsp;*</span>姓名：</span>
+											<input class="inputbox" type="text" id="name" name="name">
+											<label style="display:none" class="tip" id="name_tip">
+												<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+												<span>请输入汉字，不少于2个！</span>
+											</label>
+										</div>
+										<div class="item">
+											<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件类型：</span>
+											<div class="sexbox">
+												<input type="radio" name="cardtype value="1" checked="checked" />居民身份证&nbsp;&nbsp;&nbsp;&nbsp;
+											</div>
+										</div>
+										<div class="item">
+											<span class="text"><span class="span">&nbsp;&nbsp;*</span>证件号码：</span>
+											<input class="inputbox" type="text" id="idcard" name="identity">
+											<label style="display:none" class="tip" id="idcard_tip">
+												<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+												<span>请输入有效的证件号码</span>
+											</label>
+										</div>
 									<div class="item2">
 										<label>
 											<span class="span">&nbsp;&nbsp;*</span><input type="checkbox" checked="checked" >我已阅读并理解瓦坎达航空<a href="#" class="link">《隐私条款》</a>
 										</label>
 									</div>
 								<div class="btnreg">
-										<!-- <button class="btnregister" lay-submit="" lay-filter="register" id="button">立&nbsp;即&nbsp;注&nbsp;册</button> -->
-										<input class="btnregister" lay-submit="" lay-filter="login" type="submit"  value="注&nbsp;&nbsp;册" >
+										
+										<input class="btnregister" lay-submit="" lay-filter="register" type="submit"  value="注&nbsp;&nbsp;册" >
 								</div>
 							</div>
 						</form>
@@ -150,7 +179,7 @@
 			<script>
 					layui.use('form', function () {
 					var form = layui.form;
-					console.log("AAA");
+					
 					//监听提交
 					form.on('submit(register)', function (data) {
 						

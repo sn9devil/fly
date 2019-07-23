@@ -61,10 +61,10 @@
         , cols: [[ //表头
           { type: 'checkbox', fixed: 'left' }
           , { field: 'oid', title: 'ID', width: '5%', sort: true, fixed: 'left', totalRowText: '合计：' }
-          , { field: 'ooid', title: '订单单号', width: '8%', totalRow: true }
+          , { field: 'ooid', title: '订单单号', width: '8%' }
           , { field: 'num', title: '机票总数', sort: true, totalRow: true, width: '8%' }
-          , { field: 'amount', title: '订单总价', sort: true, width: '10%' }
-          , { field: 'ctime', title: '创建时间', sort: true, totalRow: true, width: '15%' }
+          , { field: 'amount', title: '订单总价', sort: true, width: '10%' , totalRow: true}
+          , { field: 'ctime', title: '创建时间', sort: true, width: '15%' }
           , { field: 'status', title: '订单状态', width: '15%',templet:function(row){
                         // var html = "<input type='checkbox' lay-skin='primary' lay-filter='checkboxIsSelected' table-index='"+row.LAY_TABLE_INDEX+"' class='checkboxIsSelected' value='1' ";
                         // if(row.status== 1){

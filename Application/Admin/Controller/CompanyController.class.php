@@ -89,4 +89,26 @@ class CompanyController extends BasicController {
         $Company->where('id ='.$get['id'])->save($get);
 
     }
+
+    //传递对应公司的id
+    public function getcompanyticket(){
+        $id = $_GET['cid'];
+        $this->assign('list',$id);
+        $this->display();
+    }
+
+    //获取机票信息
+    public function getCompanyTicketInfo(){
+        $Ticket = M('ticket');
+        $i = $_GET['cid'];
+        // var_dump($i);
+        $ticket = $Ticket->where('cid='.$i)->select();
+        // var_dump($ticket);
+        $arr = array();
+        $arr['code'] = 0;
+        $arr['count'] = $Ticket->where('cid='.$i)->count();
+        $arr['msg'] = "";
+        $arr['data'] = $ticket;
+        echo json_encode($arr);
+    }
 }

@@ -184,7 +184,20 @@
                         }
                     });
                 }else if(obj.event === 'ticket'){
-                    layer.msg('对应机票，正在开发...')
+                    console.log(data.id);
+                    layer.open({
+                        type: 2,
+                        maxmin:true,
+                        resize: true,
+                        title: '对应机票信息',
+                        area: ['1000px', '400px'],
+                        shade: 0,
+                        content: "{:U('Company/getcompanyticket')}?cid=" + data.id,
+                        zIndex: layer.zIndex,
+                        success: function (layero) {
+                            layer.setTop(layero);
+                        }
+                    });
                 }
             });
             var $ = layui.$,
