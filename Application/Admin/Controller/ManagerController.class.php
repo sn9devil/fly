@@ -39,9 +39,19 @@ class ManagerController extends BasicController {
         //注意json_decode()的第二个参数
         $get = json_decode($_GET['get'],1);
         // $phone = intval($get['phone']);
-        $password = md5($get['password']);
-        $Manager->add(['username'=>$get['name'],'password'=>$password,'sex'=>$get['sex'],'phone'=>$get['phone'],'email'=>$get['email'],'jointime'=>$get['jointime']]);
-        echo '添加管理成功';
+        $data = [];
+        $manager = $Manager->where('username = '."'".$get['name']."'")->find();
+        if($manager){
+            $data['status'] = '0';
+            $data['msg'] = '管理员名已存在';
+            echo json_encode($data);
+        }else {
+            $data['status'] = '1';
+            $password = md5($get['password']);
+            $Manager->add(['username'=>$get['name'],'password'=>$password,'sex'=>$get['sex'],'phone'=>$get['phone'],'email'=>$get['email'],'jointime'=>$get['jointime']]);
+            $data['msg'] = '添加成功';
+            echo json_encode($data);
+        }       
     }
 
     //删除用户
