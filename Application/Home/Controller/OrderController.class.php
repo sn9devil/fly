@@ -260,7 +260,12 @@ class OrderController extends PublicController {
 
     public function pay(){
         $Model = M();
-        $sql = 'update Orders set status = 1 where ooid='.$_POST['ooid'];
+        if(!empty($_GET['ooid'])){
+            $ooid = $_GET['ooid'];
+        }else{
+            $ooid = $_POST['ooid'];
+        }
+        $sql = 'update Orders set status = 1 where ooid='.$ooid;
         $orderUpdate = $Model->execute($sql);
         // $this->success('支付成功',U('Index/index'),1);exit;
     }
