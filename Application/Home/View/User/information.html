@@ -259,6 +259,7 @@
 			});
 
 
+
 			// 表格
 			layui.use('table', function () {
 				var table = layui.table;
@@ -383,11 +384,11 @@
                             $('.card-err').html(j.mgs);
                         }else{
                             //成功
-                            postApi();
                             $('#name').val("");
                             $('#identity').val("");
                             $('.selet-form').hide();
-                        }
+							location.reload();
+						}
                         
                     });
 			});
