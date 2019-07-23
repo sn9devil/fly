@@ -55,7 +55,7 @@ class ManagerController extends BasicController {
         }       
     }
 
-    //删除用户
+    //删除管理员
     public function deluser(){
         $Users = M('users');
         $uid = $_POST['uid'];
@@ -64,7 +64,7 @@ class ManagerController extends BasicController {
         echo 1;
     }
 
-    //删除多个用户
+    //删除多个管理员
     public function mutdelmanager(){
         $Manager = M('manager');
         $aid = $_POST['array'];
@@ -79,7 +79,7 @@ class ManagerController extends BasicController {
     }
 
 
-     //更新用户信息的先查询方法
+     //更新管理员信息的先查询方法
      public function updatamanager(){
         $Manager = M('manager');
         $id = $_GET['aid'];
