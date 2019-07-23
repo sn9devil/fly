@@ -22,7 +22,7 @@
 				<div class="layui-col-lg5  layui-col-lg-offset4  bt ">
 					<div class="layui-row title-rw">
 						<if condition="isset($_SESSION['user'])" >
-						<div class="layui-col-lg3 title-lg"><a href="">{$Think.session.user.username}</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="{:U('User/information')}">{$Think.session.user.username}</a></div>
 						</if>
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
@@ -148,7 +148,7 @@
 								<div class="layui-col-lg2  ct-lg" name="city2"><span>海口</span></div>
 								<div class="layui-col-lg2  ct-lg" name="city3"><span>三亚</span></div>
 								<div class="layui-col-lg2  ct-lg" name="city4"><span>广州</span></div>
-								<div class="layui-col-lg2  ct-lg"><a ><span>更多&nbsp;&nbsp;»</span></a></div>
+								<div class="layui-col-lg2  ct-lg"><a href="{:U('Index/search')}" ><span>更多&nbsp;&nbsp;»</span></a></div>
 							</div>
 							<div class="qh active" name="city1">							
 								<div class="layui-col-lg12 gh">
