@@ -94,7 +94,7 @@
 						</form>
 					</div>
 					<div class="layui-tab-item tab-b2">
-						<form action="{:U('User/postLogin')}"  method="POST">
+						
 						<div class="indent-title">
 							<div class="it1 active"><i class="layui-icon layui-icon-diamond"></i>
 								<strong>会员</strong>
@@ -102,30 +102,14 @@
 						</div>
 						<div class="indent-body">
 							<div class="indent-vip active">
-								<if condition="$Think.session.uid egt 1">
-								<div class="indent-selet" >
-									<div class="selet-type">登录方式:</div>
-									<input class="selet-body" value="用户名" readonly="true" type="text" /><i class="d-icon"></i>
-									<ul>
-										<li>用户名</li>
-										<li>手机号</li>
-									</ul>
-								</div>
-								<div class="indent-name">
-									<div class="selet-name">用户名:</div>
-									<input value="" name="username" type="text" />
-								</div>
-								<div class="indent-pwd">
-									<div class="selet-pwd">密码:</div>
-									<input value="" name="password" type="password" />
-								</div>
-								<button class="d-btn1">登录</button>
+								<if condition="$Think.session.user.uid egt 1">
+								<div style="font-size: 16px;margin: 0 auto;width: 250px	" ><a style="color:red;" href="{:U('Order/orders')}">点击此处</a>查看您在订单</div>
 							<else />
-								<div style="font-size: 16px;margin: 0 auto;width: 250px	" >您已注册，<a>点击此处</a>查看您在订单</div>
+                           		<div style="font-size: 16px;margin: 0 auto;width: 250px	" >你还未登录，<a style="color:red;" href="{:U('User/login')}">点击登录</a></div>
 							</if>
 							</div>
 						</div>
-					 	</form>
+					
 					</div>
 					<!-- </form> -->
 				</div>
@@ -486,6 +470,7 @@
 		<script src="__HOME__/js/layui.all.js"></script>
 		<script src="__HOME__/js/cityTemplate.js"></script>
 		<script src="__HOME__/js/body.js"></script>
+		<script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
 		<script>
 			/*轮播图*/
 			$().ready(function() {
