@@ -20,12 +20,20 @@
         .layui-elem-quote {
             margin: 0px;
             background-color: white;
-            border-radius: 5px
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem;
+            font-weight: bold;
         }
 
         .my_input {
             background-color: white;
-            display: block
+            display: block;
+        }
+        .layui-card{
+            padding: 2rem;
         }
     </style>
 </head>
@@ -36,35 +44,68 @@
             <blockquote class="layui-elem-quote">
                 <input class="my_input" type="text" id="adminname" style="border:none;" value="欢迎您 {$name} 管理员"
                     disabled="true">
-                <input class="my_input" type="text" id="nowtime" style="border:none; width: 300px;  margin-top: 5px"
+                <input class="my_input" type="text" id="nowtime" style="border:none; width: 300px;  "
                     disabled="true"></input>
             </blockquote>
         </div>
     </div>
 
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日出行量</div>
-                <div class="layui-card-body">
-                    <div style="font-size: 30px; padding: 10px; color: #666666"><volist name="num" id="n">{$n.nu}</volist></div>
+
+        <div class="layui-col-md6">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日出行量</div>
+                        <div class="layui-card-body">
+                            <div style="font-size: 30px; padding: 10px; color: #666666">
+                                <volist name="num" id="n">{$n.nu}</volist>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日收入/元</div>
+                        <div class="layui-card-body">
+                            <div style="font-size: 30px; padding: 10px;  color: #666666">
+                                <volist name="amount" id="a">{$a.am}</volist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            <div class="layui-row layui-col-space15">
+
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">用户</div>
+                        <div class="layui-card-body">
+                            <div style="font-size: 30px; padding: 10px; color: #666666">
+                                <volist name="user" id="u">{$u.nu}</volist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日收入/元</div>
+                        <div class="layui-card-body">
+                            <div style="font-size: 30px; padding: 10px;  color: #666666">
+                                <volist name="amount" id="a">{$a.am}</volist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-        <!-- <div class="layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">访问量</div>
-                <div class="layui-card-body">
-                    <div style="font-size: 30px; padding: 10px; color: #666666">235</div>
-                </div>
-            </div>
-        </div> -->
-        <div class="layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日收入/元</div>
-                <div class="layui-card-body">
-                    <div style="font-size: 30px; padding: 10px;  color: #666666"><volist name="amount" id="a">{$a.am}</volist></div>
-                </div>
+
+        <div class="layui-col-md6">
+            <div id="main"
+                style="width: 100%;height:357px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
             </div>
         </div>
     </div>
@@ -81,26 +122,104 @@
             </div>
         </div>
     </div>
-    <div class="layui-row layui-col-space20">
+
+    <!-- <div class="layui-row layui-col-space20">
         <div class="layui-col-md7">
             <div id="main"
                 style="width: 100%;height:300px; background-color: white; border-radius: 5px; box-shadow: 3px 3px 5px #F0F0F0">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+        var option = {
+            title: {
+                text: '未来7天机票销售量',
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei',
+                    fontWeight: 'normal',
+                    color:'#009688'
+                },
+                x: 'center',
+                top: 10
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#009688'
+                    }
+                }
+            },
+            legend: {},
+            dataset: {
+                source: []
+            },
+            markLine:{},
+            animation:{},
+            markArea:{},
+            xAxis: {
+                lineStyle:{color:'#009688'},
+                data: [],
+                boundaryGap: false,
+            },
+            yAxis: {},
+            series: [{
+                areaStyle: {
+                    color:'#009688'
+                },
+                type: 'line',
+                smooth: true,
+                data: []
 
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.showLoading();
+        myChart.setOption(option);
+        var date = []; //日期数组（实际用来盛放X轴坐标值）
+        var count = []; //统计数量数组（实际用来盛放Y坐标值）
 
-        var endCityChat = echarts.init(document.getElementById('endcity'), 'macarons');
+        $.ajax({
+            url: "{:U('Index/getDayticket')}",
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        date.push(data[i].date + "号"); //挨个取出日期并填入日期数组
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        count.push(data[i].count); //挨个取出数量并填入数量数组
+                    }
+                }
+                myChart.hideLoading();
+                myChart.setOption({
+                    xAxis: {
+                        data: date,
+                    },
+                    series: [{
+                        data: count,
+
+                    }]
+                });
+            },
+            error: function () { }
+        });
+
+        var endCityChat = echarts.init(document.getElementById('endcity'), 'roma');
         var endCityChatOption = {
             title: {
                 text: '目的地占比',
                 textStyle: {
                     fontFamily: 'Microsoft YaHei',
-                    fontWeight: 'normal'
+                    fontWeight: 'normal',
+                    color: '#009688'
                 },
                 x: 'center',
                 top: 10
@@ -196,7 +315,7 @@
                 textStyle: {
                     fontFamily: 'Microsoft YaHei',
                     fontWeight: 'normal',
-                    color: '#008ACD'
+                    color: '#009688'
                 },
                 x: 'center',
                 top: 10
@@ -287,75 +406,7 @@
         });
 
 
-        var myChart = echarts.init(document.getElementById('main'), 'macarons');
-        var option = {
-            title: {
-                text: '未来7天机票销售量',
-                textStyle: {
-                    fontFamily: 'Microsoft YaHei',
-                    fontWeight: 'normal'
-                },
-                x: 'center',
-                top: 10
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    label: {
-                        backgroundColor: '#6a7985'
-                    }
-                }
-            },
-            legend: {},
-            dataset: {
-                source: []
-            },
-            xAxis: {
-                data: [],
-                boundaryGap: false,
-            },
-            yAxis: {},
-            series: [{
-                areaStyle: {},
-                type: 'line',
-                smooth: true,
-                data: []
-            }]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.showLoading();
-        myChart.setOption(option);
-        var date = []; //日期数组（实际用来盛放X轴坐标值）
-        var count = []; //统计数量数组（实际用来盛放Y坐标值）
-
-        $.ajax({
-            url: "{:U('Index/getDayticket')}",
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        date.push(data[i].date + "号"); //挨个取出日期并填入日期数组
-                    }
-                    for (var i = 0; i < data.length; i++) {
-                        count.push(data[i].count); //挨个取出数量并填入数量数组
-                    }
-                }
-                myChart.hideLoading();
-                myChart.setOption({
-                    xAxis: {
-                        data: date,
-                    },
-                    series: [{
-                        data: count,
-
-                    }]
-                });
-            },
-            error: function () { }
-        });
+        
 
         function showTime() {
             var t = new Date()

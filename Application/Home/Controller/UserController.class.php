@@ -20,10 +20,10 @@ class UserController extends PublicController {
         $post = json_decode($_POST['post'], 1);
         $User = M('users');
         $user = $User
-                 ->field('uid, username')
+                 ->field('uid, username,member')
                  ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
                  ->find();
-        //var_dump($post['username']);
+        
         if($user or $phone){
             session('user',$user);
             $data = [];
@@ -126,7 +126,7 @@ class UserController extends PublicController {
     //个人信息
     public function information(){
         $Model = M();
-        $sql = 'select * from contact a left join users b on a.uid=b.uid group by a.uid';
+        $sql = 'select * from contact a left join users b on a.uid=b.uid group by a.uid limit 1';
         $result = $Model->query($sql);
         foreach ($result as $key => $value) {
             if($result[$key]['member'] == 0){
@@ -163,8 +163,16 @@ class UserController extends PublicController {
         if($contact){
             echo json_encode($arr);
         }
+    }
+    
+    public function beMember(){
+        $Model = M();
+        $sql = 'update users set member = 1 where username ='."'".session('user.username')."'";
+        $contact = $Model->execute($sql);
+        
+        session('user.member',1);  //设置session
         
 
+        $this->redirect('User/information'); 
     }
-  
 }

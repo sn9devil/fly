@@ -20,9 +20,17 @@ class IndexController extends BasicController {
         $this->assign('amount',$amount);
 
         //今日出行人数
-        $sum_num = "select COALESCE(SUM(num),0) as nu from orders where datediff(ctime,'$today')=0";
+        //$sum_num = "select COALESCE(SUM(num),0) as nu from orders where datediff(ctime,'$today')=0";
+        $sum_num = "select count('tid') as nu from ticket join orders_item where orders_item.t_id = ticket.tid and datediff(ticket.go_time,'$today')=0";
         $num = $Order->query($sum_num);
+        // var_dump($num);
         $this->assign('num',$num);
+
+        //用户人数
+        $count_user = "select count('uid') as nu from users"; 
+        $user_num = $Order->query($count_user);
+        $this->assign('user',$user_num);
+        
         $this->display();
     }
 
