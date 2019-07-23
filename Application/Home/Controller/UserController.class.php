@@ -27,9 +27,10 @@ class UserController extends PublicController {
             $data['status']=1;
             $data['url']=U('Home/Index/index');
             echo json_encode($data);
-            
+            return ;
         }else{
             echo json_encode(['msg'=>'用户名或密码错误','status'=>0]);
+            return ;
         }         
     }
     
