@@ -96,7 +96,7 @@
           </div>
           <label class="layui-form-label">航空公司</label>
           <div class="layui-input-inline" style="width: 100px;">
-            <select name="company">
+            <select name="cid">
               <volist name="company" id="data">
                 <if condition="$data['id'] eq $ticket['cid']">
                   <option value="{$data.id}" selected>{$data.company}</option>
