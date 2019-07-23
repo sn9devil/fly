@@ -35,6 +35,14 @@
 			right: 0px;
 			bottom: 0px;
 		}
+		.user-err{
+			display: none;
+			position: absolute;
+			top: 32px;
+			left: 60px;
+			color:red; 
+			font-size: 16px;
+		}
 	</style>
 </head>
 
@@ -96,7 +104,7 @@
 
 												</div>
 												<div class="layui-col-lg12" style="margin-top: 5px;">
-													<a href="#" style="color: #FFFFFF;">退出登录</a>
+													<a href="{:U('User/logOut')}" style="color: #FFFFFF;">退出登录</a>
 												</div>
 											</div>
 										</div>
@@ -122,20 +130,21 @@
 							<div class="layui-col-lg12" style="font-size: 20px;margin-top: 40px;">
 								<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
 
-								<span  margin-right=""  style="color: #CB0402;">
-										
-										<if condition="$Think.session.user.member eq 0">
-												<a href="{:U('User/beMember')}" style="float: right">变成会员</a>
-										<else />
-											
-										</if>
-									
-
-								</span>
+								
 							</div>
 						</div>
 						<!-- 账号信息 -->
 						<div class="layui-row active  st" name="u1" style="margin-left: 30px;" >
+								<span  margin-right=""  style="color: #CB0402;">
+										
+										<if condition="$Think.session.user.member eq 0">
+												<a href="{:U('User/beMember')}" style="float: right;position: relative;top: -35px;left: -80px;font-size: 16px;color:#d43f3a">变成会员</a>
+										<else />
+										
+										</if>
+									
+
+								</span>
 							<volist name="result" id="my">
 								<div class="latui-col-lg12 gb" style="position: relative;right: 64px">
 									<div class="layui-row">
@@ -200,6 +209,7 @@
 					<div class="save-name">
 						<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
 						<input type="text" name="name" class="text-selet text-name" id="name">
+						<div class="user-err">请输入汉字</div>
 					</div>
 					<div class="save-id">
 						<span>身份证:</span>
@@ -294,6 +304,26 @@
 				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 			  </script>
+			  <script>
+					$('.d-btn').click(function(){
+	
+						var name=$('#name').val();
+						if(name == ""){
+								
+							}
+							var han = /^[\u4e00-\u9fa5]{2,9}$/; //设置汉字的正则表达式：2-9个汉字
+							if(!han.test(name)){ //验证输入的内容是否是2-9个汉字 
+									$('.user-err').css("display"," block"); 
+									return false;
+							}else{
+								$('.user-err').css("display"," none");
+							}
+							
+							
+	});
+	
+				</script>
+
 		<script>
 			// 选择
 			$('.kg').click(function () {
