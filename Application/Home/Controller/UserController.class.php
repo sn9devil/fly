@@ -45,17 +45,17 @@ class UserController extends PublicController {
 	
 	// 用户注册
     public function reg(){
-        $post = json_decode($_POST['post'], 1);
+        
         import('@.Controller.Contact');
         $C = new ContactController();
-       
-        if(!empty($post)){
+        // var_dump($_POST);
+        if(!empty($_POST)){
             $Model = M();
     
-            $sql = 'select * from users where username='."'".$post['username']."'";
+            $sql = 'select * from users where username='."'".$_POST['username']."'";
             $usernameList = $Model->query($sql);
            
-            $sql = 'select * from users where phone_number='."'".$post['phone_number']."'";
+            $sql = 'select * from users where phone_number='."'".$_POST['phone_number']."'";
             $phoneList = $Model->query($sql);
             
             if(!empty($usernameList)){
@@ -68,19 +68,19 @@ class UserController extends PublicController {
             }else{
                 // 把用户数据插入到数据库
                 // 1.1 把数据进行整理
-                unset($post['password2']);
-                $post['password'] = md5($post['password']);
+                unset($_POST['password2']);
+                $_POST['password'] = md5($_POST['password']);
 
                 // // 1.2 把数据插入数据库
                 $User = M('users');
-                $result = $User->data($post)->add();
+                $result = $User->data($_POST)->add();
 
-                $sql = 'select uid from users where username='."'".$post['username']."'";
+                $sql = 'select uid from users where username='."'".$_POST['username']."'";
                 $uid = $Model->query($sql);
                 
 
                 $Contact = M('contact');
-                $check_idcard = $post['identity'];
+                $check_idcard = $_POST['identity'];
                 
                 if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
                     $sql = 'delete from users where uid='.$uid[0]['uid'];
@@ -90,9 +90,9 @@ class UserController extends PublicController {
                 }else{
                     if($C->idcard_checksum18($check_idcard)){
                         $type = $C->is_adult($check_idcard); 
-                        $data['name'] = $post[name];
+                        $data['name'] = $_POST[name];
                         $data['type'] = $type;
-                        $data['identity'] = $post[identity];
+                        $data['identity'] = $_POST[identity];
                         $data['uid'] = $uid[0]['uid'];
                         $Contact->data($data)->add();
                         $data = [];
