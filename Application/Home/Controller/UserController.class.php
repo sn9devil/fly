@@ -108,6 +108,7 @@ class UserController extends PublicController {
                         return ;    
                     }
                 }
+                
             }    
         }else{
             echo json_encode(['msg'=>'注册失败','status'=>0]);
