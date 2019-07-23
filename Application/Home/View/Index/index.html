@@ -45,16 +45,16 @@
 					<div><img src="__HOME__/img/W020190709489373897349%20(1).jpg" alt=""></div>
 				</div>
 			</div>
-		 <form action="{:U('search')}" method="get" ">
+		
 			<div class="layui-tab">
 				<ul class="layui-tab-title">
 					<li class="layui-this">预定行程</li>
 					<li>订单管理</li>
 					<li>航空公司查询</li>
 				</ul>	
-
 				<div class="layui-tab-content">	
 					<div class="layui-tab-item layui-show tab-b1">
+						<form action="{:U('search')}" method="get" ">
 						<div class="go-city">
 							<div class="gc-left">出发城市:</div>
 							<input type="text" name="go" placeholder="(拼音/汉字)" id="place" />
@@ -91,8 +91,10 @@
 								</ul>
 							</div>
 						</div>
+						</form>
 					</div>
 					<div class="layui-tab-item tab-b2">
+						<form action="{:U('User/postLogin')}"  method="POST">
 						<div class="indent-title">
 							<div class="it1 active"><i class="layui-icon layui-icon-diamond"></i>
 								<strong>会员</strong>
@@ -110,20 +112,21 @@
 								</div>
 								<div class="indent-name">
 									<div class="selet-name">用户名:</div>
-									<input value="" type="text" />
+									<input value="" name="username" type="text" />
 								</div>
 								<div class="indent-pwd">
 									<div class="selet-pwd">密码:</div>
-									<input value="" type="password" />
+									<input value="" name="password" type="password" />
 								</div>
 								<button class="d-btn1">登录</button>
 							</div>
 						</div>
+					 	</form>
 					</div>
 					<!-- </form> -->
 				</div>
 			</div>
-		</form>
+		
 			<div class="layui-row" style="">
 				<div class="layui-col-lg-offset2  layui-col-lg8  layui-col-lg-offset2">
 					<div class="layui-col-lg12 gt">

@@ -20,7 +20,7 @@ class UserController extends PublicController {
                  ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
                  ->find();
 
-        if($user){
+        if($user or $phone){
             session('user',$user);
             $data = [];
             $data['msg'] = '登录成功';

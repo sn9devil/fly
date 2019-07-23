@@ -58,7 +58,7 @@
 		  			</div>
 		  			<div class="layui-row col" style="position: relative;top: 20px;">
 		  				<div class="layui-col-lg12">
-		  					<table class="layui-hide" id="demo">
+		  					<table class="layui-hide"  lay-filter="demo" id="demo">
 		  
 		  					</table>
 		  				</div>
@@ -146,6 +146,17 @@
 		<script src="__HOME__/js/layui.all.js"></script>
 		<script src="__HOME__/js/cityTemplate.js"></script>
 		<script src="__HOME__/js/body.js"></script>
+		<script type="text/html" id="sc">
+			 {{#if (d.status == "未支付") { }}
+		    <a class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;">支付 </a>
+		    	 {{#  } else { }}
+		    <a class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;display: none;"></a>
+		    {{# } }}
+		
+		 </script>
+		 <script type="text/html" id="ss">
+		    <a  class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;">11</ a>
+		 </script>
 		<script>
 		layui.use('table', function() {
 				var table = layui.table;
@@ -180,24 +191,36 @@
 								field: 'status',
 								title: '支付状态',
 								width: 170
+							},{
+								title:'pay',
+								toolbar:'#sc',
+								width:130
 							}
 						]
 					],
-					data: [{
-							"username": "杜甫",
-							"people-type": "成人",
-							"card-type": "身份证",
-							"card-number": "440582199509084230",
-							"money": "5600",
-						}]
-						//,skin: 'line' //表格风格
-						,
 					even: true
 					//,page: true //是否显示分页
 					//,limits: [5, 7, 10]
 					//,limit: 5 //每页默认显示的数量
 				});
+			table.on('tool(demo)', function(obj){
+		    var data = obj.data;
+		    			    console.log(data);
+		    if(obj.event === 'del'){
+			    var ooid = $(this).data('ooid');
+			    $.post("{:U('Order/pay')}"
+			    	,{
+			    	'ooid':data.ooid
+
+			    },function(){
+				    alert("支付成功");
+					location.reload();
+			    });
+
+		   	} 
+		  });
 			});
+
 		</script>
 	</body>
 </html>
