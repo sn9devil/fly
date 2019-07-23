@@ -19,7 +19,7 @@
 					</div>
 					</a>
 				</div>
-				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+				<div class="layui-col-lg5  layui-col-lg-offset4  bt ">
 					<div class="layui-row title-rw">
 						<if condition="isset($_SESSION['user'])" >
 						<div class="layui-col-lg3 title-lg"><a href="">{$Think.session.user.username}</a></div>
@@ -116,7 +116,7 @@
 					</div>
 					<div class="layui-tab-item tab-b3" style="padding: 0px">
 						
-						<img src="__HOME__/img/fly.jpg" style="">
+						<img src="__HOME__/img/fly.jpg" >
 					
 					</div>
 					<!-- </form> -->
@@ -541,8 +541,8 @@
 			$('.d1').click(function() {
 				$('.d1').addClass('on');
 				$('.d2').removeClass('on');
-				$('.end-time').addClass('nt');
 				$('.d-selet').css("left", "24px");
+				$('.end-time.nt').removeClass('nt');
 				$('.selet').css("left", "57px");
 				btn = $('.s1').html();
 				$('.s3').html(btn);
@@ -552,9 +552,9 @@
 				if (nt.css("display") == "none") {
 					nt.slideDown("fast");
 				}
+				$('.end-time').addClass('nt');
 				$('.d2').addClass('on');
 				$('.d1').removeClass('on');
-				$('.end-time.nt').removeClass('nt');
 				setTimeout(function() {
 					$('.d-btn').css("position", "relative")
 				}, 60);

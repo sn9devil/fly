@@ -263,6 +263,11 @@ body{
 }
 .end-time{
 	margin-left: 3.5rem;
+	display: none;
+	
+}
+.end-time.nt{
+	display: inline-block;
 }
 /*时间end*/
 /*选择框*/
@@ -502,5 +507,8 @@ body{
     height: 16px;
     background: url(../img/index-sprite.png) no-repeat;
     background-position: -13px -71px;
+}
+.bt .layui-col-lg3{
+	width:20%;
 }
 /*内容end*/
