@@ -15,16 +15,14 @@ class IndexController extends BasicController {
         //总收入
         $today=date('Y-m-d H:i:s');
         $Order  = M();
-        $sum_amount = "select sum(amount) as am from orders where datediff(ctime,'$today')=0";
+        $sum_amount = "select COALESCE(SUM(amount),0) as am from orders where datediff(ctime,'$today')=0";
         $amount = $Order->query($sum_amount);
-        var_dump($amount);
         $this->assign('amount',$amount);
 
         //今日出行人数
-        
-        $sum_num = "select sum(num) as nu from orders where datediff(ctime,'$today')=0";
+        $sum_num = "select COALESCE(SUM(num),0) as nu from orders where datediff(ctime,'$today')=0";
         $num = $Order->query($sum_num);
-        
+        $this->assign('num',$num);
         $this->display();
     }
 

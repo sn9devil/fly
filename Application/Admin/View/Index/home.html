@@ -45,25 +45,25 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">出行量</div>
+                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日出行量</div>
                 <div class="layui-card-body">
-                    <div style="font-size: 30px; padding: 10px; color: #666666">32</div>
+                    <div style="font-size: 30px; padding: 10px; color: #666666"><volist name="num" id="n">{$n.nu}</volist></div>
                 </div>
             </div>
         </div>
-        <div class="layui-col-md3">
+        <!-- <div class="layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">访问量</div>
                 <div class="layui-card-body">
                     <div style="font-size: 30px; padding: 10px; color: #666666">235</div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">收入</div>
+                <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日收入/元</div>
                 <div class="layui-card-body">
-                    <div style="font-size: 30px; padding: 10px;  color: #666666">{$amount}</div>
+                    <div style="font-size: 30px; padding: 10px;  color: #666666"><volist name="amount" id="a">{$a.am}</volist></div>
                 </div>
             </div>
         </div>
