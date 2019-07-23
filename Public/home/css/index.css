@@ -61,7 +61,7 @@ body{
 }
 /*模板*/
 /*面板1*/
-.tab-b1,.tab-b2{
+.tab-b1,.tab-b2,.tab-b3{
 	width: 99.15%;
 	height:auto;
 	background-color: #FFFFFF;

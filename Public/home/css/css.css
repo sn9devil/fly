@@ -194,7 +194,7 @@ color:red;
    user-select: none;
    color:#666;
   }
-.d-btn{
+.d-btn,.d1-btn{
 display: inline-block;
     font-size: 14px;
      width: 120px;
