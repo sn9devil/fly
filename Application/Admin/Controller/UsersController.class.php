@@ -8,20 +8,23 @@ class UsersController extends BasicController {
         $Users = M('users');
         $get = $_GET['username'];
         // var_dump $get;
+        $arr = array();
+        $arr['code'] = 0;
         if($get){
             $users = $Users
             ->where('username like '.'"%'.$get.'%"')
             ->select();
+            $arr['count'] = $Users->where('username like '.'"%'.$get.'%"')->count();
             // var_dump($users);
         }else{
             $users = $Users
             ->where()
             ->select();
+            $arr['count'] = $Users->where('username like '.'"%'.$get.'%"')->count();
         }
         // echo $users;
-        $arr = array();
-        $arr['code'] = 0;
-        $arr['count'] = $Users->where()->count();
+        
+        
         $arr['msg'] = "";
         $arr['data'] = $users;
 

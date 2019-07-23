@@ -14,15 +14,19 @@ class CompanyController extends BasicController {
     public function getcompanyinfo(){
         $Company = M('company');
         $post = $_GET['company'];
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
         // echo $post;
         if($post){
             $company = $Company
             ->where('company like '.'"%'.$post.'%"')
+            ->limit(($page-1)*$limit,$limit)
             ->select();
             // var_dump($users);
         }else{
             $company = $Company
             ->where()
+            ->limit(($page-1)*$limit,$limit)
             ->select();
         }
         // echo $users;
@@ -101,8 +105,10 @@ class CompanyController extends BasicController {
     public function getCompanyTicketInfo(){
         $Ticket = M('ticket');
         $i = $_GET['cid'];
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
         // var_dump($i);
-        $ticket = $Ticket->where('cid='.$i)->select();
+        $ticket = $Ticket->where('cid='.$i)->limit(($page-1)*$limit,$limit)->select();
         // var_dump($ticket);
         $arr = array();
         $arr['code'] = 0;

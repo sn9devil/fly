@@ -16,6 +16,7 @@
     <script src="__ADMIN__/macarons.js"></script>
     <script src="__ADMIN__/roma.js"></script>
     <script src="__ADMIN__/shine.js"></script>
+    <script src="__ADMIN__/infographic.js"></script>
     <style>
         .layui-elem-quote {
             margin: 0px;
@@ -90,10 +91,10 @@
                 </div>
                 <div class="layui-col-md6">
                     <div class="layui-card">
-                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">今日收入/元</div>
+                        <div class="layui-card-header" style="font-size: 20px; padding-left: 20px">入驻公司</div>
                         <div class="layui-card-body">
                             <div style="font-size: 30px; padding: 10px;  color: #666666">
-                                <volist name="amount" id="a">{$a.am}</volist>
+                                <volist name="com" id="c">{$c.nu}</volist>
                             </div>
                         </div>
                     </div>
@@ -212,7 +213,7 @@
             error: function () { }
         });
 
-        var endCityChat = echarts.init(document.getElementById('endcity'), 'roma');
+        var endCityChat = echarts.init(document.getElementById('endcity'), 'infographic');
         var endCityChatOption = {
             title: {
                 text: '目的地占比',
@@ -308,7 +309,7 @@
             error: function () { }
         });
 
-        var startCityChat = echarts.init(document.getElementById('startcity'), 'roma');
+        var startCityChat = echarts.init(document.getElementById('startcity'), 'macarons');
         var startCityChatOption = {
             title: {
                 text: '出发地占比',

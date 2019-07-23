@@ -10,6 +10,11 @@
 		<link rel = "stylesheet" type="text/css" href="__HOME__/font-awesome/css/font-awesome.min.css">
 		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="__HOME__/lib/layui/layui.js" charset="utf-8"></script>
+		<style type="text/css">
+			.tip{
+					display: inline-block;
+				}
+		</style>
 	</head>
 	<body>
 		<!-- 导航栏 -->
@@ -21,7 +26,7 @@
 						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
 					</div>
 				</div>
-				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+				<div class="layui-col-lg5  layui-col-lg-offset4  bt ">
 					<div class="layui-row title-rw">
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
@@ -36,12 +41,12 @@
 				<div class="layui-col-lg12">
 
 					<div class="layui-layout-body">
-						<form  method="post" class="layui-form">	
-							<div class="register-list">
+						<!-- <form  method="post" class="layui-form"> -->	
+							<div class="register-list" style="margin-top: 90px">
 								<div class="register-hd">用户注册</div>
 									<div class="item1">
 										<span class="text"><span class="span">&nbsp;&nbsp;*</span>手机号：</span>
-										<input class="inputbox" type="text" name="phone_number" id="phone"/>
+										<input class="inputbox " type="text" name="phone_number" id="phone"/>
 										<label style="display:none" class="tip" id="phone_tip">
 											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
 											<span>请输入正确格式的手机号</span>
@@ -52,6 +57,7 @@
 										<input class="inputbox" type="text" id="username" name="username">
 										<label style="display:none" class="tip" id="username_tip">
 											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
+											<span>请输入用户名	</span>
 										</label>
 									</div>
 									<div class="item">
@@ -59,7 +65,7 @@
 										<input class="inputbox" type="password" id="password" name="password">
 										<label style="display:none" class="tip" id="password_tip">
 											<i class="fa fa-exclamation-circle fa-1x" aria-hidden="true"></i>
-											
+											<span>请输入密码 </span>
 										</label>
 									</div>
 									<div class="item">
@@ -88,10 +94,11 @@
 										</div>
 									
 								<div class="btnreg">
-										<input class="btnregister" lay-submit="" lay-filter="register" onclick="on_submit()" type="submit"  value="注&nbsp;&nbsp;册" >
+										<input class="btnregister" lay-submit="" lay-filter="register"  type="submit"  value="注&nbsp;&nbsp;册" >
 								</div>
+								   <span class="input-err" style="color: red;font-size: 16px;margin-top: 20px;position: relative; left: 360px;top: 30px;"></span>
 							</div>
-						</form>
+						<!-- </form> -->
 				    </div>
 				</div>
 			</div>
@@ -166,10 +173,124 @@
 				</div>
 			</div>
 			<!-- 尾部end -->
-			<script type="text/javascript" src="__HOME__/js/form02.js"></script>
-			<script type="text/javascript" src="__HOME__/js/yanzheng.js"></script>
+			<script type="text/javascript" src="__HOME__/js/jquery-1.11.1.min.js"></script>
+		
 			<script>
-			
+				$('.btnregister').click(function(){
+					var phone=$('#phone').val();
+					var username=$('#username').val();
+					var password=$('#password').val();
+					var password2=$('#password2').val();
+					var name=$('#name').val();
+					var idcard=$('#idcard').val();
+
+					if(name == ""){
+							
+						}
+						var han = /^[\u4e00-\u9fa5]{2,9}$/; //设置汉字的正则表达式：2-9个汉字
+						if(!han.test(name)){ //验证输入的内容是否是2-9个汉字
+					            var pFocus = $('#name');  
+								pFocus.focus();      
+								pFocus.select(); 
+								$('#name_tip').css("display"," inline-block"); 
+								return false;
+						}else{
+							$('#name_tip').css("display","none"); 
+						}
+						
+						//手机号
+						if(phone == ""){
+							
+						}
+						var myreg=/^[1][3,4,5,7,8][0-9]{9}$/; //设置手机号正则表达式
+						if(!myreg.test(phone)){ //验证手机号格式是否正确
+					           var phoneFocus = $('#phone');  
+								phoneFocus.focus();      
+								phoneFocus.select();  
+								$('#phone_tip').css("display"," inline-block"); 
+								return false;
+						}else{
+							$('#phone_tip').css("display","none"); 
+						}
+						
+						//用户名
+						if(username == ""){
+							
+						}
+						var myusername=/^[A-Za-z0-9]{1,13}$/; //设置用户名正则表达式
+						if(!myusername.test(username)){ 
+					           var userFocus = $('#username');  
+								userFocus.focus();      
+								userFocus.select();  
+								$('#username_tip').css("display"," inline-block"); 
+								return false;
+						}else{
+							$('#username_tip').css("display","none"); 
+						}
+						
+						//密码
+						if(password == ""){
+							
+						}
+						var mypass=/^[0-9][0-9][0-9][0-9][0-9][0-9]$/; //设置密码正则表达式
+						if(!mypass.test(password)){ 
+					           var passwordFocus = $('#password'); 
+								passwordFocus.focus();      
+								passwordFocus.select();  
+								$('#password_tip').css("display"," inline-block"); 
+								return false;
+						}else{
+							$('#password_tip').css("display","none"); 
+						}
+						
+						
+						//确认密码
+						var mypass2 = /^[0-9][0-9][0-9][0-9][0-9][0-9]$/;
+						if(password2 != password){
+							var pass2Focus = $('#password2');
+								pass2Focus.focus();      
+								pass2Focus.select();  
+								$('#password2_tip').css("display"," inline-block");
+								return false;
+						}else{
+							$('#password2_tip').css("display","none");
+						}
+						
+						// 证件号码
+						if(idcard == ""){
+							
+						}
+						var mycard=/^[0-9]{18}$/; //设置密码正则表达式
+						if(!mycard.test(idcard)){ 
+					           var cardFocus =$('#idcard'); 
+					           console.log(idcard);
+								cardFocus.focus();      
+								cardFocus.select();  
+								$('#idcard_tip').css("display"," inline-block");
+								return false;
+						}else{
+							$('#idcard_tip').css("display","none");
+						}
+						console.log("chenggong");
+						$.post('{:U("User/reg")}',{
+							'username':username,
+							'phone_number':phone,
+							'password':password,
+							'password2':password2,
+							'identity':idcard,
+							'name':name
+						},function(data){
+							arr = JSON.parse(data);
+							console.log(arr.status);
+							if(arr.status == 0){
+								$('.input-err').html(arr.msg);
+							}else if(arr.status == 1){
+								window.location.href="{:U('User/login')}";
+							}
+
+						})
+});
+
 			</script>
 
 	</body>

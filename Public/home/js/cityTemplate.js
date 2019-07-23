@@ -16,7 +16,6 @@ inCity.place = function (e) {
 			  if(nt.css("display")=="none"){
 				nt.slideDown("fast");
 			  }
-		$(".end-time").addClass('nt');
         $('.d-selet').css("left","24px");
         $('.selet').css("left","56.5px");
 		$('.d-btn').css("position","relative");
@@ -41,7 +40,6 @@ inCity.destination = function (e){
 					  if(nt.css("display")=="none"){
 						nt.slideDown("fast");
 					  }
-		$(".end-time").addClass('nt');
         $('.d-selet').css("left","24px");
         $('.selet').css("left","56.5px");
 		$('.d-btn').css("position","relative");
