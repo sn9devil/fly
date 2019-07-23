@@ -14,6 +14,27 @@
 			margin-top: 20px!important;
 			margin-left: 60px!important;
 		}
+		.save-speople{
+			display: inline-block;
+			font-size: 14px;
+			width: 120px;
+			height: 40px;
+			line-height: 40px;
+			background-color: #d9534f;
+			border-radius: 2rem;
+			font-size: 16px;
+			color: #fff;
+			border: none;
+			cursor: pointer;
+			outline: none;
+			margin-right: 40px;
+			border-color: #d43f3a;
+			position: absolute;
+			top: -20px;
+			left: 860px;
+			right: 0px;
+			bottom: 0px;
+		}
 	</style>
 </head>
 
@@ -52,10 +73,10 @@
 		</div>
 		<!-- 导航栏end -->
 		<!-- 内容 -->
-		<div class="layui-row" style="height: 536px;">
+		<div class="layui-row" style="height: 536px;position: relative;left: -70px">
 			<div class="layui-col-lg-offset2   layui-col-lg9 layui-col-lg-offset1 col">
 				<div class="layui-row">
-					<div class="layui-col-lg3">
+					<div class="layui-col-lg2">
 						<div class="layui-col-lg4">
 							<div class="layui-row"
 								style="	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);width: 200px;">
@@ -96,8 +117,8 @@
 						</div>
 					</div>
 
-					<div class="layui-col-lg9" style="padding-right: 25px;position: relative;right:20px ;">
-						<div class="layui-row">
+					<div class="layui-col-lg10" style="position: relative;left: 40px">
+						<div class="layui-row" style="position: relative;left:-40px">
 							<div class="layui-col-lg12" style="font-size: 20px;margin-top: 40px;">
 								<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
 
@@ -114,9 +135,9 @@
 							</div>
 						</div>
 						<!-- 账号信息 -->
-						<div class="layui-row active  st" name="u1" style="margin-left: 30px;">
+						<div class="layui-row active  st" name="u1" style="margin-left: 30px;" >
 							<volist name="result" id="my">
-								<div class="latui-col-lg12 gb" style="">
+								<div class="latui-col-lg12 gb" style="position: relative;right: 64px">
 									<div class="layui-row">
 										<div class="layui-col-lg2">
 											用户名:
@@ -149,20 +170,18 @@
 						<!-- 乘机人信息 -->
 						<div class="layui-row st" style="margin-top: 20px;" name="u2">
 							<div class="layui-col-lg12">
-								<div class="layui-row">
+								<div class="layui-row" style="position: relative">
 									<div class="layui-col-lg4">
 										<div class="layui-row">
 											<div class="layui-col-lg6">
 												联系人分类:
 											</div>
-											<div class="layui-col-lg6" style="color: #C92436;">
-												国内乘机人信息
-											</div>
+											
 										</div>
 									</div>
-									<div class="layui-col-lg8 save-speople" style="text-align: right;">
+									<button class="layui-col-lg8 save-speople" style="float: right;" type="button">
 										添加乘机人
-									</div>
+									</button>
 								</div>
 							</div>
 							<div class="layui-col-lg12" style="padding-top: 5px;">

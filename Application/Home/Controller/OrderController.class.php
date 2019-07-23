@@ -279,7 +279,7 @@ class OrderController extends PublicController {
     }
 
     public function complete(){
-        // $this->pay();
+        $this->pay();
         $this->display();
         redirect(U('Index/index'), 5, '页面跳转中...');
         // $this->success('支付成功',U('Index/index'),1);exit;

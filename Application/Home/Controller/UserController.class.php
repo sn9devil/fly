@@ -126,7 +126,7 @@ class UserController extends PublicController {
     //个人信息
     public function information(){
         $Model = M();
-        $sql = 'select * from contact a left join users b on a.uid=b.uid group by a.uid limit 1';
+        $sql = 'select * from users where uid='."'".session('user.uid')."'";
         $result = $Model->query($sql);
         foreach ($result as $key => $value) {
             if($result[$key]['member'] == 0){
@@ -143,7 +143,7 @@ class UserController extends PublicController {
         $Contact = M('contact');
 
         $Model = M();
-        $sql = 'select * from contact a left join users b on a.uid=b.uid';
+        $sql = 'select * from (contact a left join users b on a.uid=b.uid) where a.uid='.session('user.uid');
         $contact = $Model->query($sql);
         
         foreach ($contact as $key => $value) {

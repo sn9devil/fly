@@ -21,17 +21,27 @@
 		<div class=" layui-fluid" style="">
 			<div class="layui-row  rt" style="background-color: #FFFfff;">
 				<div class="layui-col-lg3  bt">
-					<div class="bottom-section">
-						<img src="__HOME__/kq-logo.svg">
-						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
-					</div>
+						<a href="{:U('Index/index')}">
+							<div class="bottom-section">
+								<img src="__HOME__/kq-logo.svg">
+								<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
+							</div>
+							</a>
 				</div>
 				<div class="layui-col-lg5  layui-col-lg-offset4  bt ">
 					<div class="layui-row title-rw">
-						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="{:U('Index/index')}">首页</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+						<div class="layui-col-lg3 title-lg">
+								<if condition="(!isset($_SESSION['user']) || $_SESSION['user']=='')">
+									<a href="{:U('User/login')}">登录</a>/				
+									<a href="{:U('User/register')}">注册</a>
+								<else/>
+									<!-- {:session('user.username')} -->
+									<a href="{:U('User/logOut')}">退出</a>
+								</if>
+						</div>
 					</div>
 				</div>
 			</div>
