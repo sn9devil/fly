@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<title></title>
-		<link rel="stylesheet" href="__HOME__/css/tyle.css" />
-		<link rel="stylesheet" href="__HOME__/css/body.css" />
-		<link rel="stylesheet" href="__HOME__/css/payandinformation.css" />
-		<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
-	</head>
-	<body>
-		<!-- 导航栏 -->
-		<div class=" layui-fluid" style="">
-			<div class="layui-row  rt" style="background-color: #FFFfff;">
-				<div class="layui-col-lg3  bt">
-					<div class="bottom-section">
-						<img src="__HOME__/kq-logo.svg">
-						<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
-					</div>
-				</div>
-				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
-					<div class="layui-row title-rw">
-						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
-						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
-					</div>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<title></title>
+	<link rel="stylesheet" href="__HOME__/css/tyle.css" />
+	<link rel="stylesheet" href="__HOME__/css/body.css" />
+	<link rel="stylesheet" href="__HOME__/css/payandinformation.css" />
+	<link rel="stylesheet" href="__HOME__/css/layui.css" media="all">
+	<style type="text/css">
+		.layui-table-view{
+			margin-top: 20px!important;
+			margin-left: 60px!important;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 导航栏 -->
+	<div class=" layui-fluid" style="">
+		<div class="layui-row  rt" style="background-color: #FFFfff;">
+			<div class="layui-col-lg3  bt">
+				<div class="bottom-section">
+					<img src="__HOME__/kq-logo.svg">
+					<img src="__HOME__/skyteam.svg" style="margin-left: 8px;margin-top: px;">
 				</div>
 			</div>
-			<!-- 导航栏end -->
-			<!-- 内容 -->
-			<div class="layui-row" style="height: 536px;">
-				<div class="layui-col-lg-offset2   layui-col-lg9 layui-col-lg-offset1 col">
-					<div class="layui-row">
-						<div class="layui-col-lg3">
-							<div class="layui-col-lg4">
-								<div class="layui-row" style="	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);width: 200px;">
-									<div class="latui-col-lg12">
-										<div class="layui-row" style="background:rgba(22,23,24,0.63);;padding: 10px;box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);">
-											<div class="layui-col-lg5">
-												<i class="layui-icon layui-icon-username" style="font-size: 60px;color: #FFF9EC;background-color: #C92436;width: 200px;"></i>
-											</div>
-											<div class="layui-col-lg7" style="color: #FFFFFF;padding-top: 5px;">
-												<div class="layui-row">
-													<div class="layui-col-lg12">
-														{:session('user.username')}
-													</div>
-													<div class="layui-col-lg12">
-														
-													</div>
-													<div class="layui-col-lg12" style="margin-top: 5px;">
-														<a href="#" style="color: #FFFFFF;">退出登录</a>
-													</div>
+			<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+				<div class="layui-row title-rw">
+					<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+					<div class="layui-col-lg3 title-lg"><a href="">登录</a>/<a href="">注册</a></div>
+					<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
+					<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
+				</div>
+			</div>
+		</div>
+		<!-- 导航栏end -->
+		<!-- 内容 -->
+		<div class="layui-row" style="height: 536px;">
+			<div class="layui-col-lg-offset2   layui-col-lg9 layui-col-lg-offset1 col">
+				<div class="layui-row">
+					<div class="layui-col-lg3">
+						<div class="layui-col-lg4">
+							<div class="layui-row"
+								style="	-webkit-box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);width: 200px;">
+								<div class="latui-col-lg12">
+									<div class="layui-row"
+										style="background:rgba(22,23,24,0.63);;padding: 10px;box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);">
+										<div class="layui-col-lg5">
+											<i class="layui-icon layui-icon-username"
+												style="font-size: 60px;color: #FFF9EC;background-color: #C92436;width: 200px;"></i>
+										</div>
+										<div class="layui-col-lg7" style="color: #FFFFFF;padding-top: 5px;">
+											<div class="layui-row">
+												<div class="layui-col-lg12">
+													{:session('user.username')}
+												</div>
+												<div class="layui-col-lg12">
+
+												</div>
+												<div class="layui-col-lg12" style="margin-top: 5px;">
+													<a href="#" style="color: #FFFFFF;">退出登录</a>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="layui-col-lg12">
-										<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;background-color: #000;color: #FFFFFF;text-align: center;height: 220px;">
-											<li class="layui-nav-item layui-nav-itemed layui-this  kg" name="u1">
-												<a href="javascript:;">账号信息管理 ></a>
-											</li>
-											<li class="layui-nav-item kg" name="u2">
-												<a href="javascript:;">常用乘机人管理 ></a>
-											</li>
-										</ul>
-									</div>
+								</div>
+								<div class="layui-col-lg12">
+									<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo"
+										style="margin-right: 10px;background-color: #000;color: #FFFFFF;text-align: center;height: 220px;">
+										<li class="layui-nav-item layui-nav-itemed layui-this  kg" name="u1">
+											<a href="javascript:;">账号信息管理 ></a>
+										</li>
+										<li class="layui-nav-item kg" name="u2">
+											<a href="javascript:;">常用乘机人管理 ></a>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<div class="layui-col-lg9" style="padding-right: 25px;position: relative;right:20px ;">
-							<div class="layui-row">
-								<div class="layui-col-lg12" style="font-size: 20px;margin-top: 40px;">
-									<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
-								</div>
+					<div class="layui-col-lg9" style="padding-right: 25px;position: relative;right:20px ;">
+						<div class="layui-row">
+							<div class="layui-col-lg12" style="font-size: 20px;margin-top: 40px;">
+								<span style="color: #CB0402;">{:session('user.username')}，</span>欢迎您
 							</div>
-							<!-- 账号信息 -->
-							<div class="layui-row active  st" name="u1" style="margin-left: 30px;">
-								<volist name="result" id="my">
+						</div>
+						<!-- 账号信息 -->
+						<div class="layui-row active  st" name="u1" style="margin-left: 30px;">
+							<volist name="result" id="my">
 								<div class="latui-col-lg12 gb" style="">
 									<div class="layui-row">
 										<div class="layui-col-lg2">
@@ -88,7 +100,7 @@
 											{$my.username}
 										</div>
 									</div>
-									
+
 									<div class="layui-row">
 										<div class="layui-col-lg2">
 											手机号码:
@@ -106,197 +118,282 @@
 										</div>
 									</div>
 								</div>
-								</volist>
-							</div>
-							<!-- 账号信息end -->
-							<!-- 乘机人信息 -->
-							<div class="layui-row st" style="margin-top: 20px;" name="u2" >
-								<div class="layui-col-lg12">
-									<div class="layui-row">
-										<div class="layui-col-lg4">
-											<div class="layui-row">
-												<div class="layui-col-lg6">
-													联系人分类:
-												</div>
-												<div class="layui-col-lg6" style="color: #C92436;">
-													国内乘机人信息
-												</div>
+							</volist>
+						</div>
+						<!-- 账号信息end -->
+						<!-- 乘机人信息 -->
+						<div class="layui-row st" style="margin-top: 20px;" name="u2">
+							<div class="layui-col-lg12">
+								<div class="layui-row">
+									<div class="layui-col-lg4">
+										<div class="layui-row">
+											<div class="layui-col-lg6">
+												联系人分类:
+											</div>
+											<div class="layui-col-lg6" style="color: #C92436;">
+												国内乘机人信息
 											</div>
 										</div>
-										<div class="layui-col-lg8 save-speople" style="text-align: right;">
-											添加乘机人
-										</div>
 									</div>
-								</div>
-								<div class="layui-col-lg12" style="padding-top: 5px;">
-									<table class="layui-hide" id="demo">
-									</table>
-								</div>
-							</div>
-							<!-- 乘机人信息end -->
-						</div>
-					</div>
-				</div>
-				<!-- 弹出框 -->
-				<form method="post" action="content.html" class="selet-form">
-					<div class="save-text">
-						<div class="save-name">
-							<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
-							<input type="text" class="text-selet text-name">
-						</div>
-						<div class="save-id">
-							<span>身份证:</span>
-							<input type="text" class="text-selet text-id">
-						</div>
-						<button class="d-btn" type="button">提交</button>
-						<button class="d-btn1" type="button">取消</button>
-					</div>
-				</form>
-				<!-- 弹出框end -->
-			</div>
-			<!-- 内容end -->
-			<!-- 尾部 -->
-			<div class="layui-row">
-				<div class="layui-col-lg12 body-bottom">
-					<div class="layui-row">
-						<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2" style="position: relative;left: 40px;">
-							<div class="layui-row" style="margin-top: 10px;">
-								<div class="layui-col-lg12">
-									<div class="layui-row bt-1">
-										<div class="layui-col-lg3">
-											其他站点
-										</div>
-										<div class="layui-col-lg3">
-											有用链接
-										</div>
-										<div class="layui-col-lg3">
-											联系我们
-										</div>
-										<div class="layui-col-lg3">
-											关注我们
-										</div>
-									</div>
-									<div class="layui-row bt-1">
-										<div class="layui-col-lg3">
-											航班通行证
-										</div>
-										<div class="layui-col-lg3">
-											隐私政策
-										</div>
-										<div class="layui-col-lg3">
-											品牌大使
-										</div>
-										<div class="layui-col-lg3">
-											<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
-										</div>
-									</div>
-									<div class="layui-row bt-1">
-										<div class="layui-col-lg3">
-											BlueBiz
-										</div>
-										<div class="layui-col-lg3">
-											免责声明
-										</div>
-										<div class="layui-col-lg3">
-											预订政策
-										</div>
-										<div class="layui-col-lg3">
-											<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
-										</div>
-									</div>
-									<div class="layui-row bt-1">
-										<div class="layui-col-lg3">
-											团体预订
-										</div>
-										<div class="layui-col-lg3">
-											昆虫杀灭
-										</div>
-										<div class="layui-col-lg3">
-											肯航管理政策
-										</div>
-										<div class="layui-col-lg3">
-											<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
-										</div>
+									<div class="layui-col-lg8 save-speople" style="text-align: right;">
+										添加乘机人
 									</div>
 								</div>
 							</div>
+							<div class="layui-col-lg12" style="padding-top: 5px;">
+								<table class="layui-hide" id="demo" lay-filter="demo">
+								</table>
+								<!-- <table class="layui-hide" id="test" lay-filter="test"></table> -->
+							</div>
+						</div>
+						<!-- 乘机人信息end -->
+					</div>
+				</div>
+			</div>
+			<!-- 弹出框 -->
+			<form method="post" action="content.html" class="selet-form">
+				<div class="save-text">
+					<div class="save-name">
+						<span style="position: relative;left: 1px;">&nbsp;&nbsp; 姓名:</span>
+						<input type="text" name="name" class="text-selet text-name" id="name">
+					</div>
+					<div class="save-id">
+						<span>身份证:</span>
+						<input type="text" name="identity" class="text-selet text-id" id="identity">
+						<span style="color: red;position: absolute;top:90px;bottom: 0;left:50px;right: 0;width: 250px;height:0px" class="card-err"></span>
+					</div>
+					<button class="d-btn" type="button">提交</button>
+					<button class="d-btn1" type="button">取消</button>
+				</div>
+			</form>
+			<!-- 弹出框end -->
+		</div>
+		<!-- 内容end -->
+		<!-- 尾部 -->
+		<div class="layui-row">
+			<div class="layui-col-lg12 body-bottom">
+				<div class="layui-row">
+					<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2"
+						style="position: relative;left: 40px;">
+						<div class="layui-row" style="margin-top: 10px;">
+							<div class="layui-col-lg12">
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										其他站点
+									</div>
+									<div class="layui-col-lg3">
+										有用链接
+									</div>
+									<div class="layui-col-lg3">
+										联系我们
+									</div>
+									<div class="layui-col-lg3">
+										关注我们
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										航班通行证
+									</div>
+									<div class="layui-col-lg3">
+										隐私政策
+									</div>
+									<div class="layui-col-lg3">
+										品牌大使
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-wechat"></i>&nbsp;&nbsp;瓦坎达航空公司
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										BlueBiz
+									</div>
+									<div class="layui-col-lg3">
+										免责声明
+									</div>
+									<div class="layui-col-lg3">
+										预订政策
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-weibo"></i>&nbsp;&nbsp;@kenyaAirways
+									</div>
+								</div>
+								<div class="layui-row bt-1">
+									<div class="layui-col-lg3">
+										团体预订
+									</div>
+									<div class="layui-col-lg3">
+										昆虫杀灭
+									</div>
+									<div class="layui-col-lg3">
+										肯航管理政策
+									</div>
+									<div class="layui-col-lg3">
+										<i class="layui-icon layui-icon-login-qq"></i>&nbsp;&nbsp;officialkenyaairways
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- 尾部end -->
-			<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
-			<script src="__HOME__/js/unslider.min.js"></script>
-			<script src="__HOME__/js/layui.js" charset="utf-8"></script>
-			<script src="__HOME__/js/layui.all.js" charset="utf-8"></script>
-			<script src="__HOME__/js/cityTemplate.js"></script>
-			<script src="__HOME__/js/body.js"></script>
-			<script type="text/html" id="sc">
-			 <a href="{:U('Contact/delete')}" class="layui-btn layui-btn-danger layui-btn-xs sq" lay-event="del" style="margin-left: 8px;">删除</a>
-			</script>
-			<script>
-				// 选择
-				$('.kg').click(function(){
-					var name=$(this).attr('name');
-					$('.st.active').removeClass('active');
-					$('.st[name="'+name+'"]').addClass('active');
+		</div>
+		<!-- 尾部end -->
+		<script src="__HOME__/js/jquery-1.11.1.min.js"></script>
+		<script src="__HOME__/js/unslider.min.js"></script>
+		<script src="__HOME__/js/layui.js" charset="utf-8"></script>
+		<script src="__HOME__/js/layui.all.js" charset="utf-8"></script>
+		<script src="__HOME__/js/cityTemplate.js"></script>
+		<script src="__HOME__/js/body.js"></script>
+		<script type="text/html" id="barDemo">
+				<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+				<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			  </script>
+		<script>
+			// 选择
+			$('.kg').click(function () {
+				var name = $(this).attr('name');
+				$('.st.active').removeClass('active');
+				$('.st[name="' + name + '"]').addClass('active');
+			});
+
+
+			// 表格
+			layui.use('table', function () {
+				var table = layui.table;
+
+				//展示已知数据
+				table.render({
+					elem: '#demo',
+					url: "{:U('User/getContact')}",
+					width:"905",
+					cols: [
+						[ //标题栏
+						
+							{
+								field: 'name',
+								title: '姓名',
+								width: 200
+							},
+							{
+								field: 'type',
+								title: '类型',
+								width: 200
+							}, {
+								field: 'identity',
+								title: '证件号码',
+								width: 300
+							}, {
+								title: '操作',
+								toolbar: '#barDemo',
+								width: 200
+							}
+						]
+					],
+					even: true
 				});
-				
-				
-				// 表格
-				layui.use('table', function() {
-					var table = layui.table;
-				
-					//展示已知数据
-					table.render({
-						elem: '#demo',
-						url:"{:U('User/getContact')}",
-						cols: [
-							[ //标题栏
-								{
-									field: 'cid',
-									title: '编号',
-									width:60	
+				//监听行工具事件
+				table.on('tool(demo)', function (obj) {
+					var data = obj.data;
+					console.log(obj)
+					if (obj.event === 'del') {
+						layer.confirm('真的删除行么', function (index) {
+							obj.del();
+							layer.close(index);
+							$.ajax({
+								url: "{:U('Contact/delcontact')}",
+								type: 'post',
+								data: {
+									'cid': data.cid,
 								},
-								 {
-									field: 'name',
-									title: '姓名',
-									width:60	
-								},{
-									field: 'identity',
-									title: '证件号码',
-									width:200
-								},{
-									title:'操作',
-								    toolbar: '#sc',
-									width:80
+								dataType: 'text',
+								success: function (json) {
+									layer.close(index);
+									table.reload('demo', {
+										method: 'get',
+										where: {}
+									});
 								}
-							]
-						],
-						even: true
-					});
+                        	});
+						});
+					} else if (obj.event === 'edit') {
+						layer.open({
+							type: 2,
+							resize: true,
+							title: '编辑联系人信息',
+							area: ['350px', '360px'],
+							shade: 0,
+							content: "{:U('Contact/findOne')}?cid=" + data.cid,
+							zIndex: layer.zIndex,
+							success: function (layero) {
+                            layer.setTop(layero);
+                        }
+                   		 });
+
+
+						// layer.prompt({
+						// 	formType: 2
+						// 	, value: data.cid
+						// }, function (value, index) {
+						// 	obj.update({
+						// 		email: value
+						// 	});
+						// 	layer.close(index);
+						// });
+					}
 				});
-				// 删除
-				$('.sq').click(function(){
-					alert("确定删除吗");
-				});
-				/*关闭弹出框*/
-				$('.save-speople').click(function() {
-					$('.selet-form').show();
-				});
-				$(document).click(function() {
-					$('.selet-form').hide();
-					$('.selet-check').hide();
-					$('.selet-people').show();
-					$('.rq').css("margin-top", "0px");
-				});
-				$('.selet-form,.save-speople,.selet-people,.selet-check').click(function(event) {
-					event.stopPropagation();
-				});
-				$('.d-btn1').click(function() {
-					$('.selet-form').hide();
-				});
+			});
+			// 删除
+			$('.sq').click(function () {
+				alert("确定删除吗");
+			});
+			/*关闭弹出框*/
+			$('.save-speople').click(function () {
+				$('.selet-form').show();
+			});
+			$(document).click(function () {
+				$('.selet-form').hide();
+				$('.selet-check').hide();
+				$('.selet-people').show();
+				$('.rq').css("margin-top", "0px");
+			});
+			$('.selet-form,.save-speople,.selet-people,.selet-check').click(function (event) {
+				event.stopPropagation();
+			});
+			$('.d-btn1').click(function () {
+				$('.selet-form').hide();
+			});
+
+
+			$('.d-btn').click(function() {	
+                name = $("#name").val();
+                identity = $("#identity").val();
+                
+
+                $.post("{:U('Contact/add')}",
+                    {
+                        'name':name,
+                        'identity':identity
+                    },
+                    function(data){
+                        var j = JSON.parse(data);
+                        if(j.status == 0){
+                            //失败
+                            $('.card-err').html(j.mgs);
+                        }else{
+                            //成功
+                            postApi();
+                            $('#name').val("");
+                            $('#identity').val("");
+                            $('.selet-form').hide();
+                        }
+                        
+                    });
+			});
+			
 				/*关闭弹出框end*/
-				 </script>
-				</body>  
-				</html>
+		</script>
+</body>
+
+</html>

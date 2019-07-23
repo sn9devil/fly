@@ -165,6 +165,8 @@ class ContactController extends PublicController {
         $Model = M();
         $Contact = M('contact');
         $check_idcard = $_POST['identity'];
+        
+
         if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
             $list['status'] = 0;
             $list['mgs'] = "证件号码位数出错";
@@ -205,28 +207,30 @@ class ContactController extends PublicController {
     }
 
     public function update(){
+        $get = json_decode($_GET['get'],1);
+
         $Model = M();
         $Contact = M('contact');
-        $check_idcard = $_GET['identity'];
+        $check_idcard = $get['identity'];
         if(strlen($check_idcard)<15 || strlen($check_idcard)>18){
             $this->error('证件号码位数出错');
             exit;
         }else{
             if($this->idcard_checksum18($check_idcard)){
                 // 查找有没有重复的联系人信息
-                $sql = 'select * from contact where name='."'".$_GET[cid]."'"."and identity="."'".$check_idcard."'";
+                $sql = 'select * from contact where name='."'".$get[cid]."'"."and identity="."'".$check_idcard."'";
                 $list = $Model->query($sql);
                 if(!empty($list)){
                     $this->error('已存在相同的联系人信息');
                     exit;
                 }
                 $type = $this->is_adult($check_idcard); 
-                $data['name'] = $_GET[name];
+                $data['name'] = $get[name];
                 $data['type'] = $type;
-                $data['identity'] = $_GET[identity];
+                $data['identity'] = $get[identity];
                 $data['uid'] = session('user.uid');
-                $Contact->where('cid='.$_GET[cid])->save($data); // 根据条件更新记录
-                $this->success('嘤嘤嘤',U('Contact/index'),1);exit;    
+                $Contact->where('cid='.$get[cid])->save($data); // 根据条件更新记录
+                //    
             }else{
                 $this->error('证件号码填写有问题，请重新输入');
                 exit;
@@ -245,7 +249,24 @@ class ContactController extends PublicController {
     public function delete(){
     	$Contact = M("contact"); // 实例化User对象
         $Contact->where('cid='.$_GET[cid])->delete(); // 删除id为5的用户数据	
-        $this->success('嘤嘤嘤',U('Contact/index'),1);exit;  
+        
+    }
+
+    //删除
+    public function delcontact(){
+        $Contact = M('contact');
+        $uid = $_POST['cid'];
+        //var_dump($uid);
+        $Contact = $Contact->delete($uid);
+        echo 1;
+    }
+
+     public function findOne(){
+        $Contact = M('contact');
+        $cid = $_GET['cid'];
+        $contact = $Contact->where('cid='.$cid)->find();
+        $this->assign('list',$contact);
+        $this->display();
     }
 
 }

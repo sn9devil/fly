@@ -39,7 +39,8 @@ class UserController extends PublicController {
 	// 用户注册
     public function reg(){
         $post = json_decode($_POST['post'], 1);
-        
+        import('@.Controller.Contact');
+        $C = new ContactController();
        
         if(!empty($post)){
             $Model = M();
@@ -74,8 +75,7 @@ class UserController extends PublicController {
             $sql = 'select uid from users where username='."'".$post['username']."'";
             $uid = $Model->query($sql);
             echo 1;
-            import('@.Controller.Contact');
-            $C = new ContactController();
+            
 
             $Contact = M('contact');
             $check_idcard = $post['identity'];
@@ -135,13 +135,25 @@ class UserController extends PublicController {
 
     public function getContact(){
         $Contact = M('contact');
-        $contact = $Contact->where('uid='.session('user.uid'))->select();
+
+        $Model = M();
+        $sql = 'select * from contact a left join users b on a.uid=b.uid';
+        $contact = $Model->query($sql);
         
+        foreach ($contact as $key => $value) {
+            if($contact[$key]['type'] == 0){
+                $contact[$key]['type'] = "成人";
+            }else{
+                $contact[$key]['type'] = "未成年";
+            }
+        }
+
         $arr = array();
         $arr['code'] = 0;
         $arr['count'] = $Contact->where('uid='.session('user.uid'))->count();
         $arr['msg'] ="";
         $arr['data'] = $contact;
+
         if($contact){
             echo json_encode($arr);
         }
