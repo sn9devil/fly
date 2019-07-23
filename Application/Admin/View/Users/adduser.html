@@ -59,7 +59,7 @@
         </div>
 
         <div class="layui-form-item add_btn">
-            <div class="layui-input-block" style= "margin-left: 0px; float: right" >
+            <div class="layui-input-block" style="margin-left: 0px; float: right">
                 <button class="layui-btn" lay-submit="" lay-filter="add_user">提交</button>
             </div>
         </div>
@@ -79,15 +79,23 @@
                     },
                     dataType: 'json',
                     success: function (json) {
-                        // layer.msg(json.msg,{time:500},function(){
-                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                        parent.layer.close(index); //再执行关闭
-                        parent.layui.table.reload('allUserInfoTable', {
-                            page: {
-                                curr: 1
-                            }
-                        });
-                        //  });
+                        if (json.status == 1) {
+                            layer.msg(json.msg, {
+                                time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.layer.close(index); //再执行关闭
+                                parent.layui.table.reload('allUserInfoTable', {
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
+                            });
+                        } else {
+                            layer.msg(json.msg, {
+                                time: 1500 //1.5秒关闭（如果不配置，默认是3秒）
+                            });
+                        }
                     }
                 });
                 return false;
