@@ -38,8 +38,20 @@ class UsersController extends BasicController {
         $Users = M('users');
         //注意json_decode()的第二个参数
         $post = json_decode($_GET['get'],1);
-        $phone = intval($post['phone']);
-        $Users->add(['username'=>$post['name'],'password'=>$post['password'],'phone_number'=>$phone,'member'=>$post['member'],'con_id'=>0]);
+        // $phone = intval($post['phone']);
+        $data = [];
+        $user = $Users->where('username = '."'".$post['name']."'")->find();
+        if($user){
+            $data['status'] = '0';
+            $data['msg'] = '用户名已存在';
+            echo json_encode($data);
+        }else {
+            $data['status'] = '1';
+            $mdpassword = md5($post['password']);
+            $Users->add(['username'=>$post['name'],'password'=>$mdpassword,'phone_number'=>$post['phone'],'member'=>$post['member'],'con_id'=>0]);
+            $data['msg'] = '添加成功';
+            echo json_encode($data);
+        }       
     }
 
     //删除用户
@@ -78,8 +90,11 @@ class UsersController extends BasicController {
     public function updatauserinfo(){
         $Users = M('users');
         $get = json_decode($_GET['get'],1);
-        $Users->where('uid ='.$get['uid'])->save($get);
-
+        $data['username'] = $get['name'];
+        $data['password'] = md5($get['password']);
+        $data['phone_number'] = $get['phone'];
+        $data['member'] = $get['member'];
+        $Users->where('uid ='.$get['uid'])->save($data);
     }
 
     //获取对应用户常用联系人的查询方法
