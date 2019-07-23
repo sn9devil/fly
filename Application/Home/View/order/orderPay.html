@@ -20,9 +20,12 @@
 					</div>
 					</a>
 				</div>
-				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+				<div class="layui-col-lg5  layui-col-lg-offset4   bt ">
 					<div class="layui-row title-rw">
-						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+							<if condition="isset($_SESSION['user'])" >
+									<div class="layui-col-lg3 title-lg"><a href="{:U('User/information')}">{$Think.session.user.username}</a></div>
+								</if>
+						<div class="layui-col-lg3 title-lg"><a href="{:U('Index/index')}">首页</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 						<div class="layui-col-lg3 title-lg">
@@ -224,11 +227,11 @@
 								<div class="layui-col-lg6">
 									<form action="{:U(complete)}" method="POST">
 									<input type="text" name="ooid" style="display: none" value="{$ooid}">
-									<button class="d-btn">提交</button>
+									<button class="d-btn">支付</button>
 									</form>
 								</div>
 								<div class="layui-col-lg6">
-									<button type="submit" formaction="{:U('Index/index')}"  class="d-btn">取消</button>
+									<a href="{:U('Index/index')}"><button type="button"   class="d-btn">取消</button></a>
 								</div>
 							</div>
 						</div>

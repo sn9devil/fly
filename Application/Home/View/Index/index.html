@@ -19,10 +19,10 @@
 					</div>
 					</a>
 				</div>
-				<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+				<div class="layui-col-lg5  layui-col-lg-offset4  bt ">
 					<div class="layui-row title-rw">
 						<if condition="isset($_SESSION['user'])" >
-						<div class="layui-col-lg3 title-lg"><a href="">{$Think.session.user.username}</a></div>
+						<div class="layui-col-lg3 title-lg"><a href="{:U('User/information')}">{$Think.session.user.username}</a></div>
 						</if>
 						<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
 						<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
@@ -53,7 +53,7 @@
 				<ul class="layui-tab-title">
 					<li class="layui-this">预定行程</li>
 					<li>订单管理</li>
-					<li>航空公司查询</li>
+					<li>客服服务</li>
 				</ul>	
 				<div class="layui-tab-content">	
 					<div class="layui-tab-item layui-show tab-b1">
@@ -116,7 +116,7 @@
 					</div>
 					<div class="layui-tab-item tab-b3" style="padding: 0px">
 						
-						<img src="__HOME__/img/fly.jpg" style="">
+						<img src="__HOME__/img/fly.jpg" >
 					
 					</div>
 					<!-- </form> -->
@@ -148,7 +148,7 @@
 								<div class="layui-col-lg2  ct-lg" name="city2"><span>海口</span></div>
 								<div class="layui-col-lg2  ct-lg" name="city3"><span>三亚</span></div>
 								<div class="layui-col-lg2  ct-lg" name="city4"><span>广州</span></div>
-								<div class="layui-col-lg2  ct-lg"><a ><span>更多&nbsp;&nbsp;»</span></a></div>
+								<div class="layui-col-lg2  ct-lg"><a href="{:U('Index/search')}" ><span>更多&nbsp;&nbsp;»</span></a></div>
 							</div>
 							<div class="qh active" name="city1">							
 								<div class="layui-col-lg12 gh">
@@ -174,7 +174,7 @@
 								<div class="layui-col-lg12 gh">
 										<volist name="oneList" id="secondRow" offset="4" length='4'>
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
+												<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'people'=>'1成人0儿童'))}">
 													<div class="layui-col-lg12 gz">
 														<div class="layui-col-lg2">{$secondRow.go}</div>
 														<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -194,7 +194,7 @@
 								<div class="layui-col-lg12 gh">
 										<volist name="oneList" id="thirdRow" offset="8" length='4'>
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
+												<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'people'=>'1成人0儿童'))}">
 													<div class="layui-col-lg12 gz">
 														<div class="layui-col-lg2">{$thirdRow.go}</div>
 														<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -216,7 +216,7 @@
 										<div class="layui-col-lg12 gh">	
 											<volist name="twoList" id="firstRow" offset="0" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
+													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'people'=>'1成人0儿童'))}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$firstRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -236,7 +236,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="twoList" id="secondRow" offset="4" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
+														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'people'=>'1成人0儿童'))}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$secondRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -256,7 +256,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="twoList" id="thirdRow" offset="8" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
+														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'people'=>'1成人0儿童'))}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$thirdRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -278,7 +278,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="threeList" id="firstRow" offset="0" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
+													<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'people'=>'1成人0儿童'))}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$firstRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -298,7 +298,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="threeList" id="secondRow" offset="4" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
+														<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'people'=>'1成人0儿童'))}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$secondRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -318,7 +318,7 @@
 										<div class="layui-col-lg12 gh">	
 												<volist name="threeList" id="thirdRow" offset="8" length="4">									
 													<div class="layui-col-lg3 lg">
-														<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
+														<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'people'=>'1成人0儿童'))}">
 																<div class="layui-col-lg12 gz">
 																	<div class="layui-col-lg2">{$thirdRow.go}</div>
 																	<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -340,7 +340,7 @@
 								<div class="layui-col-lg12 gh">	
 										<volist name="fourList" id="firstRow" offset="0" length="4">									
 											<div class="layui-col-lg3 lg">
-												<a href="{:U('Index/search?go='.$firstRow['go'].'&arrive='.$firstRow['arrive'].'&date='.$firstRow['date'].'&type='.'1成人0儿童')}">
+												<a href="{:U('search', array('go'=>$firstRow['go'],'arrive'=>$firstRow['arrive'],'date'=>$firstRow['date'],'people'=>'1成人0儿童'))}">
 														<div class="layui-col-lg12 gz">
 															<div class="layui-col-lg2">{$firstRow.go}</div>
 															<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -360,7 +360,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="fourList" id="secondRow" offset="4" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('Index/search?go='.$secondRow['go'].'&arrive='.$secondRow['arrive'].'&date='.$secondRow['date'].'&type='.'1成人0儿童')}">
+													<a href="{:U('search', array('go'=>$secondRow['go'],'arrive'=>$secondRow['arrive'],'date'=>$secondRow['date'],'people'=>'1成人0儿童'))}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$secondRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -380,7 +380,7 @@
 									<div class="layui-col-lg12 gh">	
 											<volist name="fourList" id="thirdRow" offset="8" length="4">									
 												<div class="layui-col-lg3 lg">
-													<a href="{:U('Index/search?go='.$thirdRow['go'].'&arrive='.$thirdRow['arrive'].'&date='.$thirdRow['date'].'&type='.'1成人0儿童')}">
+													<a href="{:U('search', array('go'=>$thirdRow['go'],'arrive'=>$thirdRow['arrive'],'date'=>$thirdRow['date'],'people'=>'1成人0儿童'))}">
 															<div class="layui-col-lg12 gz">
 																<div class="layui-col-lg2">{$thirdRow.go}</div>
 																<div class="layui-col-lg2"><i class="icon-site"></i></div>
@@ -541,8 +541,8 @@
 			$('.d1').click(function() {
 				$('.d1').addClass('on');
 				$('.d2').removeClass('on');
-				$('.end-time').addClass('nt');
 				$('.d-selet').css("left", "24px");
+				$('.end-time.nt').removeClass('nt');
 				$('.selet').css("left", "57px");
 				btn = $('.s1').html();
 				$('.s3').html(btn);
@@ -552,9 +552,9 @@
 				if (nt.css("display") == "none") {
 					nt.slideDown("fast");
 				}
+				$('.end-time').addClass('nt');
 				$('.d2').addClass('on');
 				$('.d1').removeClass('on');
-				$('.end-time.nt').removeClass('nt');
 				setTimeout(function() {
 					$('.d-btn').css("position", "relative")
 				}, 60);
@@ -569,6 +569,9 @@
 			/*传参数*/
 			$('.d-btn').click(function() {
 				var selet = $(".s3").html();
+				if((".d1").hasClass('on')){
+					$('#test2').val("");
+				}
 				window.location.href = "search.html?valus=" + selet;
 			});
 

@@ -151,24 +151,30 @@
 	$('.d1').click(function() {
 		$('.d1').addClass('on');
 		$('.d2').removeClass('on');
-		$('.end-time').addClass('nt');
 		$('.d-selet').css("left", "24px");
+		$('.end-time.nt').removeClass('nt');
 		$('.selet').css("left", "57px");
+		btn = $('.s1').html();
+		$('.s3').html(btn);
+		$('.end-time #test2').val("");
 	});
 	$('.d2').click(function() {
 		var nt = $(".nt");
 		if (nt.css("display") == "none") {
 			nt.slideDown("fast");
 		}
+		$('.end-time').addClass('nt');
 		$('.d2').addClass('on');
 		$('.d1').removeClass('on');
-		$('.end-time.nt').removeClass('nt');
 		setTimeout(function() {
 			$('.d-btn').css("position", "relative")
 		}, 60);
 		setTimeout(function() {
 			$('.tab-b1').css("padding-bottom", "100px")
 		}, 60);
+		btn = $('.s2').html();
+		$('.s3').html(btn);
+		$('#test2').val( new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 	});
 	/*按钮点击end*/
 	/*地址转换*/

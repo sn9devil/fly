@@ -21,7 +21,9 @@ ul{
 .bt{
 	  line-height: 3.6875rem;
  }
-
+ .bt .layui-col-lg3{
+	width:20%;
+}
 .bottom-section{
 	width: 380px;
     background: url(../curve.svg) 0 0 no-repeat;

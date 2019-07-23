@@ -42,6 +42,7 @@ class OrderController extends PublicController {
         $all = [];
         $order_id = [];
 
+
         // // 通不get方法获取参数
         // $d = empty($_GET['d'])? 0: $_GET['d'];          // 当前目录ID
         // $p = empty($_GET['p'])? 1: $_GET['p'];          // 当前分页码
@@ -144,8 +145,16 @@ class OrderController extends PublicController {
         $contact = M('contact');
         $cid = $_GET['cid'];
         $contact_list = [];
+        $adult = 0;
+        $children = 0;
         foreach ($cid as $key => $value) {
-            $contact_list[] = $contact->where(['cid' => $value])->find();
+             $item = $contact->where(['cid' => $value])->find();
+             $contact_list[] = $item;
+             if($item['type'] == 0){
+                $adult++;
+             }else{
+                 $children++;
+             }
         }  
         // echo '<pre>';
         // var_dump($contact_list);
@@ -154,8 +163,7 @@ class OrderController extends PublicController {
         $back_tid = $_GET["back_tid"];
         $ticket_type = $_GET["ticket_type"];
         $back_ticket_type = $_GET["back_ticket_type"];
-        $adult = $_GET["adult"];;
-        $children = $_GET["children"];;
+
         $num = $children + $adult;
         //支付状态
         $status = 0;
@@ -271,7 +279,7 @@ class OrderController extends PublicController {
     }
 
     public function complete(){
-        // $this->pay();
+        $this->pay();
         $this->display();
         redirect(U('Index/index'), 5, '页面跳转中...');
         // $this->success('支付成功',U('Index/index'),1);exit;

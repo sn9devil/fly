@@ -27,9 +27,12 @@
 					</div>
 					</a>
 	   		</div>
-	   		<div class="layui-col-lg4  layui-col-lg-offset5  bt ">
+	   		<div class="layui-col-lg5  layui-col-lg-offset4   bt ">
 	   			<div class="layui-row title-rw">
-	   				<div class="layui-col-lg3 title-lg"><a href="">首页</a></div>
+						<if condition="isset($_SESSION['user'])" >
+								<div class="layui-col-lg3 title-lg"><a href="{:U('User/information')}">{$Think.session.user.username}</a></div>
+							</if>
+	   				<div class="layui-col-lg3 title-lg"><a href="{:U('User/information')}">首页</a></div>
 	   				<div class="layui-col-lg3 title-lg"><a href="">关于我们</a></div>
 	   				<div class="layui-col-lg3 title-lg"><a href="">客户支持</a></div>
 					<div class="layui-col-lg3 title-lg">
@@ -47,7 +50,7 @@
 	   	<!-- 导航栏end -->
 		<!-- 内容 -->
 		  <!-- 主体 -->
-		  <div class="layui-row">
+		  <div class="layui-row" style="height: 540px;">
 		  	<div class="layui-col-lg-offset2 layui-col-lg8  layui-col-lg-offset2 ct-bg" style="height: 400px;">
 		  		<!-- 乘机人信息 -->
 		  		<div class="layui-row">
@@ -199,9 +202,9 @@
 						]
 					],
 					even: true
-					//,page: true //是否显示分页
-					//,limits: [5, 7, 10]
-					//,limit: 5 //每页默认显示的数量
+					// ,page: true //是否显示分页
+					// //,limits: [5, 7, 10]
+					// ,limit: 1 //每页默认显示的数量
 				});
 			table.on('tool(demo)', function(obj){
 		    var data = obj.data;

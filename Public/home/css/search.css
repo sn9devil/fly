@@ -122,8 +122,12 @@ body,html{
       margin-top: 1.125rem;
  }
  .end-time{
- 	margin-left: 3.5rem;
+	 margin-left: 3.5rem;
+	 display: none;
  }
+ .end-time.nt{
+	display: inline-block;
+}
  /*时间end*/
  /*选择框*/
  .d-selet{
