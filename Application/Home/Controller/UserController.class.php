@@ -13,13 +13,17 @@ class UserController extends PublicController {
 
     // 用户登录的方法
     public function postLogin(){
+        if(session('user')!=null){
+            echo json_encode(['msg'=>'请先退出当前用户','status'=>0]);
+            return ;
+        }
         $post = json_decode($_POST['post'], 1);
         $User = M('users');
         $user = $User
                  ->field('uid, username')
                  ->where('username = "'.$post['username'].'" and password ="'.md5($post['password']).'"')
                  ->find();
-
+        //var_dump($post['username']);
         if($user or $phone){
             session('user',$user);
             $data = [];
@@ -32,6 +36,7 @@ class UserController extends PublicController {
             echo json_encode(['msg'=>'用户名或密码错误','status'=>0]);
             return ;
         }         
+    
     }
     
     public function register(){

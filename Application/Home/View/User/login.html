@@ -66,8 +66,8 @@
 									</div>
 								
 									<div class="btnlink layui-form-item" style="position: relative;right: 30px">
-										<button class="d-btn" style="margin-right: 40px">登录</button>
-										<button class="d-btn">注册</button>
+										<button class="d-btn"  lay-submit="" lay-filter="login" style="margin-right: 40px">登录</button>
+										<button class="d1-btn">注册</button>
 									</div>
 								</form>
 							</div>
@@ -158,6 +158,7 @@
                 let url = "{:U('postLogin')}";
                 let post = JSON.stringify(data.field);
                 console.log(url, post);
+
                 $.ajax({
                     type: 'post',
                     url: url,
