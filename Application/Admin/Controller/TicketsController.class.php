@@ -122,7 +122,7 @@ class TicketsController extends BasicController {
         $Ticket = M('ticket');
         $post = json_decode($_POST['post'], 1);
         $tid = $post['tid'];
-       var_dump($post);
+    //    var_dump($post);
         $ticket = $Ticket->where('tid='.$tid)->save($post);
         $data = [];
         $data['msg'] = '修改成功';
